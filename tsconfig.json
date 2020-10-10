@@ -24,12 +24,14 @@
       "@layouts/*": ["layouts/*"],
       "@posts/*": ["posts/*"],
       "@api": ["api/index"],
+      "@assets/*": ["assets/*"],
     }
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "custom.d.ts"
   ],
   "exclude": [
     "node_modules"

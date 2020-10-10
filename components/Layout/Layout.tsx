@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import Head from "next/head";
+import Header from '@components/Header';
+import { Container } from './Layout.styled';
 
-interface Props {
+interface LayoutProps {
   className?: string;
   children: React.ReactNode;
   desc?: string;
@@ -9,7 +11,7 @@ interface Props {
   thumb?: string;
 }
 
-const Layout: React.FC<Props> = ({
+const Layout: React.FC<LayoutProps> = ({
   className,
   children,
   title,
@@ -22,7 +24,7 @@ const Layout: React.FC<Props> = ({
     "https://repository-images.githubusercontent.com/280748222/db50d880-cac8-11ea-8874-40a3c45a9fa7";
 
   return (
-    <main className={className}>
+    <>
       <Head>
         <meta charSet="utf-8" />
         <title>{title}</title>
@@ -38,12 +40,14 @@ const Layout: React.FC<Props> = ({
         <meta property="twitter:description" content={description} />
         <meta property="twitter:image" content={thumbnail} />
       </Head>
-      {/* <Header /> */}
-      {children}
+      <Header />
+      <Container>
+        {children}
+      </Container>
       {/* <Footer>
         <p>Hector Sanchez - 2020</p>
       </Footer> */}
-    </main>
+    </>
   );
 };
 
