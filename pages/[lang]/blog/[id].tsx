@@ -15,7 +15,7 @@ interface Props {
   };
 }
 
-const Post: NextPage<Props> = ({ postData, locale }) => {
+const Post: NextPage<Props> = ({ postData }) => {
   const { title, contentHtml } = postData;
 
   return (

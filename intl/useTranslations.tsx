@@ -7,7 +7,7 @@ export default function useTranslation() {
   const [locale] = useContext(LanguageContext);
 
   function t(key: string) {
-    if (!LangStrings[locale][key]) {
+    if (!LangStrings[locale]  || !LangStrings[locale][key]) {
       console.warn(`No string '${key}' for locale '${locale}'`);
     }
 

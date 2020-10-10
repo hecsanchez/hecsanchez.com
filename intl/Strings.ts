@@ -1,14 +1,26 @@
 export const LangStrings = {
     en: {
-      about: "About",
-      articles: "Articles",
-      home: "Home",
-      slogan: "An example site showcasing a bilingual site with GatsbyJS.",
+      // Nav
+      courses: 'Courses', 
+      podcasts: 'Podcasts',
+      blog: 'Blog',
+      about: 'About',
+      contact: 'Contact',
+      // Home
+      homeMetaTitle: 'Fullstack JavaScript Developer in Mexico | Hec Sanchez',
+      homeTitle: 'I make stuff with code',
+
     },
-    pt: {
-      about: "Sobre",
-      articles: "Artigos",
-      home: "Início",
-      slogan: "Um site bilíngue de exemplo feito com GatsbyJS.",
+    es: {
+      // Nav
+      courses: 'Cursos', 
+      podcasts: 'Podcasts',
+      blog: 'Blog',
+      about: 'Sobre mi',
+      contact: 'Contacto',
+      // Home
+      homeMetaTitle: 'Fullstack JavaScript Developer en México | Hec Sanchez',
+      homeTitle: 'Construyo cosas con codigo',
+    
     },
   };

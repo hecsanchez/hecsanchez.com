@@ -1,8 +1,6 @@
 import fs from "fs";
 import path from "path";
-import matter, { GrayMatterFile } from "gray-matter";
-import remark from "remark";
-import html from "remark-html";
+import matter from "gray-matter";
 
 const postsDirectory = path.resolve(process.cwd(), "posts");
 const getAllPostFileNames = async (directoryPath, filesList = [], files=[]) => {

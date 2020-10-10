@@ -6,7 +6,6 @@ function isLocale(tested: string): boolean {
 
 export function getInitialLocale(): string {
   const localSetting = localStorage.getItem('locale')
-  console.log(localSetting)
   if (localSetting && isLocale(localSetting)) {
     return localSetting
   }

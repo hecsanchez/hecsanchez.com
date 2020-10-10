@@ -75,7 +75,7 @@ const Post: NextPage<Props> = ({ locale, allPostsData }) => {
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const allPostsData = await getSortedPostData();
-  console.log(allPostsData)
+
   return {
     props: {
       locale: ctx.params?.lang || "es",
