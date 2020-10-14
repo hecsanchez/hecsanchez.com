@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
-import Head from "next/head";
+import Head from 'next/head';
 import Header from '@components/Header';
-import { Container } from './Layout.styled';
+import { Container, Content } from './Layout.styled';
 
 interface LayoutProps {
   className?: string;
@@ -11,17 +10,11 @@ interface LayoutProps {
   thumb?: string;
 }
 
-const Layout: React.FC<LayoutProps> = ({
-  className,
-  children,
-  title,
-  desc,
-  thumb,
-}) => {
-  const description = desc || "A Next.js multilingual site";
+const Layout: React.FC<LayoutProps> = ({ className, children, title, desc, thumb }) => {
+  const description = desc || 'A Next.js multilingual site';
   const thumbnail =
     thumb ||
-    "https://repository-images.githubusercontent.com/280748222/db50d880-cac8-11ea-8874-40a3c45a9fa7";
+    'https://avatars0.githubusercontent.com/u/3080957?s=460&u=66c664c8f2b2c5f4c9b395caf3dbabf2f334330c&v=4';
 
   return (
     <>
@@ -39,10 +32,15 @@ const Layout: React.FC<LayoutProps> = ({
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
         <meta property="twitter:image" content={thumbnail} />
+        <link
+          type="text/css"
+          rel="stylesheet"
+          href="//fast.fonts.net/cssapi/b37f351e-73ae-416e-89af-2e3d1d657360.css"
+        />
       </Head>
       <Header />
       <Container>
-        {children}
+        <Content>{children}</Content>
       </Container>
       {/* <Footer>
         <p>Hector Sanchez - 2020</p>

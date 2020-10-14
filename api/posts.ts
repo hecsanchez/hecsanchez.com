@@ -1,35 +1,43 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
 
-const postsDirectory = path.resolve(process.cwd(), "posts");
-const getAllPostFileNames = async (directoryPath, filesList = [], files=[]) => {
-  const context = require.context('../posts', true, /\.md$/)
-  for(const key of context.keys()){
+interface MarkdownFile {
+  default: string;
+}
+
+const postsDirectory = path.resolve(process.cwd(), 'posts');
+const getAllPostFileNames = async (directoryPath, filesList = [], files = []) => {
+  const context = require.context('../posts', true, /\.md$/);
+
+  for (const key of context.keys()) {
     const post = key.slice(5);
+    console.log('key.slice(2)', key.slice(2));
 
-    if (fs.statSync(`${directoryPath}/${key}`).isDirectory()) {
-      filesList = await getAllPostFileNames(`${directoryPath}/${key}`, filesList);
+    if (fs.statSync(`${directoryPath}/${key}`).isDirectory() as boolean) {
+      filesList = await getAllPostFileNames(
+        `${directoryPath as string}/${key}`,
+        filesList as string[]
+      );
     } else {
-      filesList.push(path.join(path.basename(directoryPath), "/", post));
-      const id = post.replace(/\.md$/, "");
-      const content = await import(`../posts/${key.slice(2)}`);
-      const meta = matter(content.default)
-      console.log('meta', meta)
+      filesList.push(path.join(path.basename(directoryPath), '/', post));
+      const id: string = post.replace(/\.md$/, '');
+      const content: MarkdownFile = await import(`../posts/${key.slice(2)}`);
+      const meta = matter(content.default);
+
       files.push({
         id,
         slug: id,
         title: meta.data.title,
-        lang: meta.data.lang
-      })
+        lang: meta.data.lang,
+      });
     }
   }
   return files;
-}
+};
 
-export const getSortedPostData = async() => {
+export const getSortedPostData = async () => {
   const posts = await getAllPostFileNames(postsDirectory);
-  console.log('posts', posts)
 
   return posts.sort((a, b) => {
     if (a.date < b.date) {
@@ -38,21 +46,21 @@ export const getSortedPostData = async() => {
       return -1;
     }
   });
-}
+};
 
 export const getAllPostIds = async () => {
   const posts = await getAllPostFileNames(postsDirectory);
-  return posts.map(({id, lang}) => ({
+  return posts.map(({ id, lang }) => ({
     params: {
       id,
       lang,
     },
   }));
-}
+};
 
 export async function getPostData(id) {
   const content = await import(`../posts${id}.md`);
-  const meta = matter(content.default)
+  const meta = matter(content.default);
 
   return {
     id,

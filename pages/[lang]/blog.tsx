@@ -1,10 +1,11 @@
-import { useState } from "react";
-import { NextPage, GetStaticProps, GetStaticPaths } from "next";
-import Link from "next/link";
+import { useState } from 'react';
+import { NextPage, GetStaticProps, GetStaticPaths } from 'next';
+import Link from 'next/link';
 
-import Layout from "@components/Layout";
-import { getSortedPostData } from "@api";
-import useTranslation from "@intl/useTranslations";
+import Layout from '@components/Layout';
+import { getSortedPostData } from '@api';
+import useTranslation from '@intl/useTranslations';
+import { Title } from '@components/Typography';
 
 interface Props {
   locale: string;
@@ -32,15 +33,15 @@ const Post: NextPage<Props> = ({ locale, allPostsData }) => {
 
   // Date localization options
   const dateOptions = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
   };
 
   return (
-    <Layout className="posts" title={t("articles")}>
+    <Layout className="posts" title={t('articles')}>
       <section className="page-content">
-        <h1>{t("articles")}</h1>
+        <Title size="lg">{t('blogTitle')}</Title>
         {pagedPosts.map((post) => (
           <article key={post.id} className="post">
             <Link href={`/[lang]/blog/[id]`} as={`/${locale}/blog/${post.id}`}>
@@ -48,9 +49,7 @@ const Post: NextPage<Props> = ({ locale, allPostsData }) => {
                 <h3>{post.title}</h3>
               </a>
             </Link>
-            <time>
-              {new Date(post.date).toLocaleDateString(locale, dateOptions)}
-            </time>
+            <time>{new Date(post.date).toLocaleDateString(locale, dateOptions)}</time>
             {post.description && <p>{post.description}</p>}
           </article>
         ))}
@@ -61,8 +60,7 @@ const Post: NextPage<Props> = ({ locale, allPostsData }) => {
               <button
                 key={`pagination-number${i + 1}`}
                 onClick={() => setCurrentPage(i + 1)}
-                className={currentPage === i + 1 ? "active" : ""}
-              >
+                className={currentPage === i + 1 ? 'active' : ''}>
                 {i + 1}
               </button>
             ))}
@@ -78,7 +76,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 
   return {
     props: {
-      locale: ctx.params?.lang || "es",
+      locale: ctx.params?.lang || 'es',
       allPostsData,
     },
   };
@@ -86,7 +84,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: [{ params: { lang: "en" } }, { params: { lang: "es" } }],
+    paths: [{ params: { lang: 'en' } }, { params: { lang: 'es' } }],
     fallback: false,
   };
 };

@@ -1,20 +1,20 @@
-import { defaultLocale, locales } from './LanguageProvider'
+import { defaultLocale, locales } from './LanguageProvider';
 
 function isLocale(tested: string): boolean {
-  return locales.some(locale => locale === tested)
+  return locales.some((locale) => locale === tested);
 }
 
 export function getInitialLocale(): string {
-  const localSetting = localStorage.getItem('locale')
+  const localSetting = localStorage.getItem('locale');
   if (localSetting && isLocale(localSetting)) {
-    return localSetting
+    return localSetting;
   }
 
   // the language setting of the browser
-  const [browserSetting] = navigator.language.split('-')
+  const [browserSetting] = navigator.language.split('-');
   if (isLocale(browserSetting)) {
-    return browserSetting
+    return browserSetting;
   }
 
-  return defaultLocale
+  return defaultLocale;
 }

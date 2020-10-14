@@ -1,7 +1,7 @@
-import { GetStaticProps, GetStaticPaths, NextPage } from "next";
+import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 
-import { getAllPostIds, getPostData } from "@api";
-import Layout from "@components/Layout";
+import { getAllPostIds, getPostData } from '@api';
+import Layout from '@components/Layout';
 
 interface Props {
   locale: string;
@@ -22,10 +22,7 @@ const Post: NextPage<Props> = ({ postData }) => {
     <Layout title={title}>
       <article className="post-content">
         <h1>{title}</h1>
-        <div
-          className="post-text"
-          dangerouslySetInnerHTML={{ __html: contentHtml }}
-        />
+        <div className="post-text" dangerouslySetInnerHTML={{ __html: contentHtml }} />
       </article>
     </Layout>
   );
@@ -36,7 +33,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return {
     props: {
-      locale: params?.lang || "en",
+      locale: params?.lang || 'en',
       postData,
     },
   };
