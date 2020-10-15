@@ -15,9 +15,6 @@ const Header = (): JSX.Element => {
         <Logo src={logo} />
       </Link>
       <Nav>
-        <Link href={`/${locale}/courses`}>
-          <a>{t('courses')}</a>
-        </Link>
         <Link href={`/${locale}/podcasts`}>
           <a>{t('podcasts')}</a>
         </Link>

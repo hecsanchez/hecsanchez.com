@@ -5,7 +5,8 @@ import Link from 'next/link';
 import Layout from '@components/Layout';
 import { getSortedPostData } from '@api';
 import useTranslation from '@intl/useTranslations';
-import { Title } from '@components/Typography';
+import { Title, Subtitle, Text, Caption } from '@components/Typography';
+import { Excerpt } from '@components/Post';
 
 interface Props {
   locale: string;
@@ -14,6 +15,9 @@ interface Props {
     title: string;
     lang: string;
     description: string;
+    category: string;
+    excerpt: string;
+    readTime: string;
     id: any;
   }[];
 }
@@ -44,13 +48,19 @@ const Post: NextPage<Props> = ({ locale, allPostsData }) => {
         <Title size="lg">{t('blogTitle')}</Title>
         {pagedPosts.map((post) => (
           <article key={post.id} className="post">
-            <Link href={`/[lang]/blog/[id]`} as={`/${locale}/blog/${post.id}`}>
-              <a>
-                <h3>{post.title}</h3>
-              </a>
-            </Link>
-            <time>{new Date(post.date).toLocaleDateString(locale, dateOptions)}</time>
-            {post.description && <p>{post.description}</p>}
+            <Excerpt>
+              <Caption>{post.category}</Caption>
+              <Link href={`/[lang]/blog/[id]`} as={`/${locale}/blog/${post.id}`}>
+                <a>
+                  <Subtitle>{post.title}</Subtitle>
+                </a>
+              </Link>
+              <Text>
+                <p>{post.excerpt}</p>
+              </Text>
+              <time>{new Date(post.date).toLocaleDateString(locale, dateOptions)}</time> •{' '}
+              <span>{post.readTime} MIN READ</span>
+            </Excerpt>
           </article>
         ))}
 

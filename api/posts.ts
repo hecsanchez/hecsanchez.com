@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import marked from 'marked';
+import readTimeEstimate from 'read-time-estimate';
 
 interface MarkdownFile {
   default: string;
@@ -12,7 +14,6 @@ const getAllPostFileNames = async (directoryPath, filesList = [], files = []) =>
 
   for (const key of context.keys()) {
     const post = key.slice(5);
-    console.log('key.slice(2)', key.slice(2));
 
     if (fs.statSync(`${directoryPath}/${key}`).isDirectory() as boolean) {
       filesList = await getAllPostFileNames(
@@ -24,12 +25,20 @@ const getAllPostFileNames = async (directoryPath, filesList = [], files = []) =>
       const id: string = post.replace(/\.md$/, '');
       const content: MarkdownFile = await import(`../posts/${key.slice(2)}`);
       const meta = matter(content.default);
+      const { duration } = readTimeEstimate(content.default, 275, 12, 500, [
+        'img',
+        'Image',
+      ]);
 
       files.push({
         id,
         slug: id,
         title: meta.data.title,
         lang: meta.data.lang,
+        excerpt: meta.data.excerpt || null,
+        date: meta.data.date,
+        category: meta.data.category || null,
+        readTime: Math.round(duration),
       });
     }
   }
@@ -61,11 +70,16 @@ export const getAllPostIds = async () => {
 export async function getPostData(id) {
   const content = await import(`../posts${id}.md`);
   const meta = matter(content.default);
+  const post = marked(meta.content);
+  const { duration } = readTimeEstimate(content.default, 275, 12, 500, ['img', 'Image']);
 
   return {
     id,
     date: meta.data.date,
     title: meta.data.title,
-    contentHtml: meta.content,
+    excerpt: meta.data.excerpt || null,
+    contentHtml: post,
+    category: meta.data.category || null,
+    readTime: Math.round(duration),
   };
 }

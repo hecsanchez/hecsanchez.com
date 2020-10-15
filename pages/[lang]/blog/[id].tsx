@@ -2,6 +2,8 @@ import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 
 import { getAllPostIds, getPostData } from '@api';
 import Layout from '@components/Layout';
+import { Title, Text, Caption } from '@components/Typography';
+import { PostTitle } from '@components/Post';
 
 interface Props {
   locale: string;
@@ -11,18 +13,28 @@ interface Props {
     slug: string;
     date: string;
     category: string;
+    readTime: string;
     contentHtml: string;
   };
 }
 
-const Post: NextPage<Props> = ({ postData }) => {
-  const { title, contentHtml } = postData;
-
+const Post: NextPage<Props> = ({ locale, postData }) => {
+  const { title, contentHtml, category, date, readTime } = postData;
+  const dateOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
   return (
     <Layout title={title}>
       <article className="post-content">
-        <h1>{title}</h1>
-        <div className="post-text" dangerouslySetInnerHTML={{ __html: contentHtml }} />
+        <Caption>{category}</Caption>
+        <PostTitle>
+          <Title>{title}</Title>
+          <time>{new Date(date).toLocaleDateString(locale, dateOptions)}</time> •{' '}
+          <span>{readTime} MIN READ</span>
+        </PostTitle>
+        <Text dangerouslySetInnerHTML={{ __html: contentHtml }} />
       </article>
     </Layout>
   );

@@ -3,6 +3,14 @@ import { AppPropsType } from 'next/dist/next-server/lib/utils';
 import { LanguageProvider, locales } from '@intl/LanguageProvider';
 import { getInitialLocale } from '@intl/getInitialLocale';
 
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+  }
+`;
+
 export default function App({ Component, pageProps, router }: AppPropsType) {
   useEffect(() => {
     const pathLang = window.location.pathname.split('/')[1];
@@ -12,8 +20,11 @@ export default function App({ Component, pageProps, router }: AppPropsType) {
   });
 
   return (
-    <LanguageProvider>
-      <Component {...pageProps} key={router.route} />
-    </LanguageProvider>
+    <>
+      <GlobalStyle />
+      <LanguageProvider>
+        <Component {...pageProps} key={router.route} />
+      </LanguageProvider>
+    </>
   );
 }

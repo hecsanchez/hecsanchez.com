@@ -18,6 +18,7 @@
     "next-images": "^1.6.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "read-time-estimate": "0.0.2",
     "styled-components": "^5.2.0"
   },
   "devDependencies": {
