@@ -59,7 +59,9 @@ const Post: NextPage<Props> = ({ locale, allPostsData }) => {
                 <p>{post.excerpt}</p>
               </Text>
               <time>{new Date(post.date).toLocaleDateString(locale, dateOptions)}</time> •{' '}
-              <span>{post.readTime} MIN READ</span>
+              <span>
+                {t('lecturaDe')} {post.readTime} MIN {t('readText')}
+              </span>
             </Excerpt>
           </article>
         ))}
