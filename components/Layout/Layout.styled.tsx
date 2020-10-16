@@ -1,16 +1,20 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin: 20px;
-  border: 5px solid #202020;
   min-height: 96vh;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
   align-items: center;
-  padding: 90px;
   color: #2d2d3a;
   box-sizing: border-box;
+  padding: 90px 20px;
+
+  @media screen and (min-width: 700px) {
+    margin: 20px;
+    border: 5px solid #202020;
+    padding: 90px;
+  }
 
   h3 {
     font-size: 35px;

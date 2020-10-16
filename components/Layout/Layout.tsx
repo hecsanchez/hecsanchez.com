@@ -32,6 +32,8 @@ const Layout: React.FC<LayoutProps> = ({ className, children, title, desc, thumb
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
         <meta property="twitter:image" content={thumbnail} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
         <link
           type="text/css"
           rel="stylesheet"
