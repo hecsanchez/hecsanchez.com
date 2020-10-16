@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Header from '@components/Header';
-import { Container, Content } from './Layout.styled';
+import { Container, Content, Footer } from './Layout.styled';
+import nextJSLogo from '@assets/img/nextjs.png';
 
 interface LayoutProps {
   className?: string;
@@ -44,9 +45,14 @@ const Layout: React.FC<LayoutProps> = ({ className, children, title, desc, thumb
       <Container>
         <Content>{children}</Content>
       </Container>
-      {/* <Footer>
-        <p>Hector Sanchez - 2020</p>
-      </Footer> */}
+      <Content>
+        <Footer>
+          <p>Hector Sanchez © 2018 - 2020</p>
+          <p>
+            <span>Built with </span> <img src={nextJSLogo} />
+          </p>
+        </Footer>
+      </Content>
     </>
   );
 };

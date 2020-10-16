@@ -40,4 +40,20 @@ export const Container = styled.div`
 export const Content = styled.div`
   max-width: 700px;
   width: 95%;
+  margin: 0 auto;
+`;
+
+export const Footer = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  p {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  img {
+    width: 50px;
+  }
 `;

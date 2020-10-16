@@ -38,7 +38,7 @@ const getAllPostFileNames = async (directoryPath, filesList = [], files = []) =>
         excerpt: meta.data.excerpt || null,
         date: meta.data.date,
         category: meta.data.category || null,
-        readTime: Math.round(duration),
+        readTime: Math.ceil(duration),
       });
     }
   }
@@ -80,6 +80,6 @@ export async function getPostData(id) {
     excerpt: meta.data.excerpt || null,
     contentHtml: post,
     category: meta.data.category || null,
-    readTime: Math.round(duration),
+    readTime: Math.ceil(duration),
   };
 }

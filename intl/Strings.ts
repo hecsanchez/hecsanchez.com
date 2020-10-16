@@ -11,7 +11,7 @@ export const LangStrings = {
     homeMetaTitle: 'Fullstack JavaScript Developer in Mexico | Hec Sanchez',
     homeTitle: 'Software Dev & Maker',
     homeDescription:
-      '<p>I <a href="">build products in public</a>, <a href="">write about code</a> and record two weekly podcasts: <a href="">Frontenderos</a> and <a href="">Producteros</a>.</p>',
+      '<p>I <a href="">build products in public</a>, <a href="/blog">write about code</a> and record two weekly podcasts: <a  target="_blank" href="https://frontenderos.com">Frontenderos</a> and <a target="_blank" href="https://producteros.com">Producteros</a>.</p>',
     viewAllPosts: 'View all posts',
     fromTheBlog: 'From the Blog',
 
@@ -19,8 +19,10 @@ export const LangStrings = {
     aboutMetaTitle: 'About Hec Sanchez | Fullstack JavaScript Developer en México',
     aboutTitle: 'About',
     // Blog
-    blogMetaTitle: 'Become a great JavaScript | Hec Sanchez Blog',
+    blogMetaTitle: 'Become a great JavaScript Developer | Hec Sanchez Blog',
     blogTitle: 'Blog',
+    lecturaDe: ' ',
+    readText: 'READ',
   },
   es: {
     // Nav
@@ -34,17 +36,19 @@ export const LangStrings = {
     homeMetaTitle: 'Fullstack JavaScript Developer en México | Hec Sanchez',
     homeTitle: 'Software Dev & Maker',
     homeDescription:
-      '<p><a href="">Creo productos en publico</a>, <a href="">escribo sobre codigo</a> y grabo dos podcasts: <a href="">Frontenderos</a> y <a href="">Producteros</a>.</p>',
+      '<p><a href="">Creo productos en publico</a>, <a href="/blog">escribo sobre codigo</a> y grabo dos podcasts: <a target="_blank" href="https://frontenderos.com">Frontenderos</a> y <a target="_blank" href="https://producteros.com">Producteros</a>.</p>',
     viewAllPosts: 'Ver todos los posts',
     fromTheBlog: 'De mi Blog',
     // About
     aboutMetaTitle: 'Sobre Hec Sanchez | Fullstack JavaScript Developer en México',
     aboutTitle: 'Sobre mi',
     // Blog
-    blogMetaTitle: 'Sé un gran programador JavaScript | Hec Sanchez Blog',
+    blogMetaTitle: 'Sé un buen programador JavaScript | Hec Sanchez Blog',
     blogTitle: 'Blog',
     // Blog
     coursesMetaTitle: 'Cursos de desarrollo frontend | Hec Sanchez',
     coursesTitle: 'Cursos',
+    lecturaDe: 'LECTURA DE',
+    readText: ' ',
   },
 };
