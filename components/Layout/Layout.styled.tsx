@@ -20,6 +20,13 @@ export const Container = styled.div`
     font-size: 35px;
   }
 
+  h4 {
+    font-size: 1.1em;
+    text-transform: uppercase;
+    font-family: 'Avenir Next LT W01 Bold';
+    letter-spacing: 1px;
+  }
+
   a {
     text-decoration: none;
 

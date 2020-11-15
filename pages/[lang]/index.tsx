@@ -24,7 +24,7 @@ interface Props {
 const Index: NextPage<Props> = ({ locale, allPostsData }: Props) => {
   const { t } = useTranslation();
   const postsData = allPostsData.filter((post) => post.lang === locale);
-  const LatestPost = postsData[0];
+  const LatestPost = postsData[postsData.length - 1];
   const dateOptions = {
     year: 'numeric',
     month: 'long',

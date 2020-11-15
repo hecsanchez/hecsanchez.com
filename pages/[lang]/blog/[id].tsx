@@ -34,7 +34,7 @@ const Post: NextPage<Props> = ({ locale, postData }) => {
           <time>{new Date(date).toLocaleDateString(locale, dateOptions)}</time> •{' '}
           <span>{readTime} MIN READ</span>
         </PostTitle>
-        <Text dangerouslySetInnerHTML={{ __html: contentHtml }} />
+        <Text className="content" dangerouslySetInnerHTML={{ __html: contentHtml }} />
       </article>
     </Layout>
   );
