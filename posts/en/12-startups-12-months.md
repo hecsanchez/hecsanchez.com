@@ -1,8 +1,8 @@
 ---
-lang: es
+lang: en
 title: Construyendo 12 startups en 12 meses
 slug: 12-startups-12-months
-date: 11-Dec-2020
+date: 12-Dec-2020
 excerpt: 'Un grupo de makers y yo unimos fuerzas para lanzar juntos 12 OPEN startups a lo largo de un año'
 category: Open Startups
 ---
