@@ -21,10 +21,12 @@ export const Container = styled.div`
   }
 
   h4 {
-    font-size: 1.1em;
+    font-size: 1.3em;
     text-transform: uppercase;
     font-family: 'Avenir Next LT W01 Bold';
     letter-spacing: 1px;
+    display: block;
+    margin-top: 2.5em;
   }
 
   a {
@@ -48,6 +50,13 @@ export const Content = styled.div`
   max-width: 700px;
   width: 95%;
   margin: 0 auto;
+
+  .content {
+    img {
+      width: 140%;
+      margin-left: -20%;
+    }
+  }
 `;
 
 export const Footer = styled.div`
@@ -58,6 +67,10 @@ export const Footer = styled.div`
     margin-top: 0;
     display: flex;
     align-items: center;
+
+    span {
+      margin-right: 5px;
+    }
   }
 
   img {

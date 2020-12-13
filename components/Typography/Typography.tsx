@@ -13,7 +13,7 @@ export const Title = styled.h1<TitleStyleProps>`
   margin-bottom: 16px;
 
   @media screen and (min-width: 700px) {
-    font-size: ${({ size }) => (size === 'lg' ? '100px' : '70px')};
+    font-size: ${({ size }) => (size === 'lg' ? '100px' : '68px')};
   }
 `;
 
@@ -23,7 +23,7 @@ export const Subtitle = styled.h2`
   width: fit-content;
   border-bottom: 2px solid transparent;
   margin: 0.3em 0;
-  transition: all 0.23s ease;
+  transition: border-bottom 0.23s ease;
 
   @media screen and (min-width: 700px) {
     font-size: 35px;
@@ -32,13 +32,16 @@ export const Subtitle = styled.h2`
 
 export const Text = styled.div`
   p {
-    font-size: 20px;
-    line-height: 1.4;
-    margin-top: 0;
-    margin-bottom: 1em;
+    font-size: 23px;
+    line-height: 1.6;
+    margin: 0 0 1.5em;
 
     @media screen and (min-width: 700px) {
-      font-size: 25px;
+      font-size: 23px;
+    }
+
+    img {
+      box-shadow: 0 5px 25px #ebebeb;
     }
   }
   a {
@@ -48,6 +51,11 @@ export const Text = styled.div`
     &:hover {
       border-bottom: 2px solid #fb8b2350;
     }
+  }
+  li {
+    font-size: 23px;
+    line-height: 1.6;
+    margin: 0 0 1.5em;
   }
 `;
 
