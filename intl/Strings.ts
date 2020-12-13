@@ -11,7 +11,7 @@ export const LangStrings = {
     homeMetaTitle: 'Fullstack JavaScript Developer in Mexico | Hec Sanchez',
     homeTitle: 'Software Dev & Maker',
     homeDescription:
-      '<p>I <a href="">build products in public</a>, <a href="/blog">write about code</a> and record two weekly podcasts: <a  target="_blank" href="https://frontenderos.com">Frontenderos</a> and <a target="_blank" href="https://producteros.com">Producteros</a>.</p>',
+      '<p><a href="/es/blog">I build about, React Native, AWS and Open startups</a>, record a podcast about frontend development called <a target="_blank" href="https://frontenderos.com">Frontenderos</a> and since December 2020 I started taking part in the <a href="/es/blog/12-startups-12-meses">12 startups in 12 months</a> challenge.</p>',
     viewAllPosts: 'View all posts',
     fromTheBlog: 'From the Blog',
 
