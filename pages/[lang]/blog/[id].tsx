@@ -32,7 +32,9 @@ const Post: NextPage<Props> = ({ locale, postData }) => {
         <PostTitle>
           <Title>{title}</Title>
           <time>{new Date(date).toLocaleDateString(locale, dateOptions)}</time> •{' '}
-          <span>{readTime} MIN READ</span>
+          <span>
+            {locale === 'es' ? `LECTURA DE ${readTime} MINS` : `${readTime} MIN READ`}
+          </span>
         </PostTitle>
         <Text className="content" dangerouslySetInnerHTML={{ __html: contentHtml }} />
       </article>
