@@ -4,6 +4,10 @@ import matter from 'gray-matter';
 import marked from 'marked';
 import readTimeEstimate from 'read-time-estimate';
 
+const renderer = new marked.Renderer();
+renderer.link = (href, title, text) =>
+  `<a target="_blank" href="${href}" title="${title}">${text}</a>`;
+
 interface MarkdownFile {
   default: string;
 }
@@ -70,7 +74,7 @@ export const getAllPostIds = async () => {
 export async function getPostData(id) {
   const content = await import(`../posts${id}.md`);
   const meta = matter(content.default);
-  const post = marked(meta.content);
+  const post = marked(meta.content, { renderer: renderer });
   const { duration } = readTimeEstimate(content.default, 275, 12, 500, ['img', 'Image']);
 
   return {
