@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+--foreground-hex: #ffffff;
+--background-start-rgb: 20, 20, 43, 1;
+--background-end-rgb: 0, 0, 0, 1;
+}
+
+body {
+  color: var(--foreground-hex);
+  font-weight: normal;
+  background: linear-gradient(
+      180deg,
+      rgb(var(--background-start-rgb)) 11.45%,
+      rgb(var(--background-end-rgb)) 34.82%
+    ) no-repeat;
+}
+
+p {
+    color: #D9DBE9;
+}
