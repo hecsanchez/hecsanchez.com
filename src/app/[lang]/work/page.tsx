@@ -23,9 +23,9 @@ export default function Home() {
                                 <span className="bg-text">MY WORK</span>
                             </p>
                             <h1 className="text-6xl font-bold leading-snug antialiased inline block">
-                                Products I've built
+                                Products I&apos;ve built
                             </h1>
-                            <p className="text-xl mt-3 max-w-[800px] m-auto antialiased leading-8">I ❤️ building software products, these are just some I've built recently.</p>
+                            <p className="text-xl mt-3 max-w-[800px] m-auto antialiased leading-8">I ❤️ building software products, these are just some I&apos;ve built recently.</p>
 
                         </div>
                     </Wrapper>
@@ -35,7 +35,7 @@ export default function Home() {
                         <div className="flex mt-20">
                             <div className="w-1/2 p-5">
                                 <Link href="https://oppal.io" target="_blank">
-                                    <Image src={oppal} className="shadow-2xl shadow-slate-500/50 hover:scale-105 transition duration-300 cursor-pointer rounded-md" />
+                                    <Image alt="oppal logo" src={oppal} className="shadow-2xl shadow-slate-500/50 hover:scale-105 transition duration-300 cursor-pointer rounded-md" />
                                 </Link>
                             </div>
                             <div className="w-1/2 p-5 text-lg">
@@ -66,7 +66,7 @@ export default function Home() {
                             </div>
                             <div className="w-1/2 p-5">
                                 <Link href="https://productosfera.com" target="_blank">
-                                    <Image src={productosfera} className="shadow-2xl shadow-slate-500/50 hover:scale-105 transition duration-300 cursor-pointer rounded-md" />
+                                    <Image alt="productosfera logo" src={productosfera} className="shadow-2xl shadow-slate-500/50 hover:scale-105 transition duration-300 cursor-pointer rounded-md" />
                                 </Link>
                             </div>
                         </div>
@@ -74,7 +74,7 @@ export default function Home() {
                         <div className="flex mt-20">
                             <div className="w-1/2 p-5 ">
                                 <Link href="https://soulfitness.mx" target="_blank">
-                                    <Image src={soulfitness} className="shadow-2xl shadow-slate-500/50 hover:scale-105 transition duration-300 cursor-pointer rounded-md"/>
+                                    <Image alt="soul fitness logo" src={soulfitness} className="shadow-2xl shadow-slate-500/50 hover:scale-105 transition duration-300 cursor-pointer rounded-md"/>
                                 </Link>
                             </div>
                             <div className="w-1/2 p-5 text-lg">
@@ -106,7 +106,7 @@ export default function Home() {
                             </div>
                             <div className="w-1/2 p-5">
                                 <Link href="https://unitrabajos.com" target="_blank">
-                                    <Image src={unitrabajos} className="shadow-2xl shadow-slate-500/50 hover:scale-105 transition duration-300 cursor-pointer rounded-md"/>
+                                    <Image alt="unitrabajos logo" src={unitrabajos} className="shadow-2xl shadow-slate-500/50 hover:scale-105 transition duration-300 cursor-pointer rounded-md"/>
                                 </Link>
                             </div>
                         </div>

@@ -25,9 +25,9 @@ export default function About() {
                 <div className="max-w-6xl m-auto mt-24 mb-40">
                     <div className="flex">
                         <div  className="w-2/3 pr-20 text-xl leading-normal">
-                            <p className="mb-4">Hey! I'm Hector, my friends call me Hec.</p>
-                            <p className="mb-4">I've been building stuff for the web since 2008. Started building out WordPress sites, then joined a Marketing Agency to build sites for their clients. After that I started my own Product agency which lasted for 3 years and then went on to work for several startups and large enterprises.</p>
-                            <p className="mb-4">In my journey as a Product Engineer I have built full products from scratch using JavaScript, and I have always had an itch to build my own products applying everything I've learnt over the past 15 years.</p>
+                            <p className="mb-4">Hey! I&apos;m Hector, my friends call me Hec.</p>
+                            <p className="mb-4">I&apos;ve been building stuff for the web since 2008. Started building out WordPress sites, then joined a Marketing Agency to build sites for their clients. After that I started my own Product agency which lasted for 3 years and then went on to work for several startups and large enterprises.</p>
+                            <p className="mb-4">In my journey as a Product Engineer I have built full products from scratch using JavaScript, and I have always had an itch to build my own products applying everything I&apos; ve learnt over the past 15 years.</p>
                             <p className="mb-4">So earlier this year I started building my own B2B Micro-Saas and launched my newsletter to share my journey as a Micro-SaaS founder.</p>
                             <p className="mb-4">If you want to launch your own SaaS product, I can help you in three ways:</p>
                             <ul>

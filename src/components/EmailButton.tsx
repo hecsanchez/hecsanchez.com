@@ -2,7 +2,7 @@
 
 import {Button} from "@/components/Button";
 
-export const EmailButton = ({ children, className, ...props}) => {
+export const EmailButton = () => {
     const handleOpenLink = () => {
         if (typeof window !== 'undefined') {
             window.open("mailto:hi@hecsanchez.com?subject=Let's chat")

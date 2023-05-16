@@ -3,6 +3,7 @@ import clsx from 'clsx';
 
 interface WrapperProps {
     children: ReactNode;
+    className?: string;
 }
 
 export const Wrapper:FC<WrapperProps> = ({ children, className }) => {

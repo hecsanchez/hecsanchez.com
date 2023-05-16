@@ -1,8 +1,13 @@
 import Image from "next/image";
 import stars from '@/assets/stars.svg';
+import {FC} from "react";
 
+interface TestimonialProps {
+    content: string;
+    author: string;
+}
 
-export const Testimonial = ({ content, author }) => {
+export const Testimonial: FC<TestimonialProps> = ({ content, author }) => {
     return (
         <div className="ticker border border-[#393446] p-5 py-6 min-w-[450px] max-w-xl rounded-xl bg-[#131117] shadow-2xl shadow-slate-500/30">
             <Image src={stars} width={100} alt='stars'/>

@@ -1,12 +1,6 @@
 import Image from 'next/image'
 import {Wrapper} from "@/components/Wrapper";
 import logosVertical from "@/assets/logos-vertical.png";
-import oppal from "@/assets/oppal.png";
-import productosfera from "@/assets/productosfera.png";
-import unitrabajos from "@/assets/unitrabajos.png";
-import soulfitness from "@/assets/soulfitness.png";
-
-import {Button} from "@/components/Button";
 import Link from "next/link";
 import {Header} from "@/components/Header";
 import {EmailButton} from "@/components/EmailButton";
@@ -81,14 +75,14 @@ export default function Home() {
                 <div className="max-w-[1200px] w-[95%] m-auto">
                     <div className="flex relative justify-between">
                         <div className="w-1/3 flex flex-col items-center justify-start delimiter relative">
-                            <h2 className="text-md uppercase font-base tracking-widest text-center mb-5">Some companies I've worked with</h2>
-                            <Image src={logosVertical} />
+                            <h2 className="text-md uppercase font-base tracking-widest text-center mb-5">Some companies I&apos;ve worked with</h2>
+                            <Image alt="client logos" src={logosVertical} />
                         </div>
                         <div className="w-2/3 pl-20 leading-8 text-lg font-light antialiased">
                             <p className="mb-4">We all know the well-trodden path of an entrepreneurial journey. It begins with a lightning bolt of inspiration, a brilliant idea that simply cannot be ignored.</p>
                             <p className="mb-4"> The next step? Finding a trusted partner to help breathe life into this concept.</p>
-                            <p className="mb-4">That's where I come in.</p>
-                            <p className="mb-4">With years of experience in software engineering, particularly in helping early-stage startups bring their ideas to life, I've honed a method that puts your vision at the forefront.</p>
+                            <p className="mb-4">That&apos;s where I come in.</p>
+                            <p className="mb-4">With years of experience in software engineering, particularly in helping early-stage startups bring their ideas to life, I&apos;ve honed a method that puts your vision at the forefront.</p>
                                 <p>We work together, iterating and refining, ensuring that you are not a bystander but an integral part of the process. At the end of our journey, you not only have a fully functional product but also the knowledge and confidence to take your business to new heights.</p>
                             <div className="flex pt-10">
                                 <EmailButton />
