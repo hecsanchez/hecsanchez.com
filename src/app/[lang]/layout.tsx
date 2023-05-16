@@ -18,6 +18,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={poppins.className}>
         {children}
+          <div className="max-w-[1400px] m-auto py-10 flex justify-center">
+              Hec Sanchez © 2018 - 2023 • All rights reserved
+          </div>
       </body>
     </html>
   )

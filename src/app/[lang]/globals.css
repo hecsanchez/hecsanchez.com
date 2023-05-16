@@ -7,6 +7,8 @@
 --foreground-hex: #ffffff;
 --background-start-rgb: 20, 20, 43, 1;
 --background-end-rgb: 0, 0, 0, 1;
+--strong-color: rgb(255 48 0);
+--light-color: rgb(232 178 44);
 }
 
 body {
@@ -21,4 +23,62 @@ body {
 
 p {
     color: #D9DBE9;
+}
+
+.bg-text {
+    background-image: linear-gradient(180deg,var(--strong-color),var(--light-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-width: 1px;
+    max-width: 100%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.button {
+    background-color: #000000;
+    background-clip: padding-box;
+    border: 1px solid transparent;
+}
+
+.button-bg {
+    background-image: linear-gradient(165deg, var(--strong-color),var(--light-color));
+}
+
+.button-bg {
+    border-radius: 8px;
+    content: "";
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: -2;
+}
+
+.delimiter:after {
+    content: '';
+    height: 100%;
+    position: absolute;
+    right: -10%;
+    border-right: 2px solid #303030;
+}
+
+@keyframes ticker {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+        transform: translate3d(-108rem, 0, 0);
+    }
+}
+
+.ticker {
+    animation: ticker 60s linear infinite;
 }
