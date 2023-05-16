@@ -12,24 +12,24 @@ export default function Home() {
     <main className="flex flex-col min-h-screen">
         <div>
             <Header/>
-            <div className="mt-20">
+            <div className="mt-10 sm:mt-20">
                 <Wrapper >
                     <div className="relative z-10 max-w-4xl m-auto text-center">
-                        <p className="text-3xl font-medium antialiased mb-3 antialiased">
+                        <p className="text-md sm:text-3xl font-medium antialiased mb-3 antialiased">
                             <span>Hey, I’m Hector</span>
                         </p>
-                        <h1 className="text-6xl font-bold leading-snug antialiased inline block">
+                        <h1 className="text-3xl sm:text-6xl font-bold leading-snug antialiased inline block">
                             I help <span className="bg-text">early stage</span> startups build <span className="bg-text">software products</span> fast
                         </h1>
-                        <p className="text-xl mt-6 max-w-[800px] m-auto antialiased leading-8">Software Engineer with 15+ years of experience helping startups and large enterprises build quality and scalable software with JavaScript.</p>
-                        <div className="flex gap-24 items-center mt-16 mb-10 justify-center">
+                        <p className="text-base sm:text-xl mt-6 max-w-[800px] m-auto antialiased leading-normal sm:leading-8">Software Engineer with 15+ years of experience helping startups and large enterprises build quality and scalable software with JavaScript.</p>
+                        <div className="flex gap-10 sm:gap-24 items-center mt-16 mb-10 justify-center">
                             <EmailButton/>
-                            <Link href="/work" className="border-b border-white text-xl antialiased transition">See some of my work</Link>
+                            <Link href="/work" className="border-b border-white text-sm sm:text-xl antialiased transition">See some of my work</Link>
                         </div>
                     </div>
                 </Wrapper>
             </div>
-            <div className="overflow-hidden mt-32">
+            <div className="overflow-hidden mt-20 sm:mt-32">
                 <div className="flex gap-10">
                     {/*<Testimonial*/}
                     {/*    content="Working with Hector has been a great experience. He wrote the first lines for the front-end of our proprietary software and helped it shape to what it is now. With his knowledge and ability to infuse empathy into every line of code also helped us build a strong front-end team."*/}
@@ -71,14 +71,14 @@ export default function Home() {
                     />
                 </div>
             </div>
-            <div className="mt-40 mb-40">
+            <div className="mt-10 mb-10 sm:mt-40 sm:mb-40">
                 <div className="max-w-[1200px] w-[95%] m-auto">
-                    <div className="flex relative justify-between">
-                        <div className="w-1/3 flex flex-col items-center justify-start delimiter relative">
+                    <div className="sm:flex relative justify-between">
+                        <div className="sm:w-1/3 px-10 sm:px-0 flex flex-col items-center justify-start delimiter relative mb-20 sm:mb-0">
                             <h2 className="text-md uppercase font-base tracking-widest text-center mb-5">Some companies I&apos;ve worked with</h2>
                             <Image alt="client logos" src={logosVertical} />
                         </div>
-                        <div className="w-2/3 pl-20 leading-8 text-lg font-light antialiased">
+                        <div className="sm:w-2/3 px-10 sm:pl-20 leading-6 sm:leading-8 text-base sm:text-lg font-light antialiased">
                             <p className="mb-4">We all know the well-trodden path of an entrepreneurial journey. It begins with a lightning bolt of inspiration, a brilliant idea that simply cannot be ignored.</p>
                             <p className="mb-4"> The next step? Finding a trusted partner to help breathe life into this concept.</p>
                             <p className="mb-4">That&apos;s where I come in.</p>

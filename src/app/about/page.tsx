@@ -13,18 +13,18 @@ export default function About() {
                 <div className="mt-12">
                     <Wrapper >
                         <div className="relative z-10 max-w-4xl m-auto text-center">
-                            <p className="text-lg font-medium tracking-widest antialiased antialiased m-auto text-center">
+                            <p className="text-md md:text-lg font-medium tracking-widest antialiased antialiased m-auto text-center">
                                 <span className="bg-text">ABOUT</span>
                             </p>
-                            <h1 className="text-6xl font-bold leading-snug antialiased inline block">
+                            <h1 className="text-3xl md:text-6xl font-bold leading-snug antialiased inline block">
                                 Come say hi!
                             </h1>
                         </div>
                     </Wrapper>
                 </div>
-                <div className="max-w-6xl m-auto mt-24 mb-40">
-                    <div className="flex">
-                        <div  className="w-2/3 pr-20 text-xl leading-normal">
+                <div className="max-w-6xl m-auto mt-10 mb-10 sm:mt-24 sm:mb-40 px-10 sm:px-0">
+                    <div className="flex flex-col-reverse md:flex-row">
+                        <div  className="md:w-2/3 md:pr-20 text-base md:text-xl leading-normal">
                             <p className="mb-4">Hey! I&apos;m Hector, my friends call me Hec.</p>
                             <p className="mb-4">I&apos;ve been building stuff for the web since 2008. Started building out WordPress sites, then joined a Marketing Agency to build sites for their clients. After that I started my own Product agency which lasted for 3 years and then went on to work for several startups and large enterprises.</p>
                             <p className="mb-4">In my journey as a Product Engineer I have built full products from scratch using JavaScript, and I have always had an itch to build my own products applying everything I&apos; ve learnt over the past 15 years.</p>
@@ -39,9 +39,9 @@ export default function About() {
                                 <EmailButton/>
                             </div>
                         </div>
-                        <div className="w-1/3">
-                            <div className="flex">
-                                <Image src={hecsanchez} className="rounded-full overflow-hidden h-96 w-96" alt="Hec Sanchez" />
+                        <div className="md:w-1/3">
+                            <div className="flex px-10 md:px-0">
+                                <Image src={hecsanchez} className="rounded-full overflow-hidden h-52 w-52 m-auto mb-10 sm:mb-0 sm:h-96 sm:w-96" alt="Hec Sanchez" />
                             </div>
                         </div>
                     </div>
