@@ -37,10 +37,10 @@ export default function Home() {
             </div>
             <div className="overflow-hidden mt-32">
                 <div className="flex gap-10">
-                    <Testimonial
-                        content="Working with Hector has been a great experience. He wrote the first lines for the front-end of our proprietary software and helped it shape to what it is now. With his knowledge and ability to infuse empathy into every line of code also helped us build a strong front-end team."
-                        author="Chris Sweet, VP Product @ Lifestance"
-                    />
+                    {/*<Testimonial*/}
+                    {/*    content="Working with Hector has been a great experience. He wrote the first lines for the front-end of our proprietary software and helped it shape to what it is now. With his knowledge and ability to infuse empathy into every line of code also helped us build a strong front-end team."*/}
+                    {/*    author="Chris Sweet, VP Product @ Lifestance"*/}
+                    {/*/>*/}
                     <Testimonial
                         content="It has been a pleasure to work with Hector. He is a great partner, always supporting and proposing improvements to the product and the complete UX. I really recommend him as an excellent partner and Leader."
                         author="Tania Gomez, Product Manager @ Konfio"
@@ -56,10 +56,10 @@ export default function Home() {
                         content="Hector helped us build the platform that our fitness studio needed to help us grow, he was great at figuring out what we needed even when we didn't know!"
                         author="Erika Sanchez, CEO @ Soul Fitness"
                     />
-                    <Testimonial
-                        content="Working with Hector has been a great experience. He wrote the first lines for the front-end of our proprietary software and helped it shape to what it is now. With his knowledge and ability to infuse empathy into every line of code also helped us build a strong front-end team."
-                        author="Chris Sweet, VP Product @ Lifestance"
-                    />
+                    {/*<Testimonial*/}
+                    {/*    content="Working with Hector has been a great experience. He wrote the first lines for the front-end of our proprietary software and helped it shape to what it is now. With his knowledge and ability to infuse empathy into every line of code also helped us build a strong front-end team."*/}
+                    {/*    author="Chris Sweet, VP Product @ Lifestance"*/}
+                    {/*/>*/}
                     <Testimonial
                         content="It has been a pleasure to work with Hector. He is a great partner, always supporting and proposing improvements to the product and the complete UX. I really recommend him as an excellent partner and Leader."
                         author="Tania Gomez, Product Manager @ Konfio"
