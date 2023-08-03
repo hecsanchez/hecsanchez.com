@@ -82,3 +82,10 @@ p {
 .ticker {
     animation: ticker 60s linear infinite;
 }
+
+.bg {
+    top: -100px;
+    position: relative;
+    background-image: linear-gradient(rgb(241 245 249 / 0%), rgb(0, 0, 0));
+    height: 100px;
+}

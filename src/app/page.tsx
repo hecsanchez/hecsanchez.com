@@ -1,10 +1,11 @@
 import Image from 'next/image'
 import {Wrapper} from "@/components/Wrapper";
 import logosVertical from "@/assets/logos-vertical.png";
-import Link from "next/link";
+import hector from "@/assets/hecsanchez.png";
 import {Header} from "@/components/Header";
 import {EmailButton} from "@/components/EmailButton";
 import {Testimonial} from "@/components/Testimonial";
+import {SubscribeForm} from "@/components/SubscribeForm";
 
 export default function Home() {
 
@@ -14,19 +15,23 @@ export default function Home() {
             <Header/>
             <div className="mt-10 sm:mt-20">
                 <Wrapper >
-                    <div className="relative z-10 max-w-4xl m-auto text-center">
-                        <p className="text-md sm:text-3xl font-medium antialiased mb-3 antialiased">
-                            <span>Hey, I’m Hector</span>
-                        </p>
-                        <h1 className="text-3xl sm:text-6xl font-bold leading-snug antialiased inline block">
-                            I help <span className="bg-text">early stage</span> startups build <span className="bg-text">software products</span> fast
-                        </h1>
-                        <p className="text-base sm:text-xl mt-6 max-w-[800px] m-auto antialiased leading-normal sm:leading-8">Software Engineer with 15+ years of experience helping startups and large enterprises build quality and scalable software with JavaScript.</p>
-                        <div className="flex gap-10 sm:gap-24 items-center mt-16 mb-10 justify-center">
-                            <EmailButton/>
-                            <Link href="/work" className="border-b border-white text-sm sm:text-xl antialiased transition">See some of my work</Link>
+                    <div className="flex flex-col-reverse md:flex-row justify-between items-center">
+                        <div className="relative z-10 max-w-2xl text-left pt-10">
+                            <h1 className="text-3xl !leading-[1.2] sm:text-6xl font-semibold antialiased inline block">
+                                Lanza y crece tu <span className="bg-text">Micro SaaS</span>
+                            </h1>
+                            <p className="text-sm sm:text-lg mt-6 max-w-[800px] m-auto antialiased leading-normal sm:leading-8">
+                                Únete a más de 600 suscriptores del boletín para crear un Micro SaaS exitoso. Cada Sábado recibirás un correo con consejos, herramientas y recursos para lanzar y hacer crecer tu Micro SaaS.
+                            </p>
+                            <div className="flex gap-10 sm:gap-24 mt-10 mb-10">
+                                <SubscribeForm/>
+                            </div>
+                        </div>
+                        <div className="pt-5 w-40 h-40 rounded-full bg-black md:-mt-12 md:w-[600px] overflow-hidden md:overflow-visible md:h-auto md:bg-transparent">
+                            <Image src={hector} className="opacity-[.9]" alt="Hec Sanchez" />
                         </div>
                     </div>
+                    <div className="bg" />
                 </Wrapper>
             </div>
             <div className="overflow-hidden mt-20 sm:mt-32">

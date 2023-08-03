@@ -6,6 +6,7 @@ const nextConfig = {
         localeDetection: false,
     },
     trailingSlash: true,
+    useStrictMode: false,
 }
 
 module.exports = nextConfig;
