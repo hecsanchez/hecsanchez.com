@@ -9,8 +9,15 @@ const dict = t(locale);
 
 <!-- Hero -->
 <section class="mx-auto max-w-5xl px-6 pt-20 pb-16 md:pt-32 md:pb-24">
-  <div class="flex items-start gap-12 md:grid-cols-[1fr_auto] md:gap-16">
-    <div>
+  <div class="flex flex-col gap-10 md:flex-row-reverse md:items-start md:gap-16">
+    <img
+      src="/hecsanchez.png"
+      alt="Hec Sánchez"
+      width="240"
+      height="240"
+      class="h-40 w-40 shrink-0 rounded-full object-cover md:mt-5 md:h-60 md:w-60"
+    />
+    <div class="md:flex-1">
       <h1 class="text-sm uppercase tracking-[0.18em] text-[var(--color-accent)]">
         {dict.home.heroSubtitle}
       </h1>
@@ -30,16 +37,6 @@ const dict = t(locale);
         </a>
       </div>
     </div>
-    <div class="pt-5">
-      <img
-          src="/hecsanchez.png"
-          alt="Hec Sánchez"
-          width="240"
-          height="240"
-          class="order-first h-40 w-40 shrink-0 rounded-full object-cover md:order-none md:h-60 md:w-60"
-      />
-    </div>
-
   </div>
 </section>
 
