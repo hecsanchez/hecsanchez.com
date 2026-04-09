@@ -1,18 +1,22 @@
 ---
-// Root: detect browser locale on first visit and redirect.
-return Astro.redirect('/es', 302);
+// Root: detect browser locale on first visit, default to English.
 ---
 <!doctype html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="0; url=/es" />
+    <meta http-equiv="refresh" content="0; url=/en" />
     <link rel="alternate" hreflang="es" href="/es" />
     <link rel="alternate" hreflang="en" href="/en" />
+    <link rel="alternate" hreflang="x-default" href="/en" />
     <title>Hec Sánchez</title>
     <script>
-      const lang = (navigator.language || 'es').toLowerCase();
-      location.replace(lang.startsWith('en') ? '/en' : '/es');
+      // Check every preferred language the browser reports, not just the top one.
+      const langs = (navigator.languages && navigator.languages.length
+        ? navigator.languages
+        : [navigator.language || 'en']).map((l) => l.toLowerCase());
+      const prefersEs = langs.some((l) => l.startsWith('es'));
+      location.replace(prefersEs ? '/es' : '/en');
     </script>
   </head>
   <body></body>

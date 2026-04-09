@@ -6,7 +6,7 @@
     "home": "Inicio",
     "howIWork": "Cómo trabajo",
     "work": "Trabajo",
-    "blog": "Notas",
+    "blog": "Escritos",
     "about": "Sobre mí",
     "contact": "Contacto"
   },
@@ -93,9 +93,9 @@
     "viewProject": "Ver proyecto"
   },
   "blog": {
-    "metaTitle": "Notas — Hec Sánchez",
+    "metaTitle": "Escritos — Hec Sánchez",
     "metaDescription": "Sobre arquitectura, liderazgo de ingeniería y construir en industrias reguladas.",
-    "title": "Notas",
+    "title": "Escritos",
     "intro": "Sobre arquitectura, liderazgo, y construir en industrias reguladas.",
     "all": "Todos",
     "readingTime": "min de lectura",

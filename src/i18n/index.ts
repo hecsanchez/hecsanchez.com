@@ -40,10 +40,8 @@ export const testimonials = [
 
 export const companies = [
   'Camino Real',
-  'Pluto TV',
   'Lala',
   'Cabify',
-  'Airbus',
   'Freightliner',
 ] as const;
 
