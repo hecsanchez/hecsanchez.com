@@ -1,0 +1,97 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/lora';
+
+@theme {
+  --color-bg: #332731;
+  --color-bg-soft: #3d2f3a;
+  --color-bg-elevated: #463545;
+  --color-fg: #f5f0f3;
+  --color-fg-muted: #b9adb5;
+  --color-fg-dim: #7e6f7a;
+  --color-border: #4a3a47;
+  --color-accent: #d4a843;
+  --color-accent-hover: #e0b85a;
+
+  --font-serif: 'Lora Variable', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter Variable', system-ui, -apple-system, sans-serif;
+
+  --container-prose: 42rem;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    min-height: 100dvh;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--color-fg);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--color-accent);
+  }
+}
+
+@utility prose-post {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--color-fg);
+  max-width: var(--container-prose);
+
+  & h1 { font-size: 2.25rem; margin-top: 2rem; margin-bottom: 1rem; }
+  & h2 { font-size: 1.625rem; margin-top: 2.5rem; margin-bottom: 1rem; }
+  & h3 { font-size: 1.25rem; margin-top: 2rem; margin-bottom: 0.75rem; }
+  & p { margin-bottom: 1.25rem; }
+  & ul, & ol { margin-bottom: 1.25rem; padding-left: 1.5rem; }
+  & ul { list-style: disc; }
+  & ol { list-style: decimal; }
+  & li { margin-bottom: 0.375rem; }
+  & a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 3px; }
+  & strong { color: var(--color-fg); font-weight: 600; }
+  & blockquote {
+    border-left: 2px solid var(--color-accent);
+    padding-left: 1rem;
+    font-style: italic;
+    color: var(--color-fg-muted);
+    margin: 1.5rem 0;
+  }
+  & code {
+    background: var(--color-bg-elevated);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.9em;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  & pre {
+    background: var(--color-bg-elevated);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin-bottom: 1.25rem;
+  }
+  & pre code { background: transparent; padding: 0; }
+  & hr { border-color: var(--color-border); margin: 2rem 0; }
+}

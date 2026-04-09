@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactPage from '../../components/sections/ContactPage.astro';
+import { t } from '../../i18n';
+const dict = t('es');
+---
+<BaseLayout locale="es" title={dict.contact.metaTitle} description={dict.contact.metaDescription} altLocaleHref="/en/contact">
+  <ContactPage locale="es" />
+</BaseLayout>

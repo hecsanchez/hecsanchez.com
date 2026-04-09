@@ -1,0 +1,117 @@
+{
+  "locale": "es",
+  "siteName": "Hec Sánchez",
+  "tagline": "CTO Fraccionario",
+  "nav": {
+    "home": "Inicio",
+    "howIWork": "Cómo trabajo",
+    "work": "Trabajo",
+    "blog": "Blog",
+    "about": "Sobre mí",
+    "contact": "Contacto"
+  },
+  "routes": {
+    "home": "/es",
+    "howIWork": "/es/como-trabajo",
+    "work": "/es/trabajo",
+    "blog": "/es/blog",
+    "about": "/es/sobre-mi",
+    "contact": "/es/contacto"
+  },
+  "cta": {
+    "primary": "Agendar llamada",
+    "secondary": "Cómo trabajo",
+    "ready": "¿Listo para hablar?"
+  },
+  "home": {
+    "metaTitle": "Hec Sánchez — CTO Fraccionario",
+    "metaDescription": "Ayudo a startups a escalar su ingeniería sin contratar un CTO de tiempo completo. Estrategia técnica, liderazgo y ejecución.",
+    "heroTitle": "Hec Sánchez",
+    "heroSubtitle": "CTO Fraccionario",
+    "valueProp": "Ayudo a startups a escalar su ingeniería sin contratar un CTO de tiempo completo.",
+    "socialProofTitle": "He construido para",
+    "whatIDoTitle": "Lo que hago",
+    "cards": {
+      "strategyTitle": "Estrategia técnica",
+      "strategyDesc": "Decisiones de arquitectura, build vs buy, selección de stack.",
+      "leadershipTitle": "Liderazgo de equipos",
+      "leadershipDesc": "Contratación, procesos, estructura de equipo, cultura de code review.",
+      "executionTitle": "Ejecución",
+      "executionDesc": "Escribo código. Lanzo. No solo aconsejo."
+    },
+    "bio": "16 años construyendo software. Staff Engineer en una consultora de EEUU. He lanzado productos en fintech, healthtech e insurtech. Vivo en Puebla, México.",
+    "testimonialsTitle": "Lo que dicen"
+  },
+  "howIWork": {
+    "metaTitle": "Cómo trabajo — Hec Sánchez",
+    "metaDescription": "Modelo de engagement, para quién es y cómo se ve un trabajo típico de 3 meses.",
+    "title": "Cómo trabajo",
+    "intro": "Un compromiso enfocado, con tiempo dedicado y atención real.",
+    "modelTitle": "Modelo de engagement",
+    "model": [
+      "8 horas al mes de trabajo técnico práctico + 2 llamadas de seguimiento",
+      "Compromiso mínimo: 3 meses",
+      "Máximo 2 clientes simultáneos — atención dedicada"
+    ],
+    "forTitle": "Para quién es",
+    "for": [
+      "Startups de 5–50 personas sin CTO",
+      "Fundadores técnicos que ya no pueden hacer todo",
+      "Equipos con producto en producción pero sin dirección técnica clara",
+      "Empresas que necesitan auditar su arquitectura antes de escalar"
+    ],
+    "notForTitle": "Para quién NO es",
+    "notFor": [
+      "Proyectos que necesitan un equipo completo de desarrollo (→ refiero a mi consultora)",
+      "Empresas que buscan solo un consejero sin ejecución",
+      "Ideas sin validar que necesitan un MVP (→ puedo referirte)"
+    ],
+    "timelineTitle": "Cómo se ve un engagement típico",
+    "timeline": [
+      { "step": "Mes 1", "label": "Auditoría", "desc": "Revisión de codebase, evaluación de arquitectura, evaluación de equipo, roadmap." },
+      { "step": "Mes 2", "label": "Ejecución", "desc": "Implementar los cambios de mayor impacto, establecer procesos." },
+      { "step": "Mes 3+", "label": "Sostener", "desc": "Liderazgo continuo, apoyo en contratación, decisiones de escalamiento." }
+    ]
+  },
+  "about": {
+    "metaTitle": "Sobre mí — Hec Sánchez",
+    "metaDescription": "16 años en ingeniería de software, dos agencias, y un foco en industrias reguladas.",
+    "title": "Sobre mí",
+    "paragraphs": [
+      "Llevo 16 años construyendo software. He fundado dos agencias (2014–2017 y 2021–2025), y actualmente soy Staff Engineer y Head of Engineering en Nolte, una consultora de software en EEUU.",
+      "Me especializo en industrias reguladas: insurtech, healthtech y fintech. Es el lugar donde las decisiones técnicas tienen consecuencias reales y donde la calidad del código importa más que la velocidad bruta.",
+      "Vivo en Puebla, México, con mi esposa y nuestros tres hijos. Cuando no estoy en una llamada, estoy remando, tocando guitarra, o entrenando para un medio maratón."
+    ],
+    "linksTitle": "Encuéntrame en"
+  },
+  "work": {
+    "metaTitle": "Trabajo — Hec Sánchez",
+    "metaDescription": "Una selección de productos que he construido — de plataformas de comercio a CRMs y apps móviles.",
+    "title": "Trabajo",
+    "intro": "Una selección de productos que he construido. Code, no slides.",
+    "stack": "Stack",
+    "viewProject": "Ver proyecto"
+  },
+  "blog": {
+    "metaTitle": "Blog — Hec Sánchez",
+    "metaDescription": "Notas sobre arquitectura, liderazgo de ingeniería y construir en industrias reguladas.",
+    "title": "Blog",
+    "intro": "Notas sobre arquitectura, liderazgo, y construir en industrias reguladas.",
+    "all": "Todos",
+    "readingTime": "min de lectura",
+    "ctaTitle": "¿Necesitas un CTO fraccionario?",
+    "ctaBody": "Agenda una llamada de 30 minutos. Sin compromiso."
+  },
+  "contact": {
+    "metaTitle": "Contacto — Hec Sánchez",
+    "metaDescription": "Agenda una llamada de 30 minutos para ver si tiene sentido trabajar juntos.",
+    "title": "Hablemos",
+    "subtext": "Agenda una llamada de 30 minutos. Sin compromiso, sin pitch de ventas — solo una conversación para ver si tiene sentido trabajar juntos.",
+    "altTitle": "¿Prefieres escribirme?",
+    "linkedinLabel": "LinkedIn"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados.",
+    "built": "Construido con Astro."
+  }
+}

@@ -1,0 +1,23 @@
+---
+import type { Locale } from '../i18n';
+
+interface Props {
+  quote: string;
+  name: string;
+  title: string;
+  company: string;
+  locale?: Locale;
+}
+
+const { quote, name, title, company } = Astro.props;
+---
+
+<figure class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] p-8">
+  <blockquote class="font-serif text-xl leading-relaxed text-[var(--color-fg)]">
+    “{quote}”
+  </blockquote>
+  <figcaption class="mt-6 text-sm text-[var(--color-fg-muted)]">
+    <span class="text-[var(--color-fg)] font-medium">{name}</span>
+    <span> · {title}, {company}</span>
+  </figcaption>
+</figure>

@@ -1,0 +1,31 @@
+---
+import { t, type Locale, contactInfo } from '../../i18n';
+import CTA from '../CTA.astro';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const dict = t(locale);
+---
+
+<section class="mx-auto max-w-3xl px-6 pt-20 pb-12">
+  <h1 class="font-serif text-5xl md:text-6xl">{dict.about.title}</h1>
+</section>
+
+<section class="mx-auto max-w-3xl px-6 pb-12">
+  <div class="space-y-6 font-serif text-xl leading-relaxed text-[var(--color-fg)]">
+    {dict.about.paragraphs.map((p) => <p>{p}</p>)}
+  </div>
+</section>
+
+<section class="mx-auto max-w-3xl px-6 py-8">
+  <h2 class="text-xs uppercase tracking-[0.18em] text-[var(--color-fg-dim)]">{dict.about.linksTitle}</h2>
+  <ul class="mt-4 flex flex-wrap gap-5 text-[var(--color-fg)]">
+    <li><a href={contactInfo.linkedin} target="_blank" rel="noopener" class="underline underline-offset-4">LinkedIn</a></li>
+    <li><a href={contactInfo.github} target="_blank" rel="noopener" class="underline underline-offset-4">GitHub</a></li>
+    <li><a href={`mailto:${contactInfo.email}`} class="underline underline-offset-4">Email</a></li>
+  </ul>
+</section>
+
+<div class="px-6 pt-8 pb-20">
+  <CTA locale={locale} variant="block" />
+</div>

@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HowIWorkPage from '../../components/sections/HowIWorkPage.astro';
+import { t } from '../../i18n';
+const dict = t('en');
+---
+<BaseLayout locale="en" title={dict.howIWork.metaTitle} description={dict.howIWork.metaDescription} altLocaleHref="/es/como-trabajo">
+  <HowIWorkPage locale="en" />
+</BaseLayout>

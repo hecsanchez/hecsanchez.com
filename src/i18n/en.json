@@ -1,0 +1,117 @@
+{
+  "locale": "en",
+  "siteName": "Hec Sánchez",
+  "tagline": "Fractional CTO",
+  "nav": {
+    "home": "Home",
+    "howIWork": "How I work",
+    "work": "Work",
+    "blog": "Blog",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "routes": {
+    "home": "/en",
+    "howIWork": "/en/how-i-work",
+    "work": "/en/work",
+    "blog": "/en/blog",
+    "about": "/en/about",
+    "contact": "/en/contact"
+  },
+  "cta": {
+    "primary": "Book a call",
+    "secondary": "How I work",
+    "ready": "Ready to talk?"
+  },
+  "home": {
+    "metaTitle": "Hec Sánchez — Fractional CTO",
+    "metaDescription": "I help startups scale their engineering without a full-time CTO hire. Technical strategy, leadership, and execution.",
+    "heroTitle": "Hec Sánchez",
+    "heroSubtitle": "Fractional CTO",
+    "valueProp": "I help startups scale their engineering without a full-time CTO hire.",
+    "socialProofTitle": "Built for",
+    "whatIDoTitle": "What I do",
+    "cards": {
+      "strategyTitle": "Technical Strategy",
+      "strategyDesc": "Architecture decisions, build vs buy, tech stack selection.",
+      "leadershipTitle": "Engineering Leadership",
+      "leadershipDesc": "Hiring, processes, team structure, code review culture.",
+      "executionTitle": "Hands-on Execution",
+      "executionDesc": "I write code. I ship. I don't just advise."
+    },
+    "bio": "16 years building software. Staff Engineer at a US consultancy. I've shipped products across fintech, healthtech, and insurtech. Based in Puebla, Mexico.",
+    "testimonialsTitle": "What people say"
+  },
+  "howIWork": {
+    "metaTitle": "How I work — Hec Sánchez",
+    "metaDescription": "Engagement model, who it's for, and what a typical 3-month engagement looks like.",
+    "title": "How I work",
+    "intro": "A focused engagement, with dedicated time and real attention.",
+    "modelTitle": "Engagement model",
+    "model": [
+      "8 hours per month of hands-on technical work + 2 follow-up calls",
+      "Minimum commitment: 3 months",
+      "Maximum 2 simultaneous clients — dedicated attention"
+    ],
+    "forTitle": "Who this is for",
+    "for": [
+      "Startups of 5–50 people without a CTO",
+      "Technical founders who can no longer do everything",
+      "Teams with product in production but without clear technical direction",
+      "Companies that need to audit their architecture before scaling"
+    ],
+    "notForTitle": "Who this is NOT for",
+    "notFor": [
+      "Projects that need a full development team (→ I refer to my consultancy)",
+      "Companies looking for an advisor without execution",
+      "Unvalidated ideas that need an MVP (→ I can refer you)"
+    ],
+    "timelineTitle": "What a typical engagement looks like",
+    "timeline": [
+      { "step": "Month 1", "label": "Audit", "desc": "Codebase review, architecture assessment, team evaluation, roadmap." },
+      { "step": "Month 2", "label": "Execute", "desc": "Implement the highest-impact changes, establish processes." },
+      { "step": "Month 3+", "label": "Sustain", "desc": "Ongoing leadership, hiring support, scaling decisions." }
+    ]
+  },
+  "about": {
+    "metaTitle": "About — Hec Sánchez",
+    "metaDescription": "16 years in software engineering, two agencies, and a focus on regulated industries.",
+    "title": "About",
+    "paragraphs": [
+      "I've been building software for 16 years. I've founded two agencies (2014–2017 and 2021–2025), and I'm currently Staff Engineer and Head of Engineering at Nolte, a US software consultancy.",
+      "I specialize in regulated industries: insurtech, healthtech, and fintech. It's the place where technical decisions have real consequences and where code quality matters more than raw speed.",
+      "I live in Puebla, Mexico, with my wife and our three kids. When I'm not on a call, I'm rowing, playing guitar, or training for a half marathon."
+    ],
+    "linksTitle": "Find me on"
+  },
+  "work": {
+    "metaTitle": "Work — Hec Sánchez",
+    "metaDescription": "A selection of products I've built — from commerce platforms to CRMs and mobile apps.",
+    "title": "Work",
+    "intro": "A selection of products I've built. Code, not slides.",
+    "stack": "Stack",
+    "viewProject": "View project"
+  },
+  "blog": {
+    "metaTitle": "Blog — Hec Sánchez",
+    "metaDescription": "Notes on architecture, engineering leadership, and building in regulated industries.",
+    "title": "Blog",
+    "intro": "Notes on architecture, leadership, and building in regulated industries.",
+    "all": "All",
+    "readingTime": "min read",
+    "ctaTitle": "Need a fractional CTO?",
+    "ctaBody": "Book a 30-minute call. No commitment."
+  },
+  "contact": {
+    "metaTitle": "Contact — Hec Sánchez",
+    "metaDescription": "Book a 30-minute call to see if it makes sense to work together.",
+    "title": "Let's talk",
+    "subtext": "Book a 30-minute call. No commitment, no sales pitch — just a conversation to see if it makes sense to work together.",
+    "altTitle": "Prefer to write?",
+    "linkedinLabel": "LinkedIn"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "built": "Built with Astro."
+  }
+}

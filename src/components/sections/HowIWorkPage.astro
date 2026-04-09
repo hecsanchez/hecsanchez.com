@@ -1,0 +1,71 @@
+---
+import { t, type Locale } from '../../i18n';
+import CTA from '../CTA.astro';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const dict = t(locale);
+---
+
+<section class="mx-auto max-w-3xl px-6 pt-20 pb-12">
+  <h1 class="font-serif text-5xl md:text-6xl">{dict.howIWork.title}</h1>
+  <p class="mt-6 font-serif text-xl text-[var(--color-fg-muted)]">{dict.howIWork.intro}</p>
+</section>
+
+<section class="mx-auto max-w-3xl px-6 py-10">
+  <h2 class="font-serif text-2xl">{dict.howIWork.modelTitle}</h2>
+  <ul class="mt-5 space-y-3">
+    {dict.howIWork.model.map((line) => (
+      <li class="flex gap-3 text-[var(--color-fg)]">
+        <span class="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-accent)]" />
+        <span>{line}</span>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<section class="mx-auto max-w-3xl px-6 py-10">
+  <h2 class="font-serif text-2xl">{dict.howIWork.forTitle}</h2>
+  <ul class="mt-5 space-y-3">
+    {dict.howIWork.for.map((line) => (
+      <li class="flex gap-3 text-[var(--color-fg)]">
+        <span class="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-accent)]" />
+        <span>{line}</span>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<section class="mx-auto max-w-3xl px-6 py-10">
+  <h2 class="font-serif text-2xl">{dict.howIWork.notForTitle}</h2>
+  <ul class="mt-5 space-y-3">
+    {dict.howIWork.notFor.map((line) => (
+      <li class="flex gap-3 text-[var(--color-fg-muted)]">
+        <span class="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-fg-dim)]" />
+        <span>{line}</span>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<section class="mx-auto max-w-3xl px-6 py-10">
+  <h2 class="font-serif text-2xl">{dict.howIWork.timelineTitle}</h2>
+  <ol class="mt-8 space-y-8 border-l border-[var(--color-border)] pl-6">
+    {dict.howIWork.timeline.map((item) => (
+      <li class="relative">
+        <span class="absolute -left-[31px] top-1 inline-flex h-4 w-4 items-center justify-center rounded-full border-2 border-[var(--color-accent)] bg-[var(--color-bg)]" />
+        <div class="text-xs uppercase tracking-[0.18em] text-[var(--color-fg-dim)]">{item.step}</div>
+        <h3 class="mt-1 font-serif text-xl text-[var(--color-fg)]">{item.label}</h3>
+        <p class="mt-2 text-[var(--color-fg-muted)]">{item.desc}</p>
+      </li>
+    ))}
+  </ol>
+</section>
+
+<div class="mx-auto max-w-3xl px-6 py-12">
+  <CTA locale={locale} />
+</div>
+
+<div class="px-6 pb-20">
+  <CTA locale={locale} variant="block" />
+</div>

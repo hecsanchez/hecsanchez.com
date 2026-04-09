@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import { t, type Locale } from '../../i18n';
+import CTA from '../CTA.astro';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const dict = t(locale);
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft && data.locale === locale))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const dateFmt = new Intl.DateTimeFormat(locale === 'es' ? 'es-MX' : 'en-US', {
+  year: 'numeric', month: 'short', day: 'numeric',
+});
+---
+
+<section class="mx-auto max-w-3xl px-6 pt-20 pb-10">
+  <h1 class="font-serif text-5xl md:text-6xl">{dict.blog.title}</h1>
+  <p class="mt-6 font-serif text-xl text-[var(--color-fg-muted)]">{dict.blog.intro}</p>
+</section>
+
+<section class="mx-auto max-w-3xl px-6 pb-20">
+  <ul class="divide-y divide-[var(--color-border)]">
+    {posts.map((post) => (
+      <li class="py-6">
+        <a href={`${dict.routes.blog}/${post.id.replace(/\.mdx?$/, '')}`} class="group block">
+          <div class="text-xs uppercase tracking-[0.15em] text-[var(--color-fg-dim)]">
+            {dateFmt.format(post.data.date)}
+            {' · '}
+            {post.data.tags.join(', ')}
+          </div>
+          <h2 class="mt-2 font-serif text-2xl text-[var(--color-fg)] group-hover:text-[var(--color-accent)]">
+            {post.data.title}
+          </h2>
+          <p class="mt-2 text-[var(--color-fg-muted)]">{post.data.description}</p>
+        </a>
+      </li>
+    ))}
+    {posts.length === 0 && (
+      <li class="py-10 text-[var(--color-fg-muted)]">—</li>
+    )}
+  </ul>
+</section>
+
+<div class="px-6 pb-20">
+  <CTA locale={locale} variant="block" />
+</div>

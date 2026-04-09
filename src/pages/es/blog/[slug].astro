@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BlogPostPage from '../../../components/sections/BlogPostPage.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => data.locale === 'es' && !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id.replace(/\.mdx?$/, '') },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+---
+<BaseLayout
+  locale="es"
+  title={`${post.data.title} — Hec Sánchez`}
+  description={post.data.description}
+>
+  <BlogPostPage locale="es" post={post} />
+</BaseLayout>

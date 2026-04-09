@@ -1,0 +1,18 @@
+---
+import { t, type Locale, contactInfo } from '../i18n';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const dict = t(locale);
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-[var(--color-border)] mt-24">
+  <div class="mx-auto flex max-w-5xl flex-col gap-3 px-6 py-10 text-sm text-[var(--color-fg-dim)] md:flex-row md:items-center md:justify-between">
+    <div>© {year} Hec Sánchez. {dict.footer.rights}</div>
+    <div class="flex items-center gap-5">
+      <a href={contactInfo.linkedin} target="_blank" rel="noopener" class="hover:text-[var(--color-fg)]">LinkedIn</a>
+      <a href={`mailto:${contactInfo.email}`} class="hover:text-[var(--color-fg)]">{contactInfo.email}</a>
+    </div>
+  </div>
+</footer>

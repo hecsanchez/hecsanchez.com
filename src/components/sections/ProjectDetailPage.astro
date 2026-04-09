@@ -1,0 +1,47 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { t, type Locale } from '../../i18n';
+import CTA from '../CTA.astro';
+
+interface Props {
+  locale: Locale;
+  project: CollectionEntry<'projects'>;
+}
+
+const { locale, project } = Astro.props;
+const dict = t(locale);
+const data = project.data;
+
+const labels = locale === 'es'
+  ? { whatItIs: 'Qué es', whatIBuilt: 'Qué construí', stack: 'Stack' }
+  : { whatItIs: 'What it is', whatIBuilt: 'What I built', stack: 'Stack' };
+---
+
+<section class="mx-auto max-w-3xl px-6 pt-20 pb-6">
+  <a href={dict.routes.work} class="text-sm text-[var(--color-fg-dim)] hover:text-[var(--color-fg)]">← {dict.nav.work}</a>
+  <h1 class="mt-6 font-serif text-5xl md:text-6xl">{data.name}</h1>
+  <p class="mt-6 font-serif text-xl text-[var(--color-fg-muted)]">{data.summary[locale]}</p>
+</section>
+
+<article class="mx-auto max-w-3xl px-6 py-10 space-y-10">
+  <section>
+    <h2 class="text-xs uppercase tracking-[0.18em] text-[var(--color-fg-dim)]">{labels.whatItIs}</h2>
+    <p class="mt-3 font-serif text-lg leading-relaxed text-[var(--color-fg)]">{data.whatItIs[locale]}</p>
+  </section>
+  <section>
+    <h2 class="text-xs uppercase tracking-[0.18em] text-[var(--color-fg-dim)]">{labels.whatIBuilt}</h2>
+    <p class="mt-3 font-serif text-lg leading-relaxed text-[var(--color-fg)]">{data.whatIBuilt[locale]}</p>
+  </section>
+  <section>
+    <h2 class="text-xs uppercase tracking-[0.18em] text-[var(--color-fg-dim)]">{labels.stack}</h2>
+    <ul class="mt-4 flex flex-wrap gap-2">
+      {data.stack.map((s) => (
+        <li class="rounded-full border border-[var(--color-border)] px-2.5 py-0.5 text-xs text-[var(--color-fg-dim)]">{s}</li>
+      ))}
+    </ul>
+  </section>
+</article>
+
+<div class="px-6 pt-8 pb-20">
+  <CTA locale={locale} variant="block" />
+</div>
