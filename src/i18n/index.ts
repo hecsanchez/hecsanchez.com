@@ -47,10 +47,11 @@ export const companies = [
   'Freightliner',
 ] as const;
 
-// TODO: Hec to provide
+// TODO: Hec to confirm email + cal.com link/event slug
 export const contactInfo = {
   email: 'hec@hecsanchez.com',
-  linkedin: 'https://www.linkedin.com/in/hectorsanchezm/',
+  linkedin: 'https://www.linkedin.com/in/hecsanchez/',
   github: 'https://github.com/hecsanchez',
-  calendly: 'https://calendly.com/hecsanchez/30min',
+  /** Cal.com link in `username/event-slug` form. */
+  calLink: 'hecsanchez/30min',
 };

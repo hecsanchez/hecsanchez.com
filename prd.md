@@ -54,8 +54,8 @@ Personal site for Hector Sánchez — fractional CTO and technical leader. The s
 
 4. **Brief bio blurb**
     - 2–3 sentences max. Photo optional (if included, use a professional headshot, not a stock image placeholder — leave an `<Image>` component with a `/public/headshot.jpg` path).
-    - "16 años construyendo software. Staff Engineer en una consultora de EEUU. He lanzado productos en fintech, healthtech e insurtech. Vivo en Puebla, México."
-    - EN: "16 years building software. Staff Engineer at a US consultancy. I've shipped products across fintech, healthtech, and insurtech. Based in Puebla, Mexico."
+    - "16 años construyendo software. Head of Engineering en una consultora de EEUU. He lanzado productos en fintech, healthtech e insurtech. Vivo en Puebla, México."
+    - EN: "16 years building software. Head of Engineering at a US consultancy. I've shipped products across fintech, healthtech, and insurtech. Based in Puebla, Mexico."
 
 5. **Testimonials** (2 max, not a carousel)
     - Quote, name, title, company
@@ -109,7 +109,7 @@ Personal site for Hector Sánchez — fractional CTO and technical leader. The s
 
 - 16 years in software engineering
 - Ran two software agencies (2014–2017, 2021–2025)
-- Currently Staff Engineer and Head of Engineering at a US software consultancy (Nolte)
+- Currently Head of Engineering at a US software consultancy (Nolte)
 - Specializes in regulated industries: insurtech, healthtech, fintech
 - Based in Puebla, Mexico — married, three kids
 - Interests (one sentence): rower, guitarist, runner training for a half marathon

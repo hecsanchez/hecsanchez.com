@@ -6,7 +6,7 @@
     "home": "Home",
     "howIWork": "How I work",
     "work": "Work",
-    "blog": "Blog",
+    "blog": "Notes",
     "about": "About",
     "contact": "Contact"
   },
@@ -39,7 +39,7 @@
       "executionTitle": "Hands-on Execution",
       "executionDesc": "I write code. I ship. I don't just advise."
     },
-    "bio": "16 years building software. Staff Engineer at a US consultancy. I've shipped products across fintech, healthtech, and insurtech. Based in Puebla, Mexico.",
+    "bio": "16 years building software. Head of Engineering at a software consultancy specializing in regulated industries — healthtech, insurtech, and fintech. Based in Puebla, Mexico.",
     "testimonialsTitle": "What people say"
   },
   "howIWork": {
@@ -78,8 +78,8 @@
     "metaDescription": "16 years in software engineering, two agencies, and a focus on regulated industries.",
     "title": "About",
     "paragraphs": [
-      "I've been building software for 16 years. I've founded two agencies (2014–2017 and 2021–2025), and I'm currently Staff Engineer and Head of Engineering at Nolte, a US software consultancy.",
-      "I specialize in regulated industries: insurtech, healthtech, and fintech. It's the place where technical decisions have real consequences and where code quality matters more than raw speed.",
+      "I've been building software for 16 years. I've founded two agencies (2014–2017 and 2021–2025), and I'm currently Head of Engineering at Nolte, a software consultancy specializing in regulated industries: healthtech, insurtech, and fintech.",
+      "It's the kind of work where technical decisions have real consequences — where code quality and process rigor matter more than raw speed.",
       "I live in Puebla, Mexico, with my wife and our three kids. When I'm not on a call, I'm rowing, playing guitar, or training for a half marathon."
     ],
     "linksTitle": "Find me on"
@@ -93,10 +93,10 @@
     "viewProject": "View project"
   },
   "blog": {
-    "metaTitle": "Blog — Hec Sánchez",
-    "metaDescription": "Notes on architecture, engineering leadership, and building in regulated industries.",
-    "title": "Blog",
-    "intro": "Notes on architecture, leadership, and building in regulated industries.",
+    "metaTitle": "Notes — Hec Sánchez",
+    "metaDescription": "On architecture, engineering leadership, and building in regulated industries.",
+    "title": "Notes",
+    "intro": "On architecture, leadership, and building in regulated industries.",
     "all": "All",
     "readingTime": "min read",
     "ctaTitle": "Need a fractional CTO?",

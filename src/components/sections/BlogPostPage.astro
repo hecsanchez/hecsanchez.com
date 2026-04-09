@@ -20,7 +20,7 @@ const wordCount = post.body?.split(/\s+/).length ?? 0;
 const readingTime = Math.max(1, Math.round(wordCount / 220));
 ---
 
-<article class="mx-auto max-w-prose px-6 pt-20 pb-12">
+<article class="mx-auto max-w-[758px] px-6 pt-20 pb-12">
   <a href={dict.routes.blog} class="text-sm text-[var(--color-fg-dim)] hover:text-[var(--color-fg)]">← {dict.nav.blog}</a>
   <header class="mt-8">
     <div class="text-xs uppercase tracking-[0.15em] text-[var(--color-fg-dim)]">
@@ -28,7 +28,7 @@ const readingTime = Math.max(1, Math.round(wordCount / 220));
     </div>
     <h1 class="mt-4 font-serif text-4xl md:text-5xl leading-tight">{post.data.title}</h1>
     {post.data.description && (
-      <p class="mt-4 font-serif text-xl text-[var(--color-fg-muted)]">{post.data.description}</p>
+      <p class="mt-4 font-serif text-[var(--color-fg-muted)]">{post.data.description}</p>
     )}
   </header>
 
@@ -37,7 +37,7 @@ const readingTime = Math.max(1, Math.round(wordCount / 220));
   </div>
 </article>
 
-<aside class="mx-auto max-w-prose px-6 pb-20">
+<aside class="mx-auto max-w-[758px] px-6 pb-20">
   <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] p-8 text-center">
     <h2 class="font-serif text-2xl">{dict.blog.ctaTitle}</h2>
     <p class="mt-2 text-[var(--color-fg-muted)]">{dict.blog.ctaBody}</p>

@@ -6,7 +6,7 @@
     "home": "Inicio",
     "howIWork": "Cómo trabajo",
     "work": "Trabajo",
-    "blog": "Blog",
+    "blog": "Notas",
     "about": "Sobre mí",
     "contact": "Contacto"
   },
@@ -39,7 +39,7 @@
       "executionTitle": "Ejecución",
       "executionDesc": "Escribo código. Lanzo. No solo aconsejo."
     },
-    "bio": "16 años construyendo software. Staff Engineer en una consultora de EEUU. He lanzado productos en fintech, healthtech e insurtech. Vivo en Puebla, México.",
+    "bio": "16 años construyendo software. Head of Engineering en una consultora especializada en industrias reguladas — healthtech, insurtech y fintech. Vivo en Puebla, México.",
     "testimonialsTitle": "Lo que dicen"
   },
   "howIWork": {
@@ -78,8 +78,8 @@
     "metaDescription": "16 años en ingeniería de software, dos agencias, y un foco en industrias reguladas.",
     "title": "Sobre mí",
     "paragraphs": [
-      "Llevo 16 años construyendo software. He fundado dos agencias (2014–2017 y 2021–2025), y actualmente soy Staff Engineer y Head of Engineering en Nolte, una consultora de software en EEUU.",
-      "Me especializo en industrias reguladas: insurtech, healthtech y fintech. Es el lugar donde las decisiones técnicas tienen consecuencias reales y donde la calidad del código importa más que la velocidad bruta.",
+      "Llevo 16 años construyendo software. He fundado dos agencias (2014–2017 y 2021–2025), y actualmente soy Head of Engineering en Nolte, una consultora de software especializada en industrias reguladas: healthtech, insurtech y fintech.",
+      "Es el tipo de trabajo donde las decisiones técnicas tienen consecuencias reales — donde la calidad del código y el rigor de los procesos importan más que la velocidad bruta.",
       "Vivo en Puebla, México, con mi esposa y nuestros tres hijos. Cuando no estoy en una llamada, estoy remando, tocando guitarra, o entrenando para un medio maratón."
     ],
     "linksTitle": "Encuéntrame en"
@@ -93,10 +93,10 @@
     "viewProject": "Ver proyecto"
   },
   "blog": {
-    "metaTitle": "Blog — Hec Sánchez",
-    "metaDescription": "Notas sobre arquitectura, liderazgo de ingeniería y construir en industrias reguladas.",
-    "title": "Blog",
-    "intro": "Notas sobre arquitectura, liderazgo, y construir en industrias reguladas.",
+    "metaTitle": "Notas — Hec Sánchez",
+    "metaDescription": "Sobre arquitectura, liderazgo de ingeniería y construir en industrias reguladas.",
+    "title": "Notas",
+    "intro": "Sobre arquitectura, liderazgo, y construir en industrias reguladas.",
     "all": "Todos",
     "readingTime": "min de lectura",
     "ctaTitle": "¿Necesitas un CTO fraccionario?",

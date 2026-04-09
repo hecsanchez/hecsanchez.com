@@ -8,17 +8,69 @@ const dict = t(locale);
 
 <section class="mx-auto max-w-3xl px-6 pt-20 pb-10">
   <h1 class="font-serif text-5xl md:text-6xl">{dict.contact.title}</h1>
-  <p class="mt-6 font-serif text-xl text-[var(--color-fg-muted)]">{dict.contact.subtext}</p>
+  <p class="mt-6 font-serif text-[var(--color-fg-muted)]">{dict.contact.subtext}</p>
 </section>
 
 <section class="mx-auto max-w-4xl px-6 pb-12">
-  <!-- Calendly inline embed. TODO: Hec to confirm the URL in src/i18n/index.ts -->
+  <!-- Cal.com inline embed. TODO: Hec to confirm calLink in src/i18n/index.ts -->
   <div
-    class="calendly-inline-widget rounded-2xl border border-[var(--color-border)] overflow-hidden bg-[var(--color-bg-soft)]"
-    data-url={`${contactInfo.calendly}?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=332731&text_color=f5f0f3&primary_color=d4a843`}
-    style="min-width:320px;height:680px;"
+    id="cal-inline"
+    class="rounded-2xl border border-[var(--color-border)] overflow-hidden bg-[var(--color-bg-soft)]"
+    style="min-width:320px;min-height:680px;width:100%;"
   ></div>
-  <script async src="https://assets.calendly.com/assets/external/widget.js"></script>
+  <script type="text/javascript" is:inline define:vars={{ calLink: contactInfo.calLink }}>
+    (function (C, A, L) {
+      let p = function (a, ar) { a.q.push(ar); };
+      let d = C.document;
+      C.Cal = C.Cal || function () {
+        let cal = C.Cal;
+        let ar = arguments;
+        if (!cal.loaded) {
+          cal.ns = {};
+          cal.q = cal.q || [];
+          d.head.appendChild(d.createElement('script')).src = A;
+          cal.loaded = true;
+        }
+        if (ar[0] === L) {
+          const api = function () { p(api, arguments); };
+          const namespace = ar[1];
+          api.q = api.q || [];
+          if (typeof namespace === 'string') {
+            cal.ns[namespace] = cal.ns[namespace] || api;
+            p(cal.ns[namespace], ar);
+            p(cal, ['initNamespace', namespace]);
+          } else {
+            p(cal, ar);
+          }
+          return;
+        }
+        p(cal, ar);
+      };
+    })(window, 'https://app.cal.com/embed/embed.js', 'init');
+
+    Cal('init', 'booking', { origin: 'https://cal.com' });
+    Cal.ns.booking('inline', {
+      elementOrSelector: '#cal-inline',
+      calLink: calLink,
+      config: { layout: 'month_view' },
+    });
+    Cal.ns.booking('ui', {
+      theme: 'light',
+      cssVarsPerTheme: {
+        light: {
+          'cal-bg': '#f5efe6',
+          'cal-bg-emphasis': '#ede5d6',
+          'cal-bg-muted': '#e2d8c5',
+          'cal-brand': '#7a1f2b',
+          'cal-text': '#2a1f26',
+          'cal-text-emphasis': '#2a1f26',
+          'cal-border': '#d9cfc0',
+        },
+      },
+      hideEventTypeDetails: false,
+      layout: 'month_view',
+    });
+  </script>
 </section>
 
 <section class="mx-auto max-w-3xl px-6 pb-20">

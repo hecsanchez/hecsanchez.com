@@ -1,22 +1,22 @@
 @import 'tailwindcss';
 @import '@fontsource-variable/inter';
-@import '@fontsource-variable/lora';
+/* Adobe Caslon Pro is loaded via Typekit in BaseLayout.astro */
 
 @theme {
-  --color-bg: #332731;
-  --color-bg-soft: #3d2f3a;
-  --color-bg-elevated: #463545;
-  --color-fg: #f5f0f3;
-  --color-fg-muted: #b9adb5;
-  --color-fg-dim: #7e6f7a;
-  --color-border: #4a3a47;
-  --color-accent: #d4a843;
-  --color-accent-hover: #e0b85a;
+  --color-bg: #f5efe6;
+  --color-bg-soft: #fbf6ed;
+  --color-bg-elevated: #ffffff;
+  --color-fg: #2a1f26;
+  --color-fg-muted: #5b4f57;
+  --color-fg-dim: #8a7f86;
+  --color-border: #d9cfc0;
+  --color-accent: #7a1f2b;
+  --color-accent-hover: #5e1620;
 
-  --font-serif: 'Lora Variable', Georgia, 'Times New Roman', serif;
+  --font-serif: 'adobe-caslon-pro', Georgia, 'Times New Roman', serif;
   --font-sans: 'Inter Variable', system-ui, -apple-system, sans-serif;
 
-  --container-prose: 42rem;
+  --container-prose: 758px;
 }
 
 @layer base {
@@ -25,11 +25,18 @@
     color: var(--color-fg);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
     min-height: 100dvh;
+  }
+
+  /* Serif text uses native subpixel rendering — antialiasing makes Caslon look thin. */
+  .font-serif,
+  h1, h2, h3, h4 {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
   }
 
   ::selection {
@@ -44,6 +51,19 @@
     color: var(--color-fg);
   }
 
+  /* Sans-serif paragraphs default to 18px.
+     :where() keeps specificity at 0 so Tailwind text-* utilities can still override. */
+  :where(p) {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  /* Serif paragraphs read at a larger 22px for editorial feel. */
+  :where(p.font-serif) {
+    font-size: 22px;
+    line-height: 1.65;
+  }
+
   a {
     color: inherit;
     text-decoration: none;
@@ -56,15 +76,17 @@
 
 @utility prose-post {
   font-family: var(--font-serif);
-  font-size: 1.0625rem;
-  line-height: 1.75;
+  font-size: 22px;
+  line-height: 1.7;
   color: var(--color-fg);
   max-width: var(--container-prose);
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
 
-  & h1 { font-size: 2.25rem; margin-top: 2rem; margin-bottom: 1rem; }
-  & h2 { font-size: 1.625rem; margin-top: 2.5rem; margin-bottom: 1rem; }
-  & h3 { font-size: 1.25rem; margin-top: 2rem; margin-bottom: 0.75rem; }
-  & p { margin-bottom: 1.25rem; }
+  & h1 { font-size: 2.4rem; margin-top: 2rem; margin-bottom: 1rem; }
+  & h2 { font-size: 1.8rem; margin-top: 2.5rem; margin-bottom: 1rem; }
+  & h3 { font-size: 1.35rem; margin-top: 2rem; margin-bottom: 0.75rem; }
+  & p { font-size: 22px; line-height: 1.7; margin-bottom: 1.25rem; }
   & ul, & ol { margin-bottom: 1.25rem; padding-left: 1.5rem; }
   & ul { list-style: disc; }
   & ol { list-style: decimal; }
