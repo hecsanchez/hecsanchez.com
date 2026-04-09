@@ -1,5 +1,5 @@
 ---
-import { t, type Locale, contactInfo } from '../../i18n';
+import { t, type Locale, contactInfo, careerTimeline } from '../../i18n';
 import CTA from '../CTA.astro';
 
 interface Props { locale: Locale }
@@ -11,13 +11,48 @@ const dict = t(locale);
   <h1 class="font-serif text-5xl md:text-6xl">{dict.about.title}</h1>
 </section>
 
-<section class="mx-auto max-w-3xl px-6 pb-12">
-  <div class="space-y-6 font-serif text-xl leading-relaxed text-[var(--color-fg)]">
-    {dict.about.paragraphs.map((p) => <p>{p}</p>)}
+<section class="mx-auto max-w-3xl px-6 pb-16">
+  <div class="space-y-6">
+    {dict.about.intro.map((paragraph) => (
+      <p class="font-serif leading-relaxed text-[var(--color-fg)]">{paragraph}</p>
+    ))}
   </div>
 </section>
 
 <section class="mx-auto max-w-3xl px-6 py-8">
+  <h2 class="text-xs uppercase tracking-[0.18em] text-[var(--color-fg-dim)]">{dict.about.trajectoryTitle}</h2>
+  <ol class="mt-8 divide-y divide-[var(--color-border)]">
+    {careerTimeline.map((entry) => (
+      <li class="grid gap-3 py-6 md:grid-cols-[1fr_auto] md:items-center md:gap-8">
+        <div class="flex items-center gap-4">
+          {entry.logo ? (
+            <img
+              src={`/logos/companies/${entry.logo}`}
+              alt={`${entry.company[locale]} logo`}
+              width="40"
+              height="40"
+              class="h-10 w-10 shrink-0 rounded object-contain"
+            />
+          ) : (
+            <div
+              class="h-10 w-10 shrink-0 rounded border border-dashed border-[var(--color-border)] bg-[var(--color-bg-elevated)]"
+              aria-hidden="true"
+            />
+          )}
+          <span class="font-medium text-[var(--color-fg)]">{entry.company[locale]}</span>
+        </div>
+        <div class="md:text-right">
+          <div class="text-[var(--color-fg)]">{entry.role[locale]}</div>
+          <div class="mt-0.5 text-sm uppercase tracking-wider text-[var(--color-fg-dim)]">
+            {entry.years[locale]}
+          </div>
+        </div>
+      </li>
+    ))}
+  </ol>
+</section>
+
+<section class="mx-auto max-w-3xl px-6 py-12">
   <h2 class="text-xs uppercase tracking-[0.18em] text-[var(--color-fg-dim)]">{dict.about.linksTitle}</h2>
   <ul class="mt-4 flex flex-wrap gap-5 text-[var(--color-fg)]">
     <li><a href={contactInfo.linkedin} target="_blank" rel="noopener" class="underline underline-offset-4">LinkedIn</a></li>

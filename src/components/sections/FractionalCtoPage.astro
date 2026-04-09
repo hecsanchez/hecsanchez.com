@@ -1,0 +1,104 @@
+---
+import { t, type Locale } from '../../i18n';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const dict = t(locale);
+const fc = dict.fractionalCto;
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: fc.faq.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(faqLd)} is:inline />
+
+<article class="mx-auto max-w-[758px] px-6 pt-20 pb-12">
+  <header>
+    <h1 class="font-serif text-4xl md:text-5xl leading-tight">{fc.h1}</h1>
+  </header>
+
+  <!-- Table of contents -->
+  <nav aria-labelledby="toc-title" class="mt-10 rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] p-6">
+    <div id="toc-title" class="text-xs uppercase tracking-[0.18em] text-[var(--color-fg-dim)]">
+      {fc.tocTitle}
+    </div>
+    <ol class="mt-4 space-y-2">
+      {fc.toc.map((item) => (
+        <li>
+          <a
+            href={`#${item.id}`}
+            class="text-[var(--color-accent)] underline underline-offset-4 decoration-[var(--color-border)] hover:decoration-[var(--color-accent)]"
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ol>
+  </nav>
+
+  <div class="prose-post mt-12">
+    <section id="definition">
+      <h2>{fc.definition.title}</h2>
+      <p>{fc.definition.body}</p>
+    </section>
+
+    <section id="what-they-do">
+      <h2>{fc.whatTheyDo.title}</h2>
+      <p>{fc.whatTheyDo.intro}</p>
+      <ul>
+        {fc.whatTheyDo.items.map((item) => (
+          <li><strong>{item.label}</strong> — {item.body}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section id="cost">
+      <h2>{fc.cost.title}</h2>
+      {fc.cost.body.map((p) => <p>{p}</p>)}
+    </section>
+
+    <section id="when-yes">
+      <h2>{fc.whenYes.title}</h2>
+      <ul>
+        {fc.whenYes.items.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+
+    <section id="when-no">
+      <h2>{fc.whenNo.title}</h2>
+      <ul>
+        {fc.whenNo.items.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+
+    <section id="vs">
+      <h2>{fc.comparison.title}</h2>
+      <ul>
+        {fc.comparison.items.map((item) => (
+          <li><strong>{item.label}</strong> — {item.body}</li>
+        ))}
+      </ul>
+      <p>{fc.comparison.footer}</p>
+    </section>
+  </div>
+</article>
+
+<aside class="mx-auto max-w-[758px] px-6 pb-20">
+  <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] p-8 text-center">
+    <h2 class="font-serif text-2xl">{fc.ctaTitle}</h2>
+    <p class="mt-2 text-[var(--color-fg-muted)]">{fc.ctaBody}</p>
+    <a
+      href={dict.routes.contact}
+      class="mt-5 inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-5 py-2.5 font-medium text-[var(--color-bg)] hover:text-[var(--color-bg)]"
+    >
+      {dict.cta.primary} →
+    </a>
+  </div>
+</aside>

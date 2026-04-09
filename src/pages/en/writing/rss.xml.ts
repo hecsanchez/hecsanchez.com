@@ -3,10 +3,10 @@ import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
 
 export async function GET(context: APIContext) {
-  const posts = await getCollection('blog', ({ data }) => data.locale === 'es' && !data.draft);
+  const posts = await getCollection('blog', ({ data }) => data.locale === 'en' && !data.draft);
   return rss({
-    title: 'Hec Sánchez — Bitácora',
-    description: 'Notas sobre arquitectura, liderazgo de ingeniería y construir en industrias reguladas.',
+    title: 'Hec Sánchez — Shipping Notes',
+    description: 'Notes on architecture, engineering leadership, and building in regulated industries.',
     site: context.site!,
     items: posts
       .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
@@ -14,8 +14,8 @@ export async function GET(context: APIContext) {
         title: post.data.title,
         description: post.data.description,
         pubDate: post.data.date,
-        link: `/es/blog/${post.id.replace(/\.mdx?$/, '')}`,
+        link: `/en/writing/${post.id.replace(/\.mdx?$/, '')}`,
       })),
-    customData: '<language>es-mx</language>',
+    customData: '<language>en-us</language>',
   });
 }

@@ -5,7 +5,6 @@
   "nav": {
     "home": "Home",
     "howIWork": "How I work",
-    "work": "Work",
     "blog": "Writing",
     "about": "About",
     "contact": "Contact"
@@ -13,10 +12,10 @@
   "routes": {
     "home": "/en",
     "howIWork": "/en/how-i-work",
-    "work": "/en/work",
-    "blog": "/en/blog",
+    "blog": "/en/writing",
     "about": "/en/about",
-    "contact": "/en/contact"
+    "contact": "/en/contact",
+    "fractionalCto": "/en/fractional-cto"
   },
   "cta": {
     "primary": "Book a call",
@@ -39,7 +38,7 @@
       "executionTitle": "Hands-on Execution",
       "executionDesc": "I write code. I ship. I don't just advise."
     },
-    "bio": "16 years building software. Head of Engineering at a software consultancy specializing in regulated industries — healthtech, insurtech, and fintech. Based in Puebla, Mexico.",
+    "bio": "16 years building software. Head of Engineering at a software consultancy specializing in regulated industries: healthtech, insurtech, and fintech. Based in Puebla, Mexico.",
     "testimonialsTitle": "What people say"
   },
   "howIWork": {
@@ -75,22 +74,14 @@
   },
   "about": {
     "metaTitle": "About — Hec Sánchez",
-    "metaDescription": "16 years in software engineering, two agencies, and a focus on regulated industries.",
+    "metaDescription": "Software engineer based in Puebla. 16+ years building products in regulated industries.",
     "title": "About",
-    "paragraphs": [
-      "I've been building software for 16 years. I've founded two agencies (2014–2017 and 2021–2025), and I'm currently Head of Engineering at Nolte, a software consultancy specializing in regulated industries: healthtech, insurtech, and fintech.",
-      "It's the kind of work where technical decisions have real consequences — where code quality and process rigor matter more than raw speed.",
-      "I live in Puebla, Mexico, with my wife and our three kids. When I'm not on a call, I'm rowing, playing guitar, or training for a half marathon."
+    "intro": [
+      "I'm Hec Sánchez. I lead engineering at Nolte and work as a fractional CTO with a small handful of startups, mostly in healthtech, insurtech, and fintech. I care about software where decisions actually matter — regulated industries, real users, real money — and the boring discipline that makes that work.",
+      "Based in Puebla, Mexico. Married with three kids; outside work I row, play guitar, and I'm training for a half marathon."
     ],
+    "trajectoryTitle": "Trajectory",
     "linksTitle": "Find me on"
-  },
-  "work": {
-    "metaTitle": "Work — Hec Sánchez",
-    "metaDescription": "A selection of products I've built — from commerce platforms to CRMs and mobile apps.",
-    "title": "Work",
-    "intro": "A selection of products I've built. Code, not slides.",
-    "stack": "Stack",
-    "viewProject": "View project"
   },
   "blog": {
     "metaTitle": "Writing — Hec Sánchez",
@@ -101,6 +92,78 @@
     "readingTime": "min read",
     "ctaTitle": "Need a fractional CTO?",
     "ctaBody": "Book a 30-minute call. No commitment."
+  },
+  "fractionalCto": {
+    "metaTitle": "What Is a Fractional CTO?",
+    "metaDescription": "A fractional CTO is a senior technical leader who works with your startup part-time. What they do, what it costs, and when it makes sense to hire one.",
+    "h1": "What Is a Fractional CTO?",
+    "tocTitle": "On this page",
+    "toc": [
+      { "id": "definition", "label": "What is a fractional CTO?" },
+      { "id": "what-they-do", "label": "What does a fractional CTO do?" },
+      { "id": "cost", "label": "What does it cost?" },
+      { "id": "when-yes", "label": "When does it make sense?" },
+      { "id": "when-no", "label": "When does it NOT make sense?" },
+      { "id": "vs", "label": "Fractional vs. interim vs. consultant" }
+    ],
+    "definition": {
+      "title": "What is a fractional CTO?",
+      "body": "A fractional CTO is an experienced technical leader who works with your company part-time — typically 8 to 20 hours per month. Not a consultant who hands you a PDF with recommendations. Someone who makes real technical decisions, writes code when needed, and stays long enough to see results."
+    },
+    "whatTheyDo": {
+      "title": "What does a fractional CTO do?",
+      "intro": "It depends on where your company is, but it usually includes:",
+      "items": [
+        { "label": "Technical strategy", "body": "Deciding what to build, with what technology, and in what order. Build vs. buy. Designing the architecture that will scale with your business." },
+        { "label": "Team leadership", "body": "Hiring engineers, structuring the team, establishing code review processes, deployment pipelines, and documentation. At early-stage companies this means building the founding team. At larger ones, it means leveling up what's already there." },
+        { "label": "Execution", "body": "A good fractional CTO doesn't just direct — they execute. They review pull requests, solve architecture problems, and get hands-on when the team needs real technical support." },
+        { "label": "Audit and technical debt", "body": "Assessing the state of the codebase, identifying risks, and prioritizing what to fix first to unblock the team." }
+      ]
+    },
+    "cost": {
+      "title": "What does it cost?",
+      "body": [
+        "A full-time CTO with real experience costs $250,000–$500,000/year in the US when you factor in salary, equity, benefits, and hiring costs.",
+        "A fractional CTO typically charges $3,000–$8,000/month depending on hours and scope. For a 5–50 person startup that needs technical leadership but can't justify a full-time executive, the math is obvious."
+      ]
+    },
+    "whenYes": {
+      "title": "When does it make sense?",
+      "items": [
+        "You have a product in production but no clear technical direction",
+        "You're a technical founder who can't do everything anymore",
+        "You need to hire engineers but don't know how to evaluate candidates",
+        "Your codebase has become a liability and you need someone to diagnose it",
+        "You're raising capital and need your technical story to hold up"
+      ]
+    },
+    "whenNo": {
+      "title": "When does it NOT make sense?",
+      "items": [
+        "You need someone 40 hours a week — that's a full-time CTO",
+        "You want an advisor who opines without executing — that's a board advisor",
+        "You can't commit to at least 3 months"
+      ]
+    },
+    "comparison": {
+      "title": "Fractional vs. interim vs. consultant",
+      "items": [
+        { "label": "Fractional", "body": "Part-time, ongoing, embedded in your team. Makes decisions and executes." },
+        { "label": "Interim", "body": "Full-time but temporary. Covers a transition while you hire the permanent one." },
+        { "label": "Consultant", "body": "Project-based, defined deliverables. Less integrated, more transactional." }
+      ],
+      "footer": "A fractional CTO sits in between: more committed than a consultant, more flexible than an interim."
+    },
+    "ctaTitle": "Sound like what you need?",
+    "ctaBody": "Book a call — 30 minutes, no commitment.",
+    "faq": [
+      { "q": "What is a fractional CTO?", "a": "A fractional CTO is an experienced technical leader who works with your company part-time — typically 8 to 20 hours per month. They make real technical decisions, write code when needed, and stay long enough to see results." },
+      { "q": "What does a fractional CTO do?", "a": "Technical strategy (what to build, build vs. buy, architecture). Team leadership (hiring, processes, code review, deployments). Hands-on execution. Audit and technical debt prioritization." },
+      { "q": "What does a fractional CTO cost?", "a": "Typically $3,000–$8,000 per month depending on hours and scope. For comparison, a full-time CTO in the US costs $250,000–$500,000 per year once you include salary, equity, benefits, and hiring costs." },
+      { "q": "When should I hire a fractional CTO?", "a": "When you have a product in production but no clear technical direction, when you're a technical founder who can't do everything anymore, when you need to hire engineers but don't know how to evaluate them, when your codebase has become a liability, or when you're raising capital and need your technical story to hold up." },
+      { "q": "When should I NOT hire a fractional CTO?", "a": "If you need someone 40 hours a week (that's a full-time CTO), if you want an advisor who only opines without executing (that's a board advisor), or if you can't commit to at least 3 months." },
+      { "q": "What's the difference between a fractional, interim, and consultant CTO?", "a": "A fractional CTO is part-time, ongoing, and embedded in your team — they make decisions and execute. An interim CTO is full-time but temporary, covering a transition. A consultant is project-based with defined deliverables, less integrated and more transactional." }
+    ]
   },
   "contact": {
     "metaTitle": "Contact — Hec Sánchez",

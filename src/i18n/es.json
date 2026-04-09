@@ -5,7 +5,6 @@
   "nav": {
     "home": "Inicio",
     "howIWork": "Cómo trabajo",
-    "work": "Trabajo",
     "blog": "Escritos",
     "about": "Sobre mí",
     "contact": "Contacto"
@@ -13,10 +12,10 @@
   "routes": {
     "home": "/es",
     "howIWork": "/es/como-trabajo",
-    "work": "/es/trabajo",
-    "blog": "/es/blog",
+    "blog": "/es/escritos",
     "about": "/es/sobre-mi",
-    "contact": "/es/contacto"
+    "contact": "/es/contacto",
+    "fractionalCto": "/es/cto-fraccionario"
   },
   "cta": {
     "primary": "Agendar llamada",
@@ -39,7 +38,7 @@
       "executionTitle": "Ejecución",
       "executionDesc": "Escribo código. Lanzo. No solo aconsejo."
     },
-    "bio": "16 años construyendo software. Head of Engineering en una consultora especializada en industrias reguladas — healthtech, insurtech y fintech. Vivo en Puebla, México.",
+    "bio": "16 años construyendo software. Head of Engineering en una consultora especializada en industrias reguladas: healthtech, insurtech y fintech. Vivo en Puebla, México.",
     "testimonialsTitle": "Lo que dicen"
   },
   "howIWork": {
@@ -75,22 +74,14 @@
   },
   "about": {
     "metaTitle": "Sobre mí — Hec Sánchez",
-    "metaDescription": "16 años en ingeniería de software, dos agencias, y un foco en industrias reguladas.",
+    "metaDescription": "Ingeniero de software en Puebla. 16+ años construyendo productos en industrias reguladas.",
     "title": "Sobre mí",
-    "paragraphs": [
-      "Llevo 16 años construyendo software. He fundado dos agencias (2014–2017 y 2021–2025), y actualmente soy Head of Engineering en Nolte, una consultora de software especializada en industrias reguladas: healthtech, insurtech y fintech.",
-      "Es el tipo de trabajo donde las decisiones técnicas tienen consecuencias reales — donde la calidad del código y el rigor de los procesos importan más que la velocidad bruta.",
-      "Vivo en Puebla, México, con mi esposa y nuestros tres hijos. Cuando no estoy en una llamada, estoy remando, tocando guitarra, o entrenando para un medio maratón."
+    "intro": [
+      "Soy Hec Sánchez. Lidero ingeniería en Nolte y trabajo como CTO fraccionario con un puñado de startups, principalmente en healthtech, insurtech y fintech. Me importa el software donde las decisiones tienen consecuencias reales — industrias reguladas, usuarios reales, dinero real — y la disciplina que requiere construirlo bien.",
+      "Vivo en Puebla, México. Casado, con tres hijos; fuera del trabajo remo, toco guitarra y entreno para un medio maratón."
     ],
+    "trajectoryTitle": "Trayectoria",
     "linksTitle": "Encuéntrame en"
-  },
-  "work": {
-    "metaTitle": "Trabajo — Hec Sánchez",
-    "metaDescription": "Una selección de productos que he construido — de plataformas de comercio a CRMs y apps móviles.",
-    "title": "Trabajo",
-    "intro": "Una selección de productos que he construido. Code, no slides.",
-    "stack": "Stack",
-    "viewProject": "Ver proyecto"
   },
   "blog": {
     "metaTitle": "Escritos — Hec Sánchez",
@@ -101,6 +92,78 @@
     "readingTime": "min de lectura",
     "ctaTitle": "¿Necesitas un CTO fraccionario?",
     "ctaBody": "Agenda una llamada de 30 minutos. Sin compromiso."
+  },
+  "fractionalCto": {
+    "metaTitle": "¿Qué es un CTO Fraccionario?",
+    "metaDescription": "Un CTO fraccionario es un líder técnico senior que trabaja con tu startup de forma parcial. Qué hace, cuánto cuesta, y cuándo tiene sentido contratar uno.",
+    "h1": "¿Qué es un CTO Fraccionario?",
+    "tocTitle": "En esta página",
+    "toc": [
+      { "id": "definition", "label": "¿Qué es un CTO Fraccionario?" },
+      { "id": "what-they-do", "label": "¿Qué hace un CTO fraccionario?" },
+      { "id": "cost", "label": "¿Cuánto cuesta?" },
+      { "id": "when-yes", "label": "¿Cuándo tiene sentido?" },
+      { "id": "when-no", "label": "¿Cuándo NO tiene sentido?" },
+      { "id": "vs", "label": "Fraccionario vs. interino vs. consultor" }
+    ],
+    "definition": {
+      "title": "¿Qué es un CTO Fraccionario?",
+      "body": "Un CTO fraccionario es un líder técnico con experiencia que trabaja con tu empresa de forma parcial — típicamente entre 8 y 20 horas al mes. No es un consultor que te entrega un PDF con recomendaciones. Es alguien que toma decisiones técnicas reales, escribe código cuando hace falta, y se queda el tiempo suficiente para ver los resultados."
+    },
+    "whatTheyDo": {
+      "title": "¿Qué hace un CTO fraccionario?",
+      "intro": "Las responsabilidades dependen del momento de tu empresa, pero generalmente incluyen:",
+      "items": [
+        { "label": "Estrategia técnica", "body": "Decidir qué construir, con qué tecnología, y en qué orden. Evaluar si comprar o construir. Diseñar la arquitectura que va a escalar con tu negocio." },
+        { "label": "Liderazgo de equipo", "body": "Contratar ingenieros, estructurar el equipo, establecer procesos de code review, deployments y documentación. En startups tempranas esto significa construir el equipo fundacional. En empresas más grandes, elevar al equipo que ya existe." },
+        { "label": "Ejecución", "body": "Un buen CTO fraccionario no solo da dirección — también ejecuta. Revisa pull requests, resuelve problemas de arquitectura, y mete las manos cuando el equipo necesita apoyo técnico real." },
+        { "label": "Auditoría y deuda técnica", "body": "Evaluar el estado del codebase, identificar riesgos, y priorizar qué arreglar primero para destrabar al equipo." }
+      ]
+    },
+    "cost": {
+      "title": "¿Cuánto cuesta?",
+      "body": [
+        "En Latinoamérica, un CTO de tiempo completo con experiencia real cuesta entre $80,000 y $150,000 USD al año — sin contar equity, prestaciones, y el costo de una mala contratación.",
+        "Un CTO fraccionario típicamente cobra entre $2,000 y $5,000 USD al mes dependiendo de las horas y el alcance. Para una startup de 5 a 50 personas que necesita liderazgo técnico pero no puede (o no debe) contratar un ejecutivo de tiempo completo, la diferencia es enorme."
+      ]
+    },
+    "whenYes": {
+      "title": "¿Cuándo tiene sentido?",
+      "items": [
+        "Tienes producto en producción pero no tienes dirección técnica clara",
+        "Eres fundador técnico pero ya no puedes hacer todo tú solo",
+        "Necesitas contratar ingenieros pero no sabes cómo evaluar candidatos",
+        "Tu codebase se convirtió en un problema y necesitas a alguien que lo diagnostique",
+        "Estás por levantar capital y necesitas que tu historia técnica sea sólida"
+      ]
+    },
+    "whenNo": {
+      "title": "¿Cuándo NO tiene sentido?",
+      "items": [
+        "Necesitas a alguien 40 horas por semana — eso es un CTO de tiempo completo",
+        "Buscas solo un consejero que opine sin ejecutar — eso es un advisor",
+        "No tienes presupuesto para al menos 3 meses de compromiso"
+      ]
+    },
+    "comparison": {
+      "title": "Fraccionario vs. interino vs. consultor",
+      "items": [
+        { "label": "Fraccionario", "body": "Parcial, continuo, embebido en tu equipo. Toma decisiones y ejecuta." },
+        { "label": "Interino", "body": "Tiempo completo pero temporal. Cubre una transición mientras contratas al definitivo." },
+        { "label": "Consultor", "body": "Por proyecto, con entregables definidos. Menos integrado, más transaccional." }
+      ],
+      "footer": "El fraccionario está en medio: más comprometido que un consultor, más flexible que un interino."
+    },
+    "ctaTitle": "¿Te suena?",
+    "ctaBody": "Agenda una llamada — 30 minutos, sin compromiso.",
+    "faq": [
+      { "q": "¿Qué es un CTO fraccionario?", "a": "Un CTO fraccionario es un líder técnico con experiencia que trabaja con tu empresa de forma parcial — típicamente entre 8 y 20 horas al mes. Toma decisiones técnicas reales, escribe código cuando hace falta, y se queda el tiempo suficiente para ver los resultados." },
+      { "q": "¿Qué hace un CTO fraccionario?", "a": "Estrategia técnica (qué construir, build vs. buy, arquitectura). Liderazgo de equipo (contratación, procesos, code review, deployments). Ejecución hands-on. Auditoría y priorización de deuda técnica." },
+      { "q": "¿Cuánto cuesta un CTO fraccionario?", "a": "Típicamente entre $2,000 y $5,000 USD al mes dependiendo de las horas y el alcance. Para comparar, un CTO de tiempo completo en LatAm cuesta entre $80,000 y $150,000 USD al año sumando salario, equity, prestaciones, y el costo de una mala contratación." },
+      { "q": "¿Cuándo conviene contratar un CTO fraccionario?", "a": "Cuando tienes producto en producción pero no tienes dirección técnica clara, cuando eres fundador técnico y ya no puedes con todo, cuando necesitas contratar ingenieros pero no sabes cómo evaluarlos, cuando tu codebase se convirtió en un problema, o cuando estás por levantar capital y necesitas que tu historia técnica sea sólida." },
+      { "q": "¿Cuándo NO conviene un CTO fraccionario?", "a": "Si necesitas a alguien 40 horas por semana (eso es un CTO de tiempo completo), si solo buscas un consejero que opine sin ejecutar (eso es un advisor), o si no puedes comprometerte a al menos 3 meses." },
+      { "q": "¿Cuál es la diferencia entre un CTO fraccionario, interino y consultor?", "a": "Un CTO fraccionario es parcial, continuo y embebido en tu equipo — toma decisiones y ejecuta. Un CTO interino trabaja tiempo completo pero temporalmente, cubriendo una transición. Un consultor trabaja por proyecto con entregables definidos, menos integrado y más transaccional." }
+    ]
   },
   "contact": {
     "metaTitle": "Contacto — Hec Sánchez",

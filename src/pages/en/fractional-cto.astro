@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FractionalCtoPage from '../../components/sections/FractionalCtoPage.astro';
+import { t } from '../../i18n';
+const dict = t('en');
+---
+<BaseLayout
+  locale="en"
+  title={dict.fractionalCto.metaTitle}
+  description={dict.fractionalCto.metaDescription}
+  altLocaleHref="/es/cto-fraccionario"
+>
+  <FractionalCtoPage locale="en" />
+</BaseLayout>

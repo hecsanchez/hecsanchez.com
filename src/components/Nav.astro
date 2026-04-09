@@ -13,9 +13,8 @@ const r = dict.routes;
 
 const links = [
   { href: r.howIWork, label: dict.nav.howIWork },
-  { href: r.work, label: dict.nav.work },
-  { href: r.blog, label: dict.nav.blog },
   { href: r.about, label: dict.nav.about },
+  { href: r.blog, label: dict.nav.blog },
 ];
 ---
 
@@ -23,9 +22,16 @@ const links = [
   <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-5">
     <a
       href={r.home}
-      class="font-serif text-lg tracking-tight hover:text-[var(--color-accent)]"
+      class="block shrink-0"
+      aria-label="Hec Sánchez — home"
     >
-      Hec Sánchez
+      <img
+        src="/logos/hecsanchez.svg"
+        alt="Hec Sánchez"
+        width="348"
+        height="240"
+        class="h-6 w-auto"
+      />
     </a>
 
     <nav class="hidden items-center gap-7 text-sm md:flex">
