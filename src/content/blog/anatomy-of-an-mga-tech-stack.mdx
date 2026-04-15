@@ -1,0 +1,128 @@
+---
+title: "The Anatomy of an MGA Tech Stack at $50M, $100M, and $250M in Premium"
+description: "The technology decisions an MGA makes in its first two years will either carry it to $100M or force a rebuild at $40M. This piece maps the actual systems, costs, and architecture patterns at three stages of growth, with 19 sources cited."
+date: 2026-04-14
+locale: en
+tags: ['insurtech']
+linkedinUrl: "https://www.linkedin.com/feed/update/urn:li:activity:7450187114555699200/"
+---
+
+On the last Monday of every month, at MGAs across the country, someone opens Excel.
+
+They pull data from the policy administration system. They reformat the columns. They rename the headers to match what the first carrier expects. They check the premium figures against the trust account ledger. They fix the date formats. They catch some errors, miss others, and email the file. Then they open a new spreadsheet and start again, because the second carrier wants the same data arranged differently. And the third carrier wants something else entirely.
+
+This takes three to five working days. Every month. The error rate on manually processed bordereaux runs around 10%. That number comes from Coforge, which analyzed the workflow across the delegated authority market. DistriBind puts the total back-office cost of this process at roughly 30% of an MGA's premium operations spending.
+
+One in ten data points the carrier receives about the MGA's book is wrong. Wrong premium figures, wrong policy dates, wrong risk classifications. And the carrier is the one regulators hold accountable for that data, because you cannot delegate regulatory responsibility to an MGA. When the bordereaux is wrong, the carrier doesn't have a reporting problem. The carrier has a governance problem. And the MGA has a relationship problem.
+
+I bring this up first because it explains almost everything about how MGA technology evolves. The standard industry framing is that MGAs choose technology to become more efficient, or to scale operations, or to "digitally transform." That framing is incomplete. What an MGA's technology stack actually does, at every stage of growth, is answer a single question the carrier never stops asking:
+
+**Can I trust what you're telling me?**
+
+Bordereaux accuracy. Audit trails. Authority compliance. Real-time portfolio visibility. These aren't separate technology problems. They're all expressions of the same underlying question. And the answer the MGA gives, through its systems and data, determines whether it keeps its capacity, gets more of it, or loses it.
+
+That's the lens for everything that follows.
+
+## At $50M: the trust you build with duct tape
+
+An MGA writing $50M in premium is a small, tightly capitalized operation. ReSource Pro found that insurtech MGAs achieve roughly a one-to-one ratio between capital raised and gross written premium. There isn't much margin for experimentation.
+
+The first technology decision is the policy administration system, and it is disproportionately consequential. Cloud SaaS platforms like Insillion, INSTANDA, Socotra, and BriteCore run $3,000 to $15,000 per month, with a first-year total cost between $50,000 and $150,000. Enterprise solutions like Guidewire or Duck Creek cost $710,000 to $1.85 million over three years. Custom builds run $1.1 million to $3.5 million. For a startup, the calculus is obvious.
+
+But cost isn't what makes this decision so high-stakes. Implementation timelines are. Cloud platforms go live in 3 to 6 months. Enterprise solutions take 12 to 24 months. An MGA that picks the wrong platform and needs to migrate later faces 12 to 18 months of transition and, according to Insurnest's PAS evaluation research, hundreds of thousands of dollars in migration costs. BCG puts the failure rate for insurance core system modernizations at 74%.
+
+Some MGAs skip a dedicated PAS entirely and run on Salesforce plus spreadsheets. This can work for a while. But every industry post-mortem I found pointed to the same moment of failure: when the MGA needs to produce accurate, carrier-formatted bordereaux across multiple capacity providers. The system that was good enough for binding policies is not good enough for proving to carriers that the policies were bound correctly.
+
+Rating at this stage usually lives in Excel. The actuarial team builds rate tables in a workbook, underwriters reference it during quoting, someone transfers the numbers manually. Claims go to a TPA, coordinated through email. Accounting runs on QuickBooks or Xero, with commissions calculated in spreadsheets.
+
+And the person running most of this? Often a single person. No CTO. No VP of Engineering. The same person configuring the PAS is producing bordereaux. Insurnest recommends allocating 25 to 35% of first-year technology budget to the PAS alone, which tells you how much of the entire operation hangs on one system managed by one person.
+
+This stack works. It earns enough carrier trust to get to $50M. But the trust is fragile. It depends on specific people knowing specific things, and the research suggests it breaks once volume exceeds what those people can hold in their heads.
+
+## The cliff
+
+Somewhere between $40M and $80M in premium, the trust breaks.
+
+AM Best has tracked this inflection point. Vertafore has written about it. The symptoms arrive in a predictable sequence: bordereaux errors increase, carrier audit findings multiply, quote turnaround times stretch, and the operations team goes from stretched to drowning.
+
+Majesco's research captures the stakes: for many MGAs, it's grow or die. If they don't reach critical mass quickly, they don't survive. But reaching $50M creates its own crisis, because the workflows that built the book can't sustain the book.
+
+Here's what's happening underneath the symptoms. When there were two underwriters and one carrier, the senior underwriter held the entire book in their head. They knew every program's appetite, every carrier's preferences, every exception. At $60M with four underwriters, three carriers, and new programs launching, that mental model shatters. The things that used to be implicit need to become explicit. The things that lived in someone's head need to live in a system.
+
+The instinct is to hire more people. West Point Technologies, which builds automation for MGAs, describes why that doesn't work: each new hire adds training overhead, process inconsistency, and rework that actually slow production down. You can't hire your way across the cliff.
+
+Based on the patterns in available research, the MGAs that cross it tend to make three investments.
+
+They move rating out of Excel and into something other systems can call programmatically. A platform like Coherent, which converts Excel rate models into APIs. Or rating logic built directly into the PAS. The point is that the rate is no longer a number someone types. It's a value a system returns.
+
+They automate bordereaux production. The PAS generates carrier-formatted reports directly from policy data, without human reformatting. This is harder than it sounds. DataFlowMapper's analysis identifies coverholder format changes as the most common reason bordereaux automation breaks: coverholders update their systems, add fields, rename columns, all without telling the carrier. Platforms like Quantemplate and distriBind exist to solve this mapping layer.
+
+And they hire a technology leader who understands insurance data flows, not an IT generalist who manages laptops.
+
+These three investments don't just improve efficiency. They change the nature of the trust the MGA offers its carriers. Instead of "our people are careful," the answer becomes "our systems are reliable." That's a fundamentally different kind of trust, and based on everything I've read, it's the only kind that scales.
+
+## At $100M: trust through integration
+
+By $100M, the carrier question shifts. It's no longer just whether the MGA can produce accurate reports. It's whether the MGA has the infrastructure to be a long-term partner.
+
+Vertafore's 2026 outlook describes the shift: capacity allocation is increasingly partner-specific. Even in a well-capitalized market, individual MGAs lose support if their performance, reporting quality, or strategic alignment falters. Conning's data shows fronting companies supported more than $18 billion in MGA premium in 2024. That trust is substantial, and carriers are willing to withdraw it.
+
+The technology problem at this stage is integration. Data flows between the PAS, the rating engine, document management, accounting, the claims TPA, and multiple carrier endpoints. Without intentional architecture, these connections become brittle point-to-point links that break with every API update. The pattern that appears most consistently at this scale is a carrier abstraction layer: middleware that normalizes formats and handles routing between internal systems and carrier systems.
+
+A data warehouse appears as a distinct system. At $50M, data lived in the PAS and spreadsheets. At $100M, the MGA needs aggregated views across programs, carriers, and time periods for portfolio analysis, loss trending, and the reporting carriers expect during audits and renewals.
+
+Compliance infrastructure moves from reactive to proactive. Vitesse's analysis describes the shift: ten years ago, a spreadsheet process with documented controls was acceptable. Today, carriers apply greater scrutiny. Lloyd's reports delegated authority at approximately 45% of total premium income. The MGAA's 2026 outlook states it directly: carriers will demand real-time transparency. Was every policy bound within authority limits? Does every rating decision have an audit trail? Do bordereaux reconcile against trust accounts? These questions need architectural answers, not manual ones.
+
+Gartner projects 7.9% growth in global insurance IT spend in 2025 to $227.7 billion, with software growing at 13.4% CAGR through 2029. The industry is investing. MGAs that fall behind their peers in technology spend will feel it in carrier confidence before they feel it anywhere else.
+
+## At $250M: trust as infrastructure
+
+An MGA writing $250M approaches carrier-level complexity. Multiple lines, multiple jurisdictions, multiple distribution channels. At this point, the technology isn't something the MGA uses. It's something the MGA is.
+
+Over half of surveyed insurtech MGAs are building their own policy admin systems, and 80% are creating their own products. At $250M, this makes sense. If the competitive advantage comes from proprietary risk selection and unique data integrations, the MGA needs a system that embeds that logic at the core. The three-year cost of a custom build ($1.1 to $3.5 million) is real, but at this premium volume it's a small fraction of revenue, and the control over product configuration, rating, and reporting is decisive.
+
+Batch bordereaux starts getting replaced by real-time data exchange. Lloyd's is deploying Chorus to replace ATLAS and BAR. DA SATS is mandatory for Lloyd's Europe. The MGAA says carriers will demand real-time transparency. Monthly spreadsheet delivery may not disappear overnight, but the direction is clear.
+
+AI appears in specific workflows. Submission triage. Claims anomaly detection. Renewal pricing models. Majesco's research found many MGAs experimenting with AI, but the ones getting value have their data infrastructure in order first. Insurnest's analysis of automated pet insurance operations provides a benchmark: policy-to-staff ratios of 5,000 to 7,000 per employee versus 1,500 to 2,500 at manual operations. A 3x productivity gap. Even across different lines, that signal is hard to dismiss.
+
+S&P Global Ratings has noted that reinsurers are getting more selective about who they trust with underwriting authority, and that MGAs with limited governance controls face pressure from capacity partners.
+
+At $250M, the carrier trust question hasn't changed. It's the same question it was at $50M. The difference is the answer. At $50M, the answer was a careful person with a spreadsheet. At $250M, the answer is an engineering organization, a real-time data pipeline, and an architecture built to prove, continuously and automatically, that the MGA is doing what it says it's doing.
+
+## Where this leaves you
+
+If you're under $50M: pick a PAS with real APIs. Cloud-native, 3 to 6 months to implement, $50K to $150K in year one. Don't skip it. Based on the post-mortems I reviewed, the bordereaux problem tends to arrive earlier than founders expect, and migrating mid-growth costs you a year and a half.
+
+Between $50M and $100M: automate bordereaux and invest in data infrastructure. Every hour spent reformatting spreadsheets at a 10% error rate is an hour not spent on portfolio analysis and compliance monitoring. Those are the activities that keep carriers.
+
+Approaching $250M: build for real-time data exchange. Invest in engineering. The periodic platform replacement is ending. Continuous evolution is replacing it.
+
+AM Best reports that premium generated through MGAs grew roughly 15% to nearly $90 billion in 2024, the fourth consecutive year of double-digit growth. But AM Best has also shifted its outlook from positive to stable, citing tighter capacity and increasing operational expectations.
+
+The MGA model is compelling. The growth is real. The opportunity is enormous.
+
+But the carriers are watching. And what they're watching for is whether they can trust what you're telling them. Your technology is how you answer.
+
+---
+
+## References
+
+1. AM Best, "Delegated Underwriting Authority Enterprise Segment Outlook," 2024. Via Vertafore, ["2026 MGA Outlook: Scaling Smarter in a Demanding Market."](https://www.vertafore.com/resources/blog/2026-mga-outlook-scaling-smarter-demanding-market)
+2. BCG, ["Three Paths to Modernizing Core IT for Insurers,"](https://www.bcg.com/publications/2024/three-paths-to-modernizing-core-it-for-insurers) May 2024.
+3. Coforge, ["Bordereaux Processing Solution."](https://www.coforge.com/what-we-do/capabilities/appian/bordereaux-processing-solution) (10% error rate, £200K/year cost data.)
+4. Conning, fronting company data (2024). Via Vertafore, ["2026 MGA Outlook."](https://www.vertafore.com/resources/blog/2026-mga-outlook-scaling-smarter-demanding-market)
+5. DataFlowMapper, ["How to Automate Bordereaux Processing."](https://dataflowmapper.com/blog/automate-bordereaux-processing)
+6. distriBind, ["Curing the Insurance Industry of Its Spreadsheet Addiction."](https://distribind.io/)
+7. Gartner, ["Enterprise IT Spending for the Insurance Market, Worldwide, 2023-2029,"](https://www.gartner.com/en/documents/6755034) 2Q25 Update.
+8. Insurnest, ["Best Policy Administration Systems for Pet Insurance MGAs in 2025."](https://insurnest.com/blog/pet-insurance-mga-policy-admin-systems/) (PAS cost data, implementation timelines, TCO comparisons.)
+9. Insurnest, ["What Automated Workflows Let Pet Insurance MGAs Double Policy Count Without Doubling Headcount."](https://insurnest.com/blog/automated-workflows-pet-insurance-mga-policy-count/) (Policy-to-staff ratio data.)
+10. Lloyd's of London, ["Delegated Authority."](https://www.lloyds.com/market-resources/delegated-authorities) (45% of premium income, Chorus platform, DCA oversight.)
+11. Lloyd's Europe, ["DA SATS."](https://lloydseurope.com/market-resources/delegated-authorities/systems-and-tools/da-sats) (Mandatory data exchange system.)
+12. Majesco, ["Unlocking MGA Growth Momentum: Insights and Priorities to Compete and Thrive."](https://www.majesco.com/blog/unlocking-mga-growth-momentum-insights-and-priorities-to-compete-and-thrive/)
+13. MGA Insurance Software, ["MGA Policy Administration Systems Guide 2025."](https://www.mgainsurancesoftware.com/) (Guidewire implementation timeline, platform comparisons.)
+14. MGAA, ["DA Strategy: Strategic First, Scalable Always."](https://mgaa.co.uk/strategic-first-scalable-always-a-smarter-path-for-specialist-mgas/) (2026 outlook, real-time transparency expectations.)
+15. ReSource Pro × InsurTech NY, ["InsurTech MGAs: At the Forefront of Innovation,"](https://www.resourcepro.com/resources/insurtech-mgas-at-the-forefront-of-innovation/) 2024. (Custom PAS adoption, 1:1 capital-to-GWP ratio, 80% product development.)
+16. S&P Global Ratings, "Growing MGA Market a Double-Edged Sword for Reinsurers," 2025. Via [Program Manager / The Insurer.](https://www.theinsurer.com/program-manager/news/growing-mga-market-a-double-edged-sword-for-reinsurers-says-sp-2025-10-20/)
+17. SwiftCase, ["Automating Bordereaux Reporting for Insurance Brokers,"](https://swiftcase.co.uk/2026/03/02/insurance-bordereaux-reporting-automation/) March 2026.
+18. Vitesse, ["Insurance Bordereau: Complete Guide to Reporting Accuracy,"](https://www.vitesse.io/insights/insurance-bordereau-guide) March 2026.
+19. West Point Technologies, ["MGA Growth: Scale Premium, Not Headcount."](https://westpoint.tech/insurance-blog/how-can-mgas-scale-without-adding-headcount/)

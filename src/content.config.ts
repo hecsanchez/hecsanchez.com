@@ -10,6 +10,7 @@ const blog = defineCollection({
     locale: z.enum(['es', 'en']),
     tags: z.array(z.enum(['insurtech', 'healthtech', 'fintech', 'engineering-leadership', 'latam'])),
     draft: z.boolean().optional().default(false),
+    linkedinUrl: z.string().url().optional(),
   }),
 });
 

@@ -10,9 +10,11 @@ interface Props {
   description: string;
   /** Path on the *other* locale that maps to the current page (for the language toggle). */
   altLocaleHref?: string;
+  /** Emit `<meta name="robots" content="noindex, nofollow">`. Use for draft posts. */
+  noindex?: boolean;
 }
 
-const { locale, title, description, altLocaleHref } = Astro.props;
+const { locale, title, description, altLocaleHref, noindex = false } = Astro.props;
 const dict = t(locale);
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -25,6 +27,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical.toString()} />
     <link rel="icon" type="image/svg+xml" href="/logos/hecsanchez.svg" />
 

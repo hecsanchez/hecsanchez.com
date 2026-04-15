@@ -82,6 +82,8 @@
   max-width: var(--container-prose);
   -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: auto;
+  display: flex;
+  flex-direction: column;
 
   & h1 { font-size: 2.4rem; margin-top: 2rem; margin-bottom: 1rem; }
   & h2 { font-size: 1.8rem; margin-top: 2.5rem; margin-bottom: 1rem; }
@@ -91,6 +93,21 @@
   & ul { list-style: disc; }
   & ol { list-style: decimal; }
   & li { margin-bottom: 0.375rem; }
+
+  /* Byline card sits before the references via flex order. Reset prose styles. */
+  & > .byline-card { order: 89; font-family: var(--font-sans); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  & > .byline-card p { font-size: 14px; line-height: 1.5; margin-bottom: 0; }
+  & > hr:last-of-type { order: 90; }
+  & > h2:last-of-type { order: 91; }
+  & > ol:last-of-type { order: 92; }
+
+  /* References (the trailing ordered list at the end of a post) — render smaller. */
+  & ol:last-of-type,
+  & ol:last-of-type li,
+  & ol:last-of-type p {
+    font-size: 17px;
+    line-height: 1.55;
+  }
   & a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 3px; }
   & strong { color: var(--color-fg); font-weight: 600; }
   & blockquote {
