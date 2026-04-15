@@ -70,6 +70,13 @@ const ogLocale = locale === 'es' ? 'es_MX' : 'en_US';
       />
     )}
     <link rel="alternate" hreflang={locale} href={canonical.toString()} />
+
+    <!-- Privacy-friendly analytics by Plausible -->
+    <script async src="https://plausible.io/js/pa-LLj1kLisNbG0bzRIrzcq1.js"></script>
+    <script>
+      window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+      plausible.init()
+    </script>
   </head>
   <body class="flex min-h-dvh flex-col">
     <Nav locale={locale} altLocaleHref={altLocaleHref} />
