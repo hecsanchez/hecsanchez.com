@@ -1,4 +1,6 @@
 ---
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import BlogPostPage from '../../../components/sections/BlogPostPage.astro';
@@ -14,12 +16,20 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+const slug = post.id.replace(/\.mdx?$/, '');
+const ogImage = existsSync(join(process.cwd(), 'public', 'og', 'escritos', `${slug}.png`))
+  ? `/og/escritos/${slug}.png`
+  : undefined;
 ---
 <BaseLayout
   locale="es"
   title={`${post.data.title} — Hec Sánchez`}
   description={post.data.description}
   noindex={post.data.draft}
+  type="article"
+  ogImage={ogImage}
+  articleDate={post.data.date}
+  articleTags={post.data.tags}
 >
   <BlogPostPage locale="es" post={post} />
 </BaseLayout>
