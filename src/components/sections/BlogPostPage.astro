@@ -86,4 +86,128 @@ const authorLinkLabel = locale === 'es' ? 'Continúa la conversación en LinkedI
   </div>
 </article>
 
-<SubscribeForm locale={locale} />
+<!-- Floating subscribe — slides in from right when byline is in view -->
+<div
+  id="floating-subscribe"
+  class="fixed bottom-6 right-6 z-50 w-[340px] translate-x-[400px] transition-transform duration-500 ease-out"
+>
+  <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] p-5 shadow-lg">
+    <button
+      id="floating-close"
+      type="button"
+      class="absolute top-3 right-3 text-[var(--color-fg-dim)] hover:text-[var(--color-fg)]"
+      aria-label="Close"
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <h3 class="font-serif text-lg">{locale === 'es' ? 'Suscríbete' : 'Subscribe'}</h3>
+    <p class="mt-1 text-sm text-[var(--color-fg-muted)]">
+      {locale === 'es'
+        ? 'Recibe nuevos artículos. Sin spam.'
+        : 'Get new articles. No spam.'}
+    </p>
+    <form id="floating-form" class="mt-4 flex flex-col gap-2">
+      <input
+        type="email"
+        name="email"
+        required
+        placeholder={locale === 'es' ? 'Tu email' : 'Your email'}
+        class="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-2 text-sm text-[var(--color-fg)] placeholder:text-[var(--color-fg-dim)] focus:border-[var(--color-accent)] focus:outline-none"
+      />
+      <button
+        type="submit"
+        class="rounded-full bg-[var(--color-accent)] px-4 py-2 text-sm font-medium text-[var(--color-bg)] transition hover:bg-[var(--color-accent-hover)]"
+      >
+        {locale === 'es' ? 'Suscribir' : 'Subscribe'}
+      </button>
+    </form>
+    <!-- Loading -->
+    <div id="floating-loading" class="mt-4 hidden flex items-center justify-center py-2">
+      <svg class="animate-spin h-5 w-5 text-[var(--color-accent)]" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" opacity="0.25" />
+        <path d="M4 12a8 8 0 018-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </svg>
+    </div>
+    <!-- Success -->
+    <div id="floating-success" class="mt-4 hidden flex items-center gap-2 py-2">
+      <div class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent)]">
+        <svg class="h-3 w-3 text-[var(--color-bg)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+      </div>
+      <span class="text-sm text-[var(--color-fg-muted)]">
+        {locale === 'es' ? 'Listo — revisa tu email.' : 'Done — check your email.'}
+      </span>
+    </div>
+    <!-- Error -->
+    <p id="floating-error" class="mt-2 text-xs text-[var(--color-accent)] hidden"></p>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    const container = document.getElementById('floating-subscribe');
+    const closeBtn = document.getElementById('floating-close');
+    const form = document.getElementById('floating-form');
+    const loading = document.getElementById('floating-loading');
+    const success = document.getElementById('floating-success');
+    const error = document.getElementById('floating-error');
+    const byline = document.querySelector('.byline-card');
+
+    if (!container || !byline) return;
+
+    let shown = false;
+    let dismissed = false;
+
+    // Show when byline scrolls into view
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !shown && !dismissed) {
+          shown = true;
+          container.classList.remove('translate-x-[400px]');
+          container.classList.add('translate-x-0');
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(byline);
+
+    // Dismiss
+    closeBtn.addEventListener('click', () => {
+      dismissed = true;
+      container.classList.remove('translate-x-0');
+      container.classList.add('translate-x-[400px]');
+    });
+
+    // Submit
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = form.querySelector('input[name="email"]').value;
+
+      form.classList.add('hidden');
+      error.classList.add('hidden');
+      loading.classList.remove('hidden');
+
+      try {
+        const res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        const data = await res.json();
+
+        loading.classList.add('hidden');
+        if (data.ok) {
+          success.classList.remove('hidden');
+        } else {
+          form.classList.remove('hidden');
+          error.textContent = data.error || 'Something went wrong.';
+          error.classList.remove('hidden');
+        }
+      } catch {
+        loading.classList.add('hidden');
+        form.classList.remove('hidden');
+        error.textContent = 'Something went wrong.';
+        error.classList.remove('hidden');
+      }
+    });
+  })();
+</script>
