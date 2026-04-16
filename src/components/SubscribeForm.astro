@@ -1,0 +1,110 @@
+---
+import type { Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const title = locale === 'es' ? 'Suscríbete' : 'Subscribe';
+const description = locale === 'es'
+  ? 'Recibe nuevos artículos sobre ingeniería en industrias reguladas. Sin spam.'
+  : 'Get new articles on engineering in regulated industries. No spam.';
+const placeholder = locale === 'es' ? 'Tu email' : 'Your email';
+const button = locale === 'es' ? 'Suscribir' : 'Subscribe';
+const successMsg = locale === 'es' ? 'Listo — revisa tu email para confirmar.' : 'Done — check your email to confirm.';
+const errorMsg = locale === 'es' ? 'Algo salió mal. Intenta de nuevo.' : 'Something went wrong. Try again.';
+---
+
+<section class="mx-auto max-w-2xl px-6 pb-20">
+  <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] p-8">
+    <h2 class="font-serif text-2xl" id="subscribe-title">{title}</h2>
+    <p class="mt-2 text-[var(--color-fg-muted)]" id="subscribe-desc">{description}</p>
+
+    <!-- Form state -->
+    <form
+      id="subscribe-form"
+      class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center transition-all duration-300"
+    >
+      <input
+        type="email"
+        name="email"
+        required
+        placeholder={placeholder}
+        class="flex-1 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-2.5 text-[var(--color-fg)] placeholder:text-[var(--color-fg-dim)] focus:border-[var(--color-accent)] focus:outline-none"
+      />
+      <button
+        type="submit"
+        class="shrink-0 rounded-full bg-[var(--color-accent)] px-6 py-2.5 font-medium text-[var(--color-bg)] transition hover:bg-[var(--color-accent-hover)]"
+      >
+        {button}
+      </button>
+    </form>
+
+    <!-- Loading state -->
+    <div id="subscribe-loading" class="mt-5 hidden flex items-center justify-center py-3">
+      <svg class="animate-spin h-6 w-6 text-[var(--color-accent)]" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" opacity="0.25" />
+        <path d="M4 12a8 8 0 018-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </svg>
+    </div>
+
+    <!-- Success state -->
+    <div id="subscribe-success" class="mt-5 hidden flex items-center gap-3 py-3 transition-all duration-300">
+      <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent)]">
+        <svg class="h-4 w-4 text-[var(--color-bg)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+      <span class="text-sm text-[var(--color-fg-muted)]" id="subscribe-success-msg">{successMsg}</span>
+    </div>
+
+    <!-- Error state -->
+    <p id="subscribe-error" class="mt-3 text-sm text-[var(--color-accent)] hidden"></p>
+  </div>
+</section>
+
+<script is:inline define:vars={{ errorMsg }}>
+  const form = document.getElementById('subscribe-form');
+  const loading = document.getElementById('subscribe-loading');
+  const success = document.getElementById('subscribe-success');
+  const error = document.getElementById('subscribe-error');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = form.querySelector('input[name="email"]').value;
+
+    // Transition to loading
+    form.classList.add('hidden');
+    error.classList.add('hidden');
+    loading.classList.remove('hidden');
+
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+
+      if (data.ok) {
+        // Transition to success
+        loading.classList.add('hidden');
+        success.classList.remove('hidden');
+      } else {
+        // Back to form with error
+        loading.classList.add('hidden');
+        form.classList.remove('hidden');
+        error.textContent = data.error || errorMsg;
+        error.classList.remove('hidden');
+      }
+    } catch {
+      loading.classList.add('hidden');
+      form.classList.remove('hidden');
+      error.textContent = errorMsg;
+      error.classList.remove('hidden');
+    }
+  });
+</script>
