@@ -25,7 +25,6 @@ export interface Project {
   cardDescription: LocalizedString;
   /** Prose shown under the anchor on the Projects index. */
   body: LocalizedString;
-  contribution: LocalizedString;
   /** Public product/demo/repository URL. Omitted until a real one exists. */
   url?: string;
   urlLabel?: LocalizedString;
@@ -61,10 +60,6 @@ export const projects: Project[] = [
     body: {
       en: 'I built a custom CRM for The Woods. The project sits at the intersection of software development and the day-to-day needs of a sales business.',
       es: 'Desarrollé un CRM a medida para The Woods. Es un proyecto que conecta el desarrollo de software con las necesidades cotidianas de un negocio de ventas.',
-    },
-    contribution: {
-      en: 'Custom CRM development.',
-      es: 'Desarrollo de CRM a medida.',
     },
     featured: true,
     draft: false,
@@ -167,10 +162,6 @@ export const projects: Project[] = [
       en: 'I built a lead routing application connected to HubSpot. It includes a calendar for viewing agents and their schedules, and uses those schedules in lead assignment.',
       es: 'Desarrollé una aplicación de asignación de prospectos conectada a HubSpot. Incluye un calendario para consultar a los asesores y sus horarios, y utiliza esos horarios para la asignación.',
     },
-    contribution: {
-      en: 'Application development and HubSpot integration.',
-      es: 'Desarrollo de la aplicación e integración con HubSpot.',
-    },
     featured: true,
     draft: false,
     intro: [
@@ -266,10 +257,6 @@ export const projects: Project[] = [
       en: 'I built Zaplink to let products use WhatsApp for authentication. It supports one-time codes and magic links, with React and Node integration packages.',
       es: 'Desarrollé Zaplink para que los productos puedan utilizar WhatsApp en la autenticación de usuarios. Permite usar códigos de un solo uso y enlaces de acceso, con paquetes de integración para React y Node.',
     },
-    contribution: {
-      en: 'Product engineering.',
-      es: 'Ingeniería de producto.',
-    },
     url: 'https://zaplink.so',
     urlLabel: { en: 'Explore Zaplink', es: 'Conoce Zaplink' },
     featured: true,
@@ -339,10 +326,6 @@ export const projects: Project[] = [
     body: {
       en: "I'm building the technology behind Estateflow, working on software for real estate sales operations. It is an ongoing product effort that connects my engineering work with how sales teams operate.",
       es: 'Estoy desarrollando la tecnología detrás de Estateflow, con software para operaciones de ventas inmobiliarias. Es un proyecto en marcha que conecta mi trabajo de ingeniería con la forma en que operan los equipos comerciales.',
-    },
-    contribution: {
-      en: 'Product and engineering development.',
-      es: 'Desarrollo de producto e ingeniería.',
     },
     featured: false,
     draft: false,

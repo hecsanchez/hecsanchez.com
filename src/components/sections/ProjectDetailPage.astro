@@ -78,10 +78,6 @@ const related = project.related.map(getProject);
       </li>
     ))}
   </ul>
-  <p class="mt-6 text-[var(--color-fg-muted)]">
-    <span class="font-medium text-[var(--color-fg)]">{page.contributionLabel}:</span>
-    {' '}{project.contribution[locale]}
-  </p>
 </section>
 
 {related.length > 0 && (

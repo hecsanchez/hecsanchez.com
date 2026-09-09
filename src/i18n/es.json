@@ -52,7 +52,7 @@
     "metaDescription": "Desarrollo software y ayudo a agencias y fundadores a tomar mejores decisiones técnicas. Conoce mis proyectos, artículos y formas de trabajar conmigo.",
     "h1": "Desarrollo software y ayudo a equipos a tomar mejores decisiones técnicas.",
     "intro": [
-      "Soy Hec Sánchez, ingeniero de producto y CTO fraccional en Puebla, México. Tengo 16 años de experiencia desarrollando software, desde productos para usuarios finales hasta los sistemas que las empresas utilizan todos los días.",
+      "Soy Hec Sánchez, ingeniero de producto y CTO fraccional en México. Tengo 16 años de experiencia desarrollando software, desde productos para usuarios finales hasta los sistemas que las empresas utilizan todos los días.",
       "Trabajo con agencias y fundadores en desarrollo de productos, integraciones y liderazgo técnico. Aquí comparto lo que construyo y lo que aprendo en el proceso."
     ],
     "proofLabel": "He contribuido al desarrollo de software para",
@@ -217,7 +217,6 @@
     "metaDescription": "Conoce el software desarrollado por Hec Sánchez: Zaplink, el CRM de The Woods, una app de asignación de prospectos en HubSpot y su trabajo en Estateflow.",
     "h1": "Software que he desarrollado y proyectos en marcha.",
     "intro": "Una selección de productos y sistemas de negocio en los que he trabajado. Me interesan el software para usuarios finales, las operaciones de ventas y las conexiones entre las herramientas que utiliza una empresa.",
-    "contributionLabel": "Mi contribución",
     "backLabel": "Todos los proyectos",
     "readMore": "Conoce el proyecto",
     "builtWith": "Desarrollado con",
@@ -253,15 +252,15 @@
     "close": "Cerrar"
   },
   "author": {
-    "bio": "Hec Sánchez es ingeniero de producto y CTO fraccional en Puebla, México. Desarrolla software y trabaja con agencias y fundadores en productos, integraciones y liderazgo técnico.",
+    "bio": "Hec Sánchez es ingeniero de producto y CTO fraccional en México. Desarrolla software y trabaja con agencias y fundadores en productos, integraciones y liderazgo técnico.",
     "linkLabel": "Más sobre Hec"
   },
   "about": {
     "metaTitle": "Acerca de Hec Sánchez | Desarrollo y Liderazgo Técnico",
-    "metaDescription": "Conoce a Hec Sánchez, ingeniero de producto y CTO fraccional en Puebla, México, con 16 años de experiencia desarrollando software y liderando ingeniería.",
+    "metaDescription": "Conoce a Hec Sánchez, ingeniero de producto y CTO fraccional en México, con 16 años de experiencia desarrollando software y liderando ingeniería.",
     "h1": "Soy Hec Sánchez.",
     "intro": [
-      "Soy ingeniero de producto y líder técnico en Puebla, México. Llevo 16 años desarrollando software y sigo disfrutando entender un problema, decidir qué importa y convertirlo en algo que las personas puedan utilizar.",
+      "Soy ingeniero de producto y líder técnico en México. Llevo 16 años desarrollando software y sigo disfrutando entender un problema, decidir qué importa y convertirlo en algo que las personas puedan utilizar.",
       "Mi trabajo incluye productos para usuarios finales, sistemas de negocio a medida, integraciones y liderazgo de ingeniería. He contribuido al desarrollo de software para organizaciones como Camino Real, Lala, Cabify y Freightliner."
     ],
     "buildingTitle": "Lo que estoy construyendo",

@@ -52,7 +52,7 @@
     "metaDescription": "I build software and help agencies and founders make better technical decisions. Explore my projects, writing, and ways to work together.",
     "h1": "I build software and help teams make better technical decisions.",
     "intro": [
-      "I'm Hec Sánchez, a product engineer and fractional CTO based in Puebla, Mexico. I have 16 years of experience building software, from customer-facing products to the systems businesses use every day.",
+      "I'm Hec Sánchez, a product engineer and fractional CTO based in Mexico. I have 16 years of experience building software, from customer-facing products to the systems businesses use every day.",
       "I work with agencies and founders on product development, integrations, and technical leadership. Here, I share what I build and what I learn along the way."
     ],
     "proofLabel": "Software I've contributed to for",
@@ -217,7 +217,6 @@
     "metaDescription": "Explore software built by Hec Sánchez, including Zaplink, The Woods CRM, a HubSpot lead routing app, and his work on Estateflow.",
     "h1": "Software I've built and work in progress.",
     "intro": "A selection of products and business systems I've worked on. My interests include customer-facing software, sales operations, and the connections between the tools a business uses.",
-    "contributionLabel": "My contribution",
     "backLabel": "All projects",
     "readMore": "Read the full story",
     "builtWith": "Built with",
@@ -253,15 +252,15 @@
     "close": "Close"
   },
   "author": {
-    "bio": "Hec Sánchez is a product engineer and fractional CTO based in Puebla, Mexico. He builds software and works with agencies and founders on product development, integrations, and technical leadership.",
+    "bio": "Hec Sánchez is a product engineer and fractional CTO based in Mexico. He builds software and works with agencies and founders on product development, integrations, and technical leadership.",
     "linkLabel": "More about Hec"
   },
   "about": {
     "metaTitle": "About Hec Sánchez | Software Builder & Technical Leader",
-    "metaDescription": "Meet Hec Sánchez, a product engineer and fractional CTO in Puebla, Mexico, with 16 years of experience building software and leading engineering work.",
+    "metaDescription": "Meet Hec Sánchez, a product engineer and fractional CTO in Mexico, with 16 years of experience building software and leading engineering work.",
     "h1": "I'm Hec Sánchez.",
     "intro": [
-      "I'm a product engineer and technical leader based in Puebla, Mexico. I've spent 16 years building software, and I still enjoy taking a problem apart, deciding what matters, and turning it into something people can use.",
+      "I'm a product engineer and technical leader based in Mexico. I've spent 16 years building software, and I still enjoy taking a problem apart, deciding what matters, and turning it into something people can use.",
       "My work includes customer-facing products, custom business systems, integrations, and engineering leadership. I've contributed to software for organizations including Camino Real, Lala, Cabify, and Freightliner."
     ],
     "buildingTitle": "What I'm building",
