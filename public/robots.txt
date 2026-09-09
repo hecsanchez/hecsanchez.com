@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+# OpenAI's search crawler, documented separately from GPTBot (model training).
+User-agent: OAI-SearchBot
+Allow: /
+
 Sitemap: https://hecsanchez.com/sitemap-index.xml

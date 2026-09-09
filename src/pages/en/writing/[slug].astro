@@ -30,6 +30,12 @@ const ogImage = existsSync(join(process.cwd(), 'public', 'og', 'writing', `${slu
   ogImage={ogImage}
   articleDate={post.data.date}
   articleTags={post.data.tags}
+  article={{
+    headline: post.data.title,
+    description: post.data.description,
+    datePublished: post.data.date.toISOString(),
+    image: ogImage ? new URL(ogImage, Astro.site).toString() : undefined,
+  }}
 >
   <BlogPostPage locale="en" post={post} />
 </BaseLayout>

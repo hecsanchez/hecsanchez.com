@@ -1,0 +1,65 @@
+---
+import { t, type Locale } from '../../i18n';
+import { publishedProjects } from '../../data/projects';
+import AudienceCta from '../AudienceCta.astro';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const dict = t(locale);
+const page = dict.projects;
+---
+
+<section class="mx-auto max-w-3xl px-6 pt-20 pb-10">
+  <h1 class="font-serif text-4xl leading-tight text-balance md:text-5xl">{page.h1}</h1>
+  <p class="mt-5 text-[var(--color-fg-muted)]">{page.intro}</p>
+</section>
+
+<div class="mx-auto max-w-3xl px-6 pb-6">
+  {publishedProjects.map((project) => (
+    <article id={project.id} class="scroll-mt-16 border-t border-[var(--color-border)] py-12">
+      <div class="text-xs uppercase tracking-[0.15em] text-[var(--color-fg-dim)]">
+        {project.category[locale]}
+      </div>
+      <h2 class="mt-2 font-serif text-3xl">{project.title[locale]}</h2>
+
+      {project.image && (
+        <img
+          src={project.image.src}
+          alt={project.image.alt[locale]}
+          width={project.image.width}
+          height={project.image.height}
+          loading="lazy"
+          decoding="async"
+          class="mt-6 w-full rounded-xl border border-[var(--color-border)]"
+        />
+      )}
+
+      <p class="mt-5 text-[var(--color-fg-muted)]">{project.body[locale]}</p>
+
+      <p class="mt-4 text-[var(--color-fg-muted)]">
+        <span class="font-medium text-[var(--color-fg)]">{page.contributionLabel}:</span>
+        {' '}{project.contribution[locale]}
+      </p>
+
+      {project.url && (
+        <p class="mt-5">
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener"
+            class="text-[var(--color-accent)] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+            data-analytics-event="project_link_click"
+            data-analytics-props={JSON.stringify({ project: project.id, destination_type: 'product', locale })}
+          >
+            {project.urlLabel?.[locale] ?? project.url}
+            <span aria-hidden="true"> →</span>
+          </a>
+        </p>
+      )}
+    </article>
+  ))}
+</div>
+
+<div class="border-t border-[var(--color-border)]">
+  <AudienceCta locale={locale} placement="projects" title={page.finalCtaTitle} body={page.finalCtaBody} />
+</div>

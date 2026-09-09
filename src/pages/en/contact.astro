@@ -4,6 +4,12 @@ import ContactPage from '../../components/sections/ContactPage.astro';
 import { t } from '../../i18n';
 const dict = t('en');
 ---
-<BaseLayout locale="en" title={dict.contact.metaTitle} description={dict.contact.metaDescription} altLocaleHref="/es/contacto">
+<BaseLayout
+  locale="en"
+  title={dict.contact.metaTitle}
+  description={dict.contact.metaDescription}
+  altLocaleHref="/es/contacto"
+  pageType="ContactPage"
+>
   <ContactPage locale="en" />
 </BaseLayout>

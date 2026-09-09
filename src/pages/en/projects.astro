@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectsPage from '../../components/sections/ProjectsPage.astro';
+import { t } from '../../i18n';
+import { publishedProjects } from '../../data/projects';
+const dict = t('en');
+const itemList = publishedProjects.map((p) => ({
+  name: p.title.en,
+  url: new URL(`${dict.routes.projects}/#${p.id}`, Astro.site).toString(),
+}));
+---
+<BaseLayout
+  locale="en"
+  title={dict.projects.metaTitle}
+  description={dict.projects.metaDescription}
+  altLocaleHref="/es/proyectos"
+  pageType="CollectionPage"
+  itemList={itemList}
+>
+  <ProjectsPage locale="en" />
+</BaseLayout>

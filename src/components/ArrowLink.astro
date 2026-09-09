@@ -1,0 +1,21 @@
+---
+interface Props {
+  href: string;
+  /** Optional analytics event name; props come from `analyticsProps`. */
+  event?: string;
+  analyticsProps?: Record<string, string>;
+  class?: string;
+}
+
+const { href, event, analyticsProps, class: className = '' } = Astro.props;
+---
+
+<a
+  href={href}
+  class={`text-sm text-[var(--color-fg-muted)] underline underline-offset-4 transition hover:text-[var(--color-accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)] ${className}`}
+  data-analytics-event={event}
+  data-analytics-props={event ? JSON.stringify(analyticsProps ?? {}) : undefined}
+>
+  <slot />
+  <span aria-hidden="true"> →</span>
+</a>

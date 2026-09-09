@@ -6,6 +6,7 @@ import SubscribeForm from '../SubscribeForm.astro';
 interface Props { locale: Locale }
 const { locale } = Astro.props;
 const dict = t(locale);
+const page = dict.blog;
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft && data.locale === locale))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
@@ -16,31 +17,37 @@ const dateFmt = new Intl.DateTimeFormat(locale === 'es' ? 'es-MX' : 'en-US', {
 ---
 
 <section class="mx-auto max-w-3xl px-6 pt-20 pb-10">
-  <h1 class="font-serif text-5xl md:text-6xl">{dict.blog.title}</h1>
-  <p class="mt-6 font-serif text-[var(--color-fg-muted)]">{dict.blog.intro}</p>
-</section>
-
-<section class="mx-auto max-w-3xl px-6 pb-20">
-  <ul class="divide-y divide-[var(--color-border)]">
-    {posts.map((post) => (
-      <li class="py-6">
-        <a href={`${dict.routes.blog}/${post.id.replace(/\.mdx?$/, '')}`} class="group block">
-          <div class="text-xs uppercase tracking-[0.15em] text-[var(--color-fg-dim)]">
-            {dateFmt.format(post.data.date)}
-            {' · '}
-            {post.data.tags.join(', ')}
-          </div>
-          <h2 class="mt-2 font-serif text-2xl text-[var(--color-fg)] group-hover:text-[var(--color-accent)]">
-            {post.data.title}
-          </h2>
-          <p class="mt-2 text-[var(--color-fg-muted)]">{post.data.description}</p>
-        </a>
-      </li>
+  <h1 class="font-serif text-4xl leading-tight text-balance md:text-5xl">{page.h1}</h1>
+  <div class="mt-6 space-y-4">
+    {page.intro.map((paragraph) => (
+      <p class="font-serif text-[var(--color-fg-muted)]">{paragraph}</p>
     ))}
-    {posts.length === 0 && (
-      <li class="py-10 text-[var(--color-fg-muted)]">—</li>
-    )}
-  </ul>
+  </div>
 </section>
 
-<SubscribeForm locale={locale} />
+<section class="mx-auto max-w-3xl px-6 pb-10">
+  <h2 class="text-xs uppercase tracking-[0.18em] text-[var(--color-fg-dim)]">{page.latestTitle}</h2>
+  {posts.length > 0 ? (
+    <ul class="mt-6 divide-y divide-[var(--color-border)] border-t border-[var(--color-border)]">
+      {posts.map((post) => (
+        <li class="py-6">
+          <a href={`${dict.routes.blog}/${post.id.replace(/\.mdx?$/, '')}`} class="group block">
+            <div class="text-xs uppercase tracking-[0.15em] text-[var(--color-fg-dim)]">
+              {dateFmt.format(post.data.date)}
+              {' · '}
+              {post.data.tags.join(', ')}
+            </div>
+            <h3 class="mt-2 font-serif text-2xl text-[var(--color-fg)] group-hover:text-[var(--color-accent)]">
+              {post.data.title}
+            </h3>
+            <p class="mt-2 text-[var(--color-fg-muted)]">{post.data.description}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p class="mt-6 text-[var(--color-fg-muted)]">{page.empty}</p>
+  )}
+</section>
+
+<SubscribeForm locale={locale} placement="writing_index" />

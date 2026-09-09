@@ -1,9 +1,25 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import BlogIndexPage from '../../../components/sections/BlogIndexPage.astro';
 import { t } from '../../../i18n';
+
 const dict = t('es');
+const posts = (await getCollection('blog', ({ data }) => !data.draft && data.locale === 'es'))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const itemList = posts.map((post) => ({
+  name: post.data.title,
+  url: new URL(`${dict.routes.blog}/${post.id.replace(/\.mdx?$/, '')}/`, Astro.site).toString(),
+}));
 ---
-<BaseLayout locale="es" title={dict.blog.metaTitle} description={dict.blog.metaDescription} altLocaleHref="/en/writing">
+<BaseLayout
+  locale="es"
+  title={dict.blog.metaTitle}
+  description={dict.blog.metaDescription}
+  altLocaleHref="/en/writing"
+  pageType="CollectionPage"
+  itemList={itemList}
+>
   <BlogIndexPage locale="es" />
 </BaseLayout>

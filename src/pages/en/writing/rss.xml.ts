@@ -5,8 +5,8 @@ import type { APIContext } from 'astro';
 export async function GET(context: APIContext) {
   const posts = await getCollection('blog', ({ data }) => data.locale === 'en' && !data.draft);
   return rss({
-    title: 'Hec Sánchez — Shipping Notes',
-    description: 'Notes on architecture, engineering leadership, and building in regulated industries.',
+    title: 'Hec Sánchez — Writing',
+    description: 'Notes on building products, making technical decisions, and running a business.',
     site: context.site!,
     items: posts
       .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())

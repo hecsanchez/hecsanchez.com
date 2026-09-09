@@ -1,91 +1,144 @@
 ---
+import { getCollection } from 'astro:content';
 import { t, type Locale, companies } from '../../i18n';
-import CTA from '../CTA.astro';
+import { publishedProjects } from '../../data/projects';
+import ArrowLink from '../ArrowLink.astro';
+import ProjectCard from '../ProjectCard.astro';
+import SubscribeForm from '../SubscribeForm.astro';
 
 interface Props { locale: Locale }
 const { locale } = Astro.props;
 const dict = t(locale);
+
+const featured = publishedProjects.filter((p) => p.featured);
+
+// At most three previews, newest first. Renders whatever is actually published.
+const posts = (await getCollection('blog', ({ data }) => !data.draft && data.locale === locale))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+
+const dateFmt = new Intl.DateTimeFormat(locale === 'es' ? 'es-MX' : 'en-US', {
+  year: 'numeric', month: 'short', day: 'numeric',
+});
 ---
 
 <!-- Hero -->
-<section class="mx-auto max-w-5xl px-6 pt-20 pb-16 md:pt-32 md:pb-24">
+<section class="mx-auto max-w-5xl px-6 pt-20 pb-16 md:pt-28 md:pb-24">
   <div class="flex flex-col gap-10 md:flex-row-reverse md:items-start md:gap-16">
     <img
       src="/hecsanchez.png"
       alt="Hec Sánchez"
       width="240"
       height="240"
-      class="h-40 w-40 shrink-0 rounded-full object-cover md:mt-5 md:h-60 md:w-60"
+      class="h-40 w-40 shrink-0 rounded-full object-cover md:mt-3 md:h-60 md:w-60"
     />
     <div class="md:flex-1">
-      <h1 class="text-sm uppercase tracking-[0.18em] text-[var(--color-accent)]">
-        {dict.home.heroSubtitle}
+      <p class="text-sm uppercase tracking-[0.18em] text-[var(--color-accent)]">{dict.tagline}</p>
+      <h1 class="mt-6 font-serif text-3xl leading-[1.15] text-balance text-[var(--color-fg)] md:text-5xl">
+        {dict.home.h1}
       </h1>
-      <p class="mt-6 max-w-[22ch] font-serif text-3xl leading-[1.15] text-[var(--color-fg)] text-balance md:text-5xl">
-        {dict.home.valueProp}
-      </p>
-      <p class="mt-4 max-w-[48ch] leading-relaxed text-[var(--color-fg-muted)]">
-        {dict.home.bio}
-      </p>
+      {dict.home.intro.map((paragraph) => (
+        <p class="mt-4 max-w-[52ch] leading-relaxed text-[var(--color-fg-muted)]">{paragraph}</p>
+      ))}
       <div class="mt-10 flex flex-wrap items-center gap-5">
-        <CTA locale={locale} />
         <a
-          href={dict.routes.howIWork}
-          class="text-sm text-[var(--color-fg-muted)] underline underline-offset-4 hover:text-[var(--color-fg)]"
+          href={dict.routes.projects}
+          class="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-6 py-3 font-medium text-[var(--color-bg)] transition hover:bg-[var(--color-accent-hover)] hover:text-[var(--color-bg)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
         >
-          {dict.cta.secondary} →
+          {dict.cta.exploreMyWork}
+          <span aria-hidden="true">→</span>
         </a>
+        <ArrowLink href="#work-with-me">{dict.cta.workWithMe}</ArrowLink>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Social proof -->
+<!-- Professional proof strip -->
 <section class="border-y border-[var(--color-border)] bg-[var(--color-bg-soft)]/40">
   <div class="mx-auto max-w-5xl px-6 py-10">
-    <p class="text-xs uppercase tracking-[0.18em] text-[var(--color-fg-dim)]">
-      {dict.home.socialProofTitle}
-    </p>
+    <h2 class="text-xs uppercase tracking-[0.18em] text-[var(--color-fg-dim)]">{dict.home.proofLabel}</h2>
     <ul class="mt-5 flex flex-wrap items-center gap-x-10 gap-y-4">
       {companies.map((c) => (
-        <li class="font-serif text-lg text-[var(--color-fg-muted)] transition hover:text-[var(--color-fg)]">
-          {c}
+        <li class="font-serif text-lg text-[var(--color-fg-muted)]">{c}</li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- Selected work -->
+<section class="mx-auto max-w-5xl px-6 py-20">
+  <h2 class="font-serif text-3xl md:text-4xl">{dict.home.workTitle}</h2>
+  <p class="mt-4 max-w-[64ch] text-[var(--color-fg-muted)]">{dict.home.workIntro}</p>
+  <div class="mt-10 grid gap-6 md:grid-cols-3">
+    {featured.map((project) => <ProjectCard locale={locale} project={project} />)}
+  </div>
+  <p class="mt-8">
+    <ArrowLink href={dict.routes.projects}>{dict.cta.seeAllProjects}</ArrowLink>
+  </p>
+</section>
+
+<!-- Two ways to work together -->
+<section id="work-with-me" class="border-y border-[var(--color-border)] bg-[var(--color-bg-soft)]/40 scroll-mt-16">
+  <div class="mx-auto max-w-5xl px-6 py-20">
+    <h2 class="font-serif text-3xl md:text-4xl">{dict.home.workWithMeTitle}</h2>
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      <article class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] p-8">
+        <h3 class="font-serif text-2xl">{dict.home.agenciesTitle}</h3>
+        <p class="mt-3 text-[var(--color-fg-muted)]">{dict.home.agenciesBody}</p>
+        <p class="mt-6">
+          <ArrowLink
+            href={dict.routes.agencies}
+            event="service_cta_click"
+            analyticsProps={{ audience: 'agency', locale, placement: 'home_cards' }}
+          >
+            {dict.cta.exploreAgencySupport}
+          </ArrowLink>
+        </p>
+      </article>
+      <article class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] p-8">
+        <h3 class="font-serif text-2xl">{dict.home.foundersTitle}</h3>
+        <p class="mt-3 text-[var(--color-fg-muted)]">{dict.home.foundersBody}</p>
+        <p class="mt-6">
+          <ArrowLink
+            href={dict.routes.founders}
+            event="service_cta_click"
+            analyticsProps={{ audience: 'founder', locale, placement: 'home_cards' }}
+          >
+            {dict.cta.exploreFounderSupport}
+          </ArrowLink>
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Latest writing -->
+<section class="mx-auto max-w-5xl px-6 py-20">
+  <h2 class="font-serif text-3xl md:text-4xl">{dict.home.writingTitle}</h2>
+  <p class="mt-4 max-w-[64ch] text-[var(--color-fg-muted)]">{dict.home.writingIntro}</p>
+
+  {posts.length > 0 ? (
+    <ul class="mt-10 divide-y divide-[var(--color-border)] border-t border-[var(--color-border)]">
+      {posts.map((post) => (
+        <li class="py-6">
+          <a href={`${dict.routes.blog}/${post.id.replace(/\.mdx?$/, '')}`} class="group block">
+            <div class="text-xs uppercase tracking-[0.15em] text-[var(--color-fg-dim)]">
+              {dateFmt.format(post.data.date)}
+            </div>
+            <h3 class="mt-2 font-serif text-2xl group-hover:text-[var(--color-accent)]">{post.data.title}</h3>
+            <p class="mt-2 text-[var(--color-fg-muted)]">{post.data.description}</p>
+          </a>
         </li>
       ))}
     </ul>
-    <!-- TODO: Hec to provide SVG logos in /public/logos/. Replace text with <img> tags. -->
-  </div>
+  ) : (
+    <p class="mt-10 text-[var(--color-fg-muted)]">{dict.blog.empty}</p>
+  )}
+
+  <p class="mt-8">
+    <ArrowLink href={dict.routes.blog}>{dict.cta.readAllArticles}</ArrowLink>
+  </p>
 </section>
 
-<!-- What I do -->
-<section class="mx-auto max-w-5xl px-6 py-20">
-  <h2 class="font-serif text-3xl md:text-4xl">{dict.home.whatIDoTitle}</h2>
-  <div class="mt-10 grid gap-6 md:grid-cols-3">
-    <article class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] p-7">
-      <div class="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-bg-elevated)] text-[var(--color-accent)]">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 2 4 7v6c0 4.5 3.5 8 8 9 4.5-1 8-4.5 8-9V7l-8-5z"/></svg>
-      </div>
-      <h3 class="font-serif text-2xl">{dict.home.cards.strategyTitle}</h3>
-      <p class="mt-3 text-[var(--color-fg-muted)] text-base">{dict.home.cards.strategyDesc}</p>
-    </article>
-    <article class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] p-7">
-      <div class="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-bg-elevated)] text-[var(--color-accent)]">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3 3-5 6-5s6 2 6 5"/><path d="M15 19c0-2 2-4 4-4"/></svg>
-      </div>
-      <h3 class="font-serif text-2xl">{dict.home.cards.leadershipTitle}</h3>
-      <p class="mt-3 text-[var(--color-fg-muted)] text-base">{dict.home.cards.leadershipDesc}</p>
-    </article>
-    <article class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] p-7">
-      <div class="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-bg-elevated)] text-[var(--color-accent)]">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="m8 9-4 3 4 3"/><path d="m16 9 4 3-4 3"/><path d="m13 5-2 14"/></svg>
-      </div>
-      <h3 class="font-serif text-2xl">{dict.home.cards.executionTitle}</h3>
-      <p class="mt-3 text-[var(--color-fg-muted)] text-base">{dict.home.cards.executionDesc}</p>
-    </article>
-  </div>
-</section>
-
-<!-- Bottom CTA -->
-<div class="px-6 pb-20">
-  <CTA locale={locale} variant="block" />
-</div>
+<SubscribeForm locale={locale} placement="home" />

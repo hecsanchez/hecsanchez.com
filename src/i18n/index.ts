@@ -63,7 +63,7 @@ export const careerTimeline: Array<{
   {
     company: { en: 'Independent', es: 'Independiente' },
     logo: null,
-    role: { en: 'Fractional CTO', es: 'CTO Fraccionario' },
+    role: { en: 'Fractional CTO', es: 'CTO Fraccional' },
     years: { en: '2025–present', es: '2025–presente' },
   },
   {

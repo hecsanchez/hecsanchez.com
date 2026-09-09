@@ -1,180 +1,391 @@
 {
   "locale": "es",
   "siteName": "Hec Sánchez",
-  "tagline": "CTO Fraccionario",
+  "tagline": "Ingeniero de Producto y CTO Fraccional",
+  "skipToContent": "Saltar al contenido",
   "nav": {
     "home": "Inicio",
+    "blog": "Artículos",
+    "projects": "Proyectos",
+    "workWithMe": "Trabaja conmigo",
+    "agencies": "Para agencias",
+    "founders": "Para fundadores",
     "howIWork": "Cómo trabajo",
-    "blog": "Escritos",
-    "about": "Sobre mí",
-    "contact": "Contacto"
+    "about": "Acerca de mí",
+    "contact": "Contacto",
+    "fractionalCto": "¿Qué es un CTO fraccional?",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú"
   },
   "routes": {
     "home": "/es",
-    "howIWork": "/es/como-trabajo",
     "blog": "/es/escritos",
+    "projects": "/es/proyectos",
+    "agencies": "/es/para-agencias",
+    "founders": "/es/para-fundadores",
+    "howIWork": "/es/como-trabajo",
     "about": "/es/sobre-mi",
     "contact": "/es/contacto",
-    "fractionalCto": "/es/cto-fraccionario"
+    "fractionalCto": "/es/cto-fraccionario",
+    "rss": "/es/escritos/rss.xml"
   },
   "cta": {
-    "primary": "Agendar llamada",
-    "secondary": "Cómo trabajo",
-    "ready": "¿Listo para hablar?"
+    "bookCall": "Agendar llamada",
+    "discussClientProject": "Hablemos de un proyecto de tu cliente",
+    "discussProduct": "Hablemos de tu producto",
+    "exploreMyWork": "Conoce mi trabajo",
+    "workWithMe": "Trabaja conmigo",
+    "exploreAgencySupport": "Conoce cómo apoyo a agencias",
+    "exploreFounderSupport": "Conoce cómo apoyo a fundadores",
+    "seeAllProjects": "Ver todos los proyectos",
+    "readAllArticles": "Leer todos los artículos",
+    "readHowIWork": "Conoce cómo trabajo",
+    "seeRelevantWork": "Conoce proyectos relacionados",
+    "exploreMyProjects": "Conoce mis proyectos",
+    "forAgencies": "Para agencias",
+    "forFounders": "Para fundadores",
+    "moreAboutHec": "Más sobre Hec",
+    "readMyWriting": "Lee mis artículos"
   },
   "home": {
-    "metaTitle": "Hec Sánchez — CTO Fraccionario",
-    "metaDescription": "Ayudo a startups a escalar su ingeniería sin contratar un CTO de tiempo completo. Estrategia técnica, liderazgo y ejecución.",
-    "heroTitle": "Hec Sánchez",
-    "heroSubtitle": "CTO Fraccionario",
-    "valueProp": "Ayudo a startups a escalar su ingeniería sin contratar un CTO de tiempo completo.",
-    "socialProofTitle": "He construido para",
-    "whatIDoTitle": "Lo que hago",
-    "cards": {
-      "strategyTitle": "Estrategia técnica",
-      "strategyDesc": "Decisiones de arquitectura, build vs buy, selección de stack.",
-      "leadershipTitle": "Liderazgo de equipos",
-      "leadershipDesc": "Contratación, procesos, estructura de equipo, cultura de code review.",
-      "executionTitle": "Ejecución",
-      "executionDesc": "Escribo código. Lanzo. No solo aconsejo."
-    },
-    "bio": "16 años construyendo software. Head of Engineering en una consultora especializada en industrias reguladas: healthtech, insurtech y fintech. Vivo en Puebla, México.",
-    "testimonialsTitle": "Lo que dicen"
+    "metaTitle": "Hec Sánchez | Ingeniero de Producto y CTO Fraccional",
+    "metaDescription": "Desarrollo software y ayudo a agencias y fundadores a tomar mejores decisiones técnicas. Conoce mis proyectos, artículos y formas de trabajar conmigo.",
+    "h1": "Desarrollo software y ayudo a equipos a tomar mejores decisiones técnicas.",
+    "intro": [
+      "Soy Hec Sánchez, ingeniero de producto y CTO fraccional en Puebla, México. Tengo 16 años de experiencia desarrollando software, desde productos para usuarios finales hasta los sistemas que las empresas utilizan todos los días.",
+      "Trabajo con agencias y fundadores en desarrollo de productos, integraciones y liderazgo técnico. Aquí comparto lo que construyo y lo que aprendo en el proceso."
+    ],
+    "proofLabel": "He contribuido al desarrollo de software para",
+    "workTitle": "Proyectos destacados",
+    "workIntro": "Productos y sistemas de negocio que he desarrollado, con un interés particular en la tecnología detrás de las ventas, el marketing y la comunicación con clientes.",
+    "workWithMeTitle": "Trabaja conmigo",
+    "agenciesTitle": "Para agencias",
+    "agenciesBody": "Colaboro en proyectos de clientes que necesitan software a medida, integraciones o dirección técnica. Ayudo a definir el trabajo y desarrollar las partes que tu equipo necesita entregar.",
+    "foundersTitle": "Para fundadores",
+    "foundersBody": "Te ayudo a decidir qué construir, mejorar un producto existente o dirigir el trabajo de ingeniería. Podemos empezar con un problema concreto y definir la colaboración según lo que necesita tu negocio.",
+    "writingTitle": "Artículos recientes",
+    "writingIntro": "Notas sobre desarrollo de productos, decisiones técnicas y lo que voy aprendiendo al construir un negocio. Ideas que surgen del trabajo: las decisiones, los errores y las preguntas que me siguen dando vueltas."
   },
-  "howIWork": {
-    "metaTitle": "Cómo trabajo — Hec Sánchez",
-    "metaDescription": "Modelo de engagement, para quién es y cómo se ve un trabajo típico de 3 meses.",
-    "title": "Cómo trabajo",
-    "intro": "Un compromiso enfocado, con tiempo dedicado y atención real.",
-    "modelTitle": "Modelo de engagement",
-    "model": [
-      "8 horas al mes de trabajo técnico práctico + 2 llamadas de seguimiento",
-      "Compromiso mínimo: 3 meses",
-      "Máximo 2 clientes simultáneos — atención dedicada"
+  "agencies": {
+    "metaTitle": "Software e Integraciones para Agencias | Hec Sánchez",
+    "metaDescription": "Colaboración técnica para agencias que necesitan software a medida, integraciones con CRM, apps de HubSpot y flujos con WhatsApp. Trabaja con Hec Sánchez.",
+    "serviceName": "Software a medida e integraciones para agencias",
+    "h1": "Software a medida e integraciones para agencias.",
+    "intro": [
+      "Ayudo a agencias digitales, de marketing y de producto a entregar proyectos que requieren experiencia en ingeniería. Eso incluye integraciones con CRM, aplicaciones de HubSpot, flujos con WhatsApp y software a medida.",
+      "Puedo ayudarte a definir el alcance técnico, tomar decisiones de arquitectura y desarrollar el sistema. Trabajas directamente conmigo desde la primera conversación hasta la entrega acordada."
     ],
-    "forTitle": "Para quién es",
-    "for": [
-      "Startups de 5–50 personas sin CTO",
-      "Fundadores técnicos que ya no pueden hacer todo",
-      "Equipos con producto en producción pero sin dirección técnica clara",
-      "Empresas que necesitan auditar su arquitectura antes de escalar"
+    "situationsTitle": "Cuando el proyecto de un cliente necesita más ingeniería",
+    "situations": [
+      "Tu cliente necesita algo que sus herramientas actuales no resuelven. El CRM debe intercambiar datos con otro sistema. Una campaña depende de un flujo a medida. Un producto necesita una función que tu equipo no puede asumir en este momento.",
+      "Puedo ayudarte a resolver las preguntas técnicas antes de comprometerte con una solución y después hacerme cargo de la implementación acordada."
     ],
-    "notForTitle": "Para quién NO es",
-    "notFor": [
-      "Proyectos que necesitan un equipo completo de desarrollo (→ refiero a mi consultora)",
-      "Empresas que buscan solo un consejero sin ejecución",
-      "Ideas sin validar que necesitan un MVP (→ puedo referirte)"
+    "servicesTitle": "En qué puedo apoyar a tu equipo",
+    "services": [
+      {
+        "title": "Integraciones con CRM y sistemas de negocio",
+        "body": "Conectar las herramientas que tus clientes utilizan para captar prospectos, gestionar clientes y operar su negocio. Definir cómo se mueve la información, qué ocurre cuando algo falla y cómo se mantendrá la integración."
+      },
+      {
+        "title": "Aplicaciones de HubSpot y flujos de ventas",
+        "body": "Extender HubSpot con aplicaciones e integraciones a medida. Por ejemplo, asignación de prospectos, disponibilidad de asesores y conexiones con otras herramientas de ventas."
+      },
+      {
+        "title": "Flujos con WhatsApp",
+        "body": "Integrar WhatsApp en un producto o proceso de negocio, desde autenticación hasta comunicación con clientes. Elegir un enfoque que corresponda al caso de uso y a los sistemas existentes."
+      },
+      {
+        "title": "Software a medida y ejecución técnica",
+        "body": "Desarrollar portales para clientes, aplicaciones internas y funciones de producto. También puedo apoyar con definición técnica, revisiones de arquitectura y planificación cuando un proyecto necesita una dirección más clara."
+      }
     ],
-    "timelineTitle": "Cómo se ve un engagement típico",
-    "timeline": [
-      { "step": "Mes 1", "label": "Auditoría", "desc": "Revisión de codebase, evaluación de arquitectura, evaluación de equipo, roadmap." },
-      { "step": "Mes 2", "label": "Ejecución", "desc": "Implementar los cambios de mayor impacto, establecer procesos." },
-      { "step": "Mes 3+", "label": "Sostener", "desc": "Liderazgo continuo, apoyo en contratación, decisiones de escalamiento." }
-    ]
+    "workTitle": "Proyectos relacionados",
+    "work": [
+      { "project": "the-woods-crm", "body": "Un CRM a medida que desarrollé para The Woods, una empresa que vende pisos de madera y materiales." },
+      { "project": "hubspot-lead-routing", "body": "Una aplicación que desarrollé para asignar prospectos según los horarios de los asesores, con un calendario de disponibilidad." },
+      { "project": "zaplink", "body": "Un producto que desarrollé para autenticar usuarios mediante WhatsApp, con códigos de un solo uso y enlaces de acceso." }
+    ],
+    "processTitle": "Cómo empezamos",
+    "process": [
+      {
+        "title": "Entender el problema del cliente",
+        "body": "Hablamos de lo que necesita el cliente, los sistemas involucrados, las fechas y el papel de tu equipo. Si el proyecto todavía se está definiendo, identificamos las decisiones que hay que tomar primero."
+      },
+      {
+        "title": "Acordar el alcance",
+        "body": "Propongo una colaboración con entregables, responsabilidades y criterios de cierre claros. Puede ser una evaluación técnica, una implementación delimitada o apoyo continuo."
+      },
+      {
+        "title": "Desarrollar y entregar",
+        "body": "Implemento el trabajo acordado, te mantengo al tanto del avance y las decisiones, y documento lo que tu equipo necesita para operar o ampliar la solución."
+      }
+    ],
+    "faqTitle": "Preguntas de agencias",
+    "faq": [
+      {
+        "q": "¿Puedes trabajar con nuestros desarrolladores?",
+        "a": "Sí. Puedo hacerme cargo de una parte definida del proyecto o colaborar con tus desarrolladores en arquitectura e implementación. Desde el inicio acordamos quién es responsable de cada decisión y entregable."
+      },
+      {
+        "q": "¿Trabajarías directamente con nuestro cliente?",
+        "a": "Podemos acordar mi participación antes de empezar. Puede ser a través de tu equipo o en conversaciones con el cliente cuando sea útil contar con una perspectiva técnica."
+      },
+      {
+        "q": "¿Necesitamos contratar apoyo mensual?",
+        "a": "Un proyecto definido puede empezar como una colaboración con alcance delimitado. El apoyo continuo tiene sentido cuando existe una necesidad recurrente de ingeniería o liderazgo técnico."
+      },
+      {
+        "q": "¿Qué necesitamos para la primera llamada?",
+        "a": "Una descripción breve del problema del cliente, las herramientas o el producto actual, las fechas y lo que les gustaría que yo asumiera. El brief puede estar incompleto; podemos identificar juntos lo que falta."
+      }
+    ],
+    "finalCtaTitle": "¿Tienes un proyecto de cliente en mente?",
+    "finalCtaBody": "Cuéntame qué necesita tu cliente y dónde le vendría bien apoyo de ingeniería a tu equipo. La primera llamada nos sirve para ver si tiene sentido colaborar."
+  },
+  "founders": {
+    "metaTitle": "CTO Fraccional y Desarrollo de Producto | Hec Sánchez",
+    "metaDescription": "Desarrollo de producto y apoyo como CTO fraccional para fundadores. Trabaja con Hec Sánchez en arquitectura, implementación y liderazgo de ingeniería.",
+    "serviceName": "Desarrollo de producto y apoyo como CTO fraccional para fundadores",
+    "h1": "Dirección técnica y desarrollo de software para fundadores.",
+    "intro": [
+      "Ayudo a fundadores a tomar decisiones de producto e ingeniería, desarrollar software y dar una dirección técnica más clara a sus equipos. Según lo que necesites, puedo trabajar en una implementación concreta o colaborar de forma continua como CTO fraccional.",
+      "Mi trabajo combina desarrollo de producto, arquitectura y liderazgo de ingeniería. Me mantengo cerca del código y del problema de negocio que debe resolver."
+    ],
+    "situationsTitle": "Cuándo puedo ayudarte",
+    "situations": [
+      "Tienes un producto, pero las decisiones técnicas siguen llegando a ti sin una forma clara de evaluarlas.",
+      "Tu equipo desarrolla software, pero las prioridades, la arquitectura o las responsabilidades necesitan atención.",
+      "Una función o integración requiere experiencia de implementación.",
+      "Necesitas evaluar un código existente antes de comprometerte con la siguiente etapa de desarrollo.",
+      "Necesitas a alguien que asuma la dirección técnica de forma continua mientras crece el negocio."
+    ],
+    "servicesTitle": "Lo que podemos trabajar juntos",
+    "services": [
+      {
+        "title": "Decidir qué construir y cómo",
+        "body": "Convertir el objetivo de negocio en un plan técnico práctico. Revisar el producto, identificar restricciones y evaluar las ventajas y los costos de desarrollar, comprar o simplificar."
+      },
+      {
+        "title": "Desarrollar o mejorar tu producto",
+        "body": "Hacerme cargo de una parte definida del producto. Puede ser una función nueva, una integración o una mejora a un sistema existente que está dificultando el desarrollo."
+      },
+      {
+        "title": "Fortalecer las prácticas de ingeniería",
+        "body": "Mejorar cómo el equipo planifica el trabajo, revisa código, publica cambios y entiende los problemas en producción. Enfocarnos en las prácticas que resuelven sus problemas reales."
+      },
+      {
+        "title": "Dar continuidad al liderazgo técnico",
+        "body": "Como CTO fraccional, puedo ayudar a dirigir el plan técnico, orientar la arquitectura, apoyar decisiones de contratación y trabajar con el equipo conforme cambian las prioridades. Definimos las responsabilidades y el tiempo de dedicación según el negocio."
+      }
+    ],
+    "workTitle": "Productos que he desarrollado y trabajo actual",
+    "work": [
+      { "project": "zaplink", "body": "Desarrollé Zaplink para permitir la autenticación mediante WhatsApp, con códigos de un solo uso y enlaces de acceso." },
+      { "project": "estateflow", "body": "Estoy desarrollando tecnología para operaciones de ventas inmobiliarias, conectando el trabajo de producto con los problemas cotidianos de los equipos comerciales." },
+      { "project": "the-woods-crm", "body": "Desarrollé un CRM a medida para una empresa que vende pisos de madera y materiales." }
+    ],
+    "engagementsTitle": "Definir la colaboración según el problema",
+    "engagements": [
+      { "label": "Evaluación técnica", "body": "Entender el sistema actual, identificar riesgos y obtener recomendaciones priorizadas sobre los siguientes pasos." },
+      { "label": "Implementación con alcance definido", "body": "Acordar un resultado concreto y el trabajo necesario para entregarlo." },
+      { "label": "Apoyo como CTO fraccional", "body": "Establecer una responsabilidad técnica continua cuando el negocio necesita dirección sostenida en producto, arquitectura y equipo de ingeniería." }
+    ],
+    "faqTitle": "Preguntas de fundadores",
+    "faq": [
+      {
+        "q": "¿Necesito un CTO fraccional o un ingeniero senior?",
+        "a": "Si el problema es una implementación bien definida, un ingeniero con experiencia puede ser suficiente. Un CTO fraccional es útil cuando alguien también debe asumir las prioridades técnicas, las decisiones de arquitectura y la forma de trabajar del equipo de manera continua."
+      },
+      {
+        "q": "¿Puedes trabajar con mi equipo o proveedor de desarrollo?",
+        "a": "Sí. Podemos definir una colaboración que complemente a las personas que ya hacen el trabajo, con responsabilidades y comunicación claras."
+      },
+      {
+        "q": "¿Escribes código?",
+        "a": "Sí. La implementación forma parte de mi trabajo. El equilibrio entre desarrollo y liderazgo depende de la colaboración que acordemos."
+      },
+      {
+        "q": "¿Podemos empezar con una evaluación?",
+        "a": "Sí. Una evaluación puede ser un buen primer paso cuando necesitamos entender el producto o el código antes de elegir el trabajo de implementación."
+      }
+    ],
+    "finalCtaTitle": "¿Qué necesita tu producto ahora?",
+    "finalCtaBody": "Cuéntame qué estás construyendo, qué se está complicando y cuáles son las decisiones en las que necesitas apoyo."
+  },
+  "projects": {
+    "metaTitle": "Proyectos de Software y Productos | Hec Sánchez",
+    "metaDescription": "Conoce el software desarrollado por Hec Sánchez: Zaplink, el CRM de The Woods, una app de asignación de prospectos en HubSpot y su trabajo en Estateflow.",
+    "h1": "Software que he desarrollado y proyectos en marcha.",
+    "intro": "Una selección de productos y sistemas de negocio en los que he trabajado. Me interesan el software para usuarios finales, las operaciones de ventas y las conexiones entre las herramientas que utiliza una empresa.",
+    "contributionLabel": "Mi contribución",
+    "finalCtaTitle": "¿Tienes un problema relacionado?",
+    "finalCtaBody": "Si estás trabajando en un producto, una integración o un sistema de negocio, me interesa conocer lo que necesitas desarrollar."
+  },
+  "blog": {
+    "metaTitle": "Artículos sobre Producto y Tecnología | Hec Sánchez",
+    "metaDescription": "Artículos de Hec Sánchez sobre desarrollo de software, liderazgo técnico, decisiones de producto y emprendimiento, a partir de su experiencia.",
+    "h1": "Notas de construir software y un negocio.",
+    "intro": [
+      "Escribo sobre las decisiones detrás de los productos: qué desarrollar, qué dejar como está, cómo trabajan los equipos y qué sucede cuando una idea se encuentra con la realidad de un negocio.",
+      "Son perspectivas que surgen de mis proyectos y mi experiencia, junto con preguntas que todavía estoy tratando de resolver."
+    ],
+    "latestTitle": "Artículos recientes",
+    "readingTime": "min de lectura",
+    "empty": "Todavía no hay artículos publicados.",
+    "englishOnly": "En inglés"
+  },
+  "newsletter": {
+    "title": "Shipping Notes",
+    "body": "Un resumen semanal de lo que escribo y desarrollo, además de cosas útiles que estoy leyendo o explorando. Los artículos completos viven aquí; el correo te ayuda a ponerte al día.",
+    "fieldLabel": "Correo electrónico",
+    "placeholder": "tu@ejemplo.com",
+    "button": "Suscribirme",
+    "reassurance": "Puedes darte de baja cuando quieras.",
+    "loading": "Registrando tu suscripción…",
+    "successConfirm": "Revisa tu correo para confirmar tu suscripción.",
+    "success": "Tu suscripción está lista. Gracias por leer.",
+    "validationError": "Introduce un correo electrónico válido.",
+    "submissionError": "No pudimos completar tu suscripción. Inténtalo de nuevo.",
+    "close": "Cerrar"
+  },
+  "author": {
+    "bio": "Hec Sánchez es ingeniero de producto y CTO fraccional en Puebla, México. Desarrolla software y trabaja con agencias y fundadores en productos, integraciones y liderazgo técnico.",
+    "linkLabel": "Más sobre Hec"
   },
   "about": {
-    "metaTitle": "Sobre mí — Hec Sánchez",
-    "metaDescription": "Ingeniero de software en Puebla. 16+ años construyendo productos en industrias reguladas.",
-    "title": "Sobre mí",
+    "metaTitle": "Acerca de Hec Sánchez | Desarrollo y Liderazgo Técnico",
+    "metaDescription": "Conoce a Hec Sánchez, ingeniero de producto y CTO fraccional en Puebla, México, con 16 años de experiencia desarrollando software y liderando ingeniería.",
+    "h1": "Soy Hec Sánchez.",
     "intro": [
-      "Soy Hec Sánchez. Lidero ingeniería en Nolte y trabajo como CTO fraccionario con un puñado de startups, principalmente en healthtech, insurtech y fintech. Me importa el software donde las decisiones tienen consecuencias reales — industrias reguladas, usuarios reales, dinero real — y la disciplina que requiere construirlo bien.",
-      "Vivo en Puebla, México. Casado, con tres hijos; fuera del trabajo remo, toco guitarra y entreno para un medio maratón."
+      "Soy ingeniero de producto y líder técnico en Puebla, México. Llevo 16 años desarrollando software y sigo disfrutando entender un problema, decidir qué importa y convertirlo en algo que las personas puedan utilizar.",
+      "Mi trabajo incluye productos para usuarios finales, sistemas de negocio a medida, integraciones y liderazgo de ingeniería. He contribuido al desarrollo de software para organizaciones como Camino Real, Lala, Cabify y Freightliner."
     ],
+    "buildingTitle": "Lo que estoy construyendo",
+    "building": [
+      "Desarrollé Zaplink, un producto de autenticación mediante WhatsApp. También estoy desarrollando tecnología para Estateflow, enfocada en operaciones de ventas inmobiliarias.",
+      "Otros proyectos incluyen un CRM a medida para The Woods y una aplicación de HubSpot para asignar prospectos según los horarios de los asesores."
+    ],
+    "approachTitle": "Cómo abordo el trabajo",
+    "approach": [
+      "Quiero entender el problema de negocio antes de decidir qué software desarrollar. A veces lo que hace falta es una aplicación nueva. Otras veces es conectar herramientas existentes, simplificar un proceso o dar una dirección técnica más clara al equipo.",
+      "Trabajo en decisiones de producto, arquitectura e implementación. Me importa desarrollar software que las personas puedan utilizar, los equipos puedan mantener y los negocios puedan seguir evolucionando."
+    ],
+    "writingTitle": "Sobre lo que escribo",
+    "writing": [
+      "Comparto observaciones de desarrollar productos y trabajar con equipos: decisiones que resultaron útiles, errores que abordaría de otra manera e ideas que quiero entender mejor."
+    ],
+    "workWithMeTitle": "Trabaja conmigo",
+    "workWithMeBody": "Trabajo con agencias y fundadores en español e inglés. Podemos empezar con un problema técnico definido o hablar de una necesidad de liderazgo de ingeniería a más largo plazo.",
     "trajectoryTitle": "Trayectoria",
     "linksTitle": "Encuéntrame en"
   },
-  "blog": {
-    "metaTitle": "Escritos — Hec Sánchez",
-    "metaDescription": "Sobre arquitectura, liderazgo de ingeniería y construir en industrias reguladas.",
-    "title": "Escritos",
-    "intro": "Sobre arquitectura, liderazgo, y construir en industrias reguladas.",
-    "all": "Todos",
-    "readingTime": "min de lectura",
-    "ctaTitle": "¿Necesitas un CTO fraccionario?",
-    "ctaBody": "Agenda una llamada de 30 minutos. Sin compromiso."
+  "contact": {
+    "metaTitle": "Contacta a Hec Sánchez | Hablemos de tu Proyecto",
+    "metaDescription": "Agenda una conversación de 30 minutos con Hec Sánchez sobre un proyecto de cliente, producto de software, integración o apoyo como CTO fraccional.",
+    "h1": "Hablemos de lo que estás construyendo.",
+    "introDefault": "Agenda una conversación de 30 minutos sobre tu producto, proyecto de cliente o reto técnico. Hablaremos de lo que necesitas y de si tiene sentido trabajar juntos.",
+    "introAgency": "Cuéntame sobre el proyecto de tu cliente, los sistemas involucrados y dónde necesita apoyo de ingeniería tu equipo. Usaremos la llamada para explorar el alcance y ver si puedo ayudarte.",
+    "introFounder": "Cuéntame sobre tu producto, tu equipo y las decisiones técnicas en las que necesitas apoyo. Hablaremos de si conviene una implementación concreta o una colaboración continua.",
+    "contextTitle": "Un poco de contexto ayuda",
+    "context": [
+      "Si ya tienes un brief, puedes enviarlo antes de la llamada. Es útil saber qué estás desarrollando, las herramientas o el producto actual, tus fechas y el resultado que buscas.",
+      "También puedes traer una pregunta inicial. Podemos identificar juntos lo que hace falta aclarar."
+    ],
+    "bookingLabel": "Elige un horario",
+    "emailTitle": "¿Prefieres escribir?",
+    "emailBody": "Escríbeme a",
+    "location": "Estoy en Puebla, México. Podemos conversar en español o inglés."
+  },
+  "howIWork": {
+    "metaTitle": "Cómo Trabajo | Hec Sánchez",
+    "metaDescription": "Conoce cómo Hec Sánchez aborda evaluaciones técnicas, implementaciones de software y colaboraciones continuas de ingeniería o como CTO fraccional.",
+    "h1": "Entender el problema. Acordar el trabajo. Construir a partir de ahí.",
+    "intro": "Trabajo directamente con agencias y fundadores en desarrollo de software y liderazgo técnico. La colaboración adecuada depende del problema, las personas involucradas y la responsabilidad que necesitas que asuma.",
+    "waysTitle": "Tres formas de empezar",
+    "ways": [
+      {
+        "title": "Evaluación técnica",
+        "body": "Para situaciones en las que el siguiente paso todavía no está claro. Reviso el producto, el código, la arquitectura o el flujo de trabajo relevante e identifico los riesgos y las decisiones que importan. El entregable es una evaluación con recomendaciones priorizadas."
+      },
+      {
+        "title": "Implementación con alcance definido",
+        "body": "Para una función, integración, aplicación o mejora concreta. Acordamos qué incluye, quién se encarga de las dependencias, cómo revisaremos el avance y cuáles son los criterios de cierre."
+      },
+      {
+        "title": "Apoyo técnico continuo",
+        "body": "Para trabajo que requiere continuidad en ingeniería o liderazgo. Puede incluir decisiones de arquitectura, implementación, apoyo al equipo o un papel de CTO fraccional. Definimos el tiempo de dedicación y las responsabilidades en la propuesta."
+      }
+    ],
+    "processTitle": "Cómo es el proceso",
+    "process": [
+      { "step": "1", "label": "Conversación inicial.", "body": "Entender el objetivo de negocio, la situación actual y las restricciones." },
+      { "step": "2", "label": "Propuesta.", "body": "Acordar el alcance, los entregables, las responsabilidades, los tiempos y los honorarios antes de empezar." },
+      { "step": "3", "label": "Ejecución.", "body": "Trabajar las prioridades acordadas, compartir avances y plantear las decisiones o cambios de alcance que surjan." },
+      { "step": "4", "label": "Entrega o continuidad.", "body": "Documentar el trabajo realizado y acordar si existe una siguiente colaboración que tenga sentido." }
+    ],
+    "routeTitle": "¿Qué opción corresponde a tu situación?",
+    "routeBody": "Las agencias pueden involucrarme en la entrega de proyectos para clientes. Los fundadores pueden contar conmigo para desarrollo de producto o dirección técnica continua."
   },
   "fractionalCto": {
-    "metaTitle": "¿Qué es un CTO Fraccionario?",
-    "metaDescription": "Un CTO fraccionario es un líder técnico senior que trabaja con tu startup de forma parcial. Qué hace, cuánto cuesta, y cuándo tiene sentido contratar uno.",
-    "h1": "¿Qué es un CTO Fraccionario?",
+    "metaTitle": "¿Qué Es un CTO Fraccional? | Hec Sánchez",
+    "metaDescription": "Qué hace un CTO fraccional, cuándo sirve el liderazgo técnico continuo y cómo se diferencia de un ingeniero senior o un consultor por proyecto.",
+    "h1": "¿Qué es un CTO fraccional?",
+    "intro": [
+      "Un CTO fraccional ofrece liderazgo técnico continuo con una dedicación de tiempo parcial. Su trabajo puede incluir estrategia técnica, decisiones de arquitectura, prioridades de ingeniería, apoyo en contratación y responsabilidad sobre cómo un equipo desarrolla y mantiene software.",
+      "El alcance depende de la empresa. Lo que define el papel es la responsabilidad continua por la dirección técnica."
+    ],
     "tocTitle": "En esta página",
     "toc": [
-      { "id": "definition", "label": "¿Qué es un CTO Fraccionario?" },
-      { "id": "what-they-do", "label": "¿Qué hace un CTO fraccionario?" },
-      { "id": "cost", "label": "¿Cuánto cuesta?" },
+      { "id": "what-they-do", "label": "¿Qué hace un CTO fraccional?" },
       { "id": "when-yes", "label": "¿Cuándo tiene sentido?" },
-      { "id": "when-no", "label": "¿Cuándo NO tiene sentido?" },
-      { "id": "vs", "label": "Fraccionario vs. interino vs. consultor" }
+      { "id": "when-no", "label": "¿Cuándo conviene otra forma de colaboración?" },
+      { "id": "comparison", "label": "¿Cómo se compara con otras opciones?" },
+      { "id": "fees", "label": "¿Cómo se definen los honorarios y la dedicación?" }
     ],
-    "definition": {
-      "title": "¿Qué es un CTO Fraccionario?",
-      "body": "Un CTO fraccionario es un líder técnico con experiencia que trabaja con tu empresa de forma parcial — típicamente entre 8 y 20 horas al mes. No es un consultor que te entrega un PDF con recomendaciones. Es alguien que toma decisiones técnicas reales, escribe código cuando hace falta, y se queda el tiempo suficiente para ver los resultados."
-    },
     "whatTheyDo": {
-      "title": "¿Qué hace un CTO fraccionario?",
-      "intro": "Las responsabilidades dependen del momento de tu empresa, pero generalmente incluyen:",
-      "items": [
-        { "label": "Estrategia técnica", "body": "Decidir qué construir, con qué tecnología, y en qué orden. Evaluar si comprar o construir. Diseñar la arquitectura que va a escalar con tu negocio." },
-        { "label": "Liderazgo de equipo", "body": "Contratar ingenieros, estructurar el equipo, establecer procesos de code review, deployments y documentación. En startups tempranas esto significa construir el equipo fundacional. En empresas más grandes, elevar al equipo que ya existe." },
-        { "label": "Ejecución", "body": "Un buen CTO fraccionario no solo da dirección — también ejecuta. Revisa pull requests, resuelve problemas de arquitectura, y mete las manos cuando el equipo necesita apoyo técnico real." },
-        { "label": "Auditoría y deuda técnica", "body": "Evaluar el estado del codebase, identificar riesgos, y priorizar qué arreglar primero para destrabar al equipo." }
-      ]
-    },
-    "cost": {
-      "title": "¿Cuánto cuesta?",
+      "title": "¿Qué hace un CTO fraccional?",
       "body": [
-        "En Latinoamérica, un CTO de tiempo completo con experiencia real cuesta entre $80,000 y $150,000 USD al año — sin contar equity, prestaciones, y el costo de una mala contratación.",
-        "Un CTO fraccionario típicamente cobra entre $2,000 y $5,000 USD al mes dependiendo de las horas y el alcance. Para una startup de 5 a 50 personas que necesita liderazgo técnico pero no puede (o no debe) contratar un ejecutivo de tiempo completo, la diferencia es enorme."
+        "Ayuda a conectar los objetivos de la empresa con sus decisiones técnicas. Eso puede significar elegir qué desarrollar, evaluar una plataforma, revisar la arquitectura, definir prioridades de ingeniería o ayudar a un fundador a entender las consecuencias de una decisión técnica.",
+        "Algunas colaboraciones también incluyen implementación. En mi trabajo, el equilibrio entre desarrollo y liderazgo se define según lo que necesita el negocio."
       ]
     },
     "whenYes": {
       "title": "¿Cuándo tiene sentido?",
-      "items": [
-        "Tienes producto en producción pero no tienes dirección técnica clara",
-        "Eres fundador técnico pero ya no puedes hacer todo tú solo",
-        "Necesitas contratar ingenieros pero no sabes cómo evaluar candidatos",
-        "Tu codebase se convirtió en un problema y necesitas a alguien que lo diagnostique",
-        "Estás por levantar capital y necesitas que tu historia técnica sea sólida"
+      "body": [
+        "Puede ser útil cuando una empresa necesita responsabilidad técnica continua, pero no requiere un directivo de tiempo completo. Por ejemplo, cuando un fundador concentra demasiadas decisiones técnicas, un equipo de ingeniería no tiene una dirección clara o el producto entra en una etapa que requiere decisiones distintas de arquitectura y organización."
       ]
     },
     "whenNo": {
-      "title": "¿Cuándo NO tiene sentido?",
-      "items": [
-        "Necesitas a alguien 40 horas por semana — eso es un CTO de tiempo completo",
-        "Buscas solo un consejero que opine sin ejecutar — eso es un advisor",
-        "No tienes presupuesto para al menos 3 meses de compromiso"
+      "title": "¿Cuándo conviene otra forma de colaboración?",
+      "body": [
+        "Una función o integración bien definida puede necesitar un ingeniero senior. Una revisión puntual puede requerir una evaluación técnica. Un papel que exige responsabilidad diaria de tiempo completo puede necesitar un CTO o líder de ingeniería de tiempo completo.",
+        "Conviene elegir la colaboración según la responsabilidad y continuidad que se necesitan."
       ]
     },
     "comparison": {
-      "title": "Fraccionario vs. interino vs. consultor",
-      "items": [
-        { "label": "Fraccionario", "body": "Parcial, continuo, embebido en tu equipo. Toma decisiones y ejecuta." },
-        { "label": "Interino", "body": "Tiempo completo pero temporal. Cubre una transición mientras contratas al definitivo." },
-        { "label": "Consultor", "body": "Por proyecto, con entregables definidos. Menos integrado, más transaccional." }
-      ],
-      "footer": "El fraccionario está en medio: más comprometido que un consultor, más flexible que un interino."
+      "title": "¿Cómo se compara con otras opciones?",
+      "headers": ["Colaboración", "Enfoque habitual"],
+      "rows": [
+        ["Ingeniero senior", "Arquitectura e implementación dentro de un área de responsabilidad acordada"],
+        ["Consultor técnico", "Análisis o ejecución para un problema definido"],
+        ["CTO fraccional", "Dirección técnica continua con dedicación de tiempo parcial"],
+        ["CTO interino", "Responsabilidad temporal sobre el papel de CTO durante una transición"]
+      ]
     },
-    "ctaTitle": "¿Te suena?",
-    "ctaBody": "Agenda una llamada — 30 minutos, sin compromiso.",
-    "faq": [
-      { "q": "¿Qué es un CTO fraccionario?", "a": "Un CTO fraccionario es un líder técnico con experiencia que trabaja con tu empresa de forma parcial — típicamente entre 8 y 20 horas al mes. Toma decisiones técnicas reales, escribe código cuando hace falta, y se queda el tiempo suficiente para ver los resultados." },
-      { "q": "¿Qué hace un CTO fraccionario?", "a": "Estrategia técnica (qué construir, build vs. buy, arquitectura). Liderazgo de equipo (contratación, procesos, code review, deployments). Ejecución hands-on. Auditoría y priorización de deuda técnica." },
-      { "q": "¿Cuánto cuesta un CTO fraccionario?", "a": "Típicamente entre $2,000 y $5,000 USD al mes dependiendo de las horas y el alcance. Para comparar, un CTO de tiempo completo en LatAm cuesta entre $80,000 y $150,000 USD al año sumando salario, equity, prestaciones, y el costo de una mala contratación." },
-      { "q": "¿Cuándo conviene contratar un CTO fraccionario?", "a": "Cuando tienes producto en producción pero no tienes dirección técnica clara, cuando eres fundador técnico y ya no puedes con todo, cuando necesitas contratar ingenieros pero no sabes cómo evaluarlos, cuando tu codebase se convirtió en un problema, o cuando estás por levantar capital y necesitas que tu historia técnica sea sólida." },
-      { "q": "¿Cuándo NO conviene un CTO fraccionario?", "a": "Si necesitas a alguien 40 horas por semana (eso es un CTO de tiempo completo), si solo buscas un consejero que opine sin ejecutar (eso es un advisor), o si no puedes comprometerte a al menos 3 meses." },
-      { "q": "¿Cuál es la diferencia entre un CTO fraccionario, interino y consultor?", "a": "Un CTO fraccionario es parcial, continuo y embebido en tu equipo — toma decisiones y ejecuta. Un CTO interino trabaja tiempo completo pero temporalmente, cubriendo una transición. Un consultor trabaja por proyecto con entregables definidos, menos integrado y más transaccional." }
-    ]
-  },
-  "contact": {
-    "metaTitle": "Contacto — Hec Sánchez",
-    "metaDescription": "Agenda una llamada de 30 minutos para ver si tiene sentido trabajar juntos.",
-    "title": "Hablemos",
-    "subtext": "Agenda una llamada de 30 minutos. Sin compromiso, sin pitch de ventas — solo una conversación para ver si tiene sentido trabajar juntos.",
-    "altTitle": "¿Prefieres escribirme?",
-    "linkedinLabel": "LinkedIn"
+    "fees": {
+      "title": "¿Cómo se definen los honorarios y la dedicación?",
+      "body": [
+        "Dependen del alcance, la responsabilidad y el tiempo necesario. En mis colaboraciones, acordamos esos detalles en una propuesta después de hablar del producto y del apoyo que se necesita."
+      ]
+    },
+    "ctaTitle": "¿Estás explorando apoyo de liderazgo técnico?",
+    "ctaBody": "Conoce cómo trabajo con fundadores para identificar dónde puede servir el desarrollo de producto o el apoyo como CTO fraccional."
   },
   "footer": {
     "rights": "Todos los derechos reservados.",
-    "built": "Construido con Astro."
+    "navTitle": "Sitio",
+    "workTitle": "Trabaja conmigo",
+    "elsewhereTitle": "En otros lugares",
+    "rss": "RSS"
   }
 }

@@ -1,110 +1,203 @@
 ---
-import type { Locale } from '../i18n';
+import { t, type Locale } from '../i18n';
 
 interface Props {
   locale: Locale;
+  /** `block` sits in the page flow; `floating` slides in from the right. */
+  variant?: 'block' | 'floating';
+  /** Recorded with `newsletter_signup_success`. */
+  placement: string;
+  /** Floating only: CSS selector whose visibility reveals the widget. */
+  trigger?: string;
 }
 
-const { locale } = Astro.props;
-
-const title = locale === 'es' ? 'Suscríbete' : 'Subscribe';
-const description = locale === 'es'
-  ? 'Recibe nuevos artículos sobre ingeniería en industrias reguladas. Sin spam.'
-  : 'Get new articles on engineering in regulated industries. No spam.';
-const placeholder = locale === 'es' ? 'Tu email' : 'Your email';
-const button = locale === 'es' ? 'Suscribir' : 'Subscribe';
-const successMsg = locale === 'es' ? 'Listo — revisa tu email para confirmar.' : 'Done — check your email to confirm.';
-const errorMsg = locale === 'es' ? 'Algo salió mal. Intenta de nuevo.' : 'Something went wrong. Try again.';
+const { locale, variant = 'block', placement, trigger } = Astro.props;
+const dict = t(locale);
+const n = dict.newsletter;
+const id = `subscribe-${variant}`;
 ---
 
-<section class="mx-auto max-w-2xl px-6 pb-20">
-  <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] p-8">
-    <h2 class="font-serif text-2xl" id="subscribe-title">{title}</h2>
-    <p class="mt-2 text-[var(--color-fg-muted)]" id="subscribe-desc">{description}</p>
+{variant === 'block' ? (
+  <section class="mx-auto max-w-3xl px-6 py-16">
+    <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] p-8">
+      <h2 class="font-serif text-3xl">{n.title}</h2>
+      <p class="mt-3 text-[var(--color-fg-muted)]">{n.body}</p>
 
-    <!-- Form state -->
-    <form
-      id="subscribe-form"
-      class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center transition-all duration-300"
-    >
-      <input
-        type="email"
-        name="email"
-        required
-        placeholder={placeholder}
-        class="flex-1 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-2.5 text-[var(--color-fg)] placeholder:text-[var(--color-fg-dim)] focus:border-[var(--color-accent)] focus:outline-none"
-      />
+      <form id={`${id}-form`} class="mt-6" novalidate data-placement={placement}>
+        <label for={`${id}-email`} class="block text-xs uppercase tracking-[0.15em] text-[var(--color-fg-dim)]">
+          {n.fieldLabel}
+        </label>
+        <div class="mt-2 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <input
+            id={`${id}-email`}
+            type="email"
+            name="email"
+            required
+            autocomplete="email"
+            placeholder={n.placeholder}
+            aria-describedby={`${id}-status`}
+            class="min-w-0 flex-1 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-2.5 text-[var(--color-fg)] placeholder:text-[var(--color-fg-dim)] focus:border-[var(--color-accent)] focus:outline-none aria-[invalid=true]:border-[var(--color-accent)]"
+          />
+          <button
+            type="submit"
+            class="shrink-0 rounded-full bg-[var(--color-accent)] px-6 py-2.5 font-medium text-[var(--color-bg)] transition hover:bg-[var(--color-accent-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+          >
+            {n.button}
+          </button>
+        </div>
+        <p class="mt-3 text-sm text-[var(--color-fg-dim)]">{n.reassurance}</p>
+      </form>
+
+      <p id={`${id}-status`} role="status" aria-live="polite" class="mt-4 text-sm text-[var(--color-fg-muted)]"></p>
+    </div>
+  </section>
+) : (
+  <div
+    id={`${id}-container`}
+    data-trigger={trigger}
+    class="fixed bottom-6 right-6 z-50 w-[340px] max-w-[85vw] translate-x-[420px] transition-transform duration-500 ease-out motion-reduce:transition-none"
+  >
+    <div class="relative rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] p-5 shadow-lg">
       <button
-        type="submit"
-        class="shrink-0 rounded-full bg-[var(--color-accent)] px-6 py-2.5 font-medium text-[var(--color-bg)] transition hover:bg-[var(--color-accent-hover)]"
+        id={`${id}-close`}
+        type="button"
+        class="absolute top-3 right-3 text-[var(--color-fg-dim)] transition hover:text-[var(--color-fg)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+        aria-label={n.close}
       >
-        {button}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
-    </form>
+      <h2 class="pr-6 font-serif text-xl">{n.title}</h2>
+      <p class="mt-1 text-sm text-[var(--color-fg-muted)]">{n.body}</p>
 
-    <!-- Loading state -->
-    <div id="subscribe-loading" class="mt-5 hidden flex items-center justify-center py-3">
-      <svg class="animate-spin h-6 w-6 text-[var(--color-accent)]" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" opacity="0.25" />
-        <path d="M4 12a8 8 0 018-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-      </svg>
+      <form id={`${id}-form`} class="mt-4" novalidate data-placement={placement}>
+        <label for={`${id}-email`} class="block text-xs uppercase tracking-[0.15em] text-[var(--color-fg-dim)]">
+          {n.fieldLabel}
+        </label>
+        <input
+          id={`${id}-email`}
+          type="email"
+          name="email"
+          required
+          autocomplete="email"
+          placeholder={n.placeholder}
+          aria-describedby={`${id}-status`}
+          class="mt-2 w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-2 text-sm text-[var(--color-fg)] placeholder:text-[var(--color-fg-dim)] focus:border-[var(--color-accent)] focus:outline-none aria-[invalid=true]:border-[var(--color-accent)]"
+        />
+        <button
+          type="submit"
+          class="mt-3 w-full rounded-full bg-[var(--color-accent)] px-4 py-2 text-sm font-medium text-[var(--color-bg)] transition hover:bg-[var(--color-accent-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+        >
+          {n.button}
+        </button>
+        <p class="mt-2 text-xs text-[var(--color-fg-dim)]">{n.reassurance}</p>
+      </form>
+
+      <p id={`${id}-status`} role="status" aria-live="polite" class="mt-3 text-sm text-[var(--color-fg-muted)]"></p>
     </div>
-
-    <!-- Success state -->
-    <div id="subscribe-success" class="mt-5 hidden flex items-center gap-3 py-3 transition-all duration-300">
-      <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent)]">
-        <svg class="h-4 w-4 text-[var(--color-bg)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 13l4 4L19 7" />
-        </svg>
-      </div>
-      <span class="text-sm text-[var(--color-fg-muted)]" id="subscribe-success-msg">{successMsg}</span>
-    </div>
-
-    <!-- Error state -->
-    <p id="subscribe-error" class="mt-3 text-sm text-[var(--color-accent)] hidden"></p>
   </div>
-</section>
+)}
 
-<script is:inline define:vars={{ errorMsg }}>
-  const form = document.getElementById('subscribe-form');
-  const loading = document.getElementById('subscribe-loading');
-  const success = document.getElementById('subscribe-success');
-  const error = document.getElementById('subscribe-error');
+<script
+  is:inline
+  define:vars={{
+    id,
+    variant,
+    locale,
+    placement,
+    messages: {
+      loading: n.loading,
+      success: n.success,
+      successConfirm: n.successConfirm,
+      validationError: n.validationError,
+      submissionError: n.submissionError,
+    },
+  }}
+>
+  (function () {
+    const form = document.getElementById(id + '-form');
+    const status = document.getElementById(id + '-status');
+    if (!form || !status) return;
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = form.querySelector('input[name="email"]').value;
+    const input = form.querySelector('input[name="email"]');
 
-    // Transition to loading
-    form.classList.add('hidden');
-    error.classList.add('hidden');
-    loading.classList.remove('hidden');
-
-    try {
-      const res = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      });
-
-      const data = await res.json();
-
-      if (data.ok) {
-        // Transition to success
-        loading.classList.add('hidden');
-        success.classList.remove('hidden');
-      } else {
-        // Back to form with error
-        loading.classList.add('hidden');
-        form.classList.remove('hidden');
-        error.textContent = data.error || errorMsg;
-        error.classList.remove('hidden');
-      }
-    } catch {
-      loading.classList.add('hidden');
-      form.classList.remove('hidden');
-      error.textContent = errorMsg;
-      error.classList.remove('hidden');
+    function setStatus(message, isError) {
+      status.textContent = message;
+      status.classList.toggle('text-[var(--color-accent)]', Boolean(isError));
+      status.classList.toggle('text-[var(--color-fg-muted)]', !isError);
     }
-  });
+
+    // Analytics must never interrupt the subscription flow.
+    function track(event, props) {
+      try {
+        if (typeof window.plausible === 'function') window.plausible(event, { props: props });
+      } catch {}
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = input.value.trim();
+
+      if (!input.checkValidity() || !email) {
+        input.setAttribute('aria-invalid', 'true');
+        setStatus(messages.validationError, true);
+        input.focus();
+        return;
+      }
+
+      input.removeAttribute('aria-invalid');
+      setStatus(messages.loading, false);
+      form.querySelector('button[type="submit"]').disabled = true;
+
+      try {
+        const res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        const data = await res.json();
+
+        if (data.ok) {
+          // The endpoint reports whether Buttondown asked for an opt-in confirmation.
+          setStatus(data.confirm ? messages.successConfirm : messages.success, false);
+          form.hidden = true;
+          track('newsletter_signup_success', { locale: locale, placement: placement });
+        } else {
+          form.querySelector('button[type="submit"]').disabled = false;
+          setStatus(data.error || messages.submissionError, true);
+        }
+      } catch {
+        form.querySelector('button[type="submit"]').disabled = false;
+        setStatus(messages.submissionError, true);
+      }
+    });
+
+    if (variant !== 'floating') return;
+
+    const container = document.getElementById(id + '-container');
+    const closeBtn = document.getElementById(id + '-close');
+    const target = container && container.dataset.trigger
+      ? document.querySelector(container.dataset.trigger)
+      : null;
+    if (!container || !target) return;
+
+    const OFF = 'translate-x-[420px]';
+    let settled = false;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting || settled) return;
+        settled = true;
+        container.classList.remove(OFF);
+        observer.disconnect();
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(target);
+
+    closeBtn?.addEventListener('click', () => {
+      settled = true;
+      observer.disconnect();
+      container.classList.add(OFF);
+    });
+  })();
 </script>

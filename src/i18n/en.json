@@ -1,180 +1,391 @@
 {
   "locale": "en",
   "siteName": "Hec Sánchez",
-  "tagline": "Fractional CTO",
+  "tagline": "Product Engineer & Fractional CTO",
+  "skipToContent": "Skip to content",
   "nav": {
     "home": "Home",
-    "howIWork": "How I work",
     "blog": "Writing",
+    "projects": "Projects",
+    "workWithMe": "Work with me",
+    "agencies": "For Agencies",
+    "founders": "For Founders",
+    "howIWork": "How I work",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "fractionalCto": "What is a Fractional CTO?",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "routes": {
     "home": "/en",
-    "howIWork": "/en/how-i-work",
     "blog": "/en/writing",
+    "projects": "/en/projects",
+    "agencies": "/en/for-agencies",
+    "founders": "/en/for-founders",
+    "howIWork": "/en/how-i-work",
     "about": "/en/about",
     "contact": "/en/contact",
-    "fractionalCto": "/en/fractional-cto"
+    "fractionalCto": "/en/fractional-cto",
+    "rss": "/en/writing/rss.xml"
   },
   "cta": {
-    "primary": "Book a call",
-    "secondary": "How I work",
-    "ready": "Ready to talk?"
+    "bookCall": "Book a call",
+    "discussClientProject": "Discuss a client project",
+    "discussProduct": "Discuss your product",
+    "exploreMyWork": "Explore my work",
+    "workWithMe": "Work with me",
+    "exploreAgencySupport": "Explore agency support",
+    "exploreFounderSupport": "Explore founder support",
+    "seeAllProjects": "See all projects",
+    "readAllArticles": "Read all articles",
+    "readHowIWork": "Read how I work",
+    "seeRelevantWork": "See relevant work",
+    "exploreMyProjects": "Explore my projects",
+    "forAgencies": "For agencies",
+    "forFounders": "For founders",
+    "moreAboutHec": "More about Hec",
+    "readMyWriting": "Read my writing"
   },
   "home": {
-    "metaTitle": "Hec Sánchez — Fractional CTO",
-    "metaDescription": "I help startups scale their engineering without a full-time CTO hire. Technical strategy, leadership, and execution.",
-    "heroTitle": "Hec Sánchez",
-    "heroSubtitle": "Fractional CTO",
-    "valueProp": "I help startups scale their engineering without a full-time CTO hire.",
-    "socialProofTitle": "Built for",
-    "whatIDoTitle": "What I do",
-    "cards": {
-      "strategyTitle": "Technical Strategy",
-      "strategyDesc": "Architecture decisions, build vs buy, tech stack selection.",
-      "leadershipTitle": "Engineering Leadership",
-      "leadershipDesc": "Hiring, processes, team structure, code review culture.",
-      "executionTitle": "Hands-on Execution",
-      "executionDesc": "I write code. I ship. I don't just advise."
-    },
-    "bio": "16 years building software. Head of Engineering at a software consultancy specializing in regulated industries: healthtech, insurtech, and fintech. Based in Puebla, Mexico.",
-    "testimonialsTitle": "What people say"
+    "metaTitle": "Hec Sánchez | Product Engineer & Fractional CTO",
+    "metaDescription": "I build software and help agencies and founders make better technical decisions. Explore my projects, writing, and ways to work together.",
+    "h1": "I build software and help teams make better technical decisions.",
+    "intro": [
+      "I'm Hec Sánchez, a product engineer and fractional CTO based in Puebla, Mexico. I have 16 years of experience building software, from customer-facing products to the systems businesses use every day.",
+      "I work with agencies and founders on product development, integrations, and technical leadership. Here, I share what I build and what I learn along the way."
+    ],
+    "proofLabel": "Software I've contributed to for",
+    "workTitle": "Selected work",
+    "workIntro": "Products and business systems I've built, with a particular interest in the technology behind sales, marketing, and customer communication.",
+    "workWithMeTitle": "Work with me",
+    "agenciesTitle": "For agencies",
+    "agenciesBody": "Bring me into a client project that needs custom software, integrations, or experienced technical direction. I help define the work and build the parts your team needs to deliver.",
+    "foundersTitle": "For founders",
+    "foundersBody": "Get help deciding what to build, improving an existing product, or leading the engineering work. We can start with a focused problem and shape the engagement around what your business needs.",
+    "writingTitle": "Latest writing",
+    "writingIntro": "Notes on building products, making technical decisions, and learning to run a business. Written from the work itself: the choices, mistakes, and questions that stay with me."
   },
-  "howIWork": {
-    "metaTitle": "How I work — Hec Sánchez",
-    "metaDescription": "Engagement model, who it's for, and what a typical 3-month engagement looks like.",
-    "title": "How I work",
-    "intro": "A focused engagement, with dedicated time and real attention.",
-    "modelTitle": "Engagement model",
-    "model": [
-      "8 hours per month of hands-on technical work + 2 follow-up calls",
-      "Minimum commitment: 3 months",
-      "Maximum 2 simultaneous clients — dedicated attention"
+  "agencies": {
+    "metaTitle": "Custom Software & Integrations for Agencies | Hec Sánchez",
+    "metaDescription": "Technical partnership for agencies delivering custom software, CRM integrations, HubSpot apps, and WhatsApp workflows. Work directly with Hec Sánchez.",
+    "serviceName": "Custom software and integrations for agencies",
+    "h1": "Custom software and integrations for agencies.",
+    "intro": [
+      "I help digital, marketing, and product agencies deliver client work that needs experienced engineering. That includes CRM integrations, HubSpot apps, WhatsApp workflows, and custom software.",
+      "Bring me in to help define the technical scope, make the architecture decisions, and build the system. You work directly with me from the first conversation through the agreed delivery."
     ],
-    "forTitle": "Who this is for",
-    "for": [
-      "Startups of 5–50 people without a CTO",
-      "Technical founders who can no longer do everything",
-      "Teams with product in production but without clear technical direction",
-      "Companies that need to audit their architecture before scaling"
+    "situationsTitle": "When a client project needs more engineering",
+    "situations": [
+      "Your client needs something beyond the existing tools. The CRM has to exchange data with another system. A campaign depends on a custom workflow. A product needs a feature your current team cannot take on.",
+      "I can help you work through the technical questions before you commit to a solution, then take responsibility for the agreed implementation."
     ],
-    "notForTitle": "Who this is NOT for",
-    "notFor": [
-      "Projects that need a full development team (→ I refer to my consultancy)",
-      "Companies looking for an advisor without execution",
-      "Unvalidated ideas that need an MVP (→ I can refer you)"
+    "servicesTitle": "What I can help you deliver",
+    "services": [
+      {
+        "title": "CRM and business-system integrations",
+        "body": "Connect the systems your clients use to capture leads, manage customers, and run their operations. Define how information moves between them, what happens when something fails, and how the team will maintain the integration."
+      },
+      {
+        "title": "HubSpot apps and sales workflows",
+        "body": "Extend HubSpot with custom applications and integrations. Examples include lead assignment, agent availability, and connections to other sales tools."
+      },
+      {
+        "title": "WhatsApp workflows",
+        "body": "Build WhatsApp into a product or business process, from authentication to customer communication. Choose an approach that fits the use case and the systems already in place."
+      },
+      {
+        "title": "Custom software and technical delivery",
+        "body": "Build client portals, internal applications, and product features. I can also help with technical discovery, architecture reviews, and implementation planning when a project needs clearer direction."
+      }
     ],
-    "timelineTitle": "What a typical engagement looks like",
-    "timeline": [
-      { "step": "Month 1", "label": "Audit", "desc": "Codebase review, architecture assessment, team evaluation, roadmap." },
-      { "step": "Month 2", "label": "Execute", "desc": "Implement the highest-impact changes, establish processes." },
-      { "step": "Month 3+", "label": "Sustain", "desc": "Ongoing leadership, hiring support, scaling decisions." }
-    ]
+    "workTitle": "Relevant work",
+    "work": [
+      { "project": "the-woods-crm", "body": "A custom CRM I built for The Woods, a business selling wooden floors and materials." },
+      { "project": "hubspot-lead-routing", "body": "A HubSpot application I built to assign leads using agent schedules, with a calendar view of availability." },
+      { "project": "zaplink", "body": "A product I built for authentication through WhatsApp, using one-time codes and magic links." }
+    ],
+    "processTitle": "How we start",
+    "process": [
+      {
+        "title": "Understand the client problem",
+        "body": "We discuss what the client needs, the systems involved, the deadline, and your team's role. If the brief is still taking shape, we identify the decisions that need to be made first."
+      },
+      {
+        "title": "Agree the scope",
+        "body": "I propose an engagement with clear deliverables, responsibilities, and a way to assess completion. That might be a technical assessment, a scoped implementation, or ongoing support."
+      },
+      {
+        "title": "Build and hand over",
+        "body": "I implement the agreed work, keep you informed of progress and tradeoffs, and document what your team needs to operate or extend it."
+      }
+    ],
+    "faqTitle": "Questions agencies ask",
+    "faq": [
+      {
+        "q": "Can you work with our existing developers?",
+        "a": "Yes. I can take responsibility for a defined part of the project or work alongside your developers on architecture and implementation. We agree who owns each decision and deliverable at the start."
+      },
+      {
+        "q": "Will you work directly with our client?",
+        "a": "We can agree how I participate before the engagement starts. That may mean working through your team or joining client conversations when technical input is useful."
+      },
+      {
+        "q": "Do we need an ongoing retainer?",
+        "a": "A defined project can start as a scoped engagement. Ongoing support makes sense when there is a continuing need for engineering or technical leadership."
+      },
+      {
+        "q": "What should we bring to the first call?",
+        "a": "A short description of the client problem, the current tools or product, any deadlines, and what you would like me to own. An unfinished brief is fine; we can identify the missing pieces together."
+      }
+    ],
+    "finalCtaTitle": "Have a client project in mind?",
+    "finalCtaBody": "Tell me what your client needs and where your team could use engineering support. We can use the first call to see whether there is a useful fit."
+  },
+  "founders": {
+    "metaTitle": "Fractional CTO & Product Engineering | Hec Sánchez",
+    "metaDescription": "Product engineering and fractional CTO support for founders. Get help with architecture, implementation, and engineering leadership from Hec Sánchez.",
+    "serviceName": "Product engineering and fractional CTO support for founders",
+    "h1": "Technical direction and hands-on engineering for founders.",
+    "intro": [
+      "I help founders make product and engineering decisions, build software, and give their teams clearer technical direction. Depending on what you need, I can work on a defined implementation or provide ongoing fractional CTO support.",
+      "My work combines product development with architecture and engineering leadership. I stay close to the code and the business problem it needs to solve."
+    ],
+    "situationsTitle": "When I can help",
+    "situations": [
+      "You have a product, but technical decisions keep landing on you without a clear way to evaluate them.",
+      "Your team is building, but priorities, architecture, or responsibilities need attention.",
+      "A feature or integration needs experienced implementation.",
+      "You need to assess an existing codebase before committing to the next stage of development.",
+      "You need someone to take ongoing responsibility for technical direction while the business grows."
+    ],
+    "servicesTitle": "The work we can do together",
+    "services": [
+      {
+        "title": "Decide what to build and how",
+        "body": "Translate the business goal into a practical technical plan. Review the product, identify constraints, and weigh the tradeoffs between building, buying, and simplifying."
+      },
+      {
+        "title": "Build or improve your product",
+        "body": "Take a defined part of the product through implementation. That could be a new feature, an integration, or an improvement to an existing system that is making delivery difficult."
+      },
+      {
+        "title": "Establish stronger engineering practices",
+        "body": "Improve how the team plans work, reviews code, ships changes, and understands production issues. Focus on the practices that address the team's actual problems."
+      },
+      {
+        "title": "Provide ongoing technical leadership",
+        "body": "As a fractional CTO, I can help own the technical roadmap, guide architecture, support hiring decisions, and work with the team as priorities change. We define the responsibility and time commitment around the business."
+      }
+    ],
+    "workTitle": "Products I've built and work I'm doing",
+    "work": [
+      { "project": "zaplink", "body": "I built Zaplink to support authentication through WhatsApp, including one-time codes and magic links." },
+      { "project": "estateflow", "body": "I'm building technology for real estate sales operations, bringing product development into the day-to-day problems of sales teams." },
+      { "project": "the-woods-crm", "body": "I built a custom CRM for a business selling wooden floors and materials." }
+    ],
+    "engagementsTitle": "Choose the engagement around the problem",
+    "engagements": [
+      { "label": "Technical assessment", "body": "Understand the current system, identify risks, and leave with prioritized recommendations for what to do next." },
+      { "label": "Scoped implementation", "body": "Agree a specific outcome and the work needed to deliver it." },
+      { "label": "Fractional CTO support", "body": "Establish ongoing technical ownership when the business needs sustained direction across product, architecture, and the engineering team." }
+    ],
+    "faqTitle": "Questions founders ask",
+    "faq": [
+      {
+        "q": "Do I need a fractional CTO or a senior engineer?",
+        "a": "If the problem is a defined piece of implementation, an experienced engineer may be enough. A fractional CTO is useful when someone also needs to own ongoing technical priorities, architecture decisions, and the way the team operates."
+      },
+      {
+        "q": "Can you work with my existing team or development partner?",
+        "a": "Yes. We can define an engagement that complements the people already doing the work, with clear responsibilities and communication."
+      },
+      {
+        "q": "Do you write code?",
+        "a": "Yes. Implementation is part of my work. The balance between coding and leadership depends on the engagement we agree."
+      },
+      {
+        "q": "Can we start with an assessment?",
+        "a": "Yes. An assessment can be a useful first step when we need to understand the product or codebase before choosing the implementation work."
+      }
+    ],
+    "finalCtaTitle": "What does your product need next?",
+    "finalCtaBody": "Tell me what you are building, what is getting difficult, and which decisions you need help making."
+  },
+  "projects": {
+    "metaTitle": "Software Projects & Products | Hec Sánchez",
+    "metaDescription": "Explore software built by Hec Sánchez, including Zaplink, The Woods CRM, a HubSpot lead routing app, and his work on Estateflow.",
+    "h1": "Software I've built and work in progress.",
+    "intro": "A selection of products and business systems I've worked on. My interests include customer-facing software, sales operations, and the connections between the tools a business uses.",
+    "contributionLabel": "My contribution",
+    "finalCtaTitle": "Have a related problem to solve?",
+    "finalCtaBody": "If you are working on a product, integration, or business system, I would be interested to hear what you need to build."
+  },
+  "blog": {
+    "metaTitle": "Writing on Products, Engineering & Business | Hec Sánchez",
+    "metaDescription": "Essays by Hec Sánchez on building software, technical leadership, product decisions, and entrepreneurship, grounded in his own work and experience.",
+    "h1": "Notes from building software and a business.",
+    "intro": [
+      "I write about the decisions behind products: what to build, what to leave alone, how teams work, and what happens when an idea meets the realities of a business.",
+      "These are perspectives shaped by my own projects and experience, alongside questions I'm still working through."
+    ],
+    "latestTitle": "Latest articles",
+    "readingTime": "min read",
+    "empty": "No published articles yet.",
+    "englishOnly": "In English"
+  },
+  "newsletter": {
+    "title": "Shipping Notes",
+    "body": "A weekly roundup of what I've written and built, plus useful things I'm reading or exploring. The full articles live here; the email helps you catch up.",
+    "fieldLabel": "Email address",
+    "placeholder": "you@example.com",
+    "button": "Subscribe",
+    "reassurance": "Unsubscribe whenever you like.",
+    "loading": "Subscribing…",
+    "successConfirm": "Check your inbox to confirm your subscription.",
+    "success": "You're subscribed. Thanks for reading.",
+    "validationError": "Enter a valid email address.",
+    "submissionError": "We couldn't complete your subscription. Please try again.",
+    "close": "Close"
+  },
+  "author": {
+    "bio": "Hec Sánchez is a product engineer and fractional CTO based in Puebla, Mexico. He builds software and works with agencies and founders on product development, integrations, and technical leadership.",
+    "linkLabel": "More about Hec"
   },
   "about": {
-    "metaTitle": "About — Hec Sánchez",
-    "metaDescription": "Software engineer based in Puebla. 16+ years building products in regulated industries.",
-    "title": "About",
+    "metaTitle": "About Hec Sánchez | Software Builder & Technical Leader",
+    "metaDescription": "Meet Hec Sánchez, a product engineer and fractional CTO in Puebla, Mexico, with 16 years of experience building software and leading engineering work.",
+    "h1": "I'm Hec Sánchez.",
     "intro": [
-      "I'm Hec Sánchez. I lead engineering at Nolte and work as a fractional CTO with a small handful of startups, mostly in healthtech, insurtech, and fintech. I care about software where decisions actually matter — regulated industries, real users, real money — and the boring discipline that makes that work.",
-      "Based in Puebla, Mexico. Married with three kids; outside work I row, play guitar, and I'm training for a half marathon."
+      "I'm a product engineer and technical leader based in Puebla, Mexico. I've spent 16 years building software, and I still enjoy taking a problem apart, deciding what matters, and turning it into something people can use.",
+      "My work includes customer-facing products, custom business systems, integrations, and engineering leadership. I've contributed to software for organizations including Camino Real, Lala, Cabify, and Freightliner."
     ],
+    "buildingTitle": "What I'm building",
+    "building": [
+      "I built Zaplink, a product for authentication through WhatsApp. I'm also building technology for Estateflow, focused on real estate sales operations.",
+      "Other work includes a custom CRM for The Woods and a HubSpot application for assigning leads using agent schedules."
+    ],
+    "approachTitle": "How I approach the work",
+    "approach": [
+      "I want to understand the business problem before deciding what software to build. Sometimes the useful work is a new application. Sometimes it is connecting existing tools, simplifying a process, or giving a team clearer technical direction.",
+      "I work across product decisions, architecture, and implementation. I care about software that people can use, teams can maintain, and businesses can continue to develop."
+    ],
+    "writingTitle": "What I write about",
+    "writing": [
+      "I share observations from building products and working with teams: decisions that proved useful, mistakes I would handle differently, and ideas I want to understand better."
+    ],
+    "workWithMeTitle": "Work with me",
+    "workWithMeBody": "I work with agencies and founders in English and Spanish. We can start with a defined technical problem or discuss a longer-term need for engineering leadership.",
     "trajectoryTitle": "Trajectory",
     "linksTitle": "Find me on"
   },
-  "blog": {
-    "metaTitle": "Writing — Hec Sánchez",
-    "metaDescription": "On architecture, engineering leadership, and building in regulated industries.",
-    "title": "Writing",
-    "intro": "On architecture, leadership, and building in regulated industries.",
-    "all": "All",
-    "readingTime": "min read",
-    "ctaTitle": "Need a fractional CTO?",
-    "ctaBody": "Book a 30-minute call. No commitment."
+  "contact": {
+    "metaTitle": "Contact Hec Sánchez | Discuss Your Software Project",
+    "metaDescription": "Book a 30-minute conversation with Hec Sánchez about a client project, software product, integration, or fractional CTO engagement.",
+    "h1": "Let's talk about what you're building.",
+    "introDefault": "Book a 30-minute conversation about your product, client project, or technical challenge. We'll discuss what you need and whether working together makes sense.",
+    "introAgency": "Tell me about your client project, the systems involved, and where your team needs engineering support. We'll use the call to explore the scope and whether I can help.",
+    "introFounder": "Tell me about your product, your team, and the technical decisions you need help making. We'll discuss whether a focused implementation or ongoing support makes sense.",
+    "contextTitle": "A little context helps",
+    "context": [
+      "If you already have a brief, you can send it ahead of the call. Useful details include what you are building, the current tools or product, your deadline, and the outcome you want.",
+      "You can also bring an early question. We can work out what needs clarifying."
+    ],
+    "bookingLabel": "Choose a time",
+    "emailTitle": "Prefer email?",
+    "emailBody": "Write to",
+    "location": "Based in Puebla, Mexico. Available for conversations in English or Spanish."
+  },
+  "howIWork": {
+    "metaTitle": "How I Work | Hec Sánchez",
+    "metaDescription": "How Hec Sánchez approaches technical assessments, scoped software implementation, and ongoing engineering or fractional CTO engagements.",
+    "h1": "Start with the problem. Agree the work. Build from there.",
+    "intro": "I work directly with agencies and founders on software development and technical leadership. The right engagement depends on the problem, the people already involved, and the responsibility you need me to take.",
+    "waysTitle": "Three ways to start",
+    "ways": [
+      {
+        "title": "Technical assessment",
+        "body": "For situations where the next step is unclear. I review the relevant product, codebase, architecture, or workflow and identify the risks and decisions that matter. The deliverable is an assessment with prioritized recommendations."
+      },
+      {
+        "title": "Scoped implementation",
+        "body": "For a defined feature, integration, application, or improvement. We agree what is included, who is responsible for dependencies, how progress will be reviewed, and what completion looks like."
+      },
+      {
+        "title": "Ongoing technical support",
+        "body": "For work that needs continuing engineering or leadership. This can include architecture decisions, implementation, team support, or a fractional CTO role. We define the time allocation and responsibilities in the proposal."
+      }
+    ],
+    "processTitle": "What the process looks like",
+    "process": [
+      { "step": "1", "label": "Initial conversation.", "body": "Understand the business goal, current situation, and constraints." },
+      { "step": "2", "label": "Proposal.", "body": "Agree the scope, deliverables, responsibilities, timing, and fee before starting." },
+      { "step": "3", "label": "Delivery.", "body": "Work through the agreed priorities, share progress, and surface decisions or scope changes as they arise." },
+      { "step": "4", "label": "Handover or continuation.", "body": "Document the delivered work and agree whether there is a useful next engagement." }
+    ],
+    "routeTitle": "Which route fits your situation?",
+    "routeBody": "Agencies can bring me into client delivery. Founders can engage me for product engineering or ongoing technical direction."
   },
   "fractionalCto": {
-    "metaTitle": "What Is a Fractional CTO?",
-    "metaDescription": "A fractional CTO is a senior technical leader who works with your startup part-time. What they do, what it costs, and when it makes sense to hire one.",
-    "h1": "What Is a Fractional CTO?",
+    "metaTitle": "What Is a Fractional CTO? | Hec Sánchez",
+    "metaDescription": "Learn what a fractional CTO does, when ongoing technical leadership is useful, and how the role differs from a senior engineer or project consultant.",
+    "h1": "What is a fractional CTO?",
+    "intro": [
+      "A fractional CTO provides ongoing technical leadership on a part-time basis. The role can include technical strategy, architecture decisions, engineering priorities, hiring support, and responsibility for how a team builds and maintains software.",
+      "The scope depends on the company. The defining feature is continuing responsibility for technical direction."
+    ],
     "tocTitle": "On this page",
     "toc": [
-      { "id": "definition", "label": "What is a fractional CTO?" },
       { "id": "what-they-do", "label": "What does a fractional CTO do?" },
-      { "id": "cost", "label": "What does it cost?" },
       { "id": "when-yes", "label": "When does it make sense?" },
-      { "id": "when-no", "label": "When does it NOT make sense?" },
-      { "id": "vs", "label": "Fractional vs. interim vs. consultant" }
+      { "id": "when-no", "label": "When is a different engagement more appropriate?" },
+      { "id": "comparison", "label": "How does the role compare with other options?" },
+      { "id": "fees", "label": "How are fees and time commitments set?" }
     ],
-    "definition": {
-      "title": "What is a fractional CTO?",
-      "body": "A fractional CTO is an experienced technical leader who works with your company part-time — typically 8 to 20 hours per month. Not a consultant who hands you a PDF with recommendations. Someone who makes real technical decisions, writes code when needed, and stays long enough to see results."
-    },
     "whatTheyDo": {
       "title": "What does a fractional CTO do?",
-      "intro": "It depends on where your company is, but it usually includes:",
-      "items": [
-        { "label": "Technical strategy", "body": "Deciding what to build, with what technology, and in what order. Build vs. buy. Designing the architecture that will scale with your business." },
-        { "label": "Team leadership", "body": "Hiring engineers, structuring the team, establishing code review processes, deployment pipelines, and documentation. At early-stage companies this means building the founding team. At larger ones, it means leveling up what's already there." },
-        { "label": "Execution", "body": "A good fractional CTO doesn't just direct — they execute. They review pull requests, solve architecture problems, and get hands-on when the team needs real technical support." },
-        { "label": "Audit and technical debt", "body": "Assessing the state of the codebase, identifying risks, and prioritizing what to fix first to unblock the team." }
-      ]
-    },
-    "cost": {
-      "title": "What does it cost?",
       "body": [
-        "A full-time CTO with real experience costs $250,000–$500,000/year in the US when you factor in salary, equity, benefits, and hiring costs.",
-        "A fractional CTO typically charges $3,000–$8,000/month depending on hours and scope. For a 5–50 person startup that needs technical leadership but can't justify a full-time executive, the math is obvious."
+        "A fractional CTO helps connect the company's goals to its technical decisions. That can mean choosing what to build, evaluating a platform, reviewing architecture, setting engineering priorities, or helping a founder understand the consequences of a technical choice.",
+        "Some engagements also include implementation. In my work, the balance between coding and leadership is defined around what the business needs."
       ]
     },
     "whenYes": {
       "title": "When does it make sense?",
-      "items": [
-        "You have a product in production but no clear technical direction",
-        "You're a technical founder who can't do everything anymore",
-        "You need to hire engineers but don't know how to evaluate candidates",
-        "Your codebase has become a liability and you need someone to diagnose it",
-        "You're raising capital and need your technical story to hold up"
+      "body": [
+        "It can be useful when a company needs ongoing technical ownership but does not need a full-time executive. Examples include a founder carrying too many technical decisions, an engineering team without clear direction, or a product entering a stage that requires different architectural and organizational choices."
       ]
     },
     "whenNo": {
-      "title": "When does it NOT make sense?",
-      "items": [
-        "You need someone 40 hours a week — that's a full-time CTO",
-        "You want an advisor who opines without executing — that's a board advisor",
-        "You can't commit to at least 3 months"
+      "title": "When is a different engagement more appropriate?",
+      "body": [
+        "A well-defined feature or integration may need a senior engineer. A discrete review may need a technical assessment. A role requiring full-time day-to-day ownership may need a full-time CTO or engineering leader.",
+        "Choose the engagement based on the responsibility and continuity required."
       ]
     },
     "comparison": {
-      "title": "Fractional vs. interim vs. consultant",
-      "items": [
-        { "label": "Fractional", "body": "Part-time, ongoing, embedded in your team. Makes decisions and executes." },
-        { "label": "Interim", "body": "Full-time but temporary. Covers a transition while you hire the permanent one." },
-        { "label": "Consultant", "body": "Project-based, defined deliverables. Less integrated, more transactional." }
-      ],
-      "footer": "A fractional CTO sits in between: more committed than a consultant, more flexible than an interim."
+      "title": "How does the role compare with other options?",
+      "headers": ["Engagement", "Typical focus"],
+      "rows": [
+        ["Senior engineer", "Architecture and implementation within an agreed area of responsibility"],
+        ["Technical consultant", "Analysis or delivery for a defined problem"],
+        ["Fractional CTO", "Ongoing technical direction with a part-time commitment"],
+        ["Interim CTO", "Temporary ownership of the CTO role during a transition"]
+      ]
     },
-    "ctaTitle": "Sound like what you need?",
-    "ctaBody": "Book a call — 30 minutes, no commitment.",
-    "faq": [
-      { "q": "What is a fractional CTO?", "a": "A fractional CTO is an experienced technical leader who works with your company part-time — typically 8 to 20 hours per month. They make real technical decisions, write code when needed, and stay long enough to see results." },
-      { "q": "What does a fractional CTO do?", "a": "Technical strategy (what to build, build vs. buy, architecture). Team leadership (hiring, processes, code review, deployments). Hands-on execution. Audit and technical debt prioritization." },
-      { "q": "What does a fractional CTO cost?", "a": "Typically $3,000–$8,000 per month depending on hours and scope. For comparison, a full-time CTO in the US costs $250,000–$500,000 per year once you include salary, equity, benefits, and hiring costs." },
-      { "q": "When should I hire a fractional CTO?", "a": "When you have a product in production but no clear technical direction, when you're a technical founder who can't do everything anymore, when you need to hire engineers but don't know how to evaluate them, when your codebase has become a liability, or when you're raising capital and need your technical story to hold up." },
-      { "q": "When should I NOT hire a fractional CTO?", "a": "If you need someone 40 hours a week (that's a full-time CTO), if you want an advisor who only opines without executing (that's a board advisor), or if you can't commit to at least 3 months." },
-      { "q": "What's the difference between a fractional, interim, and consultant CTO?", "a": "A fractional CTO is part-time, ongoing, and embedded in your team — they make decisions and execute. An interim CTO is full-time but temporary, covering a transition. A consultant is project-based with defined deliverables, less integrated and more transactional." }
-    ]
-  },
-  "contact": {
-    "metaTitle": "Contact — Hec Sánchez",
-    "metaDescription": "Book a 30-minute call to see if it makes sense to work together.",
-    "title": "Let's talk",
-    "subtext": "Book a 30-minute call. No commitment, no sales pitch — just a conversation to see if it makes sense to work together.",
-    "altTitle": "Prefer to write?",
-    "linkedinLabel": "LinkedIn"
+    "fees": {
+      "title": "How are fees and time commitments set?",
+      "body": [
+        "They depend on the scope, responsibility, and time required. For my engagements, we agree those details in a proposal after discussing the product and the support needed."
+      ]
+    },
+    "ctaTitle": "Exploring technical leadership for your company?",
+    "ctaBody": "Read how I work with founders to see where product engineering or fractional CTO support could fit."
   },
   "footer": {
     "rights": "All rights reserved.",
-    "built": "Built with Astro."
+    "navTitle": "Site",
+    "workTitle": "Work with me",
+    "elsewhereTitle": "Elsewhere",
+    "rss": "RSS"
   }
 }

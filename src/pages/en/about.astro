@@ -4,6 +4,12 @@ import AboutPage from '../../components/sections/AboutPage.astro';
 import { t } from '../../i18n';
 const dict = t('en');
 ---
-<BaseLayout locale="en" title={dict.about.metaTitle} description={dict.about.metaDescription} altLocaleHref="/es/sobre-mi">
+<BaseLayout
+  locale="en"
+  title={dict.about.metaTitle}
+  description={dict.about.metaDescription}
+  altLocaleHref="/es/sobre-mi"
+  pageType="AboutPage"
+>
   <AboutPage locale="en" />
 </BaseLayout>

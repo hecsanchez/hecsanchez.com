@@ -1,23 +1,64 @@
 ---
-// Root: detect browser locale on first visit, default to English.
+// Root landing page. Renders a real static fallback so `/` is useful with or
+// without JavaScript, then hands visitors to their preferred language.
+import '../styles/global.css';
+
+const site = Astro.site;
+const canonical = new URL('/', site).toString();
 ---
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="0; url=/en" />
-    <link rel="alternate" hreflang="es" href="/es" />
-    <link rel="alternate" hreflang="en" href="/en" />
-    <link rel="alternate" hreflang="x-default" href="/en" />
-    <title>Hec Sánchez</title>
-    <script>
-      // Check every preferred language the browser reports, not just the top one.
-      const langs = (navigator.languages && navigator.languages.length
-        ? navigator.languages
-        : [navigator.language || 'en']).map((l) => l.toLowerCase());
-      const prefersEs = langs.some((l) => l.startsWith('es'));
-      location.replace(prefersEs ? '/es' : '/en');
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hec Sánchez | Product Engineer & Fractional CTO</title>
+    <meta
+      name="description"
+      content="Hec Sánchez builds software and helps agencies and founders make better technical decisions. Available in English and Spanish."
+    />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/logos/hecsanchez.svg" />
+    <link rel="preconnect" href="https://use.typekit.net" crossorigin />
+    <link rel="stylesheet" href="https://use.typekit.net/ujh3wif.css" />
+    <script is:inline>
+      // Send visitors to the language they asked for. The page below stands on
+      // its own if this never runs, and /en and /es stay directly reachable.
+      try {
+        const langs = (navigator.languages && navigator.languages.length
+          ? navigator.languages
+          : [navigator.language || 'en']).map((l) => l.toLowerCase());
+        location.replace(langs.some((l) => l.startsWith('es')) ? '/es' : '/en');
+      } catch {}
     </script>
   </head>
-  <body></body>
+  <body class="flex min-h-dvh items-center justify-center px-6 py-20">
+    <main class="max-w-xl text-center">
+      <img
+        src="/hecsanchez.png"
+        alt="Hec Sánchez"
+        width="240"
+        height="240"
+        class="mx-auto h-28 w-28 rounded-full object-cover"
+      />
+      <h1 class="mt-8 font-serif text-4xl">Hec Sánchez</h1>
+      <p class="mt-4 text-[var(--color-fg-muted)]">
+        Product engineer and fractional CTO based in Puebla, Mexico. I build software and work with
+        agencies and founders on product development, integrations, and technical leadership.
+      </p>
+      <p class="mt-8 flex flex-wrap justify-center gap-4">
+        <a
+          href="/en"
+          class="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-6 py-3 font-medium text-[var(--color-bg)] hover:text-[var(--color-bg)]"
+        >
+          English
+        </a>
+        <a
+          href="/es"
+          class="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] px-6 py-3 font-medium text-[var(--color-fg)]"
+        >
+          Español
+        </a>
+      </p>
+    </main>
+  </body>
 </html>

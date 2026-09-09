@@ -1,0 +1,37 @@
+---
+import { t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  /** Recorded with the analytics event so we can tell which page sent the click. */
+  placement: string;
+  title?: string;
+  body?: string;
+}
+
+const { locale, placement, title, body } = Astro.props;
+const dict = t(locale);
+
+const cards = [
+  { href: dict.routes.agencies, label: dict.cta.forAgencies, body: dict.home.agenciesBody, audience: 'agency' },
+  { href: dict.routes.founders, label: dict.cta.forFounders, body: dict.home.foundersBody, audience: 'founder' },
+];
+---
+
+<section class="mx-auto max-w-3xl px-6 py-16">
+  {title && <h2 class="font-serif text-3xl">{title}</h2>}
+  {body && <p class="mt-3 text-[var(--color-fg-muted)]">{body}</p>}
+  <div class="mt-8 grid gap-5 md:grid-cols-2">
+    {cards.map((card) => (
+      <a
+        href={card.href}
+        class="group block rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] p-7 transition hover:border-[var(--color-accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+        data-analytics-event="service_cta_click"
+        data-analytics-props={JSON.stringify({ audience: card.audience, locale, placement })}
+      >
+        <h3 class="font-serif text-2xl group-hover:text-[var(--color-accent)]">{card.label}</h3>
+        <p class="mt-3 text-base text-[var(--color-fg-muted)]">{card.body}</p>
+      </a>
+    ))}
+  </div>
+</section>

@@ -2,17 +2,18 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import StructuredData from '../components/StructuredData.astro';
 import { t, type Locale } from '../i18n';
 
 interface Props {
   locale: Locale;
   title: string;
   description: string;
-  /** Path on the *other* locale that maps to the current page (for the language toggle). */
+  /** Path on the *other* locale that maps to the current page (language toggle + hreflang). */
   altLocaleHref?: string;
   /** Emit `<meta name="robots" content="noindex, nofollow">`. Use for draft posts. */
   noindex?: boolean;
-  /** Path to the OG image (e.g. `/og/writing/slug.png`). Falls back to `/og-image.png`. */
+  /** Path to the OG image (e.g. `/og/writing/slug.png`). Falls back to the portrait. */
   ogImage?: string;
   /** og:type — use `'article'` for blog posts. Defaults to `'website'`. */
   type?: 'website' | 'article';
@@ -20,13 +21,49 @@ interface Props {
   articleDate?: Date;
   /** Values for `article:tag`. Only rendered when `type='article'`. */
   articleTags?: string[];
+  /** Schema.org type for the page node in the JSON-LD graph. */
+  pageType?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'CollectionPage';
+  /** Renders a `Service` as the page's `mainEntity`. */
+  service?: { name: string; description: string };
+  /** Renders an `ItemList` of the entries actually shown on the page. */
+  itemList?: { name: string; url: string }[];
+  /** Renders a `BlogPosting` node alongside the page node. */
+  article?: {
+    headline: string;
+    description: string;
+    datePublished: string;
+    dateModified?: string;
+    image?: string;
+  };
 }
 
-const { locale, title, description, altLocaleHref, noindex = false, ogImage, type = 'website', articleDate, articleTags } = Astro.props;
+const {
+  locale,
+  title,
+  description,
+  altLocaleHref,
+  noindex = false,
+  ogImage,
+  type = 'website',
+  articleDate,
+  articleTags,
+  pageType,
+  service,
+  itemList,
+  article,
+} = Astro.props;
+
 const dict = t(locale);
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const ogImageUrl = ogImage ? new URL(ogImage, Astro.site).toString() : new URL('/og-image.png', Astro.site).toString();
+const canonicalHref = canonical.toString();
+const ogImageUrl = new URL(ogImage ?? '/hecsanchez.png', Astro.site).toString();
 const ogLocale = locale === 'es' ? 'es_MX' : 'en_US';
+
+// Reciprocal, absolute hreflang. The alternate must match the other page's own
+// canonical exactly, so normalise it to this site's trailing-slash convention.
+const altPath = altLocaleHref?.endsWith('/') ? altLocaleHref : altLocaleHref && `${altLocaleHref}/`;
+const altHref = altPath ? new URL(altPath, Astro.site).toString() : undefined;
+const enHref = locale === 'en' ? canonicalHref : altHref;
 ---
 
 <!doctype html>
@@ -38,14 +75,15 @@ const ogLocale = locale === 'es' ? 'es_MX' : 'en_US';
     <title>{title}</title>
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
-    <link rel="canonical" href={canonical.toString()} />
+    <link rel="canonical" href={canonicalHref} />
     <link rel="icon" type="image/svg+xml" href="/logos/hecsanchez.svg" />
+    <link rel="alternate" type="application/rss+xml" title={dict.siteName} href={dict.routes.rss} />
 
     <link rel="preconnect" href="https://use.typekit.net" crossorigin />
     <link rel="stylesheet" href="https://use.typekit.net/ujh3wif.css" />
 
     <meta property="og:type" content={type} />
-    <meta property="og:url" content={canonical.toString()} />
+    <meta property="og:url" content={canonicalHref} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageUrl} />
@@ -62,14 +100,22 @@ const ogLocale = locale === 'es' ? 'es_MX' : 'en_US';
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
 
-    {altLocaleHref && (
-      <link
-        rel="alternate"
-        hreflang={locale === 'es' ? 'en' : 'es'}
-        href={new URL(altLocaleHref, Astro.site).toString()}
-      />
+    <link rel="alternate" hreflang={locale} href={canonicalHref} />
+    {altHref && (
+      <link rel="alternate" hreflang={locale === 'es' ? 'en' : 'es'} href={altHref} />
     )}
-    <link rel="alternate" hreflang={locale} href={canonical.toString()} />
+    {altHref && enHref && <link rel="alternate" hreflang="x-default" href={enHref} />}
+
+    <StructuredData
+      locale={locale}
+      canonical={canonicalHref}
+      name={title}
+      description={description}
+      pageType={pageType}
+      service={service}
+      itemList={itemList}
+      article={article}
+    />
 
     <!-- Privacy-friendly analytics by Plausible -->
     <script async src="https://plausible.io/js/pa-LLj1kLisNbG0bzRIrzcq1.js"></script>
@@ -79,10 +125,29 @@ const ogLocale = locale === 'es' ? 'es_MX' : 'en_US';
     </script>
   </head>
   <body class="flex min-h-dvh flex-col">
-    <Nav locale={locale} altLocaleHref={altLocaleHref} />
-    <main class="flex-1">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-[var(--color-accent)] focus:px-4 focus:py-2 focus:text-[var(--color-bg)]"
+    >
+      {dict.skipToContent}
+    </a>
+    <Nav locale={locale} altLocaleHref={altPath} />
+    <main id="main" class="flex-1">
       <slot />
     </main>
     <Footer locale={locale} />
+
+    <script is:inline>
+      // Delegated analytics. Wrapped so a blocked or failed script never stops a navigation.
+      document.addEventListener('click', (event) => {
+        try {
+          const el = event.target instanceof Element ? event.target.closest('[data-analytics-event]') : null;
+          if (!el || typeof window.plausible !== 'function') return;
+          window.plausible(el.getAttribute('data-analytics-event'), {
+            props: JSON.parse(el.getAttribute('data-analytics-props') || '{}'),
+          });
+        } catch {}
+      });
+    </script>
   </body>
 </html>

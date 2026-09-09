@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FoundersPage from '../../components/sections/FoundersPage.astro';
+import { t } from '../../i18n';
+const dict = t('es');
+---
+<BaseLayout
+  locale="es"
+  title={dict.founders.metaTitle}
+  description={dict.founders.metaDescription}
+  altLocaleHref="/en/for-founders"
+  service={{ name: dict.founders.serviceName, description: dict.founders.metaDescription }}
+>
+  <FoundersPage locale="es" />
+</BaseLayout>

@@ -39,6 +39,11 @@
     -moz-osx-font-smoothing: auto;
   }
 
+  /* Toggled via the `hidden` attribute — beats any display utility on the element. */
+  [hidden] {
+    display: none !important;
+  }
+
   ::selection {
     background-color: var(--color-accent);
     color: var(--color-bg);

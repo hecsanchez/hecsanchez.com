@@ -4,18 +4,34 @@ import { t, type Locale, contactInfo } from '../../i18n';
 interface Props { locale: Locale }
 const { locale } = Astro.props;
 const dict = t(locale);
+const page = dict.contact;
 ---
 
 <section class="mx-auto max-w-3xl px-6 pt-20 pb-10">
-  <h1 class="font-serif text-5xl md:text-6xl">{dict.contact.title}</h1>
-  <p class="mt-6 font-serif text-[var(--color-fg-muted)]">{dict.contact.subtext}</p>
+  <h1 class="font-serif text-4xl md:text-5xl">{page.h1}</h1>
+
+  <!--
+    All three intros ship in the HTML; the whitelisted `?audience=` value below
+    picks one client-side. The canonical URL stays the clean Contact route.
+  -->
+  <p id="contact-intro-default" class="mt-6 font-serif text-[var(--color-fg-muted)]">{page.introDefault}</p>
+  <p id="contact-intro-agency" hidden class="mt-6 font-serif text-[var(--color-fg-muted)]">{page.introAgency}</p>
+  <p id="contact-intro-founder" hidden class="mt-6 font-serif text-[var(--color-fg-muted)]">{page.introFounder}</p>
+</section>
+
+<section class="mx-auto max-w-3xl px-6 pb-10">
+  <h2 class="font-serif text-2xl">{page.contextTitle}</h2>
+  {page.context.map((paragraph) => (
+    <p class="mt-4 text-[var(--color-fg-muted)]">{paragraph}</p>
+  ))}
 </section>
 
 <section class="mx-auto max-w-4xl px-6 pb-12">
-  <!-- Cal.com inline embed. TODO: Hec to confirm calLink in src/i18n/index.ts -->
+  <h2 class="font-serif text-2xl">{page.bookingLabel}</h2>
+  <!-- Cal.com inline embed. Email below stays visible if the embed fails to load. -->
   <div
     id="cal-inline"
-    class="rounded-2xl border border-[var(--color-border)] overflow-hidden bg-[var(--color-bg-soft)]"
+    class="mt-6 overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)]"
     style="min-width:320px;min-height:680px;width:100%;"
   ></div>
   <script type="text/javascript" is:inline define:vars={{ calLink: contactInfo.calLink }}>
@@ -74,12 +90,42 @@ const dict = t(locale);
 </section>
 
 <section class="mx-auto max-w-3xl px-6 pb-20">
-  <p class="text-[var(--color-fg-muted)]">
-    {dict.contact.altTitle}
-    {' → '}
-    <a href={`mailto:${contactInfo.email}`} class="text-[var(--color-accent)] underline underline-offset-4">{contactInfo.email}</a>
+  <h2 class="font-serif text-2xl">{page.emailTitle}</h2>
+  <p class="mt-4 text-[var(--color-fg-muted)]">
+    {page.emailBody}{' '}
+    <a
+      href={`mailto:${contactInfo.email}`}
+      class="text-[var(--color-accent)] underline underline-offset-4"
+      id="contact-email-link"
+      data-analytics-event="contact_email_click"
+      data-analytics-props={JSON.stringify({ audience: 'none', locale })}
+    >
+      {contactInfo.email}
+    </a>
   </p>
-  <p class="mt-3">
-    <a href={contactInfo.linkedin} target="_blank" rel="noopener" class="text-[var(--color-accent)] underline underline-offset-4">{dict.contact.linkedinLabel}</a>
-  </p>
+  <p class="mt-3 text-[var(--color-fg-muted)]">{page.location}</p>
 </section>
+
+<script is:inline>
+  (function () {
+    // Only these two values select a contextual intro; anything else falls through.
+    const AUDIENCES = ['agency', 'founder'];
+    const audience = new URLSearchParams(window.location.search).get('audience');
+    if (!AUDIENCES.includes(audience)) return;
+
+    const intro = document.getElementById('contact-intro-' + audience);
+    const fallback = document.getElementById('contact-intro-default');
+    if (!intro || !fallback) return;
+
+    fallback.hidden = true;
+    intro.hidden = false;
+
+    const emailLink = document.getElementById('contact-email-link');
+    if (emailLink) {
+      emailLink.setAttribute(
+        'data-analytics-props',
+        JSON.stringify({ audience: audience, locale: document.documentElement.lang.slice(0, 2) })
+      );
+    }
+  })();
+</script>

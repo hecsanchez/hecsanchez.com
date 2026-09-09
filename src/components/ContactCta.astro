@@ -1,0 +1,28 @@
+---
+import { t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  /** Adds `?audience=…` to the Contact URL, which selects the contextual intro. */
+  audience?: 'agency' | 'founder';
+  /** Overrides the default "Book a call" label. */
+  label?: string;
+  /** Where on the site this CTA sits — recorded with the analytics event. */
+  placement: string;
+}
+
+const { locale, audience, label, placement } = Astro.props;
+const dict = t(locale);
+const href = audience ? `${dict.routes.contact}?audience=${audience}` : dict.routes.contact;
+const text = label ?? dict.cta.bookCall;
+---
+
+<a
+  href={href}
+  class="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-6 py-3 font-medium text-[var(--color-bg)] transition hover:bg-[var(--color-accent-hover)] hover:text-[var(--color-bg)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+  data-analytics-event="service_cta_click"
+  data-analytics-props={JSON.stringify({ audience: audience ?? 'none', locale, placement })}
+>
+  {text}
+  <span aria-hidden="true">→</span>
+</a>

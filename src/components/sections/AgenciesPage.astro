@@ -1,0 +1,93 @@
+---
+import { t, type Locale } from '../../i18n';
+import { getProject } from '../../data/projects';
+import ContactCta from '../ContactCta.astro';
+import ArrowLink from '../ArrowLink.astro';
+import ProjectCard from '../ProjectCard.astro';
+import Faq from '../Faq.astro';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const dict = t(locale);
+const page = dict.agencies;
+
+const work = page.work.map((entry) => ({ project: getProject(entry.project), body: entry.body }));
+---
+
+<!-- Hero + primary CTA -->
+<section class="mx-auto max-w-3xl px-6 pt-20 pb-12">
+  <h1 class="font-serif text-4xl leading-tight text-balance md:text-5xl">{page.h1}</h1>
+  {page.intro.map((paragraph) => (
+    <p class="mt-5 text-[var(--color-fg-muted)]">{paragraph}</p>
+  ))}
+  <div class="mt-10 flex flex-wrap items-center gap-5">
+    <ContactCta locale={locale} audience="agency" label={dict.cta.discussClientProject} placement="agencies_hero" />
+    <ArrowLink href="#relevant-work">{dict.cta.seeRelevantWork}</ArrowLink>
+  </div>
+</section>
+
+<!-- Recognizable situations -->
+<section class="border-y border-[var(--color-border)] bg-[var(--color-bg-soft)]/40">
+  <div class="mx-auto max-w-3xl px-6 py-14">
+    <h2 class="font-serif text-3xl">{page.situationsTitle}</h2>
+    {page.situations.map((paragraph) => (
+      <p class="mt-5 text-[var(--color-fg-muted)]">{paragraph}</p>
+    ))}
+  </div>
+</section>
+
+<!-- Services -->
+<section class="mx-auto max-w-3xl px-6 py-14">
+  <h2 class="font-serif text-3xl">{page.servicesTitle}</h2>
+  <div class="mt-8 grid gap-6 sm:grid-cols-2">
+    {page.services.map((service) => (
+      <article class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] p-7">
+        <h3 class="font-serif text-xl">{service.title}</h3>
+        <p class="mt-3 text-base text-[var(--color-fg-muted)]">{service.body}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<!-- Relevant work -->
+<section id="relevant-work" class="mx-auto max-w-5xl scroll-mt-16 px-6 py-14">
+  <h2 class="font-serif text-3xl">{page.workTitle}</h2>
+  <div class="mt-8 grid gap-6 md:grid-cols-3">
+    {work.map((entry) => (
+      <ProjectCard locale={locale} project={entry.project} description={entry.body} />
+    ))}
+  </div>
+</section>
+
+<!-- Engagement approach -->
+<section class="border-y border-[var(--color-border)] bg-[var(--color-bg-soft)]/40">
+  <div class="mx-auto max-w-3xl px-6 py-14">
+    <h2 class="font-serif text-3xl">{page.processTitle}</h2>
+    <ol class="mt-8 space-y-8 border-l border-[var(--color-border)] pl-6">
+      {page.process.map((step) => (
+        <li class="relative">
+          <span class="absolute -left-[31px] top-1 inline-flex h-4 w-4 rounded-full border-2 border-[var(--color-accent)] bg-[var(--color-bg)]" aria-hidden="true" />
+          <h3 class="font-serif text-xl">{step.title}</h3>
+          <p class="mt-2 text-[var(--color-fg-muted)]">{step.body}</p>
+        </li>
+      ))}
+    </ol>
+    <p class="mt-8">
+      <ArrowLink href={dict.routes.howIWork}>{dict.cta.readHowIWork}</ArrowLink>
+    </p>
+  </div>
+</section>
+
+<!-- Practical questions -->
+<Faq title={page.faqTitle} items={page.faq} />
+
+<!-- Final CTA -->
+<section class="mx-auto max-w-3xl px-6 pb-20">
+  <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] px-8 py-12 text-center">
+    <h2 class="font-serif text-3xl">{page.finalCtaTitle}</h2>
+    <p class="mx-auto mt-3 max-w-[52ch] text-[var(--color-fg-muted)]">{page.finalCtaBody}</p>
+    <div class="mt-6 flex justify-center">
+      <ContactCta locale={locale} audience="agency" label={dict.cta.discussClientProject} placement="agencies_footer" />
+    </div>
+  </div>
+</section>

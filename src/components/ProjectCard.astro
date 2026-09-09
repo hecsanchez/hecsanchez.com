@@ -1,0 +1,43 @@
+---
+import { t, type Locale } from '../i18n';
+import type { Project } from '../data/projects';
+
+interface Props {
+  locale: Locale;
+  project: Project;
+  /** Overrides the card description — audience pages use their own wording. */
+  description?: string;
+}
+
+const { locale, project, description } = Astro.props;
+const dict = t(locale);
+const href = `${dict.routes.projects}#${project.id}`;
+---
+
+<a
+  href={href}
+  class="group flex flex-col rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] p-7 transition hover:border-[var(--color-accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+  data-analytics-event="project_link_click"
+  data-analytics-props={JSON.stringify({ project: project.id, destination_type: 'anchor', locale })}
+>
+  {project.image && (
+    <img
+      src={project.image.src}
+      alt={project.image.alt[locale]}
+      width={project.image.width}
+      height={project.image.height}
+      loading="lazy"
+      decoding="async"
+      class="mb-5 aspect-[16/10] w-full rounded-lg border border-[var(--color-border)] object-cover"
+    />
+  )}
+  <div class="text-xs uppercase tracking-[0.15em] text-[var(--color-fg-dim)]">
+    {project.category[locale]}
+  </div>
+  <h3 class="mt-2 font-serif text-2xl group-hover:text-[var(--color-accent)]">
+    {project.title[locale]}
+  </h3>
+  <p class="mt-3 text-base text-[var(--color-fg-muted)]">
+    {description ?? project.cardDescription[locale]}
+  </p>
+</a>

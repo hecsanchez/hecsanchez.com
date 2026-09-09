@@ -8,16 +8,32 @@ interface Props {
 
 const { locale, altLocaleHref } = Astro.props;
 const otherLocale: Locale = locale === 'es' ? 'en' : 'es';
-const fallback = otherLocale === 'es' ? '/es' : '/en';
+const fallback = otherLocale === 'es' ? '/es/' : '/en/';
 const href = altLocaleHref ?? fallback;
 ---
 
 <div class="flex items-center gap-1 text-xs uppercase tracking-wider text-[var(--color-fg-dim)]">
   <span class={locale === 'es' ? 'text-[var(--color-fg)]' : ''}>
-    {locale === 'es' ? 'ES' : <a href={href}>ES</a>}
+    {locale === 'es' ? 'ES' : <a href={href} data-locale-switch>ES</a>}
   </span>
   <span aria-hidden="true">/</span>
   <span class={locale === 'en' ? 'text-[var(--color-fg)]' : ''}>
-    {locale === 'en' ? 'EN' : <a href={href}>EN</a>}
+    {locale === 'en' ? 'EN' : <a href={href} data-locale-switch>EN</a>}
   </span>
 </div>
+
+<script is:inline>
+  // Project and section anchors use the same IDs in both locales, so carry the
+  // current fragment across when switching languages.
+  (function () {
+    const sync = () => {
+      const hash = window.location.hash;
+      for (const link of document.querySelectorAll('a[data-locale-switch]')) {
+        const base = link.getAttribute('href').split('#')[0];
+        link.setAttribute('href', hash ? base + hash : base);
+      }
+    };
+    sync();
+    window.addEventListener('hashchange', sync);
+  })();
+</script>

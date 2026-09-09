@@ -1,0 +1,111 @@
+---
+import { t, type Locale, contactInfo } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  /** Absolute canonical URL of the current page. */
+  canonical: string;
+  name: string;
+  description: string;
+  /** Schema.org type for the page node. */
+  pageType?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'CollectionPage';
+  /** Renders a `Service` as the page's `mainEntity` (audience pages). */
+  service?: { name: string; description: string };
+  /** Renders an `ItemList` of the entries actually displayed on the page. */
+  itemList?: { name: string; url: string }[];
+  /** Renders a `BlogPosting` instead of a plain page node. */
+  article?: {
+    headline: string;
+    description: string;
+    datePublished: string;
+    dateModified?: string;
+    image?: string;
+  };
+}
+
+const { locale, canonical, name, description, pageType = 'WebPage', service, itemList, article } = Astro.props;
+
+const site = Astro.site!;
+const origin = site.origin;
+const personId = `${origin}/#person`;
+const websiteId = `${origin}/#website`;
+const pageId = `${canonical}#webpage`;
+const inLanguage = locale === 'es' ? 'es-MX' : 'en-US';
+
+const person = {
+  '@type': 'Person',
+  '@id': personId,
+  name: 'Hec Sánchez',
+  url: `${origin}/en/about/`,
+  image: `${origin}/hecsanchez.png`,
+  jobTitle: locale === 'es' ? 'Ingeniero de producto y CTO fraccional' : 'Product engineer and fractional CTO',
+  email: `mailto:${contactInfo.email}`,
+  knowsLanguage: ['en', 'es'],
+  sameAs: [contactInfo.linkedin, contactInfo.github],
+};
+
+const website = {
+  '@type': 'WebSite',
+  '@id': websiteId,
+  url: `${origin}/`,
+  name: t(locale).siteName,
+  publisher: { '@id': personId },
+  inLanguage,
+};
+
+const page: Record<string, unknown> = {
+  '@type': article ? 'WebPage' : pageType,
+  '@id': pageId,
+  url: canonical,
+  name,
+  description,
+  inLanguage,
+  isPartOf: { '@id': websiteId },
+};
+
+if (pageType === 'AboutPage') page.mainEntity = { '@id': personId };
+
+if (service) {
+  page.mainEntity = {
+    '@type': 'Service',
+    name: service.name,
+    description: service.description,
+    url: canonical,
+    provider: { '@id': personId },
+  };
+}
+
+if (itemList?.length) {
+  page.mainEntity = {
+    '@type': 'ItemList',
+    itemListElement: itemList.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      url: item.url,
+    })),
+  };
+}
+
+const graph: Record<string, unknown>[] = [person, website, page];
+
+if (article) {
+  graph.push({
+    '@type': 'BlogPosting',
+    '@id': `${canonical}#article`,
+    headline: article.headline,
+    description: article.description,
+    datePublished: article.datePublished,
+    ...(article.dateModified ? { dateModified: article.dateModified } : {}),
+    ...(article.image ? { image: article.image } : {}),
+    author: { '@id': personId },
+    publisher: { '@id': personId },
+    inLanguage,
+    mainEntityOfPage: { '@id': pageId },
+  });
+}
+
+const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />

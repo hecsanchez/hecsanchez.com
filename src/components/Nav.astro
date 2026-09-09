@@ -11,53 +11,86 @@ const { locale, altLocaleHref } = Astro.props;
 const dict = t(locale);
 const r = dict.routes;
 
-const links = [
-  { href: r.howIWork, label: dict.nav.howIWork },
-  { href: r.about, label: dict.nav.about },
+/** Links shown before the "Work with me" disclosure. */
+const leadingLinks = [
   { href: r.blog, label: dict.nav.blog },
+  { href: r.projects, label: dict.nav.projects },
 ];
+
+/** Contents of the "Work with me" disclosure — listed directly in the mobile menu. */
+const workLinks = [
+  { href: r.agencies, label: dict.nav.agencies },
+  { href: r.founders, label: dict.nav.founders },
+  { href: r.howIWork, label: dict.nav.howIWork },
+  { href: r.contact, label: dict.nav.contact },
+];
+
+const trailingLinks = [{ href: r.about, label: dict.nav.about }];
+
+const linkClass =
+  'text-[var(--color-fg-muted)] transition hover:text-[var(--color-fg)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]';
 ---
 
 <header class="border-b border-[var(--color-border)]">
   <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-5">
-    <a
-      href={r.home}
-      class="block shrink-0"
-      aria-label="Hec Sánchez — home"
-    >
-      <img
-        src="/logos/hecsanchez.svg"
-        alt="Hec Sánchez"
-        width="348"
-        height="240"
-        class="h-6 w-auto"
-      />
+    <a href={r.home} class="block shrink-0" aria-label="Hec Sánchez — home">
+      <img src="/logos/hecsanchez.svg" alt="Hec Sánchez" width="348" height="240" class="h-6 w-auto" />
     </a>
 
-    <nav class="hidden items-center gap-7 text-sm md:flex">
-      {links.map((link) => (
-        <a href={link.href} class="text-[var(--color-fg-muted)] transition hover:text-[var(--color-fg)]">
-          {link.label}
-        </a>
+    <nav class="hidden items-center gap-7 text-sm md:flex" aria-label={dict.siteName}>
+      {leadingLinks.map((link) => (
+        <a href={link.href} class={linkClass}>{link.label}</a>
       ))}
+
+      <div class="relative" data-disclosure>
+        <button
+          type="button"
+          id="work-with-me-button"
+          aria-expanded="false"
+          aria-controls="work-with-me-menu"
+          class={`inline-flex items-center gap-1.5 ${linkClass}`}
+        >
+          {dict.nav.workWithMe}
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" class="transition-transform">
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </button>
+        <div
+          id="work-with-me-menu"
+          hidden
+          class="absolute right-0 top-full z-40 mt-3 w-56 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-elevated)] p-2 shadow-lg"
+        >
+          <ul>
+            {workLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="block rounded-lg px-3 py-2 text-[var(--color-fg-muted)] transition hover:bg-[var(--color-bg-soft)] hover:text-[var(--color-fg)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {trailingLinks.map((link) => (
+        <a href={link.href} class={linkClass}>{link.label}</a>
+      ))}
+
       <LanguageToggle locale={locale} altLocaleHref={altLocaleHref} />
-      <a
-        href={r.contact}
-        class="rounded-full bg-[var(--color-accent)] px-4 py-2 text-sm font-medium text-[var(--color-bg)] transition hover:bg-[var(--color-accent-hover)] hover:text-[var(--color-bg)]"
-      >
-        {dict.nav.contact}
-      </a>
     </nav>
 
     <button
       id="mobile-nav-toggle"
       type="button"
-      class="md:hidden text-[var(--color-fg)]"
-      aria-label="Menu"
+      class="text-[var(--color-fg)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)] md:hidden"
+      aria-label={dict.nav.openMenu}
       aria-expanded="false"
       aria-controls="mobile-nav"
     >
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
         <line x1="4" y1="7" x2="20" y2="7" />
         <line x1="4" y1="12" x2="20" y2="12" />
         <line x1="4" y1="17" x2="20" y2="17" />
@@ -65,34 +98,78 @@ const links = [
     </button>
   </div>
 
-  <div
-    id="mobile-nav"
-    class="hidden md:hidden border-t border-[var(--color-border)] bg-[var(--color-bg)]"
-  >
-    <nav class="mx-auto flex max-w-5xl flex-col gap-1 px-6 py-4 text-base">
-      {links.map((link) => (
-        <a href={link.href} class="py-3 text-[var(--color-fg-muted)] hover:text-[var(--color-fg)]">
-          {link.label}
-        </a>
+  <div id="mobile-nav" hidden class="border-t border-[var(--color-border)] bg-[var(--color-bg)] md:hidden">
+    <nav class="mx-auto flex max-w-5xl flex-col px-6 py-4 text-base" aria-label={dict.nav.workWithMe}>
+      {leadingLinks.map((link) => (
+        <a href={link.href} class="py-3 text-[var(--color-fg-muted)] hover:text-[var(--color-fg)]">{link.label}</a>
       ))}
-      <a
-        href={r.contact}
-        class="mt-2 inline-block rounded-full bg-[var(--color-accent)] px-4 py-3 text-center text-sm font-medium text-[var(--color-bg)] hover:text-[var(--color-bg)]"
-      >
-        {dict.nav.contact}
-      </a>
-      <div class="mt-3"><LanguageToggle locale={locale} altLocaleHref={altLocaleHref} /></div>
+      {trailingLinks.map((link) => (
+        <a href={link.href} class="py-3 text-[var(--color-fg-muted)] hover:text-[var(--color-fg)]">{link.label}</a>
+      ))}
+      <div class="mt-3 border-t border-[var(--color-border)] pt-3 text-xs uppercase tracking-[0.15em] text-[var(--color-fg-dim)]">
+        {dict.nav.workWithMe}
+      </div>
+      {workLinks.map((link) => (
+        <a href={link.href} class="py-3 text-[var(--color-fg-muted)] hover:text-[var(--color-fg)]">{link.label}</a>
+      ))}
+      <div class="mt-4 border-t border-[var(--color-border)] pt-4">
+        <LanguageToggle locale={locale} altLocaleHref={altLocaleHref} />
+      </div>
     </nav>
   </div>
 </header>
 
-<script>
-  const btn = document.getElementById('mobile-nav-toggle');
-  const menu = document.getElementById('mobile-nav');
-  if (btn && menu) {
-    btn.addEventListener('click', () => {
-      const open = menu.classList.toggle('hidden') === false;
-      btn.setAttribute('aria-expanded', String(open));
-    });
-  }
+<script is:inline define:vars={{ openLabel: dict.nav.openMenu, closeLabel: dict.nav.closeMenu }}>
+  (function () {
+    // "Work with me" disclosure: click or keyboard, Escape closes, focus returns to the button.
+    const button = document.getElementById('work-with-me-button');
+    const menu = document.getElementById('work-with-me-menu');
+
+    if (button && menu) {
+      const setOpen = (open) => {
+        menu.hidden = !open;
+        button.setAttribute('aria-expanded', String(open));
+        button.querySelector('svg')?.classList.toggle('rotate-180', open);
+      };
+
+      button.addEventListener('click', () => setOpen(menu.hidden));
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape' || menu.hidden) return;
+        setOpen(false);
+        button.focus();
+      });
+
+      document.addEventListener('click', (e) => {
+        if (menu.hidden) return;
+        if (!button.parentElement.contains(e.target)) setOpen(false);
+      });
+
+      // Close once focus leaves the disclosure entirely (Tab past the last link).
+      menu.addEventListener('focusout', () => {
+        requestAnimationFrame(() => {
+          if (!menu.hidden && !button.parentElement.contains(document.activeElement)) setOpen(false);
+        });
+      });
+    }
+
+    const mobileButton = document.getElementById('mobile-nav-toggle');
+    const mobileMenu = document.getElementById('mobile-nav');
+
+    if (mobileButton && mobileMenu) {
+      const setOpen = (open) => {
+        mobileMenu.hidden = !open;
+        mobileButton.setAttribute('aria-expanded', String(open));
+        mobileButton.setAttribute('aria-label', open ? closeLabel : openLabel);
+      };
+
+      mobileButton.addEventListener('click', () => setOpen(mobileMenu.hidden));
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape' || mobileMenu.hidden) return;
+        setOpen(false);
+        mobileButton.focus();
+      });
+    }
+  })();
 </script>

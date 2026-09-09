@@ -5,8 +5,8 @@ import type { APIContext } from 'astro';
 export async function GET(context: APIContext) {
   const posts = await getCollection('blog', ({ data }) => data.locale === 'es' && !data.draft);
   return rss({
-    title: 'Hec Sánchez — Bitácora',
-    description: 'Notas sobre arquitectura, liderazgo de ingeniería y construir en industrias reguladas.',
+    title: 'Hec Sánchez — Artículos',
+    description: 'Notas sobre desarrollo de productos, decisiones técnicas y construir un negocio.',
     site: context.site!,
     items: posts
       .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())

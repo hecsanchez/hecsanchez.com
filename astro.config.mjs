@@ -43,11 +43,9 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
-      i18n: {
-        defaultLocale: 'es',
-        locales: { es: 'es-MX', en: 'en-US' },
-      },
-      filter: (page) => !draftUrls.has(page),
+      // Language alternates are declared per page in BaseLayout, where the real
+      // EN/ES pairs are known. Keep drafts and the redirecting root out.
+      filter: (page) => page !== `${SITE}/` && !draftUrls.has(page),
     }),
     icon({ include: { hugeicons: ['*'] } }),
   ],
