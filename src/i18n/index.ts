@@ -55,16 +55,16 @@ export const careerTimeline: Array<{
   years: LocalizedString;
 }> = [
   {
-    company: { en: 'Nolte', es: 'Nolte' },
-    logo: null,
-    role: { en: 'Head of Engineering', es: 'Head of Engineering' },
-    years: { en: '2025–present', es: '2025–presente' },
-  },
-  {
     company: { en: 'Independent', es: 'Independiente' },
     logo: null,
     role: { en: 'Fractional CTO', es: 'CTO Fraccional' },
     years: { en: '2025–present', es: '2025–presente' },
+  },
+  {
+    company: { en: 'Nolte', es: 'Nolte' },
+    logo: null,
+    role: { en: 'Head of Engineering', es: 'Head of Engineering' },
+    years: { en: '2025–2026', es: '2025–2026' },
   },
   {
     company: { en: 'Happy Software', es: 'Happy Software' },
