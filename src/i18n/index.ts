@@ -122,9 +122,9 @@ export const careerTimeline: Array<{
   },
 ];
 
-// TODO: Hec to confirm email + cal.com link/event slug
+// TODO: Hec to confirm the cal.com link/event slug
 export const contactInfo = {
-  email: 'hec@hecsanchez.com',
+  email: 'hi@hecsanchez.com',
   linkedin: 'https://www.linkedin.com/in/hecsanchez/',
   github: 'https://github.com/hecsanchez',
   /** Cal.com link in `username/event-slug` form. */
