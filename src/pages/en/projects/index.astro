@@ -1,8 +1,8 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import ProjectsPage from '../../components/sections/ProjectsPage.astro';
-import { t } from '../../i18n';
-import { publishedProjects } from '../../data/projects';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ProjectsPage from '../../../components/sections/ProjectsPage.astro';
+import { t } from '../../../i18n';
+import { publishedProjects } from '../../../data/projects';
 const dict = t('en');
 const itemList = publishedProjects.map((p) => ({
   name: p.title.en,

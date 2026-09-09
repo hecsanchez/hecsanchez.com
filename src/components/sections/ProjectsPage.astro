@@ -1,6 +1,6 @@
 ---
 import { t, type Locale } from '../../i18n';
-import { publishedProjects } from '../../data/projects';
+import { projectHref, publishedProjects } from '../../data/projects';
 import AudienceCta from '../AudienceCta.astro';
 
 interface Props { locale: Locale }
@@ -20,7 +20,14 @@ const page = dict.projects;
       <div class="text-xs uppercase tracking-[0.15em] text-[var(--color-fg-dim)]">
         {project.category[locale]}
       </div>
-      <h2 class="mt-2 font-serif text-3xl">{project.title[locale]}</h2>
+      <h2 class="mt-2 font-serif text-3xl">
+        <a
+          href={projectHref(dict.routes.projects, project.id)}
+          class="transition hover:text-[var(--color-accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+        >
+          {project.title[locale]}
+        </a>
+      </h2>
 
       {project.image && (
         <img
@@ -39,6 +46,17 @@ const page = dict.projects;
       <p class="mt-4 text-[var(--color-fg-muted)]">
         <span class="font-medium text-[var(--color-fg)]">{page.contributionLabel}:</span>
         {' '}{project.contribution[locale]}
+      </p>
+
+      <p class="mt-5">
+        <a
+          href={projectHref(dict.routes.projects, project.id)}
+          class="text-sm text-[var(--color-fg-muted)] underline underline-offset-4 transition hover:text-[var(--color-accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+          data-analytics-event="project_link_click"
+          data-analytics-props={JSON.stringify({ project: project.id, destination_type: 'detail', locale })}
+        >
+          {page.readMore}<span aria-hidden="true"> →</span>
+        </a>
       </p>
 
       {project.url && (

@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ProjectDetailPage from '../../../components/sections/ProjectDetailPage.astro';
+import { publishedProjects, type Project } from '../../../data/projects';
+import { resolveProjectImage } from '../../../lib/projectImages';
+
+export async function getStaticPaths() {
+  return publishedProjects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props as { project: Project };
+
+// Use the project's own hero as the social card when the screenshot exists.
+const ogImage = resolveProjectImage(project.hero?.file)?.src;
+---
+<BaseLayout
+  locale="es"
+  title={`${project.title.es} | Hec Sánchez`}
+  description={project.cardDescription.es}
+  altLocaleHref={`/en/projects/${project.id}`}
+  ogImage={ogImage}
+>
+  <ProjectDetailPage locale="es" project={project} />
+</BaseLayout>

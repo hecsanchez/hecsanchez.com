@@ -8,8 +8,27 @@ const { locale } = Astro.props;
 const dict = t(locale);
 const page = dict.blog;
 
-const posts = (await getCollection('blog', ({ data }) => !data.draft && data.locale === locale))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const otherLocale: Locale = locale === 'es' ? 'en' : 'es';
+const otherRoute = locale === 'es' ? '/en/writing' : '/es/escritos';
+
+const slugOf = (id: string) => id.replace(/\.mdx?$/, '');
+const published = await getCollection('blog', ({ data }) => !data.draft);
+
+const mine = published.filter(({ data }) => data.locale === locale);
+const translated = new Set(mine.map(({ data }) => data.translationKey).filter(Boolean));
+
+/**
+ * An article that only exists in the other language still belongs in this
+ * listing — otherwise the page looks empty. It links to its real URL and says
+ * plainly which language it is in, rather than pretending to be a translation.
+ */
+const entries = [
+  ...mine.map((post) => ({ post, href: `${dict.routes.blog}/${slugOf(post.id)}`, foreign: false })),
+  ...published
+    .filter(({ data }) => data.locale === otherLocale)
+    .filter(({ data }) => !data.translationKey || !translated.has(data.translationKey))
+    .map((post) => ({ post, href: `${otherRoute}/${slugOf(post.id)}`, foreign: true })),
+].sort((a, b) => b.post.data.date.getTime() - a.post.data.date.getTime());
 
 const dateFmt = new Intl.DateTimeFormat(locale === 'es' ? 'es-MX' : 'en-US', {
   year: 'numeric', month: 'short', day: 'numeric',
@@ -27,15 +46,20 @@ const dateFmt = new Intl.DateTimeFormat(locale === 'es' ? 'es-MX' : 'en-US', {
 
 <section class="mx-auto max-w-3xl px-6 pb-10">
   <h2 class="text-xs uppercase tracking-[0.18em] text-[var(--color-fg-dim)]">{page.latestTitle}</h2>
-  {posts.length > 0 ? (
+  {entries.length > 0 ? (
     <ul class="mt-6 divide-y divide-[var(--color-border)] border-t border-[var(--color-border)]">
-      {posts.map((post) => (
+      {entries.map(({ post, href, foreign }) => (
         <li class="py-6">
-          <a href={`${dict.routes.blog}/${post.id.replace(/\.mdx?$/, '')}`} class="group block">
-            <div class="text-xs uppercase tracking-[0.15em] text-[var(--color-fg-dim)]">
-              {dateFmt.format(post.data.date)}
-              {' · '}
-              {post.data.tags.join(', ')}
+          <a href={href} class="group block" hreflang={foreign ? otherLocale : undefined}>
+            <div class="flex flex-wrap items-center gap-x-2 text-xs uppercase tracking-[0.15em] text-[var(--color-fg-dim)]">
+              <span>{dateFmt.format(post.data.date)}</span>
+              <span aria-hidden="true">·</span>
+              <span>{post.data.tags.join(', ')}</span>
+              {foreign && (
+                <span class="rounded-full border border-[var(--color-border)] px-2 py-0.5 tracking-normal normal-case text-[var(--color-fg-muted)]">
+                  {page.otherLanguageLabel}
+                </span>
+              )}
             </div>
             <h3 class="mt-2 font-serif text-2xl text-[var(--color-fg)] group-hover:text-[var(--color-accent)]">
               {post.data.title}

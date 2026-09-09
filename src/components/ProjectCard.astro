@@ -1,6 +1,6 @@
 ---
 import { t, type Locale } from '../i18n';
-import type { Project } from '../data/projects';
+import { projectHref, type Project } from '../data/projects';
 
 interface Props {
   locale: Locale;
@@ -11,14 +11,14 @@ interface Props {
 
 const { locale, project, description } = Astro.props;
 const dict = t(locale);
-const href = `${dict.routes.projects}#${project.id}`;
+const href = projectHref(dict.routes.projects, project.id);
 ---
 
 <a
   href={href}
   class="group flex flex-col rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] p-7 transition hover:border-[var(--color-accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
   data-analytics-event="project_link_click"
-  data-analytics-props={JSON.stringify({ project: project.id, destination_type: 'anchor', locale })}
+  data-analytics-props={JSON.stringify({ project: project.id, destination_type: 'detail', locale })}
 >
   {project.image && (
     <img

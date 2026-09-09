@@ -1,0 +1,41 @@
+---
+import type { Locale } from '../i18n';
+import type { ProjectImage } from '../data/projects';
+import { resolveProjectImage } from '../lib/projectImages';
+
+interface Props {
+  locale: Locale;
+  image?: ProjectImage;
+  /** The hero sits below the intro and gets a little more room. */
+  variant?: 'hero' | 'section';
+}
+
+const { locale, image, variant = 'section' } = Astro.props;
+
+// Renders nothing until a real file exists in public/projects/ — no placeholders.
+const resolved = resolveProjectImage(image?.file);
+---
+
+{resolved && image && (
+  <figure class={variant === 'hero' ? 'mt-10' : 'mt-8'}>
+    <img
+      src={resolved.src}
+      alt={image.alt[locale]}
+      width={resolved.width}
+      height={resolved.height}
+      loading={variant === 'hero' ? 'eager' : 'lazy'}
+      decoding="async"
+      class:list={[
+        'rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-soft)]',
+        // Portrait shots (mobile screens) get a height cap and centre instead of
+        // stretching across the column.
+        resolved.portrait ? 'mx-auto max-h-[70svh] w-auto' : 'w-full',
+      ]}
+    />
+    {image.caption && (
+      <figcaption class="mt-3 text-sm text-[var(--color-fg-dim)]">
+        {image.caption[locale]}
+      </figcaption>
+    )}
+  </figure>
+)}

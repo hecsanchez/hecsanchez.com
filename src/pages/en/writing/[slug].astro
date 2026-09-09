@@ -17,6 +17,17 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const slug = post.id.replace(/\.mdx?$/, '');
+
+// Only a post sharing this one's translationKey is a real equivalent. Without
+// one, the switcher falls back to the other locale's Writing index rather than
+// dropping the reader on a homepage — and no `hreflang` is claimed.
+const counterpart = post.data.translationKey
+  ? (await getCollection('blog', ({ data }) => data.locale === 'es' && !data.draft))
+      .find(({ data }) => data.translationKey === post.data.translationKey)
+  : undefined;
+const altLocaleHref = counterpart
+  ? `/es/escritos/${counterpart.id.replace(/\.mdx?$/, '')}`
+  : undefined;
 const ogImage = existsSync(join(process.cwd(), 'public', 'og', 'writing', `${slug}.png`))
   ? `/og/writing/${slug}.png`
   : undefined;
@@ -25,6 +36,8 @@ const ogImage = existsSync(join(process.cwd(), 'public', 'og', 'writing', `${slu
   locale="en"
   title={`${post.data.title} — Hec Sánchez`}
   description={post.data.description}
+  altLocaleHref={altLocaleHref}
+  altLocaleFallbackHref="/es/escritos"
   noindex={post.data.draft}
   type="article"
   ogImage={ogImage}

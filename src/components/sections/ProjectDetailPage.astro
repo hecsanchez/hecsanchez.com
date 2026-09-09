@@ -1,0 +1,114 @@
+---
+import { t, type Locale } from '../../i18n';
+import { getProject, projectHref, type Project } from '../../data/projects';
+import ProjectFigure from '../ProjectFigure.astro';
+import ArrowLink from '../ArrowLink.astro';
+import AudienceCta from '../AudienceCta.astro';
+
+interface Props {
+  locale: Locale;
+  project: Project;
+}
+
+const { locale, project } = Astro.props;
+const dict = t(locale);
+const page = dict.projects;
+
+const related = project.related.map(getProject);
+---
+
+<article class="mx-auto max-w-3xl px-6 pt-10 pb-8">
+  <a
+    href={dict.routes.projects}
+    class="inline-block text-sm text-[var(--color-fg-dim)] transition hover:text-[var(--color-fg)]"
+  >
+    ← {page.backLabel}
+  </a>
+
+  <header class="mt-8">
+    <p class="text-xs uppercase tracking-[0.15em] text-[var(--color-fg-dim)]">
+      {project.category[locale]}
+    </p>
+    <h1 class="mt-3 font-serif text-4xl leading-tight text-balance md:text-5xl">
+      {project.title[locale]}
+    </h1>
+  </header>
+
+  <div class="mt-6 space-y-5">
+    {project.intro.map((paragraph) => (
+      <p class="font-serif text-[var(--color-fg-muted)]">{paragraph[locale]}</p>
+    ))}
+  </div>
+
+  <ProjectFigure locale={locale} image={project.hero} variant="hero" />
+
+  {project.url && (
+    <p class="mt-8">
+      <a
+        href={project.url}
+        target="_blank"
+        rel="noopener"
+        class="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-6 py-3 font-medium text-[var(--color-bg)] transition hover:bg-[var(--color-accent-hover)] hover:text-[var(--color-bg)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+        data-analytics-event="project_link_click"
+        data-analytics-props={JSON.stringify({ project: project.id, destination_type: 'product', locale })}
+      >
+        {project.urlLabel?.[locale] ?? project.url}
+        <span aria-hidden="true">→</span>
+      </a>
+    </p>
+  )}
+</article>
+
+{project.sections.map((section) => (
+  <section class="mx-auto max-w-3xl px-6 py-8">
+    <h2 class="font-serif text-2xl md:text-3xl">{section.title[locale]}</h2>
+    {section.body.map((paragraph) => (
+      <p class="mt-4 text-[var(--color-fg-muted)]">{paragraph[locale]}</p>
+    ))}
+    <ProjectFigure locale={locale} image={section.image} />
+  </section>
+))}
+
+<section class="mx-auto max-w-3xl px-6 py-10">
+  <h2 class="text-xs uppercase tracking-[0.18em] text-[var(--color-fg-dim)]">{page.builtWith}</h2>
+  <ul class="mt-4 flex flex-wrap gap-2">
+    {project.stack.map((item) => (
+      <li class="rounded-full border border-[var(--color-border)] bg-[var(--color-bg-soft)] px-3 py-1 text-sm text-[var(--color-fg-muted)]">
+        {item}
+      </li>
+    ))}
+  </ul>
+  <p class="mt-6 text-[var(--color-fg-muted)]">
+    <span class="font-medium text-[var(--color-fg)]">{page.contributionLabel}:</span>
+    {' '}{project.contribution[locale]}
+  </p>
+</section>
+
+{related.length > 0 && (
+  <section class="mx-auto max-w-3xl px-6 py-10">
+    <h2 class="text-xs uppercase tracking-[0.18em] text-[var(--color-fg-dim)]">{page.relatedTitle}</h2>
+    <ul class="mt-5 space-y-4">
+      {related.map((item) => (
+        <li>
+          <a
+            href={projectHref(dict.routes.projects, item.id)}
+            class="group block rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] p-6 transition hover:border-[var(--color-accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+            data-analytics-event="project_link_click"
+            data-analytics-props={JSON.stringify({ project: item.id, destination_type: 'detail', locale })}
+          >
+            <h3 class="font-serif text-xl group-hover:text-[var(--color-accent)]">{item.title[locale]}</h3>
+            <p class="mt-2 text-base text-[var(--color-fg-muted)]">{item.cardDescription[locale]}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}
+
+<section class="mx-auto max-w-3xl px-6 pb-4">
+  <ArrowLink href={dict.routes.projects}>{page.backLabel}</ArrowLink>
+</section>
+
+<div class="border-t border-[var(--color-border)]">
+  <AudienceCta locale={locale} placement="project_detail" title={page.finalCtaTitle} body={page.finalCtaBody} />
+</div>

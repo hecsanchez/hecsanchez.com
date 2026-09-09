@@ -218,6 +218,10 @@
     "h1": "Software que he desarrollado y proyectos en marcha.",
     "intro": "Una selección de productos y sistemas de negocio en los que he trabajado. Me interesan el software para usuarios finales, las operaciones de ventas y las conexiones entre las herramientas que utiliza una empresa.",
     "contributionLabel": "Mi contribución",
+    "backLabel": "Todos los proyectos",
+    "readMore": "Conoce el proyecto",
+    "builtWith": "Desarrollado con",
+    "relatedTitle": "Proyectos relacionados",
     "finalCtaTitle": "¿Tienes un problema relacionado?",
     "finalCtaBody": "Si estás trabajando en un producto, una integración o un sistema de negocio, me interesa conocer lo que necesitas desarrollar."
   },
@@ -232,7 +236,7 @@
     "latestTitle": "Artículos recientes",
     "readingTime": "min de lectura",
     "empty": "Todavía no hay artículos publicados.",
-    "englishOnly": "En inglés"
+    "otherLanguageLabel": "En inglés"
   },
   "newsletter": {
     "title": "Shipping Notes",

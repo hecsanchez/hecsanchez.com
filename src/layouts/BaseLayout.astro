@@ -9,8 +9,14 @@ interface Props {
   locale: Locale;
   title: string;
   description: string;
-  /** Path on the *other* locale that maps to the current page (language toggle + hreflang). */
+  /** A real equivalent of this page in the other locale. Drives both the language toggle and `hreflang`. */
   altLocaleHref?: string;
+  /**
+   * Where to send the language toggle when no real equivalent exists — e.g. an
+   * untranslated article points at the other locale's Writing index. Never
+   * emitted as `hreflang`: advertising it would claim a translation that is not there.
+   */
+  altLocaleFallbackHref?: string;
   /** Emit `<meta name="robots" content="noindex, nofollow">`. Use for draft posts. */
   noindex?: boolean;
   /** Path to the OG image (e.g. `/og/writing/slug.png`). Falls back to the portrait. */
@@ -42,6 +48,7 @@ const {
   title,
   description,
   altLocaleHref,
+  altLocaleFallbackHref,
   noindex = false,
   ogImage,
   type = 'website',
@@ -61,9 +68,13 @@ const ogLocale = locale === 'es' ? 'es_MX' : 'en_US';
 
 // Reciprocal, absolute hreflang. The alternate must match the other page's own
 // canonical exactly, so normalise it to this site's trailing-slash convention.
-const altPath = altLocaleHref?.endsWith('/') ? altLocaleHref : altLocaleHref && `${altLocaleHref}/`;
+const withSlash = (p?: string) => (p ? (p.endsWith('/') ? p : `${p}/`) : undefined);
+const altPath = withSlash(altLocaleHref);
 const altHref = altPath ? new URL(altPath, Astro.site).toString() : undefined;
 const enHref = locale === 'en' ? canonicalHref : altHref;
+
+// The toggle always has somewhere sensible to go; only a true equivalent is advertised.
+const togglePath = altPath ?? withSlash(altLocaleFallbackHref);
 ---
 
 <!doctype html>
@@ -131,7 +142,7 @@ const enHref = locale === 'en' ? canonicalHref : altHref;
     >
       {dict.skipToContent}
     </a>
-    <Nav locale={locale} altLocaleHref={altPath} />
+    <Nav locale={locale} altLocaleHref={togglePath} />
     <main id="main" class="flex-1">
       <slot />
     </main>

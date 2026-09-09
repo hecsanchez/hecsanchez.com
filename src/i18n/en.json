@@ -218,6 +218,10 @@
     "h1": "Software I've built and work in progress.",
     "intro": "A selection of products and business systems I've worked on. My interests include customer-facing software, sales operations, and the connections between the tools a business uses.",
     "contributionLabel": "My contribution",
+    "backLabel": "All projects",
+    "readMore": "Read the full story",
+    "builtWith": "Built with",
+    "relatedTitle": "Related work",
     "finalCtaTitle": "Have a related problem to solve?",
     "finalCtaBody": "If you are working on a product, integration, or business system, I would be interested to hear what you need to build."
   },
@@ -232,7 +236,7 @@
     "latestTitle": "Latest articles",
     "readingTime": "min read",
     "empty": "No published articles yet.",
-    "englishOnly": "In English"
+    "otherLanguageLabel": "In Spanish"
   },
   "newsletter": {
     "title": "Shipping Notes",
