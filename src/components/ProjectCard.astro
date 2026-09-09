@@ -1,6 +1,7 @@
 ---
 import { t, type Locale } from '../i18n';
 import { projectHref, type Project } from '../data/projects';
+import { resolveProjectImage } from '../lib/projectImages';
 
 interface Props {
   locale: Locale;
@@ -12,6 +13,9 @@ interface Props {
 const { locale, project, description } = Astro.props;
 const dict = t(locale);
 const href = projectHref(dict.routes.projects, project.id);
+
+// Cards preview the hero. Missing file, no image — the card still works.
+const preview = resolveProjectImage(project.hero?.file);
 ---
 
 <a
@@ -20,15 +24,15 @@ const href = projectHref(dict.routes.projects, project.id);
   data-analytics-event="project_link_click"
   data-analytics-props={JSON.stringify({ project: project.id, destination_type: 'detail', locale })}
 >
-  {project.image && (
+  {preview && project.hero && (
     <img
-      src={project.image.src}
-      alt={project.image.alt[locale]}
-      width={project.image.width}
-      height={project.image.height}
+      src={preview.src}
+      alt={project.hero.alt[locale]}
+      width={preview.width}
+      height={preview.height}
       loading="lazy"
       decoding="async"
-      class="mb-5 aspect-[16/10] w-full rounded-lg border border-[var(--color-border)] object-cover"
+      class="mb-5 aspect-[16/10] w-full rounded-lg border border-[var(--color-border)] object-cover object-top"
     />
   )}
   <div class="text-xs uppercase tracking-[0.15em] text-[var(--color-fg-dim)]">

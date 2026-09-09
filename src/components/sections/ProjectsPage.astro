@@ -1,12 +1,19 @@
 ---
 import { t, type Locale } from '../../i18n';
 import { projectHref, publishedProjects } from '../../data/projects';
+import { resolveProjectImage } from '../../lib/projectImages';
 import AudienceCta from '../AudienceCta.astro';
 
 interface Props { locale: Locale }
 const { locale } = Astro.props;
 const dict = t(locale);
 const page = dict.projects;
+
+// Each entry previews its hero. Projects without one render text-only.
+const entries = publishedProjects.map((project) => ({
+  project,
+  preview: resolveProjectImage(project.hero?.file),
+}));
 ---
 
 <section class="mx-auto max-w-3xl px-6 pt-20 pb-10">
@@ -15,7 +22,7 @@ const page = dict.projects;
 </section>
 
 <div class="mx-auto max-w-3xl px-6 pb-6">
-  {publishedProjects.map((project) => (
+  {entries.map(({ project, preview }) => (
     <article id={project.id} class="scroll-mt-16 border-t border-[var(--color-border)] py-12">
       <div class="text-xs uppercase tracking-[0.15em] text-[var(--color-fg-dim)]">
         {project.category[locale]}
@@ -29,20 +36,28 @@ const page = dict.projects;
         </a>
       </h2>
 
-      {project.image && (
-        <img
-          src={project.image.src}
-          alt={project.image.alt[locale]}
-          width={project.image.width}
-          height={project.image.height}
-          loading="lazy"
-          decoding="async"
-          class="mt-6 w-full rounded-xl border border-[var(--color-border)]"
-        />
+      {preview && project.hero && (
+        <a
+          href={projectHref(dict.routes.projects, project.id)}
+          class="mt-6 block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+          tabindex="-1"
+          aria-hidden="true"
+          data-analytics-event="project_link_click"
+          data-analytics-props={JSON.stringify({ project: project.id, destination_type: 'detail', locale })}
+        >
+          <img
+            src={preview.src}
+            alt=""
+            width={preview.width}
+            height={preview.height}
+            loading="lazy"
+            decoding="async"
+            class="w-full rounded-xl border border-[var(--color-border)] transition hover:border-[var(--color-accent)]"
+          />
+        </a>
       )}
 
       <p class="mt-5 text-[var(--color-fg-muted)]">{project.body[locale]}</p>
-
 
       <p class="mt-5">
         <a
@@ -54,22 +69,6 @@ const page = dict.projects;
           {page.readMore}<span aria-hidden="true"> →</span>
         </a>
       </p>
-
-      {project.url && (
-        <p class="mt-5">
-          <a
-            href={project.url}
-            target="_blank"
-            rel="noopener"
-            class="text-[var(--color-accent)] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
-            data-analytics-event="project_link_click"
-            data-analytics-props={JSON.stringify({ project: project.id, destination_type: 'product', locale })}
-          >
-            {project.urlLabel?.[locale] ?? project.url}
-            <span aria-hidden="true"> →</span>
-          </a>
-        </p>
-      )}
     </article>
   ))}
 </div>
