@@ -20,7 +20,7 @@ section's `image`). Current slots:
 | `the-woods-crm/inbox.png` | The Woods — shared WhatsApp inbox section |
 | `the-woods-crm/proposal.png` | The Woods — proposal builder section |
 | `the-woods-crm/inventory.png` | The Woods — inventory and purchasing section |
-| `zaplink/hero.png` | Zaplink — full width, below the intro |
+| `zaplink/hero.jpg` | Zaplink — full width, below the intro |
 | `zaplink/console.png` | Zaplink — console section |
 
 PNG, JPEG, WebP and GIF all work. Intrinsic dimensions are read from the file

@@ -272,7 +272,7 @@ export const projects: Project[] = [
       },
     ],
     hero: {
-      file: 'zaplink/hero.png',
+      file: 'zaplink/hero.jpg',
       alt: { en: 'Zaplink sign-in over WhatsApp', es: 'Inicio de sesión por WhatsApp con Zaplink' },
     },
     sections: [
