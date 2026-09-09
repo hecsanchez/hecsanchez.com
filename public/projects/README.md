@@ -9,6 +9,8 @@ section's `image`). Current slots:
 
 | File | Where it shows |
 |---|---|
+| `beni/hero.png` | Beni — full width, below the intro |
+| `beni/dashboard.png` | Beni — "What the owner sees" section |
 | `estateflow/hero.png` | Estateflow — full width, below the intro |
 | `estateflow/pipeline.png` | Estateflow — pipeline and SLA section |
 | `estateflow/reports.png` | Estateflow — reporting section |
