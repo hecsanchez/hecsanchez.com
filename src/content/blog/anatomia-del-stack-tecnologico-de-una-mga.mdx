@@ -1,0 +1,128 @@
+---
+title: "La anatomía del stack tecnológico de una MGA a $50M, $100M y $250M en primas"
+description: "Las decisiones tecnológicas que una MGA toma en sus primeros dos años la llevarán a $100M o la obligarán a rehacer todo a los $40M. Este texto mapea los sistemas, costos y patrones de arquitectura reales en tres etapas de crecimiento, con 19 fuentes citadas."
+date: 2026-04-14
+locale: es
+tags: ['insurtech']
+translationKey: "mga-tech-stack"
+---
+
+El último lunes de cada mes, en MGAs de todo el país, alguien abre Excel.
+
+Extrae datos del sistema de administración de pólizas. Reformatea las columnas. Renombra los encabezados para que coincidan con lo que espera la primera aseguradora. Verifica las cifras de prima contra el libro de la cuenta fiduciaria. Corrige los formatos de fecha. Detecta algunos errores, se le pasan otros y envía el archivo por correo. Después abre una hoja de cálculo nueva y empieza otra vez, porque la segunda aseguradora quiere los mismos datos acomodados de otra forma. Y la tercera quiere algo completamente distinto.
+
+Esto toma de tres a cinco días hábiles. Cada mes. La tasa de error en bordereaux procesados manualmente ronda el 10%. Ese número viene de Coforge, que analizó el flujo de trabajo en el mercado de autoridad delegada. DistriBind estima que el costo total de back-office de este proceso equivale a cerca del 30% de lo que una MGA gasta en operaciones de prima.
+
+Uno de cada diez datos que la aseguradora recibe sobre la cartera de la MGA está mal. Cifras de prima equivocadas, fechas de póliza equivocadas, clasificaciones de riesgo equivocadas. Y es la aseguradora a quien los reguladores responsabilizan por esos datos, porque la responsabilidad regulatoria no se puede delegar en una MGA. Cuando el bordereaux está mal, la aseguradora no tiene un problema de reportes. Tiene un problema de gobernanza. Y la MGA tiene un problema de relación.
+
+Empiezo por aquí porque explica casi todo sobre cómo evoluciona la tecnología de una MGA. El encuadre habitual de la industria es que las MGAs eligen tecnología para ser más eficientes, para escalar operaciones o para "transformarse digitalmente". Ese encuadre está incompleto. Lo que el stack tecnológico de una MGA hace en realidad, en cada etapa de crecimiento, es responder una sola pregunta que la aseguradora nunca deja de hacer:
+
+**¿Puedo confiar en lo que me estás diciendo?**
+
+Exactitud del bordereaux. Trazas de auditoría. Cumplimiento de la autoridad otorgada. Visibilidad de cartera en tiempo real. No son problemas tecnológicos separados. Todos son expresiones de la misma pregunta de fondo. Y la respuesta que da la MGA, a través de sus sistemas y sus datos, determina si conserva su capacidad, si obtiene más o si la pierde.
+
+Ese es el lente para todo lo que sigue.
+
+## A $50M: la confianza que se construye con cinta adhesiva
+
+Una MGA que suscribe $50M en primas es una operación pequeña y con capital ajustado. ReSource Pro encontró que las MGAs insurtech alcanzan una relación de aproximadamente uno a uno entre capital levantado y prima bruta emitida. No hay mucho margen para experimentar.
+
+La primera decisión tecnológica es el sistema de administración de pólizas, y pesa desproporcionadamente. Plataformas SaaS en la nube como Insillion, INSTANDA, Socotra y BriteCore cuestan entre $3,000 y $15,000 mensuales, con un costo total de primer año de entre $50,000 y $150,000. Soluciones empresariales como Guidewire o Duck Creek cuestan entre $710,000 y $1.85 millones a tres años. Los desarrollos a la medida van de $1.1 a $3.5 millones. Para una startup, la cuenta es obvia.
+
+Pero no es el costo lo que hace que esta decisión pese tanto. Son los tiempos de implementación. Las plataformas en la nube entran en operación en 3 a 6 meses. Las soluciones empresariales tardan de 12 a 24 meses. Una MGA que elige mal y después necesita migrar enfrenta de 12 a 18 meses de transición y, según la investigación de Insurnest sobre evaluación de PAS, cientos de miles de dólares en costos de migración. BCG ubica la tasa de fracaso de las modernizaciones de sistemas centrales en seguros en 74%.
+
+Algunas MGAs se saltan el PAS dedicado por completo y operan sobre Salesforce más hojas de cálculo. Puede funcionar un tiempo. Pero cada análisis post-mortem que encontré apuntaba al mismo momento de quiebre: cuando la MGA necesita producir bordereaux exactos y con el formato de cada aseguradora, para varios proveedores de capacidad. El sistema que bastaba para emitir pólizas no basta para demostrarle a las aseguradoras que esas pólizas se emitieron correctamente.
+
+La tarificación en esta etapa suele vivir en Excel. El equipo actuarial arma las tablas de tarifas en un libro de trabajo, los suscriptores lo consultan al cotizar, alguien pasa los números a mano. Los siniestros se van a un TPA, coordinados por correo. La contabilidad corre en QuickBooks o Xero, con las comisiones calculadas en hojas de cálculo.
+
+¿Y quién opera la mayor parte de esto? Con frecuencia, una sola persona. Sin CTO. Sin VP de Ingeniería. La misma persona que configura el PAS es la que produce los bordereaux. Insurnest recomienda destinar entre 25 y 35% del presupuesto tecnológico del primer año solo al PAS, lo cual dice mucho sobre cuánto de la operación completa depende de un sistema administrado por una persona.
+
+Este stack funciona. Genera suficiente confianza de las aseguradoras para llegar a $50M. Pero es una confianza frágil. Depende de que personas específicas sepan cosas específicas, y la investigación sugiere que se rompe en cuanto el volumen supera lo que esas personas pueden sostener en la cabeza.
+
+## El precipicio
+
+En algún punto entre los $40M y los $80M en primas, la confianza se rompe.
+
+AM Best ha documentado este punto de inflexión. Vertafore ha escrito al respecto. Los síntomas llegan en una secuencia predecible: aumentan los errores de bordereaux, se multiplican los hallazgos en auditorías de las aseguradoras, se alargan los tiempos de respuesta en cotizaciones, y el equipo de operaciones pasa de estar exigido a estar ahogado.
+
+La investigación de Majesco resume lo que está en juego: para muchas MGAs, es crecer o morir. Si no alcanzan masa crítica rápido, no sobreviven. Pero llegar a $50M crea su propia crisis, porque los flujos de trabajo que construyeron la cartera no pueden sostenerla.
+
+Esto es lo que ocurre debajo de los síntomas. Cuando había dos suscriptores y una aseguradora, el suscriptor senior tenía toda la cartera en la cabeza. Conocía el apetito de cada programa, las preferencias de cada aseguradora, cada excepción. A $60M, con cuatro suscriptores, tres aseguradoras y programas nuevos lanzándose, ese modelo mental se rompe. Lo que antes era implícito necesita volverse explícito. Lo que vivía en la cabeza de alguien necesita vivir en un sistema.
+
+El instinto es contratar más gente. West Point Technologies, que desarrolla automatización para MGAs, explica por qué eso no funciona: cada nueva contratación agrega carga de capacitación, inconsistencia de procesos y retrabajo que en realidad frenan la producción. No puedes contratar tu salida del precipicio.
+
+Con base en los patrones que aparecen en la investigación disponible, las MGAs que lo cruzan tienden a hacer tres inversiones.
+
+Sacan la tarificación de Excel y la ponen en algo que otros sistemas puedan invocar por programa. Una plataforma como Coherent, que convierte modelos de tarifas en Excel en APIs. O lógica de tarificación construida directamente en el PAS. El punto es que la tarifa deja de ser un número que alguien teclea. Es un valor que un sistema devuelve.
+
+Automatizan la producción de bordereaux. El PAS genera reportes con el formato de cada aseguradora directamente desde los datos de póliza, sin que nadie reformatee. Esto es más difícil de lo que suena. El análisis de DataFlowMapper identifica los cambios de formato de los coverholders como la causa más común de que la automatización de bordereaux se rompa: los coverholders actualizan sus sistemas, agregan campos, renombran columnas, todo sin avisarle a la aseguradora. Plataformas como Quantemplate y distriBind existen para resolver esa capa de mapeo.
+
+Y contratan a un líder tecnológico que entiende los flujos de datos de seguros, no a un generalista de TI que administra laptops.
+
+Estas tres inversiones no solo mejoran la eficiencia. Cambian la naturaleza de la confianza que la MGA le ofrece a sus aseguradoras. En lugar de "nuestra gente es cuidadosa", la respuesta pasa a ser "nuestros sistemas son confiables". Es un tipo de confianza fundamentalmente distinto y, por todo lo que he leído, es el único que escala.
+
+## A $100M: confianza por integración
+
+Para los $100M, la pregunta de la aseguradora cambia. Ya no es solo si la MGA puede producir reportes exactos. Es si la MGA tiene la infraestructura para ser un socio de largo plazo.
+
+El panorama 2026 de Vertafore describe el cambio: la asignación de capacidad es cada vez más específica por socio. Incluso en un mercado bien capitalizado, una MGA pierde respaldo si su desempeño, la calidad de sus reportes o su alineación estratégica flaquean. Los datos de Conning muestran que las compañías de fronting respaldaron más de $18 mil millones en primas de MGAs en 2024. Esa confianza es considerable, y las aseguradoras están dispuestas a retirarla.
+
+El problema tecnológico en esta etapa es la integración. Los datos fluyen entre el PAS, el motor de tarificación, la gestión documental, la contabilidad, el TPA de siniestros y múltiples endpoints de aseguradoras. Sin una arquitectura intencional, esas conexiones se vuelven enlaces punto a punto frágiles que se rompen con cada actualización de API. El patrón que aparece con más consistencia a esta escala es una capa de abstracción de aseguradoras: middleware que normaliza formatos y maneja el ruteo entre los sistemas internos y los de las aseguradoras.
+
+El data warehouse aparece como un sistema aparte. A $50M, los datos vivían en el PAS y en hojas de cálculo. A $100M, la MGA necesita vistas agregadas por programa, aseguradora y periodo para análisis de cartera, tendencias de siniestralidad y los reportes que las aseguradoras esperan durante auditorías y renovaciones.
+
+La infraestructura de cumplimiento pasa de reactiva a proactiva. El análisis de Vitesse describe el cambio: hace diez años, un proceso en hoja de cálculo con controles documentados era aceptable. Hoy las aseguradoras aplican mucho más escrutinio. Lloyd's reporta que la autoridad delegada representa aproximadamente el 45% de su ingreso total por primas. El panorama 2026 de la MGAA lo dice directamente: las aseguradoras van a exigir transparencia en tiempo real. ¿Cada póliza se emitió dentro de los límites de autoridad? ¿Cada decisión de tarificación tiene traza de auditoría? ¿Los bordereaux concilian contra las cuentas fiduciarias? Estas preguntas necesitan respuestas arquitectónicas, no manuales.
+
+Gartner proyecta un crecimiento de 7.9% en el gasto global de TI en seguros para 2025, hasta $227.7 mil millones, con el software creciendo a una tasa compuesta anual de 13.4% hasta 2029. La industria está invirtiendo. Las MGAs que se queden atrás de sus pares en gasto tecnológico lo van a sentir en la confianza de las aseguradoras antes que en cualquier otro lado.
+
+## A $250M: la confianza como infraestructura
+
+Una MGA que suscribe $250M se acerca a la complejidad de una aseguradora. Múltiples ramos, múltiples jurisdicciones, múltiples canales de distribución. En este punto, la tecnología no es algo que la MGA usa. Es algo que la MGA es.
+
+Más de la mitad de las MGAs insurtech encuestadas están construyendo sus propios sistemas de administración de pólizas, y 80% está creando sus propios productos. A $250M, esto tiene sentido. Si la ventaja competitiva viene de una selección de riesgos propia y de integraciones de datos únicas, la MGA necesita un sistema que incorpore esa lógica en el núcleo. El costo a tres años de un desarrollo a la medida ($1.1 a $3.5 millones) es real, pero a ese volumen de prima es una fracción pequeña del ingreso, y el control sobre configuración de producto, tarificación y reportes resulta decisivo.
+
+Los bordereaux por lotes empiezan a ser reemplazados por intercambio de datos en tiempo real. Lloyd's está desplegando Chorus para sustituir ATLAS y BAR. DA SATS es obligatorio para Lloyd's Europe. La MGAA dice que las aseguradoras van a exigir transparencia en tiempo real. La entrega mensual por hoja de cálculo quizá no desaparezca de un día para otro, pero la dirección es clara.
+
+La IA aparece en flujos de trabajo específicos. Triage de solicitudes. Detección de anomalías en siniestros. Modelos de precios de renovación. La investigación de Majesco encontró muchas MGAs experimentando con IA, pero las que obtienen valor tienen primero su infraestructura de datos en orden. El análisis de Insurnest sobre operaciones automatizadas de seguros para mascotas ofrece un punto de referencia: razones de 5,000 a 7,000 pólizas por empleado, contra 1,500 a 2,500 en operaciones manuales. Una brecha de productividad de 3x. Incluso entre ramos distintos, esa señal es difícil de descartar.
+
+S&P Global Ratings ha señalado que los reaseguradores se están volviendo más selectivos sobre en quién confían la autoridad de suscripción, y que las MGAs con controles de gobernanza limitados enfrentan presión de sus socios de capacidad.
+
+A $250M, la pregunta sobre la confianza de la aseguradora no ha cambiado. Es la misma que a $50M. Lo que cambia es la respuesta. A $50M, la respuesta era una persona cuidadosa con una hoja de cálculo. A $250M, la respuesta es una organización de ingeniería, un pipeline de datos en tiempo real y una arquitectura construida para demostrar, de forma continua y automática, que la MGA está haciendo lo que dice que hace.
+
+## En qué te deja esto
+
+Si estás por debajo de $50M: elige un PAS con APIs de verdad. Nativo en la nube, de 3 a 6 meses de implementación, entre $50K y $150K el primer año. No te lo saltes. Según los post-mortems que revisé, el problema de los bordereaux tiende a llegar antes de lo que los fundadores esperan, y migrar a medio crecimiento te cuesta año y medio.
+
+Entre $50M y $100M: automatiza los bordereaux e invierte en infraestructura de datos. Cada hora que se va en reformatear hojas de cálculo con una tasa de error del 10% es una hora que no se dedicó a análisis de cartera y monitoreo de cumplimiento. Esas son las actividades que conservan a las aseguradoras.
+
+Acercándote a $250M: construye para intercambio de datos en tiempo real. Invierte en ingeniería. El reemplazo periódico de plataforma se está acabando. Lo está sustituyendo la evolución continua.
+
+AM Best reporta que la prima generada a través de MGAs creció alrededor de 15% hasta casi $90 mil millones en 2024, el cuarto año consecutivo de crecimiento de doble dígito. Pero AM Best también movió su perspectiva de positiva a estable, citando capacidad más restringida y expectativas operativas crecientes.
+
+El modelo de MGA es atractivo. El crecimiento es real. La oportunidad es enorme.
+
+Pero las aseguradoras están observando. Y lo que observan es si pueden confiar en lo que les estás diciendo. Tu tecnología es tu respuesta.
+
+---
+
+## Referencias
+
+1. AM Best, "Delegated Underwriting Authority Enterprise Segment Outlook," 2024. Vía Vertafore, ["2026 MGA Outlook: Scaling Smarter in a Demanding Market."](https://www.vertafore.com/resources/blog/2026-mga-outlook-scaling-smarter-demanding-market)
+2. BCG, ["Three Paths to Modernizing Core IT for Insurers,"](https://www.bcg.com/publications/2024/three-paths-to-modernizing-core-it-for-insurers) mayo 2024.
+3. Coforge, ["Bordereaux Processing Solution."](https://www.coforge.com/what-we-do/capabilities/appian/bordereaux-processing-solution) (Datos de tasa de error del 10% y costo de £200K/año.)
+4. Conning, datos de compañías de fronting (2024). Vía Vertafore, ["2026 MGA Outlook."](https://www.vertafore.com/resources/blog/2026-mga-outlook-scaling-smarter-demanding-market)
+5. DataFlowMapper, ["How to Automate Bordereaux Processing."](https://dataflowmapper.com/blog/automate-bordereaux-processing)
+6. distriBind, ["Curing the Insurance Industry of Its Spreadsheet Addiction."](https://distribind.io/)
+7. Gartner, ["Enterprise IT Spending for the Insurance Market, Worldwide, 2023-2029,"](https://www.gartner.com/en/documents/6755034) actualización 2T25.
+8. Insurnest, ["Best Policy Administration Systems for Pet Insurance MGAs in 2025."](https://insurnest.com/blog/pet-insurance-mga-policy-admin-systems/) (Datos de costo de PAS, tiempos de implementación, comparativos de TCO.)
+9. Insurnest, ["What Automated Workflows Let Pet Insurance MGAs Double Policy Count Without Doubling Headcount."](https://insurnest.com/blog/automated-workflows-pet-insurance-mga-policy-count/) (Datos de pólizas por empleado.)
+10. Lloyd's of London, ["Delegated Authority."](https://www.lloyds.com/market-resources/delegated-authorities) (45% del ingreso por primas, plataforma Chorus, supervisión DCA.)
+11. Lloyd's Europe, ["DA SATS."](https://lloydseurope.com/market-resources/delegated-authorities/systems-and-tools/da-sats) (Sistema obligatorio de intercambio de datos.)
+12. Majesco, ["Unlocking MGA Growth Momentum: Insights and Priorities to Compete and Thrive."](https://www.majesco.com/blog/unlocking-mga-growth-momentum-insights-and-priorities-to-compete-and-thrive/)
+13. MGA Insurance Software, ["MGA Policy Administration Systems Guide 2025."](https://www.mgainsurancesoftware.com/) (Tiempos de implementación de Guidewire, comparativos de plataformas.)
+14. MGAA, ["DA Strategy: Strategic First, Scalable Always."](https://mgaa.co.uk/strategic-first-scalable-always-a-smarter-path-for-specialist-mgas/) (Panorama 2026, expectativas de transparencia en tiempo real.)
+15. ReSource Pro × InsurTech NY, ["InsurTech MGAs: At the Forefront of Innovation,"](https://www.resourcepro.com/resources/insurtech-mgas-at-the-forefront-of-innovation/) 2024. (Adopción de PAS a la medida, relación capital-GWP 1:1, 80% de desarrollo de producto.)
+16. S&P Global Ratings, "Growing MGA Market a Double-Edged Sword for Reinsurers," 2025. Vía [Program Manager / The Insurer.](https://www.theinsurer.com/program-manager/news/growing-mga-market-a-double-edged-sword-for-reinsurers-says-sp-2025-10-20/)
+17. SwiftCase, ["Automating Bordereaux Reporting for Insurance Brokers,"](https://swiftcase.co.uk/2026/03/02/insurance-bordereaux-reporting-automation/) marzo 2026.
+18. Vitesse, ["Insurance Bordereau: Complete Guide to Reporting Accuracy,"](https://www.vitesse.io/insights/insurance-bordereau-guide) marzo 2026.
+19. West Point Technologies, ["MGA Growth: Scale Premium, Not Headcount."](https://westpoint.tech/insurance-blog/how-can-mgas-scale-without-adding-headcount/)

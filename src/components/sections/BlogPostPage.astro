@@ -15,6 +15,9 @@ const { Content } = await render(post);
 
 const dateFmt = new Intl.DateTimeFormat(locale === 'es' ? 'es-MX' : 'en-US', {
   year: 'numeric', month: 'long', day: 'numeric',
+  // Dates are authored as plain days; format them in UTC so the build
+  // machine's timezone cannot shift them to the day before.
+  timeZone: 'UTC',
 });
 
 const wordCount = post.body?.split(/\s+/).length ?? 0;

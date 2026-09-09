@@ -8,7 +8,7 @@ const blog = defineCollection({
     description: z.string(),
     date: z.coerce.date(),
     locale: z.enum(['es', 'en']),
-    tags: z.array(z.enum(['insurtech', 'healthtech', 'fintech', 'engineering-leadership', 'latam'])),
+    tags: z.array(z.enum(['insurtech', 'healthtech', 'fintech', 'engineering-leadership', 'latam', 'product'])),
     draft: z.boolean().optional().default(false),
     /**
      * Shared key linking an article to its translation in the other locale.

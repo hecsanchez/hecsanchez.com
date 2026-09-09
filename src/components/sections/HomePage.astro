@@ -19,6 +19,9 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft && data.loc
 
 const dateFmt = new Intl.DateTimeFormat(locale === 'es' ? 'es-MX' : 'en-US', {
   year: 'numeric', month: 'short', day: 'numeric',
+  // Dates are authored as plain days; format them in UTC so the build
+  // machine's timezone cannot shift them to the day before.
+  timeZone: 'UTC',
 });
 ---
 
