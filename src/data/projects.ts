@@ -342,7 +342,7 @@ export const projects: Project[] = [
       },
     ],
     hero: {
-      file: 'beni/hero.png',
+      file: 'beni/hero.jpg',
       alt: { en: 'The Beni website', es: 'El sitio de Beni' },
     },
     sections: [
