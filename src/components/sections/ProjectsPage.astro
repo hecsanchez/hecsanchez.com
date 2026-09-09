@@ -23,52 +23,54 @@ const entries = publishedProjects.map((project) => ({
 
 <div class="mx-auto max-w-3xl px-6 pb-6">
   {entries.map(({ project, preview }) => (
-    <article id={project.id} class="scroll-mt-16 border-t border-[var(--color-border)] py-12">
-      <div class="text-xs uppercase tracking-[0.15em] text-[var(--color-fg-dim)]">
-        {project.category[locale]}
+    <article id={project.id} class="scroll-mt-16 border-t border-[var(--color-border)] py-10">
+      <div class="flex flex-col gap-6 sm:flex-row sm:gap-8">
+        {preview && project.hero && (
+          <a
+            href={projectHref(dict.routes.projects, project.id)}
+            class="block shrink-0 sm:w-56 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+            tabindex="-1"
+            aria-hidden="true"
+            data-analytics-event="project_link_click"
+            data-analytics-props={JSON.stringify({ project: project.id, destination_type: 'detail', locale })}
+          >
+            <img
+              src={preview.src}
+              alt=""
+              width={preview.width}
+              height={preview.height}
+              loading="lazy"
+              decoding="async"
+              class="aspect-[16/10] w-full rounded-lg border border-[var(--color-border)] object-cover object-top transition hover:border-[var(--color-accent)]"
+            />
+          </a>
+        )}
+
+        <div class="min-w-0 flex-1">
+          <div class="text-xs uppercase tracking-[0.15em] text-[var(--color-fg-dim)]">
+            {project.category[locale]}
+          </div>
+          <h2 class="mt-2 font-serif text-2xl">
+            <a
+              href={projectHref(dict.routes.projects, project.id)}
+              class="transition hover:text-[var(--color-accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+            >
+              {project.title[locale]}
+            </a>
+          </h2>
+          <p class="mt-3 text-[var(--color-fg-muted)]">{project.body[locale]}</p>
+          <p class="mt-4">
+            <a
+              href={projectHref(dict.routes.projects, project.id)}
+              class="text-sm text-[var(--color-fg-muted)] underline underline-offset-4 transition hover:text-[var(--color-accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+              data-analytics-event="project_link_click"
+              data-analytics-props={JSON.stringify({ project: project.id, destination_type: 'detail', locale })}
+            >
+              {page.readMore}<span aria-hidden="true"> →</span>
+            </a>
+          </p>
+        </div>
       </div>
-      <h2 class="mt-2 font-serif text-3xl">
-        <a
-          href={projectHref(dict.routes.projects, project.id)}
-          class="transition hover:text-[var(--color-accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
-        >
-          {project.title[locale]}
-        </a>
-      </h2>
-
-      {preview && project.hero && (
-        <a
-          href={projectHref(dict.routes.projects, project.id)}
-          class="mt-6 block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
-          tabindex="-1"
-          aria-hidden="true"
-          data-analytics-event="project_link_click"
-          data-analytics-props={JSON.stringify({ project: project.id, destination_type: 'detail', locale })}
-        >
-          <img
-            src={preview.src}
-            alt=""
-            width={preview.width}
-            height={preview.height}
-            loading="lazy"
-            decoding="async"
-            class="w-full rounded-xl border border-[var(--color-border)] transition hover:border-[var(--color-accent)]"
-          />
-        </a>
-      )}
-
-      <p class="mt-5 text-[var(--color-fg-muted)]">{project.body[locale]}</p>
-
-      <p class="mt-5">
-        <a
-          href={projectHref(dict.routes.projects, project.id)}
-          class="text-sm text-[var(--color-fg-muted)] underline underline-offset-4 transition hover:text-[var(--color-accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
-          data-analytics-event="project_link_click"
-          data-analytics-props={JSON.stringify({ project: project.id, destination_type: 'detail', locale })}
-        >
-          {page.readMore}<span aria-hidden="true"> →</span>
-        </a>
-      </p>
     </article>
   ))}
 </div>

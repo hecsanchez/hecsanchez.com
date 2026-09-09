@@ -1,0 +1,124 @@
+---
+title: "Por qué tu equipo se volvió lento"
+description: "Los equipos no se vuelven lentos porque la gente se relaje. Se vuelven lentos porque los controles bien intencionados se acumulan, hasta que prevenir errores cuesta más que los errores mismos."
+date: 2026-01-28
+locale: es
+tags: ['engineering-leadership']
+translationKey: "team-slowed-down"
+---
+
+Nadie se propone construir un equipo lento.
+
+Contratas buena gente. Adoptas las herramientas correctas. Haces standups, escribes especificaciones, das seguimiento a los tickets. Y en algún punto del camino, el equipo que entregaba cada semana ahora entrega cada mes, y nadie puede señalar exactamente cuándo pasó.
+
+He visto este patrón repetirse en distintos equipos a lo largo del tiempo. Los síntomas siempre son los mismos: más proceso, menos resultados. Más juntas, menos avance. Más "alineación", menos entregas reales.
+
+Esto es sobre por qué ocurre, y cómo los equipos se vuelven lentos sin querer conforme crecen.
+
+## El patrón de desaceleración
+
+Los equipos no se vuelven lentos porque la gente se relaje. Se vuelven lentos porque los sistemas bien intencionados acumulan fricción.
+
+Normalmente empieza con un error. Sale algo que no debía salir. Un bug llega a producción. Una función no corresponde a lo que el cliente pidió. La respuesta razonable es agregar un control: un paso de revisión, una autorización, una especificación más detallada.
+
+Cada control tiene sentido por separado. Pero los controles se acumulan. Y llega un momento en que el costo de prevenir errores supera al costo de los errores mismos.
+
+Esto es lo que suelo ver:
+
+**Etapa 1: velocidad de startup.** Equipo pequeño, mucha confianza, entregas rápidas. Las decisiones se toman en conversaciones. Una función pasa de idea a producción en días.
+
+**Etapa 2: la primera quemada.** Algo sale mal. Un cliente se molesta. La respuesta es proceso: revisiones de código, filtros de QA, plantillas de especificación. Las entregas se hacen un poco más lentas, pero mejora la calidad. Se siente como un buen trato.
+
+**Etapa 3: el proceso se desborda.** Se agregan más controles. Las especificaciones se alargan. Las revisiones se multiplican. El equipo que entregaba en días ahora entrega en semanas. Pero nadie conecta la lentitud con el proceso: le echan la culpa al alcance, a la complejidad o a que falta gente.
+
+**Etapa 4: se forma el cuello de botella.** Una o dos personas se vuelven guardianes. Nada empieza sin su autorización. Están saturadas. El trabajo se hace fila. El equipo pasa más tiempo "bloqueado" que construyendo.
+
+Para la etapa 4, el equipo trabaja más que nunca pero entrega menos que en la etapa 1.
+
+## Las dos palancas
+
+Cuando trabajo con equipos atorados en la etapa 3 o 4, me concentro en dos palancas: enfoque y altitud.
+
+### Enfoque: una sola cosa
+
+La mayoría de los equipos empieza la semana con un backlog. Digamos 12 tickets. Tres solicitudes "urgentes". Todo es prioridad, lo que significa que nada lo es.
+
+El resultado es predecible: para el viernes hay cinco cosas a medias y no salió ninguna.
+
+La solución es incómoda pero simple: elige una cosa. No los doce tickets: la única cosa que de verdad importa esta semana. Y después protégela.
+
+Eso normalmente significa decir que no a las solicitudes que compiten con ella, mover juntas que rompen el trabajo profundo y aceptar que otras cosas van a esperar.
+
+Se siente arriesgado. Los clientes quieren avance en todo. Cada interesado tiene sus propias prioridades.
+
+Pero esto es lo que he aprendido. El equipo A deja cinco cosas a medias. El equipo B entrega una cosa importante. El equipo B gana siempre.
+
+El backlog siempre va a estar lleno. Tu enfoque es el recurso escaso. Trátalo como tal.
+
+### Altitud: especificaciones que habilitan en lugar de restringir
+
+La segunda palanca es cómo defines el trabajo.
+
+La mayoría de los equipos especifica de más. Una función se parte en subtareas: crear la migración, agregar el endpoint, actualizar el componente. Paso por paso. Detalle de implementación por detalle de implementación.
+
+La intención es buena: reducir ambigüedad, prevenir errores, facilitar la estimación. Pero el efecto es el contrario.
+
+Cuando le entregas a un ingeniero una lista de verificación, ejecuta. Cuando algo no cabe en la especificación, se detiene. Pregunta. Espera. Y quien escribe las especificaciones se convierte en el cuello de botella: nada avanza hasta que desglose la siguiente función.
+
+Lo que funciona mejor: especifica el comportamiento, no los pasos.
+
+En lugar de prescribir la implementación, describe resultados:
+
+- "Cuando un usuario hace A, el sistema debe hacer B"
+- "Si se cumple la condición C, mostrar el mensaje D"
+- "El caso límite E debe terminar en F"
+
+Eso es todo. Criterios de aceptación. Reglas de negocio. Resultados.
+
+Deja que el ingeniero resuelva el cómo. Está más cerca del código. Muchas veces va a encontrar un camino mejor que el que tú habrías prescrito.
+
+A esto le llamo "especificaciones de altitud alta". Tú defines cómo se ve el trabajo terminado. El equipo resuelve cómo llegar ahí.
+
+Las especificaciones de altitud baja se sienten más seguras. Las de altitud alta entregan más rápido.
+
+## Las objeciones
+
+**"Ya intentamos tener menos proceso y las cosas se rompieron."**
+
+Cierto, y la respuesta no es cero proceso. Es el proceso *correcto*. La pregunta que hay que hacerle a cualquier control: ¿previene más valor del que cuesta? Una revisión de código que atrapa bugs reales vale el tiempo. Una autorización que existe porque alguien se quemó hace tres años probablemente no.
+
+Audita tu proceso en busca de controles que tuvieron sentido alguna vez y ya no.
+
+**"Nuestro equipo necesita especificaciones detalladas o va a construir lo que no es."**
+
+Si eso es cierto, tienes un problema de contratación o de confianza, no de especificaciones. Los ingenieros que no pueden traducir requerimientos de negocio en decisiones de implementación necesitan acompañamiento, no documentos más largos.
+
+Con más frecuencia, las especificaciones detalladas son síntoma de una responsabilidad poco clara. Quien escribe la especificación no confía en quien construye. Quien construye no se siente con permiso de decidir. Entonces todo se escribe, y todos avanzan más lento.
+
+**"No podemos elegir una sola cosa: tenemos varios clientes y compromisos."**
+
+Puedes enfocarte dentro de cada frente de trabajo. Y con frecuencia el problema de "múltiples prioridades" es un problema de agenda disfrazado. Si tienes tres clientes y cada uno necesita algo esta semana, quizá una persona se enfoque en cada uno, en lugar de que todos cambien de contexto entre los tres.
+
+El objetivo no es ignorar los compromisos. Es dejar de fingir que puedes avanzar doce cosas de manera significativa al mismo tiempo.
+
+## Qué hacen distinto los equipos rápidos
+
+Los equipos que mantienen su velocidad conforme crecen comparten algunos rasgos.
+
+**Protegen el enfoque sin concesiones.** Las solicitudes nuevas van al backlog, no al sprint actual. Lo "urgente" se cuestiona. La respuesta por defecto a "¿y también podríamos...?" es "esta semana no".
+
+**Especifican resultados, no pasos.** Los ingenieros son dueños de la implementación. Producto es dueño de cómo se ve el éxito. La entrega entre ambos es clara y la autonomía es real.
+
+**Auditan el proceso con regularidad.** Cada trimestre se preguntan: ¿qué controles estamos haciendo que no aportan valor? ¿Qué juntas podrían ser asíncronas? ¿Qué aprobaciones podríamos quitar?
+
+**Miden trabajo terminado, no trabajo en curso.** Un equipo que "completó" 47 tickets pero no entregó nada real tuvo una mala semana. La velocidad es lo que está en manos de los usuarios, no lo que cambió de columna en Jira.
+
+**Tratan la lentitud como un problema de sistema, no de personas.** Cuando las entregas se hacen lentas, la primera pregunta es "¿qué cambió en la forma en que trabajamos?", no "¿quién no está rindiendo?".
+
+## Una pregunta para ti
+
+Si tu equipo entregaba más rápido hace un año que hoy, ¿qué cambió?
+
+Probablemente no fueron las personas. Fue el sistema alrededor de ellas.
+
+Ahí es donde hay que buscar.

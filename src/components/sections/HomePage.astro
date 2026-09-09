@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import { t, type Locale, companies } from '../../i18n';
+import { t, type Locale } from '../../i18n';
 import { publishedProjects } from '../../data/projects';
 import ArrowLink from '../ArrowLink.astro';
 import ProjectCard from '../ProjectCard.astro';
@@ -54,18 +54,6 @@ const dateFmt = new Intl.DateTimeFormat(locale === 'es' ? 'es-MX' : 'en-US', {
         <ArrowLink href="#work-with-me">{dict.cta.workWithMe}</ArrowLink>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- Professional proof strip -->
-<section class="border-y border-[var(--color-border)] bg-[var(--color-bg-soft)]/40">
-  <div class="mx-auto max-w-5xl px-6 py-10">
-    <h2 class="text-xs uppercase tracking-[0.18em] text-[var(--color-fg-dim)]">{dict.home.proofLabel}</h2>
-    <ul class="mt-5 flex flex-wrap items-center gap-x-10 gap-y-4">
-      {companies.map((c) => (
-        <li class="font-serif text-lg text-[var(--color-fg-muted)]">{c}</li>
-      ))}
-    </ul>
   </div>
 </section>
 

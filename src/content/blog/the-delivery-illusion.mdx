@@ -1,0 +1,112 @@
+---
+title: "The Delivery Illusion"
+description: "Why busy teams feel stuck, and how to measure what actually moves the product. The gap between output and outcome is expensive precisely because it looks like everything is working."
+date: 2026-02-04
+locale: en
+tags: ['engineering-leadership']
+translationKey: "delivery-illusion"
+---
+
+Nobody sets out to build a team that ships the wrong things.
+
+You define goals. You write specs. You plan sprints. You track tickets. And at the end of the month, the board says "shipped 25 items." It sounds like progress.
+
+But the client is still frustrated. The product hasn't moved. And you're wondering how a team that's clearly working hard can feel so stuck.
+
+This is the delivery illusion: the gap between output and outcome. And it's one of the most expensive problems a growing company can have, because it looks like everything is working.
+
+## The landscape
+
+Most engineering teams measure delivery by volume. Items shipped. Tickets closed. Sprint velocity. Story points completed.
+
+These metrics aren't useless — they tell you the team is active. But they don't tell you whether the activity matters.
+
+I recently reviewed a month of delivery across a client engagement. The team closed over 25 items. On paper, it looked strong. But when we mapped each item to the month's stated business goal — acquire and activate users for the product's core loop — only about 60% of the work connected.
+
+The other 40%? Bug fixes from previous sprints. Nice-to-have UI tweaks. A stakeholder request that wasn't tied to any goal. Backend maintenance. Tooling improvements.
+
+None of it was wasted work. All of it was reasonable in isolation. But collectively, it diluted focus and slowed the one thing that actually needed to move.
+
+The team wasn't slow. They were scattered.
+
+This pattern repeats everywhere I look. And it's not limited to engineering.
+
+I worked with a team recently that was spending $14,000 per month on paid marketing. Clear goal: acquire a specific number of new customers per location. Reasonable budget. Clear objective.
+
+The problem? Their attribution tracking was broken. When a user clicked an ad and moved to the booking flow, the tracking data was stripped at the subdomain handoff. They literally could not tell which customers came from paid ads and which found them organically.
+
+Fourteen thousand dollars a month. No way to measure return.
+
+Same illusion, different domain. Activity without attribution. Spend without measurement. Work happening, but no one can connect it to an outcome.
+
+## The framework
+
+This experience led to a metric we're now using with my team: the value-attributed delivery rate.
+
+The definition is simple: what percentage of delivered work items in a given period are explicitly tied to a defined business outcome?
+
+Not "could theoretically be connected to a goal." Not "justified after the fact during a retrospective." Explicitly attributed at the time of delivery.
+
+The target is 70–80%.
+
+Not 100% — there's always legitimate maintenance, bug fixing, and operational overhead. But when you drop below 70%, something is wrong with prioritization. And when you're at 50% or below, you're running an engineering team on autopilot.
+
+Here's why this metric matters more than velocity or throughput: it forces you to define what success looks like *before* the work begins.
+
+To attribute work to a goal, you need a goal. To have a goal, you need to decide what matters this month. To decide what matters, you need a clear understanding of what the business needs.
+
+Most teams skip this step. They start the sprint with a full backlog and work through it. The backlog feels like direction, but it's just a list. A list is not a strategy.
+
+**How to implement it.**
+
+First, define a single measurable objective for the month. Not three. One. The thing that, if it moves, means the month was successful.
+
+Second, tag every work item before it ships. Does it connect to this month's objective? Yes or no. No retroactive attribution.
+
+Third, review the ratio weekly. Items attributed to the goal divided by total items delivered. Track it over time.
+
+One nuance that trips teams up: measure the ratio by effort, not by ticket count. If you delivered 10 items and 8 were goal-related, that looks like 80%. But if the 2 non-goal items each took three times as long as the others, your actual effort split is closer to 50/50.
+
+Bug fixes and small maintenance tasks inflate your ticket count without reflecting where the team's time actually went. Use hours or story points as the denominator, not item count.
+
+## The objections
+
+**"We can't just ignore bugs and maintenance."**
+
+You're right. You can't. That's why the target is 80%, not 100%. Every team has a legitimate overhead bucket — bug fixes, infrastructure, tooling, client requests that don't map to a strategic goal.
+
+The problem isn't that this work exists. The problem is that no one accounts for it. So it silently grows from 20% to 40% to half the sprint, and nobody notices because the team is still "busy."
+
+The fix isn't eliminating overhead. It's budgeting for it. Acknowledge that 20% of the team's capacity goes to keeping the lights on, and protect the remaining 80% for work that moves the business forward.
+
+**"How do we know what counts as 'attributed'?"**
+
+If someone can clearly state which business goal a work item supports, it's attributed. If they can't, it isn't. The test is simple. If you have to stretch to make the connection, the answer is no.
+
+This sounds strict. It is. That's the point. The discipline of attribution is what creates focus.
+
+**"Our North Star metric isn't clear enough to attribute work to."**
+
+Then that's your first problem. Before you can measure delivery quality, you need to know what you're delivering *toward*.
+
+I worked with a team recently that spent time debating their North Star metric. Revenue? Engagement? User count? They landed on a single metric: the number of successful connections between two sides of their marketplace. That one decision clarified every prioritization conversation that followed.
+
+If your team can't articulate the one metric that matters this quarter, your delivery rate will suffer. Not because the team is bad, but because they have no filter.
+
+## The payoff
+
+When teams adopt value-attributed delivery, three things change.
+
+**Planning gets sharper.** You can't attribute work to a goal if you haven't defined the goal. So teams start the month with a clear, singular objective instead of a bag of tickets. The planning conversation shifts from "what's in the backlog" to "what moves the metric."
+
+**Standups change.** Instead of "what did you work on yesterday," the implicit question becomes "does what you're working on connect to this month's goal?" The answer isn't always yes, and that's fine. But asking the question keeps the ratio honest and surfaces drift early.
+
+**Retrospectives become useful.** Instead of "what went well, what didn't," you ask: "We hit 65% value-attributed delivery this month — what pulled us below 80%?" That's a specific, actionable conversation. It points to structural issues — too many urgent requests, unclear specs, scope creep — instead of vague sentiment.
+
+None of this requires new tools. It requires a definition, a field in your project tracker, and the discipline to tag work before it ships.
+
+## One question
+
+If you mapped your team's last month of delivered work to a defined business outcome, what percentage would actually connect?
+
+If you don't know, that's the first thing to fix.

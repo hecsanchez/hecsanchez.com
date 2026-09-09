@@ -1,0 +1,124 @@
+---
+title: "Why Your Team Slowed Down"
+description: "Teams don't slow down because people get lazy. They slow down because well-intentioned checks compound, until preventing mistakes costs more than the mistakes did."
+date: 2026-01-28
+locale: en
+tags: ['engineering-leadership']
+translationKey: "team-slowed-down"
+---
+
+Nobody sets out to build a slow team.
+
+You hire good people. You adopt the right tools. You run standups, write specs, track tickets. And somewhere along the way, the team that used to ship weekly is now shipping monthly — and nobody can point to exactly when it happened.
+
+I've seen this pattern play out in different teams over time. The symptoms are always the same: more process, less output. More meetings, less momentum. More "alignment," less actual shipping.
+
+This is about why that happens, and how teams accidentally slow themselves down as they grow.
+
+## The slowdown pattern
+
+Teams don't slow down because people get lazy. They slow down because well-intentioned systems accumulate friction.
+
+It usually starts with a mistake. Something ships that shouldn't have. A bug makes it to production. A feature doesn't match what the client wanted. The reasonable response is to add a check: a review step, a sign-off, a more detailed spec.
+
+Each check makes sense in isolation. But checks compound. And eventually, the cost of preventing mistakes exceeds the cost of the mistakes themselves.
+
+Here's what I typically see:
+
+**Stage 1: Startup speed.** Small team, high trust, fast shipping. Decisions happen in conversations. Features go from idea to production in days.
+
+**Stage 2: First burn.** Something goes wrong. A client is upset. The response is process: code reviews, QA gates, spec templates. Shipping slows slightly, but quality improves. This feels like a good trade.
+
+**Stage 3: Process creep.** More checks are added. Specs get longer. Reviews multiply. The team that used to ship in days now ships in weeks. But nobody connects the slowdown to the process — they blame scope, complexity, or headcount.
+
+**Stage 4: Bottleneck formation.** One or two people become gatekeepers. Nothing starts without their sign-off. They're overloaded. Work queues up. The team is "blocked" more than they're building.
+
+By stage 4, the team is working harder than ever but shipping less than they did at stage 1.
+
+## The two levers
+
+When I work with teams stuck in stage 3 or 4, I focus on two levers: focus and altitude.
+
+### Focus: the one thing
+
+Most teams start each week with a backlog. Let's say 12 tickets. Three "urgent" requests. Everything is a priority, which means nothing is.
+
+The result is predictable: by Friday, five things are half-done and nothing ships.
+
+The fix is uncomfortable but simple: pick one thing. Not the twelve tickets — the one thing that actually matters this week. Then protect it.
+
+That usually means saying no to requests that compete with it, moving meetings that break deep work, and accepting that other work will wait.
+
+This feels risky. Clients want progress on everything. Stakeholders have their own priorities.
+
+But here's what I've learned. Team A half-finishes five things. Team B ships one important thing. Team B wins every time.
+
+The backlog will always be full. Your focus is the scarce resource. Treat it that way.
+
+### Altitude: specs that enable instead of constrain
+
+The second lever is how you define work.
+
+Most teams over-specify. A feature gets broken into subtasks: create migration, add endpoint, update component. Step by step. Implementation detail by implementation detail.
+
+The intention is good: reduce ambiguity, prevent mistakes, make estimation easier. But the effect is the opposite.
+
+When you hand engineers a checklist, they execute. When something doesn't fit the spec, they stop. They ask. They wait. And the person writing specs becomes a bottleneck — nothing moves until they break down the next feature.
+
+What works better: spec the behavior, not the steps.
+
+Instead of prescribing implementation, describe outcomes:
+
+- "When a user does A, the system should do B"
+- "If condition C, show message D"
+- "Edge case E should result in F"
+
+That's it. Acceptance criteria. Business rules. Outcomes.
+
+Let the engineer figure out how. They're closer to the code. They'll often find a better path than the one you would have prescribed.
+
+I call this "high-altitude specs." You define what done looks like. The team figures out how to get there.
+
+Low-altitude specs feel safer. High-altitude specs ship faster.
+
+## The objections
+
+**"But we tried less process and things broke."**
+
+Yes — and the answer isn't zero process. It's the *right* process. The question to ask about any check: does this prevent more value than it costs? A code review that catches real bugs is worth the time. A sign-off that exists because someone got burned three years ago probably isn't.
+
+Audit your process for checks that made sense once but don't anymore.
+
+**"Our team needs detailed specs or they'll build the wrong thing."**
+
+If that's true, you have a hiring or trust problem — not a spec problem. Engineers who can't translate business requirements into implementation decisions need coaching, not longer documents.
+
+More often, detailed specs are a symptom of unclear ownership. The person writing specs doesn't trust the builder. The builder doesn't feel empowered to make decisions. So everything gets written down, and everyone moves slower.
+
+**"We can't just pick one thing — we have multiple clients and commitments."**
+
+You can still focus within each workstream. And often, the "multiple priorities" problem is a scheduling problem in disguise. If you have three clients and each needs something this week, maybe one person focuses on each — rather than everyone context-switching across all three.
+
+The goal isn't to ignore commitments. It's to stop pretending you can meaningfully advance twelve things simultaneously.
+
+## What fast teams do differently
+
+The teams that maintain velocity as they grow share a few traits.
+
+**They protect focus ruthlessly.** New requests go to a backlog, not into the current sprint. "Urgent" gets scrutinized. The default answer to "can we also..." is "not this week."
+
+**They spec outcomes, not steps.** Engineers own implementation. Product owns what success looks like. The handoff is clear and the autonomy is real.
+
+**They audit process regularly.** Every quarter, they ask: what checks are we doing that don't add value? What meetings could be async? What approvals could be removed?
+
+**They measure finished work, not work in progress.** A team that "completed" 47 tickets but shipped nothing real had a bad week. Velocity is what's in the hands of users, not what moved columns in Jira.
+
+**They treat slowdowns as system problems, not people problems.** When shipping slows, the first question is "what changed in how we work?" — not "who's not performing?"
+
+## One question for you
+
+If your team shipped faster a year ago than they do today, what changed?
+
+It probably wasn't the people. It was the system around them.
+
+That's the place to look.

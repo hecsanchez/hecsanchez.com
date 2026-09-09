@@ -6,7 +6,7 @@
   "nav": {
     "home": "Home",
     "blog": "Writing",
-    "projects": "Projects",
+    "projects": "Work",
     "workWithMe": "Work with me",
     "agencies": "For Agencies",
     "founders": "For Founders",
@@ -55,7 +55,6 @@
       "I'm Hec Sánchez, a product engineer and fractional CTO based in Mexico. I have 16 years of experience building software, from customer-facing products to the systems businesses use every day.",
       "I work with agencies and founders on product development, integrations, and technical leadership. Here, I share what I build and what I learn along the way."
     ],
-    "proofLabel": "Software I've contributed to for",
     "workTitle": "Selected work",
     "workIntro": "Products and business systems I've built, with a particular interest in the technology behind sales, marketing, and customer communication.",
     "workWithMeTitle": "Work with me",

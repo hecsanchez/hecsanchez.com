@@ -42,7 +42,7 @@ const dateFmt = new Intl.DateTimeFormat(locale === 'es' ? 'es-MX' : 'en-US', {
   <h1 class="font-serif text-4xl leading-tight text-balance md:text-5xl">{page.h1}</h1>
   <div class="mt-6 space-y-4">
     {page.intro.map((paragraph) => (
-      <p class="font-serif text-[var(--color-fg-muted)]">{paragraph}</p>
+      <p class="max-w-[62ch] text-[var(--color-fg-muted)]">{paragraph}</p>
     ))}
   </div>
 </section>
@@ -52,7 +52,7 @@ const dateFmt = new Intl.DateTimeFormat(locale === 'es' ? 'es-MX' : 'en-US', {
   {entries.length > 0 ? (
     <ul class="mt-6 divide-y divide-[var(--color-border)] border-t border-[var(--color-border)]">
       {entries.map(({ post, href, foreign }) => (
-        <li class="py-6">
+        <li class="py-9">
           <a href={href} class="group block" hreflang={foreign ? otherLocale : undefined}>
             <div class="flex flex-wrap items-center gap-x-2 text-xs uppercase tracking-[0.15em] text-[var(--color-fg-dim)]">
               <span>{dateFmt.format(post.data.date)}</span>
@@ -64,10 +64,10 @@ const dateFmt = new Intl.DateTimeFormat(locale === 'es' ? 'es-MX' : 'en-US', {
                 </span>
               )}
             </div>
-            <h3 class="mt-2 font-serif text-2xl text-[var(--color-fg)] group-hover:text-[var(--color-accent)]">
+            <h3 class="mt-3 font-serif text-3xl leading-snug text-[var(--color-fg)] transition group-hover:text-[var(--color-accent)]">
               {post.data.title}
             </h3>
-            <p class="mt-2 text-[var(--color-fg-muted)]">{post.data.description}</p>
+            <p class="mt-3 max-w-[68ch] text-[var(--color-fg-muted)]">{post.data.description}</p>
           </a>
         </li>
       ))}

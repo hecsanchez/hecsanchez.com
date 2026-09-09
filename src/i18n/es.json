@@ -6,7 +6,7 @@
   "nav": {
     "home": "Inicio",
     "blog": "Artículos",
-    "projects": "Proyectos",
+    "projects": "Trabajo",
     "workWithMe": "Trabaja conmigo",
     "agencies": "Para agencias",
     "founders": "Para fundadores",
@@ -55,7 +55,6 @@
       "Soy Hec Sánchez, ingeniero de producto y CTO fraccional en México. Tengo 16 años de experiencia desarrollando software, desde productos para usuarios finales hasta los sistemas que las empresas utilizan todos los días.",
       "Trabajo con agencias y fundadores en desarrollo de productos, integraciones y liderazgo técnico. Aquí comparto lo que construyo y lo que aprendo en el proceso."
     ],
-    "proofLabel": "He contribuido al desarrollo de software para",
     "workTitle": "Proyectos destacados",
     "workIntro": "Productos y sistemas de negocio que he desarrollado, con un interés particular en la tecnología detrás de las ventas, el marketing y la comunicación con clientes.",
     "workWithMeTitle": "Trabaja conmigo",

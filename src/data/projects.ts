@@ -316,6 +316,96 @@ export const projects: Project[] = [
     related: [],
   },
   {
+    id: 'beni',
+    title: { en: 'Beni', es: 'Beni' },
+    category: { en: 'Product · In development', es: 'Producto · En desarrollo' },
+    cardDescription: {
+      en: 'A loyalty platform built on Apple and Google Wallet, with no app for customers to install.',
+      es: 'Una plataforma de lealtad sobre Apple y Google Wallet, sin app que el cliente tenga que instalar.',
+    },
+    body: {
+      en: "I'm building Beni, a loyalty platform for small businesses. Customers add a card to the wallet already on their phone, and staff credit a visit by scanning it.",
+      es: 'Estoy desarrollando Beni, una plataforma de lealtad para negocios pequeños. El cliente agrega una tarjeta a la cartera que ya trae en el teléfono, y el personal acredita la visita escaneándola.',
+    },
+    featured: false,
+    draft: false,
+    url: 'https://beni.mx',
+    urlLabel: { en: 'Visit beni.mx', es: 'Conoce beni.mx' },
+    intro: [
+      {
+        en: 'Beni is a loyalty platform for small businesses — cafés, salons, the places you go back to. A customer signs up on a web page, adds a card to Apple Wallet or Google Wallet, and that is the whole install. There is no app to download and no account to remember.',
+        es: 'Beni es una plataforma de lealtad para negocios pequeños: cafeterías, salones, los lugares a los que uno vuelve. El cliente se registra en una página web, agrega una tarjeta a Apple Wallet o Google Wallet, y esa es toda la instalación. No hay app que descargar ni cuenta que recordar.',
+      },
+      {
+        en: 'Staff credit a visit by scanning the QR code on that card. The scan is the location signal, which means no GPS permission, no check-in flow, and nothing for the customer to do but hand over their phone.',
+        es: 'El personal acredita la visita escaneando el código QR de esa tarjeta. El escaneo es la señal de ubicación, así que no hace falta permiso de GPS ni un flujo de check-in: el cliente solo entrega su teléfono.',
+      },
+    ],
+    hero: {
+      file: 'beni/hero.png',
+      alt: { en: 'The Beni website', es: 'El sitio de Beni' },
+    },
+    sections: [
+      {
+        title: { en: 'The wallet is the app', es: 'La cartera es la app' },
+        body: [
+          {
+            en: 'Asking someone to install an app for a coffee shop is asking too much. Beni issues a real Apple Wallet and Google Wallet pass instead, so the card sits next to their boarding passes and updates itself when a stamp lands.',
+            es: 'Pedirle a alguien que instale una app para una cafetería es pedir demasiado. En vez de eso, Beni emite un pase real de Apple Wallet y Google Wallet, así que la tarjeta queda junto a sus pases de abordar y se actualiza sola cuando cae un sello.',
+          },
+          {
+            en: 'Each business gets its own branded signup page under a shared domain, so a shop can put a QR code on the counter and be enrolling customers the same afternoon.',
+            es: 'Cada negocio tiene su propia página de registro con su marca bajo un dominio compartido, así que puede poner un código QR en el mostrador y empezar a registrar clientes esa misma tarde.',
+          },
+        ],
+      },
+      {
+        title: { en: 'What the owner sees', es: 'Lo que ve el dueño' },
+        body: [
+          {
+            en: 'The business dashboard is where the owner designs the program and then watches it work: how the stamp looks and what it takes to earn it, the reward at the end, which locations are scanning, who is on staff, and how many rewards have actually been redeemed.',
+            es: 'El panel del negocio es donde el dueño diseña el programa y después lo ve funcionar: cómo se ve el sello y qué se necesita para ganarlo, la recompensa final, qué sucursales están escaneando, quién es parte del personal y cuántas recompensas se han canjeado de verdad.',
+          },
+          {
+            en: 'Redemption is the number that matters. A loyalty program with enrolments and no redemptions is a mailing list.',
+            es: 'El canje es el número que importa. Un programa de lealtad con registros pero sin canjes es una lista de correo.',
+          },
+        ],
+        image: {
+          file: 'beni/dashboard.png',
+          alt: { en: 'Beni business dashboard', es: 'Panel de negocio de Beni' },
+          caption: {
+            en: 'The program editor and the numbers behind it.',
+            es: 'El editor del programa y los números detrás.',
+          },
+        },
+      },
+      {
+        title: { en: 'Built to hold many businesses at once', es: 'Construido para sostener muchos negocios a la vez' },
+        body: [
+          {
+            en: 'Every business is a tenant, so one deployment serves all of them while keeping each one\'s members, locations, and staff to itself. There is a scanner app for staff, a card viewer for customers who want one, and an operator dashboard for provisioning new businesses.',
+            es: 'Cada negocio es un tenant, así que un solo despliegue los atiende a todos mientras mantiene separados a sus miembros, sucursales y personal. Hay una app de escaneo para el personal, un visor de tarjeta para los clientes que lo quieran, y un panel de operación para dar de alta negocios nuevos.',
+          },
+        ],
+      },
+    ],
+    stack: [
+      'NestJS',
+      'Drizzle ORM',
+      'PostgreSQL',
+      'Redis',
+      'BullMQ',
+      'React',
+      'Vite',
+      'Expo',
+      'Apple Wallet',
+      'Google Wallet',
+      'Nx',
+    ],
+    related: [],
+  },
+  {
     id: 'estateflow',
     title: { en: 'Estateflow', es: 'Estateflow' },
     category: { en: 'Product · In development', es: 'Producto · En desarrollo' },

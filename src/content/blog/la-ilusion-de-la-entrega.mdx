@@ -1,0 +1,112 @@
+---
+title: "La ilusión de la entrega"
+description: "Por qué los equipos ocupados se sienten atorados, y cómo medir lo que de verdad mueve al producto. La distancia entre producción y resultado es cara justo porque parece que todo está funcionando."
+date: 2026-02-04
+locale: es
+tags: ['engineering-leadership']
+translationKey: "delivery-illusion"
+---
+
+Nadie se propone construir un equipo que entregue las cosas equivocadas.
+
+Defines objetivos. Escribes especificaciones. Planeas sprints. Das seguimiento a los tickets. Y al final del mes el tablero dice "25 elementos entregados". Suena a progreso.
+
+Pero el cliente sigue frustrado. El producto no se movió. Y te preguntas cómo un equipo que claramente trabaja duro puede sentirse tan atorado.
+
+Esta es la ilusión de la entrega: la distancia entre producción y resultado. Y es uno de los problemas más caros que puede tener una empresa en crecimiento, porque parece que todo está funcionando.
+
+## El panorama
+
+La mayoría de los equipos de ingeniería mide la entrega por volumen. Elementos entregados. Tickets cerrados. Velocidad del sprint. Puntos de historia completados.
+
+Estas métricas no son inútiles: te dicen que el equipo está activo. Pero no te dicen si esa actividad importa.
+
+Hace poco revisé un mes de entregas en una colaboración con un cliente. El equipo cerró más de 25 elementos. En el papel se veía sólido. Pero cuando mapeamos cada elemento contra el objetivo de negocio declarado para ese mes —adquirir y activar usuarios en el circuito principal del producto— solo alrededor del 60% del trabajo conectaba.
+
+¿El otro 40%? Correcciones de bugs de sprints anteriores. Ajustes de interfaz que estaría bien tener. La solicitud de un interesado que no estaba ligada a ningún objetivo. Mantenimiento de backend. Mejoras de herramientas.
+
+Nada de eso era trabajo desperdiciado. Todo era razonable por separado. Pero en conjunto diluía el enfoque y frenaba justo lo único que necesitaba avanzar.
+
+El equipo no era lento. Estaba disperso.
+
+Este patrón se repite en todos lados. Y no se limita a ingeniería.
+
+Hace poco trabajé con un equipo que gastaba $14,000 dólares al mes en marketing pagado. Objetivo claro: adquirir cierto número de clientes nuevos por sucursal. Presupuesto razonable. Objetivo definido.
+
+¿El problema? Su atribución estaba rota. Cuando un usuario hacía clic en un anuncio y pasaba al flujo de reserva, los datos de seguimiento se perdían en el salto de subdominio. Literalmente no podían saber qué clientes venían de anuncios pagados y cuáles los habían encontrado de forma orgánica.
+
+Catorce mil dólares al mes. Sin forma de medir el retorno.
+
+La misma ilusión, otro terreno. Actividad sin atribución. Gasto sin medición. Trabajo ocurriendo, pero nadie puede conectarlo con un resultado.
+
+## El marco
+
+De ahí salió una métrica que ahora usamos con mi equipo: la tasa de entrega atribuida a valor.
+
+La definición es simple: ¿qué porcentaje de los elementos entregados en un periodo está explícitamente ligado a un resultado de negocio definido?
+
+No "teóricamente se podría conectar con un objetivo". No "se justificó después, en la retrospectiva". Atribuido de forma explícita en el momento de la entrega.
+
+La meta es 70–80%.
+
+No 100%: siempre hay mantenimiento legítimo, corrección de bugs y carga operativa. Pero cuando bajas del 70%, algo anda mal en la priorización. Y cuando estás en 50% o menos, tienes un equipo de ingeniería en piloto automático.
+
+Esta es la razón por la que esta métrica importa más que la velocidad o el throughput: te obliga a definir cómo se ve el éxito *antes* de que empiece el trabajo.
+
+Para atribuir trabajo a un objetivo, necesitas un objetivo. Para tener un objetivo, necesitas decidir qué importa este mes. Para decidir qué importa, necesitas entender con claridad lo que el negocio necesita.
+
+La mayoría de los equipos se salta este paso. Empiezan el sprint con un backlog lleno y lo van desahogando. El backlog se siente como dirección, pero es solo una lista. Una lista no es una estrategia.
+
+**Cómo implementarlo.**
+
+Primero, define un solo objetivo medible para el mes. No tres. Uno. Aquello que, si se mueve, significa que el mes fue exitoso.
+
+Segundo, etiqueta cada elemento de trabajo antes de entregarlo. ¿Conecta con el objetivo del mes? Sí o no. Nada de atribución retroactiva.
+
+Tercero, revisa la proporción cada semana. Elementos atribuidos al objetivo entre elementos entregados en total. Dale seguimiento en el tiempo.
+
+Un matiz que hace tropezar a los equipos: mide la proporción por esfuerzo, no por número de tickets. Si entregaste 10 elementos y 8 estaban ligados al objetivo, se ve como 80%. Pero si los 2 elementos ajenos al objetivo tomaron cada uno el triple de tiempo que los demás, tu reparto real de esfuerzo está más cerca del 50/50.
+
+Las correcciones de bugs y las tareas pequeñas de mantenimiento inflan la cuenta de tickets sin reflejar dónde se fue realmente el tiempo del equipo. Usa horas o puntos de historia como denominador, no la cantidad de elementos.
+
+## Las objeciones
+
+**"No podemos ignorar los bugs y el mantenimiento."**
+
+Tienes razón. No puedes. Por eso la meta es 80% y no 100%. Todo equipo tiene una bolsa legítima de carga operativa: bugs, infraestructura, herramientas, solicitudes de clientes que no corresponden a un objetivo estratégico.
+
+El problema no es que ese trabajo exista. El problema es que nadie lo contabiliza. Entonces crece en silencio del 20% al 40% y hasta la mitad del sprint, y nadie lo nota porque el equipo sigue "ocupado".
+
+La solución no es eliminar la carga operativa. Es presupuestarla. Reconoce que el 20% de la capacidad del equipo se va en mantener las luces encendidas, y protege el 80% restante para el trabajo que mueve al negocio.
+
+**"¿Cómo sabemos qué cuenta como 'atribuido'?"**
+
+Si alguien puede decir con claridad a qué objetivo de negocio corresponde un elemento de trabajo, está atribuido. Si no puede, no lo está. La prueba es simple. Si tienes que estirar el argumento para hacer la conexión, la respuesta es no.
+
+Suena estricto. Lo es. Ese es el punto. La disciplina de atribuir es lo que crea el enfoque.
+
+**"Nuestra métrica principal no es lo bastante clara como para atribuirle trabajo."**
+
+Entonces ese es tu primer problema. Antes de medir la calidad de la entrega, necesitas saber *hacia dónde* estás entregando.
+
+Hace poco trabajé con un equipo que dedicó tiempo a debatir su métrica principal. ¿Ingresos? ¿Interacción? ¿Número de usuarios? Aterrizaron en una sola: la cantidad de conexiones exitosas entre los dos lados de su marketplace. Esa única decisión aclaró todas las conversaciones de priorización que vinieron después.
+
+Si tu equipo no puede articular la única métrica que importa este trimestre, tu tasa de entrega va a sufrir. No porque el equipo sea malo, sino porque no tiene filtro.
+
+## Lo que ganas
+
+Cuando los equipos adoptan la entrega atribuida a valor, cambian tres cosas.
+
+**La planeación se afina.** No puedes atribuir trabajo a un objetivo si no has definido el objetivo. Así que los equipos empiezan el mes con una meta clara y única en lugar de una bolsa de tickets. La conversación de planeación pasa de "qué hay en el backlog" a "qué mueve la métrica".
+
+**Los standups cambian.** En lugar de "en qué trabajaste ayer", la pregunta implícita se vuelve "¿lo que estás haciendo conecta con el objetivo del mes?". La respuesta no siempre es sí, y está bien. Pero hacer la pregunta mantiene honesta la proporción y saca a la luz las desviaciones a tiempo.
+
+**Las retrospectivas se vuelven útiles.** En lugar de "qué salió bien y qué no", preguntas: "llegamos a 65% de entrega atribuida a valor este mes, ¿qué nos bajó del 80%?". Esa es una conversación específica y accionable. Apunta a problemas estructurales —demasiadas solicitudes urgentes, especificaciones poco claras, crecimiento del alcance— en lugar de a impresiones vagas.
+
+Nada de esto requiere herramientas nuevas. Requiere una definición, un campo en tu gestor de proyectos y la disciplina de etiquetar el trabajo antes de entregarlo.
+
+## Una pregunta
+
+Si mapearas el último mes de trabajo entregado por tu equipo contra un resultado de negocio definido, ¿qué porcentaje conectaría de verdad?
+
+Si no lo sabes, eso es lo primero que hay que arreglar.

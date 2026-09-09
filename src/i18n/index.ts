@@ -38,13 +38,6 @@ export const testimonials = [
   },
 ] as const;
 
-export const companies = [
-  'Camino Real',
-  'Lala',
-  'Cabify',
-  'Freightliner',
-] as const;
-
 type LocalizedString = { es: string; en: string };
 
 export const careerTimeline: Array<{
