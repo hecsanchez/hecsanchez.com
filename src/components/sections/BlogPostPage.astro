@@ -73,11 +73,10 @@ const linkedinLabel = locale === 'es'
         class="h-16 w-16 shrink-0 rounded-full object-cover"
       />
       <div>
-        <a href={dict.routes.about} class="byline-name text-sm font-medium" aria-label={dict.author.linkLabel}>
-          Hec Sánchez
-        </a>
+        <a href={dict.routes.about} class="byline-name text-sm font-medium">Hec Sánchez</a>
         <p class="mt-1 text-sm text-[var(--color-fg-muted)]">{dict.author.bio}</p>
-        {post.data.linkedinUrl && (
+        {/* One CTA: the article's own thread when it has one, otherwise About. */}
+        {post.data.linkedinUrl ? (
           <a
             href={post.data.linkedinUrl}
             target="_blank"
@@ -85,6 +84,13 @@ const linkedinLabel = locale === 'es'
             class="mt-2 inline-block text-sm text-[var(--color-accent)] underline underline-offset-4"
           >
             {linkedinLabel} →
+          </a>
+        ) : (
+          <a
+            href={dict.routes.about}
+            class="mt-2 inline-block text-sm text-[var(--color-accent)] underline underline-offset-4"
+          >
+            {dict.author.linkLabel} →
           </a>
         )}
       </div>
