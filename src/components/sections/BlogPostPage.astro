@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { render } from 'astro:content';
-import { t, type Locale, contactInfo } from '../../i18n';
+import { t, type Locale } from '../../i18n';
 import SubscribeForm from '../SubscribeForm.astro';
 
 interface Props {
@@ -73,25 +73,26 @@ const linkedinLabel = locale === 'es'
         class="h-16 w-16 shrink-0 rounded-full object-cover"
       />
       <div>
-        <div class="text-sm font-medium text-[var(--color-fg)]">Hec Sánchez</div>
+        <a href={dict.routes.about} class="byline-name text-sm font-medium" aria-label={dict.author.linkLabel}>
+          Hec Sánchez
+        </a>
         <p class="mt-1 text-sm text-[var(--color-fg-muted)]">{dict.author.bio}</p>
-        <div class="mt-2 flex flex-wrap gap-x-5 gap-y-1">
-          <a href={dict.routes.about} class="text-sm text-[var(--color-accent)] underline underline-offset-4">
-            {dict.author.linkLabel} →
-          </a>
+        {post.data.linkedinUrl && (
           <a
-            href={post.data.linkedinUrl ?? contactInfo.linkedin}
+            href={post.data.linkedinUrl}
             target="_blank"
             rel="noopener"
-            class="text-sm text-[var(--color-accent)] underline underline-offset-4"
+            class="mt-2 inline-block text-sm text-[var(--color-accent)] underline underline-offset-4"
           >
             {linkedinLabel} →
           </a>
-        </div>
+        )}
       </div>
     </div>
+
+    <div class="subscribe-trigger" aria-hidden="true"></div>
   </div>
 </article>
 
 <!-- Floating Shipping Notes signup — slides in once the byline is in view -->
-<SubscribeForm locale={locale} variant="floating" placement="writing_post" trigger=".byline-card" />
+<SubscribeForm locale={locale} variant="floating" placement="writing_post" trigger=".subscribe-trigger" />

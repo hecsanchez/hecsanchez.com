@@ -102,14 +102,20 @@
   /* Byline card sits before the references via flex order. Reset prose styles. */
   & > .byline-card { order: 89; font-family: var(--font-sans); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   & > .byline-card p { font-size: 14px; line-height: 1.5; margin-bottom: 0; }
-  & > hr:last-of-type { order: 90; }
-  & > h2:last-of-type { order: 91; }
-  & > ol:last-of-type { order: 92; }
+  & > .byline-card .byline-name {
+    color: var(--color-fg);
+    text-decoration-color: var(--color-border);
+    text-underline-offset: 3px;
+  }
+  & > .byline-card .byline-name:hover { text-decoration-color: var(--color-accent); }
+  /* Zero-height marker after everything, used to reveal the floating signup. */
+  & > .subscribe-trigger { order: 99; height: 1px; }
+  & > .post-references { order: 90; }
 
-  /* References (the trailing ordered list at the end of a post) — render smaller. */
-  & ol:last-of-type,
-  & ol:last-of-type li,
-  & ol:last-of-type p {
+  /* References render smaller than the body. The heading keeps its own size. */
+  & .post-references ol,
+  & .post-references li,
+  & .post-references p {
     font-size: 17px;
     line-height: 1.55;
   }
