@@ -1,0 +1,82 @@
+---
+title: "Before You Automate a Process, Watch Someone Do It"
+description: "The first proposal builder I made for The Woods looked like the proposal itself. I eventually removed it. \"Prepare a proposal\" is a reasonable description of a task, and nowhere near enough to build the thing that does it."
+date: 2026-09-15
+locale: en
+tags: ['product']
+translationKey: "watch-someone-do-it"
+---
+
+The first proposal builder I made for [The Woods](/en/projects/the-woods-crm) looked like the proposal itself. It was a document you could edit in real time, seeing the result as you worked.
+
+I had built a nice interface. I eventually removed it.
+
+When I saw the team use it, they needed much more room to work. They needed to select products, add measurements, correct mistakes, delete items, and enter custom line items. They needed to see costs that wouldn't all appear in the customer's document. They also needed to adjust percentages for profit and material waste.
+
+The document was where that work ended up. My interface had put it at the centre of the entire process.
+
+Installation made the problem particularly clear. An installation line item could include products the team needed to purchase separately. Those components needed to be visible while preparing the proposal, even though the customer wouldn't see every component listed individually.
+
+The person preparing the price needed more information than the person receiving it.
+
+Profit and material waste added another layer. There were baseline percentages to start from, but those values could change for each case. The material and the shape of the space could influence the waste allowance. A default was useful, but the team still needed to judge whether it applied.
+
+You can make a document look quite finished before you've finished working out the numbers. Apparently, I had built a very convenient way to do that.
+
+I replaced the live editor with a proposal builder. The team could enter the information, make adjustments, and see the full data before previewing the customer's document. That gave them the flexibility the document-shaped interface hadn't provided.
+
+The change came from seeing what preparing a proposal actually involved.
+
+"Prepare a proposal" is a perfectly reasonable description of the task. It is also nowhere near enough information to build the thing that does it.
+
+When someone explains a process, they have to compress it. They can describe choosing the products, calculating the price, and sending the document without mentioning every correction or judgment along the way. Much of that detail may feel too ordinary to mention.
+
+Watching a real case gives you something more specific to ask about. Why did that percentage change? Where did that cost come from? What are you checking before moving on?
+
+At The Woods, the need for a custom installation breakdown and adjustable percentages affected what information the system had to hold, what the user needed to see, and what they needed to control. Those were requirements for the calculation as well as the interface.
+
+That matters when you automate. If a calculation needs a cost that nobody has entered, automating the calculation doesn't resolve the missing information. Someone still has to find it and put it somewhere. Depending on the design, you may simply move that work into another spreadsheet or a correction after the document is generated.
+
+Before building, it helps to follow one real case from beginning to end. Ask the person to use the actual files and tools they normally use. Let them work, then ask about the pauses and changes you don't understand.
+
+You can organize your notes around five things:
+
+1. **Inputs: what information does the work require?**
+
+   Record where each piece comes from and whether it is available when needed. Include the information used internally, even if it never appears in the final output. The separately purchased products inside an installation line item belong here.
+
+2. **Decisions: what does the person have to judge?**
+
+   Look for choices that change the result. Ask what informs them and whether there is a baseline. A waste percentage with a default and a case-specific adjustment is a different requirement from a fixed percentage applied to every proposal.
+
+3. **Exceptions: what makes the usual steps insufficient?**
+
+   Watch what happens when an item doesn't fit the catalogue, an entry is wrong, or a default needs changing. The custom line items and corrections at The Woods needed to fit naturally into the builder. A workflow has to accommodate the person changing their mind or catching a mistake.
+
+4. **Handoffs: where does progress depend on someone else?**
+
+   If the person sends a message or waits for clarification, find out what answer they need and who can provide it. Record what happens to the task while they wait. A message that takes a few seconds to send can represent a dependency your automation will also have.
+
+5. **Completion: how do they know the result is correct?**
+
+   Ask what they check before calling the task finished. A generated document tells you that generation worked. You still need to understand how the person verifies that its contents are right.
+
+Be careful with the steps that look unnecessary. A second check could be redundant. It could also catch a problem you haven't encountered yet. Ask what it protects against before removing it.
+
+Once you have those notes, you can make more precise decisions about the automation.
+
+Some work can follow explicit rules once the inputs are known. Some work needs better information before any rule can help. Some work requires judgment, so the system needs to expose the relevant information and let a person decide.
+
+A single task can contain all three.
+
+Then test your understanding against an ordinary case and an exception. For a proposal builder, that could mean a straightforward proposal using baseline values, followed by one with custom installation costs or an adjusted waste allowance.
+
+Walk through your proposed workflow with the person who does the job. Check whether they can enter what they know, change what needs changing, and verify the result. Wherever they need to reach outside the system, understand why.
+
+One case won't reveal everything. It will give you a much better basis for the next question.
+
+At The Woods, I had to remove an interface I'd already built to make room for the work I hadn't fully understood. The replacement let the team work through the details before producing the document.
+
+Watching earlier would have given me a better chance of designing for those details from the start.
+
+**Before you automate your next process, ask someone to walk you through one actual case. Pay particular attention to the step you didn't know existed.**

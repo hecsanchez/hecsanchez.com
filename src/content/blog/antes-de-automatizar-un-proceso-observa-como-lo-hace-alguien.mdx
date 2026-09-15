@@ -1,0 +1,82 @@
+---
+title: "Antes de automatizar un proceso, observa cómo lo hace alguien"
+description: "La primera herramienta que construí para armar propuestas en The Woods se veía como la propuesta misma. Después la quité. \"Preparar una propuesta\" describe bien la tarea, y deja fuera muchísimo de lo que necesitas para construir el sistema que la resuelve."
+date: 2026-09-15
+locale: es
+tags: ['product']
+translationKey: "watch-someone-do-it"
+---
+
+La primera herramienta que construí para armar propuestas en [The Woods](/es/proyectos/the-woods-crm) se veía como la propuesta misma. Era un documento editable en tiempo real: ibas haciendo cambios y veías cómo quedaba.
+
+Había construido una interfaz bonita. Después la quité.
+
+Cuando vi al equipo usarla, necesitaban mucho más espacio para trabajar. Tenían que seleccionar productos, agregar medidas, corregir errores, eliminar partidas y añadir conceptos personalizados. Necesitaban ver costos que no aparecerían completos en el documento del cliente. También tenían que ajustar los porcentajes de utilidad y merma.
+
+El documento era donde terminaba todo ese trabajo. Mi interfaz lo había puesto en el centro del proceso entero.
+
+La instalación hizo especialmente evidente el problema. Una partida de instalación podía incluir productos que el equipo necesitaba comprar por separado. Esos componentes debían estar visibles al preparar la propuesta, aunque el cliente no fuera a ver cada uno desglosado.
+
+La persona que calculaba el precio necesitaba más información que la persona que lo recibía.
+
+La utilidad y la merma agregaban otra capa. Había porcentajes base para empezar, pero podían ajustarse según el caso. El material y la forma del espacio podían influir en la merma. Tener un valor predeterminado servía, pero el equipo todavía tenía que decidir si correspondía usarlo.
+
+Un documento puede verse bastante terminado cuando todavía no terminas de sacar las cuentas. Al parecer, yo había construido una forma muy cómoda de lograrlo.
+
+Reemplacé el editor en tiempo real por una herramienta para armar la propuesta. El equipo podía capturar la información, hacer ajustes y revisar todos los datos antes de abrir la vista previa del documento para el cliente. Eso les dio la flexibilidad que la interfaz con forma de documento no les había dado.
+
+El cambio vino de ver lo que realmente implicaba preparar una propuesta.
+
+"Preparar una propuesta" describe la tarea perfectamente bien. También deja fuera muchísima información que necesitas para construir el sistema que la resuelve.
+
+Cuando alguien explica un proceso, tiene que resumirlo. Puede hablar de elegir productos, calcular el precio y enviar el documento sin mencionar cada corrección o decisión que ocurre en el camino. Muchos de esos detalles pueden parecerle demasiado cotidianos como para explicarlos.
+
+Observar un caso real te permite hacer preguntas más concretas. ¿Por qué cambió ese porcentaje? ¿De dónde salió ese costo? ¿Qué estás revisando antes de continuar?
+
+En The Woods, el desglose interno de la instalación y los porcentajes ajustables cambiaban qué información debía guardar el sistema, qué necesitaba ver el usuario y qué debía poder modificar. Eran requisitos para el cálculo tanto como para la interfaz.
+
+Eso importa cuando automatizas. Si un cálculo necesita un costo que nadie ha capturado, automatizarlo no resuelve la falta de información. Alguien todavía tiene que encontrarla y ponerla en algún lugar. Según cómo diseñes el proceso, puedes terminar moviendo ese trabajo a otra hoja de cálculo o a una corrección después de generar el documento.
+
+Antes de construir, ayuda seguir un caso real de principio a fin. Pídele a la persona que use los archivos y las herramientas con los que trabaja normalmente. Deja que avance y después pregunta por las pausas y los cambios que no entiendas.
+
+Puedes organizar tus notas alrededor de cinco cosas:
+
+1. **Entradas: ¿qué información necesita el trabajo?**
+
+   Anota de dónde sale cada dato y si está disponible cuando hace falta. Incluye la información de uso interno, aunque nunca aparezca en el resultado final. Los productos que hay que comprar por separado dentro de una partida de instalación entran aquí.
+
+2. **Decisiones: ¿qué necesita evaluar la persona?**
+
+   Busca las decisiones que cambian el resultado. Pregunta en qué se basan y si existe un punto de partida. Un porcentaje de merma con un valor base que se ajusta según el caso es un requisito distinto de un porcentaje fijo para todas las propuestas.
+
+3. **Excepciones: ¿cuándo dejan de alcanzar los pasos habituales?**
+
+   Observa qué pasa cuando algo no está en el catálogo, un dato está mal o hay que cambiar un valor predeterminado. Las partidas personalizadas y las correcciones en The Woods necesitaban tener lugar dentro de la herramienta. El proceso tiene que permitir que la persona cambie de opinión o detecte un error.
+
+4. **Dependencias entre personas: ¿dónde hace falta alguien más para avanzar?**
+
+   Si la persona manda un mensaje o espera una aclaración, averigua qué respuesta necesita y quién puede dársela. Anota qué pasa con la tarea mientras espera. Un mensaje que toma unos segundos escribir puede representar una dependencia que tu automatización también tendrá.
+
+5. **Cierre: ¿cómo sabe que el resultado está bien?**
+
+   Pregunta qué revisa antes de dar la tarea por terminada. Que se haya generado un documento te dice que la generación funcionó. Todavía necesitas entender cómo verifica la persona que el contenido sea correcto.
+
+Ten cuidado con los pasos que parecen innecesarios. Una segunda revisión puede estar de más. También puede detectar un problema que tú todavía no has visto. Antes de quitarla, pregunta qué busca evitar.
+
+Con esas notas puedes tomar decisiones más precisas sobre la automatización.
+
+Una parte del trabajo puede seguir reglas explícitas una vez que están los datos. Otra necesita mejor información antes de que cualquier regla sirva. Otra requiere criterio, así que el sistema debe mostrar la información relevante y permitir que una persona decida.
+
+Una misma tarea puede tener las tres.
+
+Después pon a prueba lo que entendiste con un caso habitual y una excepción. Para una herramienta de propuestas, podría ser una propuesta sencilla con los valores base, seguida de otra con costos de instalación personalizados o un porcentaje de merma ajustado.
+
+Recorre el flujo que propones con la persona que hace el trabajo. Revisa si puede capturar lo que sabe, cambiar lo que haga falta y verificar el resultado. Cuando necesite salir del sistema para resolver algo, averigua por qué.
+
+Un caso no te va a enseñar todo. Sí te va a dar una base mucho mejor para hacer la siguiente pregunta.
+
+En The Woods tuve que quitar una interfaz que ya había construido para darle espacio al trabajo que todavía no había entendido por completo. La nueva herramienta permitía resolver los detalles antes de producir el documento.
+
+Haber observado antes me habría dado una mejor oportunidad de diseñar para esos detalles desde el principio.
+
+**Antes de automatizar tu siguiente proceso, pídele a alguien que te muestre un caso real. Pon especial atención en el paso que no sabías que existía.**
