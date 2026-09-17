@@ -1,0 +1,74 @@
+---
+title: "Las reglas del negocio son el producto"
+description: "Un vendedor podía preparar una propuesta, negociarla y llevarla hasta la venta. Al llegar a ese punto, le quitaba el permiso para editarla. Dónde aplicar esa restricción es el producto."
+date: 2026-09-17
+locale: es
+tags: ['product']
+translationKey: "business-rules-are-the-product"
+---
+
+Construí un CRM para una empresa de pisos en el que un vendedor podía preparar una propuesta, negociarla y llevarla hasta la venta. Al llegar a ese punto, le quitaba el permiso para editarla.
+
+Había una razón para hacerlo. También había una razón para no volver esa propuesta imposible de modificar.
+
+La empresa era [The Woods](/es/proyectos/the-woods-crm). Sus vendedores trabajaban con productos, medidas, costos de instalación y porcentajes de utilidad y merma. Una propuesta podía pasar por varias revisiones antes de que el cliente la aceptara. Y a veces, incluso después del acuerdo, algo tenía que cambiar.
+
+Son situaciones normales en un negocio. Representarlas bien es donde está buena parte del trabajo de construir su software.
+
+Empecemos por el documento que recibe el cliente. The Woods ya tenía un formato en Canva, con el logo de la empresa, imágenes y partidas. Querían conservarlo. Buena parte de mi trabajo consistía en automatizar los cálculos detrás de esa presentación que ya conocían.
+
+Una partida de instalación, por ejemplo, podía incluir productos que el equipo tenía que comprar por separado. El vendedor necesitaba ver esos componentes al preparar el precio. El cliente no necesitaba recibir cada uno desglosado en la propuesta.
+
+También había porcentajes base de utilidad y merma que se ajustaban según el trabajo. El material y la forma del espacio podían influir en la merma. El valor predeterminado le daba al vendedor un punto de partida; todavía tenía que poder modificarlo.
+
+Así que, incluso antes de enviarse, una propuesta cumplía dos funciones. Era un lugar donde el equipo resolvía los detalles y un documento mediante el cual la empresa hacía una oferta. Para la primera función se necesitaba más información de la que aparecía en la segunda.
+
+Conservar esa distinción importaba. El documento del cliente podía resumir el trabajo sin obligar al equipo a perder el detalle que había detrás.
+
+Después, la propuesta salía de la empresa.
+
+Antes de enviarla, un cambio era parte de preparar la oferta. Después de enviarla, era una revisión de algo que el cliente ya había visto. Modificar un precio tenía ahora otra consecuencia: había dos ofertas de las que llevar registro.
+
+Bloqueé la edición de las versiones enviadas. Cada revisión generaba una versión nueva y la anterior se conservaba en el historial.
+
+Así, el equipo podía tener tanto la oferta en la que estaba trabajando como las que habían venido antes. También podía identificar cuál había cerrado la venta. Agregué un área de comentarios en el proyecto para que el vendedor pudiera dejar el contexto que los números no explicaban.
+
+El negocio ya entendía la necesidad de conservar esos registros. Antes del CRM, las distintas propuestas se subían al grupo de WhatsApp correspondiente. Yo le estaba dando una estructura más explícita a una práctica que ya existía.
+
+La aceptación era el siguiente punto, y en The Woods tenía un significado preciso. El cliente debía hacer el pago inicial establecido en las condiciones de pago.
+
+Para marcar la propuesta como aceptada o vendida, el vendedor capturaba el total acordado al final, el monto del pago, el método y un comprobante de transferencia como PDF o imagen. Ese paso creaba automáticamente un expediente: el lugar donde se reunían las actualizaciones, compras y pagos posteriores.
+
+Cerrar una venta es, entre otras cosas, una forma muy eficiente de generar más trabajo.
+
+El expediente le daba un lugar a ese trabajo. Antes tenía su propio grupo de WhatsApp; ahora estaba en el sistema. Los pagos seguían registrándose manualmente, con un comprobante adjunto a cada uno.
+
+Para entonces, la propuesta representaba un acuerdo respaldado por un pago inicial. Permitir que el vendedor siguiera cambiándola con la misma libertad que un borrador habría ignorado lo que acababa de pasar.
+
+Por eso su permiso de edición terminaba ahí.
+
+Pero en el negocio seguían ocurriendo casos en los que había que modificar una propuesta aceptada. Volver el registro imposible de cambiar dejaría al equipo con un sistema incapaz de representar una actualización legítima.
+
+Conservé esa posibilidad para los administradores. Un vendedor podía solicitar el cambio. Un administrador que ya estuviera enterado podía hacer la actualización directamente.
+
+Esa decisión tenía un costo. El vendedor ahora dependía de alguien más para hacer un cambio que antes podía hacer por su cuenta. El paso adicional era consecuencia de dejar la autoridad sobre una propuesta acordada en manos de los administradores.
+
+Es tentador describirlo como una función de permisos. Pero la decisión importante era en qué momento aplicar esa restricción. La misma persona necesitaba libertad durante la negociación y otra vía para hacer cambios una vez establecido el acuerdo.
+
+En una lista de funciones, todo esto podría caber en propuestas, historial de versiones, pagos y roles de usuario. Podrías marcar cada casilla y aun así construir algo que manejara mal la venta. Las conexiones entre esas funciones determinan lo que el sistema le permite hacer al equipo.
+
+A eso me refiero cuando digo que las reglas del negocio son el producto. Determinan si una oferta anterior sigue disponible, si una venta registrada incluye los datos del pago requerido y si la persona que está viendo un monto acordado puede modificarlo.
+
+Para un fundador o dueño de negocio que encarga software, vale la pena involucrarse en estas decisiones. No necesitas elegir una base de datos para explicar por qué importa una oferta anterior o por qué, después de la aceptación, un cambio necesita la autoridad de otra persona.
+
+Una forma útil de aterrizar la conversación es tomar una venta real y reunir los registros que la rodean: las propuestas, el detalle interno de costos, las compras, los pagos y el contexto necesario para entenderlos. Establece qué vio el cliente y qué necesitaba conservar el equipo internamente.
+
+Después recorre un cambio que sí ocurra en tu negocio. Sigue qué cifras y registros afecta, quién necesita enterarse y qué debe permanecer como evidencia de lo anterior. Decide qué actualizaciones debería hacer el software y cuáles requieren que alguien revise la situación.
+
+Intenta escribir el requisito como una regla que alguien del equipo pueda reconocer. En The Woods, "guardar el historial de propuestas" se convirtió en una instrucción concreta: una vez enviada la propuesta, una revisión crea una versión nueva y deja disponible la anterior.
+
+Esa frase te da algo específico que construir y comprobar. También le da al negocio algo específico que cuestionar antes de que ese comportamiento quede enterrado en el software.
+
+El logo, las imágenes y las partidas podían seguir como siempre. Las decisiones importantes estaban debajo: cuándo una oferta pasaba a formar parte del historial, cuándo aceptarla requería un pago y cuándo cambiar un acuerdo se volvía responsabilidad de alguien más.
+
+**Elige una acción de tu software que parezca rutinaria. ¿En qué momento del negocio deja de serlo?**

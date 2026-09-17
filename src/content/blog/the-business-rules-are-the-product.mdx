@@ -1,0 +1,74 @@
+---
+title: "The Business Rules Are the Product"
+description: "A salesperson could prepare a proposal, negotiate it, and take it through to a sale. At that point, I took away their permission to edit it. Where that restriction sits is the product."
+date: 2026-09-17
+locale: en
+tags: ['product']
+translationKey: "business-rules-are-the-product"
+---
+
+I built a CRM for a flooring business in which a salesperson could prepare a proposal, negotiate it, and take it through to a sale. At that point, I took away their permission to edit it.
+
+There was a reason for that. There was also a reason I couldn't make the proposal permanently unchangeable.
+
+The business was [The Woods](/en/projects/the-woods-crm). Its salespeople worked with products, measurements, installation costs, and percentages for profit and material waste. A proposal might need several revisions before the customer agreed to it. And sometimes, even after agreement, something needed to change.
+
+Those are ordinary things for a business to deal with. Representing them properly is where much of the work of building its software lives.
+
+Start with the document the customer receives. The Woods already had a format in Canva, with the company logo, images, and line items. They wanted to keep it. Much of my work was to automate the calculations behind that familiar presentation.
+
+An installation line, for example, could include products the team had to purchase separately. The salesperson needed to see those components while preparing the price. The customer didn't need each one individually listed in the proposal.
+
+There were also baseline percentages for profit and waste, with adjustments for the particular job. The material and the shape of the space could influence the waste allowance. A default gave the salesperson somewhere to start; it still needed to be adjustable.
+
+So even before a proposal was sent, it had two jobs. It was a place for the team to work through the details and a document through which the company made an offer. The information needed for the first job was more extensive than what appeared in the second.
+
+Keeping that distinction mattered. A clean customer document could summarize the work without forcing the team to lose the detail behind it.
+
+Then the proposal left the business.
+
+Before sending, a change was part of preparing the offer. After sending, it was a revision to something the customer had already seen. The same act of changing a price now had a different consequence: there were two offers to account for.
+
+I made sent versions uneditable. A revision created a new version, and the earlier one remained in the history.
+
+This gave the team a way to keep both the offer they were working on and the offers that had come before it. They could also identify which proposal had led to the sale. I added a comments area in the project so a salesperson could leave context that the numbers didn't explain.
+
+The business already understood the need to keep those records. Before the CRM, different proposals were uploaded to the relevant WhatsApp group. I was giving an existing business practice a more explicit structure.
+
+Acceptance was the next boundary, and it had a precise meaning at The Woods. The customer had to make the initial payment specified in the payment terms.
+
+To mark the proposal as accepted or sold, the salesperson entered the final agreed total, the payment amount, the payment method, and a transfer receipt as a PDF or image. That step automatically created an expediente: the project file that became the home for subsequent updates, purchases, and payments.
+
+Closing a sale is, among other things, a very efficient way to create more work.
+
+The expediente gave that work somewhere to go. Previously it had its own WhatsApp group; now it lived in the system. Payments were still recorded manually, with a receipt attached to each one.
+
+At this point, the proposal represented an agreement backed by an initial payment. Letting a salesperson continue changing it as freely as a draft would have ignored what had just happened.
+
+So their editing permission ended there.
+
+But the business still had cases where an accepted proposal needed changing. Making the record impossible to amend would leave the team with a system that couldn't represent a legitimate update.
+
+I kept that ability with administrators. A salesperson could request a change. An administrator who already knew about it could make the update directly.
+
+That choice had a cost. The salesperson now depended on someone else to make a change they could previously have made themselves. The extra handoff was the consequence of putting authority over an agreed proposal with administrators.
+
+It's tempting to describe this as a permissions feature. But the important decision was where to place that restriction. The same person needed freedom while negotiating and a different route once the agreement was in place.
+
+On a feature list, all of this could fit under proposals, version history, payments, and user roles. You could check every box and still build something that handles the sale badly. The connections between those features determine what the system lets the team do.
+
+That's what I mean by the business rules being the product. They determine whether an old offer remains available, whether a recorded sale includes the required payment information, and whether an agreed amount can be changed by the person looking at it.
+
+For a founder or business owner commissioning software, these are decisions worth getting involved in. You don't need to choose a database to explain why an earlier offer matters or why a change needs a different person's authority after acceptance.
+
+A useful way to make the conversation concrete is to take one actual sale and gather the records around it: the proposals, the internal cost details, the purchases, the payments, and any context needed to understand them. Establish what the customer saw and what the team needed to retain internally.
+
+Then work through a change that happens in your business. Trace which figures and records it affects, who needs to know, and what must remain as evidence of the earlier position. Decide which updates the software should make and which require someone to review the situation.
+
+Try writing the requirement as a rule someone on the team could recognize. At The Woods, "keep proposal history" became a concrete instruction: once a proposal is sent, a revision creates a new version and leaves the earlier one available.
+
+That sentence gives you something specific to build and check. It also gives the business something specific to disagree with before the behaviour is buried in the software.
+
+The logo, images, and line items could stay familiar. The consequential decisions were underneath them: when an offer became history, when acceptance required a payment, and when changing an agreement became somebody else's responsibility.
+
+**Choose one action in your software that looks routine. At what point in the business does it stop being routine?**
