@@ -1,0 +1,48 @@
+---
+title: "AI Made Me Faster. Now I Have to Be More Careful About Direction."
+description: "I had told the AI where the screen belonged, how the queue should pace delivery, what the preview should show. I had forgotten to mention the timezone. By the time I reviewed it, the omission was already a default in working code."
+date: 2026-09-21
+locale: en
+tags: ['product']
+translationKey: "faster-careful-direction"
+---
+
+I had told the AI where to put the new screen in [Beni's](/en/projects/beni) navigation. I had described the data model, the recipient selection, the message preview, and the sending queue.
+
+I had forgotten to mention the timezone.
+
+The feature would let businesses send messages to the people registered in their loyalty programs. They could choose a segment, pick individual subscribers, or send to everyone. They could also schedule the message for later.
+
+There was enough going on to deserve a detailed design document, so I wrote one. It included a queue to pace delivery when there were many messages, taking fair usage requirements into account. I wanted the business to be able to preview what it was sending and choose who would receive it. I described how the new view should behave and where it belonged in the existing product.
+
+The AI implemented the backend first: the API, the database migrations, and the queue. Before moving on to the interface, I reviewed it.
+
+The scheduling implementation was storing dates in GMT by default. The missing requirement concerned how to interpret the time the user chose: scheduling needed to read the timezone from their profile.
+
+That connection wasn't in my document. I added it during the review.
+
+I had been specific about where the screen should live. Its relationship with the Earth's rotation had received less attention.
+
+The correction was small, and it happened while only the backend had been built. Then the AI built the interface and connected it to the functionality we'd just reviewed. I tested the flow by connecting a number and sending multiple messages. There were a couple of visual details to adjust; otherwise, the interface was largely right.
+
+Within a couple of hours of handing over the implementation, I had the feature ready to test.
+
+What interests me about that result is how little drama there was. A substantial feature came together quickly. I found an omission, supplied the missing context, and continued. The review had a useful place in the work.
+
+Without an explicit timezone requirement, the implementation still needed to make a choice. By the time I inspected it, the omission had become a default in working code. Something I hadn't written down was already affecting how the product would behave.
+
+That can be difficult to notice because a reasonable default doesn't necessarily look like a mistake. The code can be internally consistent. An interface can be built around it. Tests can confirm that it behaves exactly as implemented. None of those things establishes that the initial choice fits the product.
+
+In Beni, I caught it before building the interface. The next layer started with that requirement clarified. Had the work continued further, the same assumption could have found its way into more places before I questioned it.
+
+That's the part of faster development I need to account for. A review can happen only a few hours after the brief and still arrive after a considerable amount of work. Choosing where to look matters as much as remembering to look.
+
+The backend was a useful stopping point here because it already contained consequential decisions: who could receive a message, how a scheduled send was handled, and how the queue would pace delivery. I could inspect those before the interface made them part of the customer's experience. Later, connecting a number and sending messages let me try the pieces together.
+
+The brief could also have been better with one concrete example: a user choosing 9 a.m. expects the send time to follow the timezone on their profile. Add the exception—what happens if the profile has no timezone?—and the decision becomes visible before implementation. That's a more useful addition than another paragraph saying scheduling should work correctly.
+
+When a review finds a mismatch, the correction has to address its source. An unclear instruction needs clarification; code that ignores a clear instruction needs fixing. In this case, the missing context was mine. Simply asking the AI to try again would have given it the same unanswered question.
+
+The speed is worth keeping. So is the chance to inspect a small working piece before everything else grows around it. In Beni, the document was detailed and the implementation was fast. There was still a decision waiting for me between the backend and the next screen.
+
+**Where in your next feature will you stop to check what the implementation has decided on your behalf?**

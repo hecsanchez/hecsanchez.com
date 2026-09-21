@@ -1,0 +1,48 @@
+---
+title: "La IA me hizo más rápido. Ahora tengo que cuidar más el rumbo."
+description: "Le había indicado a la IA dónde iba la pantalla, cómo debía espaciar la cola los envíos, qué mostrar en la vista previa. Se me olvidó mencionar la zona horaria. Para cuando lo revisé, la omisión ya era un valor predeterminado en código que funcionaba."
+date: 2026-09-21
+locale: es
+tags: ['product']
+translationKey: "faster-careful-direction"
+---
+
+Le había indicado a la IA dónde poner la nueva pantalla en la navegación de [Beni](/es/proyectos/beni). Había descrito el modelo de datos, la selección de destinatarios, la vista previa del mensaje y la cola de envíos.
+
+Se me había olvidado mencionar la zona horaria.
+
+La función permitiría que los negocios enviaran mensajes a las personas registradas en sus programas de lealtad. Podían elegir un segmento, seleccionar suscriptores individuales o enviarles a todos. También podían programar el mensaje para más adelante.
+
+Había suficientes detalles como para escribir un documento de diseño completo, así que lo hice. Incluí una cola para espaciar los envíos cuando hubiera muchos mensajes, considerando las políticas de uso. Quería que el negocio pudiera revisar el mensaje antes de enviarlo y elegir quién lo recibiría. Describí cómo debía comportarse la nueva vista y dónde encajaba en el producto.
+
+La IA implementó primero el backend: la API, las migraciones de la base de datos y la cola. Antes de pasar a la interfaz, lo revisé.
+
+La implementación guardaba las fechas de los envíos programados en GMT de forma predeterminada. El requisito que faltaba era cómo interpretar la hora elegida por el usuario: la programación de envíos debía leer la zona horaria de su perfil.
+
+Esa relación no estaba en mi documento. La agregué durante la revisión.
+
+Había sido muy específico sobre dónde debía vivir la pantalla. Su relación con la rotación de la Tierra había recibido menos atención.
+
+La corrección fue pequeña y ocurrió cuando solo se había construido el backend. Después, la IA hizo la interfaz y la conectó con la funcionalidad que acabábamos de revisar. Probé el flujo conectando un número y enviando varios mensajes. Hubo un par de detalles visuales que ajustar; fuera de eso, la interfaz estaba prácticamente bien.
+
+Un par de horas después de delegar la implementación, ya tenía la función lista para probar.
+
+Lo que me interesa de ese resultado es lo poco dramático que fue. Una función con varias piezas quedó lista en poco tiempo. Encontré una omisión, agregué el contexto que faltaba y seguimos. La revisión tenía un lugar útil dentro del trabajo.
+
+Sin un requisito explícito sobre la zona horaria, la implementación necesitaba tomar una decisión de todos modos. Para cuando la revisé, la omisión ya se había convertido en un valor predeterminado dentro de código que funcionaba. Algo que yo no había escrito ya estaba influyendo en cómo se comportaría el producto.
+
+Eso puede costar trabajo detectarlo porque una decisión razonable no necesariamente parece un error. El código puede ser consistente. La interfaz puede construirse alrededor de esa decisión. Las pruebas pueden confirmar que se comporta exactamente como se implementó. Nada de eso demuestra que la decisión inicial corresponda al producto.
+
+En Beni lo detecté antes de construir la interfaz. La siguiente capa empezó con ese requisito aclarado. Si el trabajo hubiera seguido avanzando, la misma suposición podría haber llegado a más lugares antes de que yo la cuestionara.
+
+Esa es la parte del desarrollo más rápido que necesito tener presente. Una revisión puede ocurrir apenas unas horas después de entregar las instrucciones y aun así llegar cuando ya se ha construido bastante. Elegir dónde revisar importa tanto como acordarse de hacerlo.
+
+Aquí el backend era un buen punto para detenerse porque ya contenía decisiones importantes: quién podía recibir un mensaje, cómo se manejaba un envío programado y cómo la cola espaciaría las entregas. Podía revisar todo eso antes de que la interfaz lo volviera parte de la experiencia del cliente. Después, conectar un número y enviar mensajes me permitió probar las piezas juntas.
+
+El documento también habría sido mejor con un ejemplo concreto: una persona que elige las nueve de la mañana espera que la hora de envío corresponda a la zona horaria de su perfil. Agrega la excepción —¿qué pasa si el perfil no tiene zona horaria?— y la decisión aparece antes de implementar. Eso aporta más que otro párrafo diciendo que los envíos programados deben funcionar correctamente.
+
+Cuando una revisión encuentra algo que no corresponde, la corrección tiene que atender el origen. Una instrucción poco clara necesita aclararse; el código que ignora una instrucción clara necesita corregirse. En este caso, el contexto que faltaba era mío. Pedirle a la IA que lo intentara de nuevo habría dejado la misma pregunta sin contestar.
+
+Vale la pena conservar esa velocidad. También la oportunidad de revisar una parte pequeña que ya funciona antes de construir todo lo demás alrededor. En Beni, el documento era detallado y la implementación fue rápida. Aun así, había una decisión esperándome entre el backend y la siguiente pantalla.
+
+**¿En qué momento de tu siguiente función vas a detenerte a revisar qué decidió la implementación por ti?**
