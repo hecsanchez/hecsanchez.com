@@ -3,6 +3,9 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import StructuredData from '../components/StructuredData.astro';
+import AiHeader from '../components/ai/AiHeader.astro';
+import SiteAnalytics from '../components/SiteAnalytics.astro';
+import interLatin from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import { t, type Locale } from '../i18n';
 
 interface Props {
@@ -21,6 +24,9 @@ interface Props {
   noindex?: boolean;
   /** Path to the OG image (e.g. `/og/writing/slug.png`). Falls back to the portrait. */
   ogImage?: string;
+  ogImageAlt?: string;
+  aiPage?: boolean;
+  analyticsEnabled?: boolean;
   /** og:type — use `'article'` for blog posts. Defaults to `'website'`. */
   type?: 'website' | 'article';
   /** ISO date for `article:published_time`. Only rendered when `type='article'`. */
@@ -51,6 +57,9 @@ const {
   altLocaleFallbackHref,
   noindex = false,
   ogImage,
+  ogImageAlt = 'Hec Sánchez',
+  aiPage = false,
+  analyticsEnabled = !import.meta.env.DEV,
   type = 'website',
   articleDate,
   articleTags,
@@ -61,7 +70,7 @@ const {
 } = Astro.props;
 
 const dict = t(locale);
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const canonical = new URL(aiPage ? `${Astro.url.pathname.replace(/\/$/, '')}/` : Astro.url.pathname, Astro.site);
 const canonicalHref = canonical.toString();
 const ogImageUrl = new URL(ogImage ?? '/hecsanchez.png', Astro.site).toString();
 const ogLocale = locale === 'es' ? 'es_MX' : 'en_US';
@@ -85,12 +94,15 @@ const togglePath = altPath ?? withSlash(altLocaleFallbackHref);
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonicalHref} />
     <link rel="icon" type="image/svg+xml" href="/logos/hecsanchez.svg" />
     <link rel="alternate" type="application/rss+xml" title={dict.siteName} href={dict.routes.rss} />
 
     <link rel="preconnect" href="https://use.typekit.net" crossorigin />
+    {aiPage && <link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin />}
+    {aiPage && <link rel="preload" href="https://use.typekit.net/af/c9b150/00000000000000007735d880/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3" as="font" type="font/woff2" crossorigin />}
     <link rel="stylesheet" href="https://use.typekit.net/ujh3wif.css" />
 
     <meta property="og:type" content={type} />
@@ -98,6 +110,7 @@ const togglePath = altPath ?? withSlash(altLocaleFallbackHref);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content={ogImageAlt} />
     <meta property="og:site_name" content={dict.siteName} />
     <meta property="og:locale" content={ogLocale} />
     {type === 'article' && articleDate && (
@@ -110,6 +123,7 @@ const togglePath = altPath ?? withSlash(altLocaleFallbackHref);
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
 
     <link rel="alternate" hreflang={locale} href={canonicalHref} />
     {altHref && (
@@ -128,22 +142,17 @@ const togglePath = altPath ?? withSlash(altLocaleFallbackHref);
       article={article}
     />
 
-    <!-- Privacy-friendly analytics by Plausible -->
-    <script async src="https://plausible.io/js/pa-LLj1kLisNbG0bzRIrzcq1.js"></script>
-    <script>
-      window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
-      plausible.init()
-    </script>
+    <SiteAnalytics enabled={analyticsEnabled} aiPage={aiPage} />
   </head>
-  <body class="flex min-h-dvh flex-col">
+  <body class:list={['flex min-h-dvh flex-col', { 'ai-body': aiPage }]}>
     <a
       href="#main"
       class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-[var(--color-accent)] focus:px-4 focus:py-2 focus:text-[var(--color-bg)]"
     >
       {dict.skipToContent}
     </a>
-    <Nav locale={locale} altLocaleHref={togglePath} />
-    <main id="main" class="flex-1">
+    {aiPage ? <AiHeader /> : <Nav locale={locale} altLocaleHref={togglePath} />}
+    <main id="main" tabindex={aiPage ? -1 : undefined} class="flex-1">
       <slot />
     </main>
     <Footer locale={locale} />

@@ -1,6 +1,7 @@
 ---
 import { t, type Locale } from '../i18n';
 import LanguageToggle from './LanguageToggle.astro';
+import { showAiEntry } from '../features/ai/config';
 
 interface Props {
   locale: Locale;
@@ -15,6 +16,7 @@ const r = dict.routes;
 const leadingLinks = [
   { href: r.projects, label: dict.nav.projects },
   { href: r.blog, label: dict.nav.blog },
+  ...(locale === 'es' && showAiEntry(import.meta.env.DEV) ? [{ href: '/es/ia/', label: 'IA para negocios' }] : []),
 ];
 
 /** Contents of the "Work with me" disclosure — listed directly in the mobile menu. */

@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import AiLanding from '../../../components/ai/AiLanding.astro';
+import ResourceSuccess from '../../../components/ai/ResourceSuccess.astro';
+import { aiConfig, aiStaticPaths } from '../../../features/ai/config';
+import '../../../styles/ai.css';
+
+export function getStaticPaths() { return aiStaticPaths(import.meta.env.DEV); }
+const success = Astro.params.page === 'gracias';
+const draft = aiConfig.journey === 'draft';
+---
+<BaseLayout
+  locale="es"
+  title={success ? 'Acceso al Kit Contexto — Hec Sánchez' : 'IA para negocios con Hec Sánchez'}
+  description="Ejemplos y recursos para aplicar IA a tareas con cotizaciones, documentos y mensajes. Empieza con una prueba que puedas revisar y medir."
+  noindex={draft || success}
+  aiPage={true}
+  analyticsEnabled={!draft && !import.meta.env.DEV}
+  ogImage="/og/ia.png"
+  ogImageAlt="IA para negocios con Hec Sánchez: una tarea concreta y un resultado revisable."
+>
+  <div class="ai" data-ai-published={String(!draft)} data-resource-id={aiConfig.kit.state === 'available' ? aiConfig.kit.asset.id : undefined}>
+    {draft && <div class="ai-draft"><strong>Vista previa · IA para negocios</strong><span>El kit aún no está disponible.</span></div>}
+    {success ? <ResourceSuccess /> : <AiLanding />}
+    <div class="ai-section ai-back"><a href="/es/">Volver al sitio profesional de Hec Sánchez</a>{aiConfig.privacyHref && <a href={aiConfig.privacyHref}>Aviso de privacidad</a>}<a href="/es/contacto/">Contacto</a></div>
+  </div>
+</BaseLayout>
+
+<script>
+  import { emitAiEvent } from '../../../features/ai/analytics';
+  document.addEventListener('click', (event) => {
+    const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>('a[href]') : null;
+    if (!link) return;
+    const targetUrl = new URL(link.href);
+    if (targetUrl.origin === location.origin && targetUrl.pathname.replace(/\/$/, '') === location.pathname.replace(/\/$/, '') && targetUrl.hash) {
+      const target = document.getElementById(targetUrl.hash.slice(1));
+      if (target) { event.preventDefault(); history.pushState(null, '', targetUrl.hash); target.focus({ preventScroll: true }); target.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' }); }
+    }
+    if (link.dataset.aiEvent) emitAiEvent(link.dataset.aiEvent, link.dataset);
+  });
+</script>

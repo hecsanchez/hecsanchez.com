@@ -1,0 +1,30 @@
+---
+import { quotation } from '../../features/ai/example';
+---
+<div class="ai-example">
+  <p class="ai-label">Ejemplo ilustrativo con datos ficticios</p>
+  <div class="ai-example-grid">
+    <div>
+      <h3>Documento de origen</h3>
+      <pre>{quotation.source}</pre>
+      <p class="ai-small">La información que falta debe aclararse antes de usar el resultado.</p>
+    </div>
+    <div class="ai-output">
+      <h3>Borrador estructurado</h3>
+      <dl class="ai-mobile-output">
+        {quotation.rows.map(([field, value, status]) => <div><dt>{field}</dt><dd><span>{value}</span><span class="ai-review-status">{status}</span></dd></div>)}
+      </dl>
+      <table>
+        <caption class="sr-only">Datos extraídos de la cotización ficticia y estado de revisión</caption>
+        <thead><tr><th scope="col">Campo</th><th scope="col">Valor extraído</th><th scope="col">Estado de revisión</th></tr></thead>
+        <tbody>{quotation.rows.map(([field, value, status]) => (
+          <tr><th scope="row">{field}</th><td>{value}</td><td>{status}</td></tr>
+        ))}</tbody>
+      </table>
+    </div>
+  </div>
+  <aside class="ai-review" aria-label="Revisión pendiente">
+    <h3>Revisión pendiente</h3>
+    <p>Falta confirmar el flete, la vigencia y el total final. El documento no indica si los importes incluyen impuestos. Una persona debe cotejar los datos y resolver estas dudas.</p>
+  </aside>
+</div>

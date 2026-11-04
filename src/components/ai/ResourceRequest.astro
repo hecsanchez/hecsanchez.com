@@ -1,0 +1,64 @@
+---
+import { aiConfig } from '../../features/ai/config';
+const enabled = aiConfig.journey === 'published' && aiConfig.kit.state === 'available';
+---
+<div class="ai-form-card">
+  {!enabled && <p id="kit-availability" class="ai-availability">El Kit Contexto aún no está disponible. Este formulario de vista previa no recibe datos.</p>}
+  <form data-resource-request data-enabled={String(enabled)} novalidate aria-describedby={!enabled ? 'kit-availability' : undefined}>
+    <fieldset disabled={!enabled}>
+      <legend class="sr-only">Solicitar el Kit Contexto</legend>
+      <label for="ai-email">Correo electrónico</label>
+      <input id="ai-email" name="email" type="email" required maxlength="254" autocomplete="email" placeholder="tu@correo.com" aria-describedby="ai-request-status" />
+      {enabled && <p class="ai-small">Te enviaremos el enlace para acceder al kit.</p>}
+      <label class="ai-checkbox" for="ai-consent">
+        <input id="ai-consent" name="marketingConsent" type="checkbox" />
+        <span>También quiero recibir ejemplos y recursos de IA para negocios por correo.</span>
+      </label>
+      {aiConfig.privacyHref && <p class="ai-small"><a href={aiConfig.privacyHref}>Aviso de privacidad</a></p>}
+      <button type="submit" class="ai-button">{enabled ? 'Obtener el kit gratuito' : 'Kit aún no disponible'}</button>
+    </fieldset>
+    <p id="ai-request-status" class="ai-small" role="status" aria-live="polite"></p>
+  </form>
+</div>
+
+<script>
+  import { currentAttribution } from '../../features/ai/analytics';
+  const form = document.querySelector<HTMLFormElement>('[data-resource-request]');
+  if (form?.dataset.enabled === 'true') {
+    const email = form.querySelector<HTMLInputElement>('[name="email"]')!;
+    const consent = form.querySelector<HTMLInputElement>('[name="marketingConsent"]')!;
+    const button = form.querySelector<HTMLButtonElement>('button')!;
+    const status = document.getElementById('ai-request-status')!;
+    let submission: { values: string; key: string } | null = null;
+    let busy = false;
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (busy) return;
+      if (!email.checkValidity() || !email.value.trim()) {
+        email.setAttribute('aria-invalid', 'true');
+        status.textContent = 'Escribe un correo válido.';
+        email.focus();
+        return;
+      }
+      email.removeAttribute('aria-invalid');
+      const values = JSON.stringify([email.value.trim(), consent.checked]);
+      if (submission?.values !== values) submission = { values, key: crypto.randomUUID() };
+      busy = true;
+      button.disabled = true;
+      status.textContent = 'Preparando tu acceso…';
+      try {
+        const response = await fetch('/api/ai-resource', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email.value.trim(), marketingConsent: consent.checked, idempotencyKey: submission.key, attribution: currentAttribution() }),
+        });
+        const result = await response.json();
+        if (response.ok && result.ok) { window.location.assign('/es/ia/gracias/'); return; }
+        status.textContent = response.status === 429 ? 'Espera un momento antes de volver a intentarlo.'
+          : result.code === 'email' ? 'Escribe un correo válido.'
+          : 'No pudimos completar la solicitud. Inténtalo de nuevo.';
+      } catch { status.textContent = 'No pudimos completar la solicitud. Inténtalo de nuevo.'; }
+      busy = false;
+      button.disabled = false;
+    });
+  }
+</script>

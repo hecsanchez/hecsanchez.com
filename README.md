@@ -1,5 +1,10 @@
 # Astro Starter Kit: Minimal
 
+Project-specific IA para negocios implementation, publication gates, review commands,
+integration contracts and missing inputs: [ai-journey.md](./ai-journey.md).
+The AI journey is a development-only draft; `npm run dev` previews `/es/ia/`.
+Production builds omit draft routes and their entry links.
+
 ```sh
 npm create astro@latest -- --template minimal
 ```

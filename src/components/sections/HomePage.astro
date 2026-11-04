@@ -5,6 +5,7 @@ import { publishedProjects } from '../../data/projects';
 import ArrowLink from '../ArrowLink.astro';
 import ProjectCard from '../ProjectCard.astro';
 import SubscribeForm from '../SubscribeForm.astro';
+import { showAiEntry } from '../../features/ai/config';
 
 interface Props { locale: Locale }
 const { locale } = Astro.props;
@@ -105,6 +106,16 @@ const dateFmt = new Intl.DateTimeFormat(locale === 'es' ? 'es-MX' : 'en-US', {
 </section>
 
 <!-- Latest writing -->
+{locale === 'es' && showAiEntry(import.meta.env.DEV) && (
+  <section class="mx-auto max-w-5xl px-6 pt-16 pb-4">
+    <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] p-6 md:p-8">
+      <h2 class="font-serif text-3xl">IA para trabajar con la información de tu negocio.</h2>
+      <p class="mt-4 text-[var(--color-fg-muted)]">Explora ejemplos y recursos para mejorar una tarea repetitiva con IA.</p>
+      <p class="mt-5"><ArrowLink href="/es/ia/">Explorar IA para negocios</ArrowLink></p>
+    </div>
+  </section>
+)}
+
 <section class="mx-auto max-w-5xl px-6 py-20">
   <h2 class="font-serif text-3xl md:text-4xl">{dict.home.writingTitle}</h2>
   <p class="mt-4 max-w-[64ch] text-[var(--color-fg-muted)]">{dict.home.writingIntro}</p>

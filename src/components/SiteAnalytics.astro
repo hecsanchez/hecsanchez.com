@@ -1,0 +1,10 @@
+---
+interface Props { enabled: boolean; aiPage?: boolean }
+const { enabled, aiPage = false } = Astro.props;
+---
+{enabled && <meta name="hec-analytics-mode" content={aiPage ? 'ai' : 'site'} />}
+<script>
+  import { initializeAnalytics } from '../features/ai/analytics';
+  const mode = document.querySelector<HTMLMetaElement>('meta[name="hec-analytics-mode"]')?.content;
+  if (mode === 'ai' || mode === 'site') initializeAnalytics(mode);
+</script>

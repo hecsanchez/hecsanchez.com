@@ -6,6 +6,10 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import icon from 'astro-icon';
 import tailwindcss from '@tailwindcss/vite';
+import { aiConfig, aiSitemapEligible, validateAiConfig } from './src/features/ai/config';
+import { resourceProvider } from './src/features/ai/provider';
+
+validateAiConfig(aiConfig, resourceProvider !== null);
 
 const SITE = 'https://hecsanchez.com';
 
@@ -45,7 +49,7 @@ export default defineConfig({
     sitemap({
       // Language alternates are declared per page in BaseLayout, where the real
       // EN/ES pairs are known. Keep drafts and the redirecting root out.
-      filter: (page) => page !== `${SITE}/` && !draftUrls.has(page),
+      filter: (page) => page !== `${SITE}/` && !draftUrls.has(page) && aiSitemapEligible(new URL(page).pathname),
     }),
     icon({ include: { hugeicons: ['*'] } }),
   ],

@@ -1,0 +1,90 @@
+---
+import { aiConfig } from '../../features/ai/config';
+import QuotationExample from './QuotationExample.astro';
+import ResourceRequest from './ResourceRequest.astro';
+const available = aiConfig.kit.state === 'available';
+const kitLabel = available ? 'Obtener el kit gratuito' : 'Ver el Kit Contexto';
+const exampleVisible = aiConfig.demonstration !== 'hidden';
+const tasks = [
+  ['Pasar datos de cotizaciones a un registro', 'Extraer productos, cantidades e importes para revisarlos antes de registrarlos.'],
+  ['Revisar información incompleta', 'Detectar campos faltantes o datos que requieren una aclaración.'],
+  ['Preparar un reporte recurrente', 'Reunir información y organizarla en un formato que puedas comprobar.'],
+];
+const questions = [
+  ['¿Necesito saber programar?', available ? 'El kit se centra en describir una tarea, organizar la información y revisar el resultado. Algunas implementaciones pueden necesitar apoyo técnico.' : 'Puedes empezar describiendo una tarea, organizando la información y revisando el resultado. Algunas implementaciones pueden necesitar apoyo técnico. Los requisitos del kit se indicarán cuando esté disponible.'],
+  ['¿Puedo usarlo con una tarea de mi negocio?', 'Empieza con una tarea pequeña que puedas revisar. Para la primera prueba puedes usar datos ficticios o un ejemplo sin información confidencial.'],
+  ['¿La IA hace todo el proceso sola?', 'El punto de partida es una prueba revisable. Hay que comprobar los datos, resolver las dudas y decidir qué partes requieren intervención humana.'],
+  ...(aiConfig.assessment.state === 'inquiry' ? [['¿Puedo pedir ayuda directamente?', 'Sí. Puedes contarme qué necesitas mejorar sin pasar antes por el kit o el taller.']] : []),
+];
+---
+<section class="ai-section ai-hero">
+  <div>
+    <p class="ai-eyebrow">IA práctica para dueños de negocio y responsables de operaciones.</p>
+    <h1>Pon la IA a trabajar con la información de tu negocio.</h1>
+    <p>Aprende a usar cotizaciones, documentos y mensajes para resolver una tarea repetitiva, con resultados que puedas revisar y medir.</p>
+    <div class="ai-actions">
+      <a href="#kit" class="ai-button" data-ai-event="kit_cta_click" data-placement="hero">{kitLabel}</a>
+      {exampleVisible && <a href="#ejemplo" class="ai-secondary">Ver un ejemplo <span aria-hidden="true">↓</span></a>}
+    </div>
+    {available && <p class="ai-small">Un recurso práctico para elegir una tarea y preparar tu primera prueba.</p>}
+  </div>
+  {exampleVisible && <aside class="ai-hero-preview" aria-label="Vista del ejemplo ficticio">
+    <p class="ai-label">Ejemplo ilustrativo con datos ficticios</p>
+    <p class="ai-eyebrow">De una cotización a un borrador</p>
+    <h2>Datos claros.<br />Dudas visibles.</h2>
+    <dl><div><dt>Cantidad</dt><dd>48 m²</dd></div><div><dt>Materiales</dt><dd>$40,800 MXN</dd></div><div><dt>Flete</dt><dd>Por confirmar</dd></div></dl>
+    <p class="ai-small">Una persona revisa el resultado antes de usarlo.</p>
+  </aside>}
+</section>
+
+<section class="ai-band">
+  <div class="ai-section">
+    <h2>Empieza por una tarea que se repite.</h2>
+    <p>Busca un trabajo concreto que tu equipo haga con información que ya existe en el negocio.</p>
+    <div class="ai-task-grid">{tasks.map(([title, body], i) => <article class="ai-task"><span class="ai-eyebrow" aria-hidden="true">0{i + 1}</span><h3>{title}</h3><p>{body}</p></article>)}</div>
+  </div>
+</section>
+
+{exampleVisible && <section id="ejemplo" tabindex="-1" class="ai-section">
+  <p class="ai-eyebrow">Un resultado que puedes comprobar</p>
+  <h2>De una cotización a información que puedes revisar.</h2>
+  <p>La información original se convierte en un borrador estructurado. Una persona revisa los datos y resuelve lo que falta antes de usar el resultado.</p>
+  <QuotationExample />
+  <p class="ai-small">Para conocer otro trabajo de software: <a href="/es/proyectos/the-woods-crm/">Ver el proyecto de The Woods</a>. Este ejemplo ficticio es independiente del proyecto.</p>
+</section>}
+
+<section id="kit" tabindex="-1" class="ai-band">
+  <div class="ai-section ai-kit-grid">
+    <div>
+      <p class="ai-eyebrow">Kit Contexto</p>
+      <h2>{available ? 'Prepara una primera prueba con el Kit Contexto.' : 'Prepara una primera prueba.'}</h2>
+      {available ? <>
+        <p>Un recurso para elegir una tarea, reunir la información necesaria y revisar si el resultado de la IA es útil para tu negocio.</p>
+        <ul>{aiConfig.kit.state === 'available' && aiConfig.kit.asset.contents.map(item => <li>{item}</li>)}</ul>
+        {aiConfig.kit.state === 'available' && <p class="ai-small">{aiConfig.kit.asset.formats}. {aiConfig.kit.asset.prerequisites}</p>}
+      </> : <p>El Kit Contexto aún no está disponible. Puedes explorar el ejemplo de esta página para ver cómo organizar la información y señalar lo que falta.</p>}
+    </div>
+    <ResourceRequest />
+  </div>
+</section>
+
+{aiConfig.assessment.state === 'inquiry' && <section id="ayuda" tabindex="-1" class="ai-section">
+  <h2>¿Quieres evaluar una tarea de tu negocio?</h2>
+  <p>Cuéntame cómo la resuelven hoy, qué información utilizan y qué les está costando. Podemos revisar si tiene sentido trabajar en ella.</p>
+  <a href={aiConfig.assessment.destination} class="ai-secondary" data-ai-event="assessment_cta_click" data-placement="help">Cuéntame qué necesitas mejorar <span aria-hidden="true">→</span></a>
+</section>}
+
+<section class="ai-section ai-bio">
+  <img src="/hecsanchez.png" alt="Hec Sánchez" width="160" height="160" loading="lazy" decoding="async" />
+  <div><h2>Soy Hec Sánchez.</h2><p>Soy ingeniero de producto y trabajo en software y sistemas que las empresas utilizan en su operación. Aquí comparto ejemplos y recursos para aplicar la IA a problemas concretos de negocio.</p><a href="/es/proyectos/" class="ai-secondary">Conoce mi trabajo <span aria-hidden="true">→</span></a></div>
+</section>
+
+<section class="ai-section ai-questions" aria-labelledby="ai-questions-title">
+  <h2 id="ai-questions-title">Preguntas frecuentes</h2>
+  {questions.map(([question, answer]) => <div><h3>{question}</h3><p>{answer}</p></div>)}
+</section>
+
+<section class="ai-section ai-closing">
+  <h2>Elige una tarea y prepara tu primera prueba.</h2>
+  <a href="#kit" class="ai-button" data-ai-event="kit_cta_click" data-placement="closing">{kitLabel}</a>
+</section>

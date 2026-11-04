@@ -1,0 +1,112 @@
+---
+import { aiConfig } from '../../features/ai/config';
+const live = aiConfig.journey === 'published' && aiConfig.kit.state === 'available';
+---
+<section class="ai-section ai-success" data-resource-success data-enabled={String(live)}>
+  <p class="ai-eyebrow">Kit Contexto</p>
+  <h1 id="access-heading" tabindex="-1">Acceso al Kit Contexto</h1>
+  <div id="access-neutral">
+    <p>Vuelve al formulario para solicitar el recurso cuando esté disponible.</p>
+    <a href="/es/ia/#kit" class="ai-button">Ver el Kit Contexto</a>
+  </div>
+  <div id="access-ready" hidden>
+    <p id="access-description"></p>
+    <a id="resource-access" class="ai-button" data-ai-event="kit_access_click" data-placement="web"></a>
+    <p id="access-formats" class="ai-small"></p>
+    <p id="access-delivery" role="status"></p>
+  </div>
+  <section id="qualification" hidden aria-labelledby="qualification-title">
+    <h2 id="qualification-title">Ayúdame a entender qué quieres mejorar.</h2>
+    <p>Estas respuestas son opcionales y me ayudan a preparar ejemplos más útiles.</p>
+    <form id="ai-profile" class="ai-form-card" novalidate>
+      <label for="ai-role">¿Cuál describe mejor tu papel?</label>
+      <select id="ai-role" name="role" required aria-describedby="ai-profile-status">
+        <option value="">Elige una opción</option>
+        <option value="owner">Soy dueño o dirijo el negocio.</option>
+        <option value="operations">Soy responsable de operaciones o de un equipo.</option>
+        <option value="employee">Trabajo en otra función dentro de una empresa.</option>
+        <option value="consultant">Soy consultor o proveedor.</option>
+        <option value="developer">Soy desarrollador.</option>
+        <option value="other">Otro.</option>
+      </select>
+      <label for="ai-task">¿Qué tarea te gustaría mejorar?</label>
+      <textarea id="ai-task" name="task" required maxlength="500" rows="4" aria-describedby="ai-task-help ai-profile-status"></textarea>
+      <p id="ai-task-help" class="ai-small">Describe la tarea de forma general, sin datos de clientes ni información confidencial. Máximo 500 caracteres.</p>
+      <label for="ai-frequency">¿Con qué frecuencia hacen esa tarea? (opcional)</label>
+      <select id="ai-frequency" name="frequency">
+        <option value="">Elige una opción</option><option value="daily">A diario</option>
+        <option value="several_weekly">Varias veces por semana</option><option value="weekly">Una vez por semana</option>
+        <option value="less">Con menos frecuencia</option><option value="unknown">No lo sé</option>
+      </select>
+      <div class="ai-actions"><button class="ai-button" type="submit">Guardar respuestas</button><button id="skip-profile" type="button" class="ai-text-button">Omitir</button></div>
+      <p id="ai-profile-status" role="status" class="ai-small"></p>
+    </form>
+  </section>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-resource-success]');
+  if (root?.dataset.enabled === 'true') {
+    void (async () => {
+      try {
+        const response = await fetch('/api/ai-context', { cache: 'no-store' });
+        if (!response.ok) return;
+        const result = await response.json();
+        if (!result.ok || !result.asset || !/^https:\/\//.test(result.asset.url)) return;
+        const { asset } = result;
+        document.getElementById('access-neutral')!.hidden = true;
+        document.getElementById('access-ready')!.hidden = false;
+        document.getElementById('access-heading')!.textContent = 'Tu kit está listo.';
+        document.getElementById('access-description')!.textContent = asset.kind === 'download'
+          ? 'Descárgalo aquí y empieza por elegir una tarea que se repita en tu negocio.'
+          : 'Abre el kit y empieza por elegir una tarea que se repita en tu negocio.';
+        const access = document.getElementById('resource-access') as HTMLAnchorElement;
+        access.href = asset.url;
+        access.textContent = asset.kind === 'download' ? 'Descargar el kit' : 'Abrir el kit';
+        access.dataset.resourceId = asset.id;
+        access.dataset.resourceVersion = asset.version;
+        access.dataset.accessKind = asset.kind;
+        document.getElementById('access-formats')!.textContent = `${asset.formats}. ${asset.prerequisites}`;
+        document.getElementById('access-delivery')!.textContent = result.delivery === 'failed'
+          ? 'Puedes acceder al kit aquí. No pudimos enviar el correo en este momento.'
+          : result.delivery === 'confirmed' ? 'El proveedor confirmó la entrega del correo con el enlace.'
+          : 'También recibirás el enlace por correo. Puede tardar unos minutos.';
+        document.getElementById('qualification')!.hidden = !result.profileAllowed;
+      } catch { /* Neutral fallback does not claim a request or create a conversion. */ }
+    })();
+    const form = document.getElementById('ai-profile') as HTMLFormElement;
+    const status = document.getElementById('ai-profile-status')!;
+    const role = form.elements.namedItem('role') as HTMLSelectElement;
+    const task = form.elements.namedItem('task') as HTMLTextAreaElement;
+    const frequency = form.elements.namedItem('frequency') as HTMLSelectElement;
+    const button = form.querySelector<HTMLButtonElement>('[type="submit"]')!;
+    let busy = false;
+    document.getElementById('skip-profile')!.addEventListener('click', () => {
+      document.getElementById('qualification')!.hidden = true;
+      document.getElementById('resource-access')!.focus();
+    });
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (busy) return;
+      role.setAttribute('aria-invalid', String(!role.value));
+      task.setAttribute('aria-invalid', String(!task.value.trim() || task.value.length > 500));
+      if (!role.value || !task.value.trim() || task.value.length > 500) {
+        status.textContent = 'Elige tu papel y describe una tarea en un máximo de 500 caracteres.';
+        (!role.value ? role : task).focus(); return;
+      }
+      busy = true; button.disabled = true;
+      status.textContent = 'Guardando respuestas…';
+      try {
+        const response = await fetch('/api/ai-profile', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ role: role.value, task: task.value, ...(frequency.value ? { frequency: frequency.value } : {}) }),
+        });
+        status.textContent = response.ok ? 'Gracias. Tus respuestas quedaron guardadas.'
+          : response.status === 401 ? 'La sesión para guardar respuestas expiró. El acceso al kit sigue disponible.'
+          : 'No pudimos guardar las respuestas. Inténtalo de nuevo. El acceso al kit sigue disponible.';
+        if (response.ok) { button.disabled = true; return; }
+      } catch { status.textContent = 'No pudimos guardar las respuestas. Inténtalo de nuevo. El acceso al kit sigue disponible.'; }
+      busy = false; button.disabled = false;
+    });
+  }
+</script>

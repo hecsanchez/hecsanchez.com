@@ -1,0 +1,17 @@
+---
+import { aiConfig } from '../../features/ai/config';
+const exampleVisible = aiConfig.demonstration !== 'hidden';
+const kitLabel = aiConfig.kit.state === 'available' ? 'Obtener el kit gratuito' : 'Ver el Kit Contexto';
+---
+<header class="ai-header border-b border-[var(--color-border)]">
+  <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 px-6 py-5">
+    <a href="/es/" aria-label="Hec Sánchez — inicio" class="ai-identity">
+      <img src="/logos/hecsanchez.svg" alt="Hec Sánchez" width="348" height="240" class="h-6 w-auto" />
+    </a>
+    <nav aria-label="IA para negocios" class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+      {exampleVisible && <a href="/es/ia/#ejemplo">Ejemplo</a>}
+      <a href="/es/ia/#kit" data-ai-event="kit_cta_click" data-placement="header">{kitLabel}</a>
+      <a href="/en/" lang="en" class="ai-english">Sitio en inglés</a>
+    </nav>
+  </div>
+</header>
