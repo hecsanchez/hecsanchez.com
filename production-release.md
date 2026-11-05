@@ -51,3 +51,11 @@ Final local verification passed:
 - Wrangler dry-run: 30.88 KiB bundle / 8.57 KiB gzip; checked-in capture flags remain disabled. `git diff --check` passes.
 
 Refreshed screenshots are `.context/production-review/ia-{320,390,768,1440}.png`, `gracias-access-{320,390,768,1440}.png`, `privacy-es.png` and `privacy-en.png`. These are local review fixtures, not screenshots proving live capture. The repository checks made no real provider changes or subscriber migration.
+
+## Vercel runtime packaging follow-up
+
+The first website deployment served static pages, but all four signup functions failed during module loading. Production traffic was rolled back by the parent. A local reproduction using the installed production `@vercel/node` builder and Node 24 confirmed the cause: the builder renamed packaged `.ts` files to `.js` while emitted imports still referenced `.ts`, causing `ERR_MODULE_NOT_FOUND` before a handler could run. Source-level Node tests and Astro builds did not exercise this packaging step.
+
+`rewriteRelativeImportExtensions=true` in the root TypeScript configuration makes the emitted imports match the packaged JavaScript files. Shared validation, provider contracts and handlers remain in place. `npm run test:vercel` now uses the actual Vercel builder, materializes each function's traced output separately and imports its JavaScript handler in a fresh Node 24 process with TypeScript loading disabled. All four handlers must reach method validation (405 for unsupported methods), and context GET must return the expected neutral 401/404 without contacting a provider. It checks both configured production and unconfigured draft environments using fictional credentials only. `npm run test:build` runs this smoke before both Astro builds, so release verification must use Node 24.
+
+After the fix, all eight isolated startup checks passed with Node 24.21.0 and `@vercel/node` 5.7.7. The complete regression run also passed: 35 logic/API/SQLite tests, 20 browser tests, both Astro builds with six artifact checks each, type checking (zero errors/warnings; 13 existing hints), Worker dry-run (30.88 KiB / 8.57 KiB gzip) and `git diff --check`. No deployment or provider writes were performed by this subtask; production routing and actual same-origin acceptance still require the parent's post-deployment checks.
