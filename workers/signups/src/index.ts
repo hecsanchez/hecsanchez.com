@@ -5,10 +5,11 @@ import { KIT_DOWNLOAD_URL, KIT_ID, KIT_VERSION, NEWSLETTER_CONSENT_VERSION, pars
 import type { Receipt } from '../../../src/features/ai/provider.ts';
 import type { Database, Env, Execution } from './types.ts';
 import { contactsReady, drainContacts, drainRights } from './contacts.ts';
+import { kitAsset } from '../../../src/features/signups/kit.ts';
 
 const origins = new Set(['https://hecsanchez.com', 'https://www.hecsanchez.com']);
 const hash = (value: string) => createHash('sha256').update(value).digest('hex');
-const asset: ResourceAsset = { id: KIT_ID, version: KIT_VERSION, url: KIT_DOWNLOAD_URL, kind: 'download', formats: 'ZIP', contents: [], prerequisites: '' };
+const asset: ResourceAsset = kitAsset;
 const resourceConfig: AiConfig = { ...aiConfig, kit: { state: 'available', asset } };
 const uuid = /^[a-f\d]{8}-[a-f\d]{4}-4[a-f\d]{3}-[89ab][a-f\d]{3}-[a-f\d]{12}$/i;
 const tokenPattern = /^[A-Za-z0-9_-]{43}$/;
@@ -65,6 +66,7 @@ async function context(db: Database, token: unknown, now: number): Promise<Row |
 
 async function accept(data: Record<string, unknown>, env: Env & { DB: Database; SIGNUPS_SERVICE_TOKEN: string }, kind: 'resource' | 'newsletter', now: number) {
   const db = env.DB;
+  if (data.privacyVersion !== env.PRIVACY_VERSION) throw new BoundaryError(409, 'privacy_version');
   let email: string, key: string, fingerprint: string, source: string, placement: string, locale: 'es' | 'en', consent: boolean, consentVersion: string, attribution: unknown;
   if (kind === 'resource') {
     resourceReady(env);
@@ -128,6 +130,7 @@ async function accept(data: Record<string, unknown>, env: Env & { DB: Database; 
 }
 
 export async function drainOutbox(env: Env, now = Date.now(), send: typeof fetch = fetch): Promise<void> {
+  const startedAt = Date.now();
   ready(env); resourceReady(env);
   const db = env.DB;
   await db.prepare(`UPDATE delivery_outbox SET state = 'failed' WHERE state IN ('queued', 'sending') AND retry_until <= ?`).bind(now).run();
@@ -135,9 +138,12 @@ export async function drainOutbox(env: Env, now = Date.now(), send: typeof fetch
     JOIN signup_requests r ON r.id = o.request_id WHERE o.state IN ('queued', 'sending', 'failed')
     AND o.next_attempt_at <= ? AND o.lease_until <= ? AND o.retry_until > ? AND o.attempts < 6 LIMIT 20`).bind(now, now, now).all<Delivery>();
   for (const row of due.results) {
+    const attemptNow = now + Date.now() - startedAt;
+    const lease = attemptNow + 60000;
     // Atomic claim prevents concurrent cron/request workers from duplicating a send.
     const claim = await db.prepare(`UPDATE delivery_outbox SET state = 'sending', attempts = attempts + 1, lease_until = ?
-      WHERE request_id = ? AND state != 'sent' AND attempts = ? AND lease_until <= ? RETURNING request_id`).bind(now + 60000, row.request_id, row.attempts, now).first<{ request_id: string }>();
+      WHERE request_id = ? AND state != 'sent' AND attempts = ? AND lease_until <= ? AND retry_until > ?
+      RETURNING request_id`).bind(lease, row.request_id, row.attempts, attemptNow, attemptNow).first<{ request_id: string }>();
     if (!claim) continue;
     let sent = false;
     try {
@@ -151,8 +157,8 @@ export async function drainOutbox(env: Env, now = Date.now(), send: typeof fetch
       // A 2xx confirms API acceptance, not mailbox delivery. No response/recipient logs.
       await response.body?.cancel();
     } catch { /* The durable outbox retains retry ownership after timeouts. */ }
-    await db.prepare(`UPDATE delivery_outbox SET state = ?, sent_at = ?, lease_until = 0, next_attempt_at = ? WHERE request_id = ?`).bind(
-      sent ? 'sent' : 'failed', sent ? now : null, now + Math.min(3600000, 60000 * 2 ** row.attempts), row.request_id).run();
+    await db.prepare(`UPDATE delivery_outbox SET state = ?, sent_at = ?, lease_until = 0, next_attempt_at = ? WHERE request_id = ? AND lease_until = ?`).bind(
+      sent ? 'sent' : 'failed', sent ? attemptNow : null, attemptNow + Math.min(3600000, 60000 * 2 ** row.attempts), row.request_id, lease).run();
   }
 }
 
@@ -161,6 +167,7 @@ export async function cleanup(env: Env, now = Date.now()): Promise<void> {
   await env.DB.batch([
     env.DB.prepare('DELETE FROM resource_contexts WHERE expires_at <= ?').bind(now),
     env.DB.prepare('DELETE FROM rate_buckets WHERE expires_at <= ?').bind(now),
+    env.DB.prepare('DELETE FROM contact_locks WHERE lease_until <= ?').bind(now),
   ]);
 }
 

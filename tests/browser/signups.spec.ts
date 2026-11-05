@@ -11,7 +11,7 @@ test('all newsletter placements send explicit source and locale, with no identit
     await page.route('**/api/subscribe', async interception => {
       expect(interception.request().url()).not.toContain('@');
       submitted = interception.request().postDataJSON();
-      await interception.fulfill({ json: { ok: true, confirm: true } });
+      await interception.fulfill({ status: 202, json: { ok: true, recorded: true } });
     });
     await page.goto(route);
     const form = page.locator('form[data-newsletter]');
@@ -45,6 +45,6 @@ test('uncertain newsletter submission retains one retry key across reload and tr
   await form.locator('[name="email"]').fill('fictional+retry@example.invalid');
   await form.locator('button[type="submit"]').click();
   await expect(form).toBeHidden();
-  await expect(page.locator('#subscribe-block-status')).toHaveText('Solicitud recibida. Estamos procesando el alta.');
+  await expect(page.locator('#subscribe-block-status')).toHaveText('Solicitud recibida. Estamos procesando el alta. Si ya tenías preferencias de correo, las conservamos.');
   expect(keys).toHaveLength(2); expect(keys[0]).toBe(keys[1]);
 });

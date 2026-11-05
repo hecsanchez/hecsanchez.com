@@ -5,7 +5,7 @@ import { aiConfig } from '../src/features/ai/config.ts';
 import { readdirSync } from 'node:fs';
 
 test('production preserves existing professional pages, feeds and newsletter form', () => {
-  for (const route of ['es', 'en', 'es/contacto', 'en/contact', 'es/como-trabajo', 'en/how-i-work', 'es/proyectos/the-woods-crm', 'en/projects/the-woods-crm', 'es/escritos', 'en/writing']) {
+  for (const route of ['es', 'en', 'es/contacto', 'en/contact', 'es/privacidad', 'en/privacy', 'es/como-trabajo', 'en/how-i-work', 'es/proyectos/the-woods-crm', 'en/projects/the-woods-crm', 'es/escritos', 'en/writing']) {
     assert.ok(existsSync(`dist/${route}/index.html`), route);
   }
   for (const locale of ['es', 'en']) {
@@ -66,5 +66,26 @@ test('Worker capture remains disabled and server credentials are absent from pub
   for (const filename of readdirSync('dist/_astro').filter(name => name.endsWith('.js'))) {
     const script = readFileSync(`dist/_astro/${filename}`, 'utf8');
     assert.equal(/SIGNUPS_SERVICE_TOKEN|SIGNUPS_ADMIN_TOKEN|RESEND_API_KEY|SIGNUPS_WORKER_URL/.test(script), false, filename);
+  }
+});
+
+test('privacy routes and published kit expose correct canonicals, notice and availability metadata', () => {
+  const sitemap = readFileSync('dist/sitemap-0.xml', 'utf8');
+  for (const [route, alternate] of [['es/privacidad', 'en/privacy'], ['en/privacy', 'es/privacidad']]) {
+    const page = readFileSync(`dist/${route}/index.html`, 'utf8');
+    assert.ok(page.includes(`https://hecsanchez.com/${route}/`));
+    assert.ok(page.includes(`https://hecsanchez.com/${alternate}/`));
+    assert.ok(page.includes('Cloudflare D1')); assert.ok(page.includes('hi@hecsanchez.com'));
+    assert.ok(sitemap.includes(`https://hecsanchez.com/${route}/`));
+  }
+  if (aiConfig.journey === 'published') {
+    const landing = readFileSync('dist/es/ia/index.html', 'utf8');
+    const success = readFileSync('dist/es/ia/gracias/index.html', 'utf8');
+    assert.ok(landing.includes('data-enabled="true"'));
+    assert.ok(landing.includes('Guía v1.1 de 10 páginas'));
+    assert.ok(landing.includes('/es/privacidad/'));
+    assert.equal(landing.includes('name="robots"'), false);
+    assert.ok(success.includes('noindex, nofollow'));
+    assert.ok(success.includes('id="access-ready" hidden'));
   }
 });

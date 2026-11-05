@@ -12,9 +12,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check && tsc --noEmit",
-    "test": "node --experimental-sqlite --experimental-strip-types --test tests/ai.test.ts tests/signups.test.ts",
+    "test": "node --experimental-sqlite --experimental-strip-types --test tests/ai.test.ts tests/signups.test.ts tests/published-api.test.ts",
     "test:browser": "playwright test",
-    "test:build": "astro build && node --experimental-strip-types --test tests/production.test.ts"
+    "test:build": "node --experimental-strip-types scripts/verify-production.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.3",

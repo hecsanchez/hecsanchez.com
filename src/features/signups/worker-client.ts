@@ -1,5 +1,6 @@
 import { KIT_DOWNLOAD_URL, KIT_ID, KIT_VERSION, type NewsletterInput } from './contracts.ts';
 import type { Receipt, ResourceCommand, ResourceProvider } from '../ai/provider.ts';
+import { SIGNUPS_PRIVACY_VERSION } from './environment.ts';
 
 export function workerEnvironmentReady(env: NodeJS.ProcessEnv = process.env): boolean {
   try {
@@ -18,7 +19,7 @@ export async function workerCall(path: string, body: unknown, send: typeof fetch
   const response = await send(new URL(path, process.env.SIGNUPS_WORKER_URL), {
     method: 'POST', signal: AbortSignal.timeout(10000),
     headers: { 'Content-Type': 'application/json', Origin: 'https://hecsanchez.com', Authorization: `Bearer ${process.env.SIGNUPS_SERVICE_TOKEN}` },
-    body: JSON.stringify(body),
+    body: JSON.stringify({ ...(body as Record<string, unknown>), privacyVersion: SIGNUPS_PRIVACY_VERSION }),
   });
   const result = await response.json() as Record<string, unknown>;
   if (!response.ok || result.ok !== true) {

@@ -9,7 +9,9 @@ import tailwindcss from '@tailwindcss/vite';
 import { aiConfig, aiSitemapEligible, validateAiConfig } from './src/features/ai/config';
 import { resourceProvider } from './src/features/ai/provider';
 import { workerEnvironmentReady } from './src/features/signups/worker-client';
+import { assertProductionEnvironment } from './src/features/signups/environment';
 
+assertProductionEnvironment(process.env);
 validateAiConfig(aiConfig, resourceProvider !== null && workerEnvironmentReady());
 
 const SITE = 'https://hecsanchez.com';

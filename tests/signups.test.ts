@@ -1,43 +1,21 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
-import { DatabaseSync, type SQLInputValue } from 'node:sqlite';
 import { handle, drainOutbox, cleanup } from '../workers/signups/src/index.ts';
 import { drainContacts, drainRights } from '../workers/signups/src/contacts.ts';
-import type { Database, Statement, Env } from '../workers/signups/src/types.ts';
+import type { Env } from '../workers/signups/src/types.ts';
+import { SQLite } from './helpers/sqlite-d1.ts';
 import { KIT_DOWNLOAD_URL, parseNewsletter } from '../src/features/signups/contracts.ts';
 import { subscribeButtondown } from '../src/features/signups/buttondown.ts';
 import { retryKey } from '../src/features/signups/retry-key.ts';
 import { workerEnvironmentReady } from '../src/features/signups/worker-client.ts';
+import { SIGNUPS_WORKER_ORIGIN, SIGNUPS_PRIVACY_VERSION } from '../src/features/signups/environment.ts';
 import newsletterHandler from '../api/subscribe.ts';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
-// Real SQLite executes the checked-in D1 migration and every production query.
-// This adapter supplies only D1's async shape, not emulated SQL behavior.
-class SQLite implements Database {
-  sql = new DatabaseSync(':memory:');
-  constructor() { this.sql.exec(readFileSync('workers/signups/migrations/0001_signups.sql', 'utf8')); }
-  prepare(query: string): Statement {
-    let values: SQLInputValue[] = [];
-    const statement: Statement = {
-      bind(...input) { values = input as SQLInputValue[]; return statement; },
-      first: async <T>() => this.sql.prepare(query).get(...values) as T ?? null,
-      all: async <T>() => ({ results: this.sql.prepare(query).all(...values) as T[] }),
-      run: async () => this.sql.prepare(query).run(...values),
-    };
-    return statement;
-  }
-  async batch(statements: Statement[]) {
-    this.sql.exec('BEGIN');
-    try { const result = []; for (const statement of statements) result.push(await statement.run()); this.sql.exec('COMMIT'); return result; }
-    catch (error) { this.sql.exec('ROLLBACK'); throw error; }
-  }
-  count(table: string): number { return Number(this.sql.prepare(`SELECT count(*) AS n FROM ${table}`).get()!.n); }
-}
 function fixture() {
   const db = new SQLite();
   const env: Env = { DB: db, SIGNUPS_ENABLED: 'true', RESOURCE_ENABLED: 'true', NEWSLETTER_CAPTURE_ENABLED: 'true', QUALIFICATION_ENABLED: 'true',
-    PRIVACY_REVIEWED: 'true', PRIVACY_VERSION: 'test-only-v1', RETENTION_MODE: 'until_deletion', DATA_RIGHTS_VERIFIED: 'true', VERIFIED_SENDER: 'true',
+    PRIVACY_REVIEWED: 'true', PRIVACY_VERSION: SIGNUPS_PRIVACY_VERSION, RETENTION_MODE: 'until_deletion', DATA_RIGHTS_VERIFIED: 'true', VERIFIED_SENDER: 'true',
     SIGNUPS_ADMIN_TOKEN: 'fictional-admin-token-for-local-tests-only', RESEND_CONTACTS_VERIFIED: 'true',
     RESEND_NEWSLETTER_SEGMENT_ID: 'b6d24b8e-af0b-4c3c-be0c-359bbd97381e', RESEND_NEWSLETTER_TOPIC_ID: '07d84122-7224-4881-9c31-1c048e204602',
     SIGNUPS_SERVICE_TOKEN: 'fictional-service-token-for-local-tests-only', RESEND_API_KEY: 'test-only',
@@ -47,9 +25,11 @@ function fixture() {
 const command = () => ({ email: 'fictional+kit@example.invalid', marketingConsent: false, idempotencyKey: crypto.randomUUID() });
 const newsletter = () => ({ email: 'fictional+notes@example.invalid', idempotencyKey: crypto.randomUUID(), locale: 'en', placement: 'writing_post' });
 async function call(env: Env, path: string, data: unknown, headers: Record<string, string> = {}) {
+  const payload = data && typeof data === 'object' && ['/v1/resource', '/v1/newsletter'].includes(path)
+    ? { privacyVersion: env.PRIVACY_VERSION, ...data } : data;
   const response = await handle(new Request(`https://worker.example.invalid${path}`, { method: 'POST',
     headers: { Origin: 'https://hecsanchez.com', 'Content-Type': 'application/json', Authorization: `Bearer ${env.SIGNUPS_SERVICE_TOKEN}`, ...headers },
-    body: typeof data === 'string' ? data : JSON.stringify(data) }), env);
+    body: typeof payload === 'string' ? payload : JSON.stringify(payload) }), env);
   return { response, body: await response.json() as any };
 }
 
@@ -97,7 +77,7 @@ test('resource acceptance atomically persists explicit purpose, source, false co
   assert.equal(row.purpose, 'kit_contexto'); assert.equal(row.resource_version, 'v1.1');
   assert.equal(row.source_page, '/es/ia/'); assert.equal(row.placement, 'kit_form');
   assert.equal(row.consent, 0); assert.equal(row.consent_version, 'ai-examples-v1');
-  assert.equal(row.privacy_version, 'test-only-v1');
+  assert.equal(row.privacy_version, SIGNUPS_PRIVACY_VERSION);
   assert.deepEqual(JSON.parse(String(row.attribution)), { first: { utm_source: 'tiktok' }, latest: null });
   assert.equal(db.count('delivery_outbox'), 1); assert.equal(db.count('operational_events'), 1);
   assert.equal(db.count('contact_outbox'), 0);
@@ -246,6 +226,23 @@ test('uncertain contact creation retries by discovery and preserves an already c
   assert.equal(creates, 1); assert.equal(db.sql.prepare('SELECT state FROM contact_outbox').get()!.state, 'preserved');
 });
 
+test('different request keys for the same address serialize contact creation and preserve a cached identity', async () => {
+  const { env, db } = fixture(); const input = newsletter();
+  await call(env, '/v1/newsletter', input);
+  await call(env, '/v1/newsletter', { ...input, email: input.email.toUpperCase(), idempotencyKey: crypto.randomUUID() });
+  let creates = 0;
+  const send: typeof fetch = async (_url, init) => {
+    if (init!.method === 'GET') return Response.json({ data: [], has_more: false });
+    creates++; return Response.json({ id: 'e169aa45-1ecf-4183-9955-b1499d5701d3' });
+  };
+  const now = Date.now();
+  await Promise.all([drainContacts(db, env, now, send), drainContacts(db, env, now, send)]);
+  await drainContacts(db, env, now + 6000, send);
+  assert.equal(creates, 1); assert.equal(db.count('provider_contacts'), 1);
+  assert.equal(db.count('contact_locks'), 0);
+  assert.equal(db.sql.prepare("SELECT count(*) AS n FROM contact_outbox WHERE state = 'synced'").get()!.n, 2);
+});
+
 test('records have no age purge; authenticated erasure cascades all requests and retains a provider cleanup job', async () => {
   const { env, db } = fixture(); const kit = await call(env, '/v1/resource', command());
   await call(env, '/v1/profile', { contextToken: kit.body.contextToken, profile: { role: 'owner', task: 'Test' } });
@@ -300,6 +297,25 @@ test('newsletter withdrawal scopes provider opt-out to Shipping Notes and leaves
   assert.equal(db.count('rights_jobs'), 0); assert.equal(db.count('signup_requests'), 2); assert.equal(db.count('delivery_outbox'), 1);
 });
 
+test('erasure requested during an in-flight withdrawal retains the stronger provider cleanup job', async () => {
+  const { env, db } = fixture(); const input = newsletter(); await call(env, '/v1/newsletter', input);
+  db.sql.prepare("INSERT INTO provider_contacts(email, contact_id, state) VALUES (?, ?, 'synced')").run(input.email, 'e169aa45-1ecf-4183-9955-b1499d5701d3');
+  const admin = { Authorization: `Bearer ${env.SIGNUPS_ADMIN_TOKEN}` };
+  await call(env, '/v1/admin/withdraw', { email: input.email, purpose: 'shipping_notes' }, admin);
+  const now = Date.now() + 121000;
+  await drainRights(db, env, now, async (_url, init) => {
+    assert.equal(init!.method, 'PATCH');
+    await call(env, '/v1/admin/erase', { email: input.email }, admin);
+    return Response.json({ object: 'contact_topics' });
+  });
+  assert.equal(db.count('signup_requests'), 0);
+  assert.equal(db.sql.prepare('SELECT action FROM rights_jobs').get()!.action, 'erase');
+  await drainRights(db, env, now + 121000, async (_url, init) => {
+    assert.equal(init!.method, 'DELETE'); return Response.json({ deleted: true });
+  });
+  assert.equal(db.count('rights_jobs'), 0);
+});
+
 test('Buttondown adapter preserves create/tag/confirmation behavior without reactivation or AI enrollment', async t => {
   const previous = process.env.BUTTONDOWN_API_KEY; process.env.BUTTONDOWN_API_KEY = 'test-only';
   t.after(() => { if (previous === undefined) delete process.env.BUTTONDOWN_API_KEY; else process.env.BUTTONDOWN_API_KEY = previous; });
@@ -332,13 +348,14 @@ async function vercel(body: unknown) {
   await newsletterHandler({ method: 'POST', headers: { origin: 'https://hecsanchez.com', 'content-type': 'application/json', 'sec-fetch-site': 'same-origin' }, body } as VercelRequest, response as unknown as VercelResponse);
   return { status, data, headers };
 }
-test('Vercel keeps Buttondown default; future Resend selection records in D1 without calling Buttondown', async t => {
+test('Vercel accepts only the configured Resend path, persists before success and never calls Buttondown', async t => {
   const { env, db } = fixture(); const originalFetch = globalThis.fetch;
   const previous = { ...process.env };
-  t.after(() => { globalThis.fetch = originalFetch; for (const key of ['BUTTONDOWN_API_KEY', 'SIGNUPS_WORKER_URL', 'SIGNUPS_SERVICE_TOKEN', 'SIGNUPS_NEWSLETTER_PROVIDER']) {
+  t.after(() => { globalThis.fetch = originalFetch; for (const key of ['BUTTONDOWN_API_KEY', 'SIGNUPS_WORKER_URL', 'SIGNUPS_SERVICE_TOKEN', 'SIGNUPS_NEWSLETTER_PROVIDER', 'SIGNUPS_PRIVACY_VERSION', 'SIGNUPS_INTEGRATION_VERIFIED']) {
     if (previous[key] === undefined) delete process.env[key]; else process.env[key] = previous[key];
   } });
-  process.env.BUTTONDOWN_API_KEY = 'test-only'; process.env.SIGNUPS_WORKER_URL = 'https://worker.example.invalid/'; process.env.SIGNUPS_SERVICE_TOKEN = env.SIGNUPS_SERVICE_TOKEN;
+  process.env.BUTTONDOWN_API_KEY = 'test-only'; process.env.SIGNUPS_WORKER_URL = SIGNUPS_WORKER_ORIGIN; process.env.SIGNUPS_SERVICE_TOKEN = env.SIGNUPS_SERVICE_TOKEN;
+  process.env.SIGNUPS_PRIVACY_VERSION = SIGNUPS_PRIVACY_VERSION; process.env.SIGNUPS_INTEGRATION_VERIFIED = 'true';
   delete process.env.SIGNUPS_NEWSLETTER_PROVIDER;
   let sends = 0;
   globalThis.fetch = async (url, init) => {
@@ -348,12 +365,19 @@ test('Vercel keeps Buttondown default; future Resend selection records in D1 wit
     }
     return handle(new Request(url, init), env);
   };
-  assert.equal((await vercel({ email: 'fictional@example.invalid' })).status, 200);
-  assert.equal(db.count('signup_requests'), 0); assert.equal(sends, 1);
+  assert.equal((await vercel({ email: 'fictional@example.invalid' })).status, 503);
+  assert.equal(db.count('signup_requests'), 0); assert.equal(sends, 0);
   process.env.SIGNUPS_NEWSLETTER_PROVIDER = 'resend'; const input = newsletter();
   assert.deepEqual((await vercel(input)).data, { ok: true, recorded: true });
   assert.deepEqual((await vercel(input)).data, { ok: true, recorded: true });
-  assert.equal(sends, 1); assert.equal(db.count('signup_requests'), 1);
+  assert.equal(sends, 0); assert.equal(db.count('signup_requests'), 1);
   env.SIGNUPS_ENABLED = 'false';
-  assert.equal((await vercel(newsletter())).status, 503); assert.equal(sends, 1);
+  assert.equal((await vercel(newsletter())).status, 503); assert.equal(sends, 0);
+});
+
+test('a stale privacy version cannot establish acceptance or alter existing consent', async () => {
+  const { env, db } = fixture();
+  assert.equal((await call(env, '/v1/resource', { ...command(), privacyVersion: 'outdated-v0' })).response.status, 409);
+  assert.equal((await call(env, '/v1/newsletter', { ...newsletter(), privacyVersion: 'outdated-v0' })).response.status, 409);
+  assert.equal(db.count('signup_requests'), 0);
 });

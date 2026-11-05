@@ -12,6 +12,7 @@ const siteLinks = [
   { href: r.projects, label: dict.nav.projects },
   { href: r.about, label: dict.nav.about },
   { href: r.rss, label: dict.footer.rss },
+  { href: r.privacy, label: dict.footer.privacy },
 ];
 
 const workLinks = [
@@ -26,10 +27,10 @@ const linkClass = 'hover:text-[var(--color-fg)] focus-visible:outline-2 focus-vi
 ---
 
 <footer class="mt-24 border-t border-[var(--color-border)]">
-  <div class="mx-auto max-w-5xl px-6 py-12 text-sm text-[var(--color-fg-dim)]">
+  <div class="mx-auto max-w-5xl px-6 py-12 text-sm text-[var(--color-fg-muted)]">
     <div class="grid gap-8 sm:grid-cols-3">
       <nav aria-labelledby="footer-site">
-        <h2 id="footer-site" class="text-xs uppercase tracking-[0.15em] text-[var(--color-fg-dim)]">
+        <h2 id="footer-site" class="text-xs uppercase tracking-[0.15em] text-[var(--color-fg-muted)]">
           {dict.footer.navTitle}
         </h2>
         <ul class="mt-4 space-y-2">
@@ -40,7 +41,7 @@ const linkClass = 'hover:text-[var(--color-fg)] focus-visible:outline-2 focus-vi
       </nav>
 
       <nav aria-labelledby="footer-work">
-        <h2 id="footer-work" class="text-xs uppercase tracking-[0.15em] text-[var(--color-fg-dim)]">
+        <h2 id="footer-work" class="text-xs uppercase tracking-[0.15em] text-[var(--color-fg-muted)]">
           {dict.footer.workTitle}
         </h2>
         <ul class="mt-4 space-y-2">
@@ -51,7 +52,7 @@ const linkClass = 'hover:text-[var(--color-fg)] focus-visible:outline-2 focus-vi
       </nav>
 
       <nav aria-labelledby="footer-elsewhere">
-        <h2 id="footer-elsewhere" class="text-xs uppercase tracking-[0.15em] text-[var(--color-fg-dim)]">
+        <h2 id="footer-elsewhere" class="text-xs uppercase tracking-[0.15em] text-[var(--color-fg-muted)]">
           {dict.footer.elsewhereTitle}
         </h2>
         <ul class="mt-4 space-y-2">

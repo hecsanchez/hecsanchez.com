@@ -16,8 +16,7 @@ const dict = t(locale);
 const n = dict.newsletter;
 const id = `subscribe-${variant}`;
 const formConfig = JSON.stringify({ id, variant, locale, placement, messages: {
-  loading: n.loading, success: n.success, successConfirm: n.successConfirm,
-  recorded: locale === 'es' ? 'Solicitud recibida. Estamos procesando el alta.' : 'Request received. We are processing your signup.',
+  loading: n.loading, recorded: n.recorded,
   validationError: n.validationError, submissionError: n.submissionError,
 } });
 ---
@@ -52,6 +51,7 @@ const formConfig = JSON.stringify({ id, variant, locale, placement, messages: {
           </button>
         </div>
         <p class="mt-3 text-sm text-[var(--color-fg-dim)]">{n.reassurance}</p>
+        <p class="mt-2 text-sm"><a href={dict.routes.privacy} class="underline underline-offset-4">{dict.footer.privacy}</a></p>
       </form>
 
       <p id={`${id}-status`} role="status" aria-live="polite" class="mt-4 text-sm text-[var(--color-fg-muted)]"></p>
@@ -97,6 +97,7 @@ const formConfig = JSON.stringify({ id, variant, locale, placement, messages: {
           {n.button}
         </button>
         <p class="mt-2 text-xs text-[var(--color-fg-dim)]">{n.reassurance}</p>
+        <p class="mt-2 text-xs"><a href={dict.routes.privacy} class="underline underline-offset-4">{dict.footer.privacy}</a></p>
       </form>
 
       <p id={`${id}-status`} role="status" aria-live="polite" class="mt-3 text-sm text-[var(--color-fg-muted)]"></p>
@@ -156,12 +157,11 @@ const formConfig = JSON.stringify({ id, variant, locale, placement, messages: {
         });
         const data = await res.json();
 
-        if (res.ok && data.ok) {
-          // The endpoint reports whether Buttondown asked for an opt-in confirmation.
-          setStatus(data.recorded ? messages.recorded : data.confirm ? messages.successConfirm : messages.success, false);
+        if (res.ok && data.ok && data.recorded === true) {
+          setStatus(messages.recorded, false);
           form.hidden = true;
           clearRetryKey(scope);
-          track(data.recorded ? 'newsletter_request_accepted' : 'newsletter_signup_success', { locale: locale, placement: placement });
+          track('newsletter_request_accepted', { locale: locale, placement: placement });
         } else {
           button.disabled = false;
           setStatus(messages.submissionError, true);

@@ -26,6 +26,7 @@
     "howIWork": "/es/como-trabajo",
     "about": "/es/sobre-mi",
     "contact": "/es/contacto",
+    "privacy": "/es/privacidad/",
     "fractionalCto": "/es/cto-fraccionario",
     "rss": "/es/escritos/rss.xml"
   },
@@ -244,6 +245,7 @@
     "button": "Suscribirme",
     "reassurance": "Puedes darte de baja cuando quieras.",
     "loading": "Registrando tu suscripción…",
+    "recorded": "Solicitud recibida. Estamos procesando el alta. Si ya tenías preferencias de correo, las conservamos.",
     "successConfirm": "Revisa tu correo para confirmar tu suscripción.",
     "success": "Tu suscripción está lista. Gracias por leer.",
     "validationError": "Introduce un correo electrónico válido.",
@@ -383,6 +385,7 @@
     "ctaBody": "Conoce cómo trabajo con fundadores para identificar dónde puede servir el desarrollo de producto o el apoyo como CTO fraccional."
   },
   "footer": {
+    "privacy": "Aviso de privacidad",
     "rights": "Todos los derechos reservados.",
     "navTitle": "Sitio",
     "workTitle": "Trabaja conmigo",

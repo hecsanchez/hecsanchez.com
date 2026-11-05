@@ -6,7 +6,7 @@ const live = aiConfig.journey === 'published' && aiConfig.kit.state === 'availab
   <p class="ai-eyebrow">Kit Contexto</p>
   <h1 id="access-heading" tabindex="-1">Acceso al Kit Contexto</h1>
   <div id="access-neutral">
-    <p>Vuelve al formulario para solicitar el recurso cuando esté disponible.</p>
+    <p>{live ? 'Solicita el kit en el formulario para recuperar tu acceso en este navegador.' : 'Vuelve al formulario para solicitar el recurso cuando esté disponible.'}</p>
     <a href="/es/ia/#kit" class="ai-button">Ver el Kit Contexto</a>
   </div>
   <div id="access-ready" hidden>
@@ -19,6 +19,7 @@ const live = aiConfig.journey === 'published' && aiConfig.kit.state === 'availab
     <h2 id="qualification-title">Ayúdame a entender qué quieres mejorar.</h2>
     <p>Estas respuestas son opcionales y me ayudan a preparar ejemplos más útiles.</p>
     <form id="ai-profile" class="ai-form-card" novalidate>
+      {aiConfig.privacyHref && <p class="ai-small ai-profile-privacy"><a href={aiConfig.privacyHref}>Cómo uso estas respuestas y cómo pedir su eliminación</a></p>}
       <label for="ai-role">¿Cuál describe mejor tu papel?</label>
       <select id="ai-role" name="role" required aria-describedby="ai-profile-status">
         <option value="">Elige una opción</option>

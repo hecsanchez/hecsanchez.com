@@ -2,12 +2,14 @@
 
 Project-specific IA para negocios implementation, publication gates, review commands,
 integration contracts and missing inputs: [ai-journey.md](./ai-journey.md).
-The AI journey is a development-only draft; `npm run dev` previews `/es/ia/`.
-Production builds omit draft routes and their entry links.
+The AI journey defaults to a draft; `npm run dev` previews `/es/ia/`.
+The authorized production release publishes it only with the complete verified server environment;
+production Vercel builds reject missing configuration. See [production-release.md](./production-release.md).
 
 Prepared Worker/D1 signup persistence, Resend delivery/Contacts, complete form inventory,
 retention/deletion workflow and activation blockers: [workers/signups/README.md](./workers/signups/README.md).
-The Worker/D1 service is deployed with capture disabled; the public website and historical Buttondown subscribers are unchanged.
+The Worker/D1 service is deployed with capture disabled pending coordinated activation.
+New website signups use Resend after release; historical Buttondown subscribers are not migrated.
 
 ```sh
 npm create astro@latest -- --template minimal

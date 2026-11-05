@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { aiConfig, aiStaticPaths, aiSitemapEligible, validateAiConfig, type AiConfig, type ResourceAsset } from '../src/features/ai/config.ts';
+import { aiConfig, createAiConfig, aiStaticPaths, aiSitemapEligible, validateAiConfig, type AiConfig, type ResourceAsset } from '../src/features/ai/config.ts';
+import { assertProductionEnvironment, SIGNUPS_WORKER_ORIGIN, SIGNUPS_PRIVACY_VERSION } from '../src/features/signups/environment.ts';
 import { advanceAttribution, boundedCampaign, sanitizedAnalyticsUrl, sanitizedReferrer } from '../src/features/ai/campaign.ts';
 import { quotation } from '../src/features/ai/example.ts';
 import { transformAnalyticsPayload } from '../src/features/ai/analytics.ts';
@@ -35,6 +36,25 @@ test('publication requires actual configured adapter, real asset, privacy and ev
   assert.throws(() => validateAiConfig({ ...complete, demonstration: 'hidden' }, true));
   assert.throws(() => validateAiConfig({ ...complete, kit: { state: 'available', asset: { ...asset, url: 'javascript:alert(1)' } } }, true));
   for (const workshop of ['interest', 'for_sale', 'closed'] as const) assert.throws(() => validateAiConfig({ ...aiConfig, workshop }));
+});
+
+test('publication requires exact Worker origin, matching privacy and explicit verified production environment', () => {
+  const env = { VERCEL_ENV: 'production', SIGNUPS_WORKER_URL: SIGNUPS_WORKER_ORIGIN,
+    SIGNUPS_SERVICE_TOKEN: 'fictional-publication-check-token-only', SIGNUPS_NEWSLETTER_PROVIDER: 'resend',
+    SIGNUPS_PRIVACY_VERSION, SIGNUPS_INTEGRATION_VERIFIED: 'true' };
+  assert.doesNotThrow(() => assertProductionEnvironment(env));
+  const published = createAiConfig(env);
+  assert.equal(published.journey, 'published');
+  assert.equal(published.deliveryIntegration?.id, 'cloudflare-d1-resend-v1');
+  assert.equal(published.privacyHref, '/es/privacidad/');
+  assert.doesNotThrow(() => validateAiConfig(published, true));
+  for (const key of ['SIGNUPS_WORKER_URL', 'SIGNUPS_SERVICE_TOKEN', 'SIGNUPS_NEWSLETTER_PROVIDER', 'SIGNUPS_PRIVACY_VERSION', 'SIGNUPS_INTEGRATION_VERIFIED']) {
+    const missing = { ...env, [key]: '' };
+    assert.throws(() => assertProductionEnvironment(missing));
+    assert.equal(createAiConfig(missing).journey, 'draft');
+  }
+  assert.throws(() => assertProductionEnvironment({ ...env, SIGNUPS_WORKER_URL: 'https://evil.invalid' }));
+  assert.throws(() => assertProductionEnvironment({ ...env, SIGNUPS_PRIVACY_VERSION: 'older' }));
 });
 
 test('only controlled campaigns survive; personal and unexpected data are discarded', () => {

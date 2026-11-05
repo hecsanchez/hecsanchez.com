@@ -1,0 +1,63 @@
+---
+import type { Locale } from '../../i18n';
+import { SIGNUPS_PRIVACY_VERSION } from '../../features/signups/environment';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const es = locale === 'es';
+const sections: Array<[string, string[]]> = es ? [
+  ['Qué información recibo', [
+    'Soy Hec Sánchez. Si solicitas el Kit Contexto o Shipping Notes, recibo tu correo, la finalidad de la solicitud, la fecha, el lugar del formulario y la versión de este aviso. Para el kit también registro la versión del recurso y tu elección sobre ejemplos de IA. Solo guardo los identificadores de campaña permitidos; descarto parámetros libres y datos personales de los enlaces.',
+    'Después de solicitar el kit puedes responder, de forma opcional, qué papel tienes, qué tarea quieres mejorar y con qué frecuencia la haces. Puedes omitir estas preguntas y descargar el kit de todas formas. Describe la tarea sin datos de clientes ni información confidencial.',
+  ]],
+  ['Para qué los uso', [
+    'Uso la solicitud del kit para darte acceso y enviar el enlace por correo. El envío del recurso es independiente de cualquier correo de marketing. Si marcas la opción de ejemplos de IA, registro esa preferencia por separado: no te suscribe a Shipping Notes ni modifica otras suscripciones o bajas.',
+    'Solicitar Shipping Notes expresa tu interés en recibir ese boletín. La solicitud queda registrada mientras se procesa el alta; no significa que ya se haya entregado un correo. Conservo las preferencias y bajas que ya existan en el proveedor. Las respuestas opcionales me ayudan a entender tareas y preparar ejemplos más útiles.',
+  ]],
+  ['Dónde se procesan', [
+    'El sitio y sus funciones utilizan Vercel. Cloudflare Workers procesa las solicitudes y Cloudflare D1 guarda los registros y las respuestas opcionales. Resend envía el correo del kit y gestiona los contactos de las nuevas solicitudes de Shipping Notes. El archivo público del kit se aloja en Cloudflare R2 y su enlace no contiene tu correo ni exige completar las preguntas.',
+    'Las suscripciones anteriores gestionadas en Buttondown permanecen allí; no se importaron a D1 ni a Resend. Si usas el calendario de contacto, Cal.com procesa esa reserva según su propio servicio. Un clic de correo abre tu aplicación de email; no registra una solicitud de kit o boletín.',
+    'Estos proveedores también procesan la información técnica necesaria para operar sus servicios. La aplicación de altas no guarda tu IP ni tu agente de navegador en D1, y no incluye correos o respuestas en sus registros de eventos o enlaces públicos. Los registros operativos y las copias de los proveedores se rigen por sus propias capacidades y condiciones.',
+  ]],
+  ['Medición y almacenamiento en el navegador', [
+    'Uso Plausible para medir visitas y acciones generales. No envío tu correo ni el texto de tus respuestas a esa medición. Los enlaces y referentes de medición se reducen a los identificadores de campaña permitidos; abrir la página de acceso no cuenta como una solicitud aceptada.',
+    'Un contexto temporal de hasta 30 minutos permite recuperar el acceso y guardar respuestas desde el mismo navegador. Para recuperar un envío interrumpido, la pestaña conserva una clave aleatoria y un resumen de los valores enviados, no el correo en texto. Esa información se elimina al completar la solicitud o al cerrar la sesión de la pestaña. La atribución de campaña se mantiene solo en la memoria de la página.',
+  ]],
+  ['Conservación, preferencias y eliminación', [
+    'Conservo los registros del kit, las respuestas opcionales y las solicitudes del boletín hasta que pidas su eliminación; no tienen una caducidad automática por antigüedad. Los contextos temporales y contadores de límite de solicitudes sí caducan. Retirar una preferencia de correo no elimina por sí solo el registro de esa elección.',
+    'Puedes pedir acceso, una corrección, retirar tu preferencia de ejemplos o boletín, o solicitar que elimine tus datos escribiendo a hi@hecsanchez.com. Indica el correo que utilizaste y qué quieres cambiar. Puedo necesitar verificar que la solicitud te corresponde antes de actuar. Los correos del boletín también permiten gestionar la baja con Resend; una baja no impide recibir el recurso que solicitaste.',
+    'La eliminación retira los registros y respuestas de la aplicación y requiere completar la limpieza correspondiente con el proveedor de contactos. Un correo ya enviado no puede recuperarse de tu buzón. Los registros operativos o copias de los proveedores pueden requerir un tratamiento separado; te informaré del resultado de tu solicitud.',
+  ]],
+] : [
+  ['Information I receive', [
+    'I am Hec Sánchez. When you request Kit Contexto or Shipping Notes, I receive your email, the request purpose, time, form placement and notice version. For the kit, I also record the resource version and your choice about AI examples. I keep only allowed campaign identifiers and discard free-form link parameters and personal data from links.',
+    'After requesting the kit, you may optionally tell me your role, a task you want to improve and how often you do it. You can skip these questions and still download the kit. Describe the task without client data or confidential information.',
+  ]],
+  ['How I use it', [
+    'I use a kit request to provide access and email its link. Resource delivery is separate from marketing. If you select AI examples, I record that preference separately: it does not subscribe you to Shipping Notes or change other subscriptions or opt-outs.',
+    'Requesting Shipping Notes expresses your wish to receive that newsletter. The request is recorded while signup is processed; it does not mean an email has already been delivered. Existing provider preferences and opt-outs are preserved. Optional answers help me understand tasks and prepare more useful examples.',
+  ]],
+  ['Where it is processed', [
+    'The website and its functions use Vercel. Cloudflare Workers processes requests, and Cloudflare D1 stores records and optional answers. Resend sends the kit email and manages contacts for new Shipping Notes requests. The public kit file is hosted in Cloudflare R2; its link contains no email address and does not require completing the questions.',
+    'Earlier subscriptions managed in Buttondown remain there; they were not imported into D1 or Resend. If you use the contact calendar, Cal.com processes that booking through its own service. An email link opens your email app and does not record a kit or newsletter request.',
+    'These providers also process technical information needed to operate their services. The signup application does not store your IP address or browser user agent in D1, and does not include emails or answers in event records or public links. Provider operational logs and backups depend on their own capabilities and terms.',
+  ]],
+  ['Measurement and browser storage', [
+    'I use Plausible to measure visits and general actions. I do not send your email or answer text to that measurement. Measurement URLs and referrers are reduced to allowed campaign identifiers; opening the access page does not count as an accepted request.',
+    'A temporary context of up to 30 minutes lets the same browser recover access and save answers. To recover an interrupted submission, the tab keeps a random key and a digest of the submitted values, rather than a plain-text email. This is cleared after a successful request or when the tab session ends. Campaign attribution is held only in the page memory.',
+  ]],
+  ['Retention, preferences and deletion', [
+    'I keep kit records, optional answers and newsletter requests until you ask for deletion; they do not expire automatically with age. Temporary contexts and request-limit counters do expire. Withdrawing an email preference does not itself delete the record of that choice.',
+    'You can request access or a correction, withdraw your AI-example or newsletter preference, or ask me to delete your data by writing to hi@hecsanchez.com. Include the email you used and what you want changed. I may need to verify that the request is yours before acting. Newsletter emails also let you manage opt-outs through Resend; opting out does not prevent delivery of a resource you requested.',
+    'Deletion removes application records and answers and requires completing the corresponding cleanup with the contact provider. An email already sent cannot be recalled from your inbox. Provider operational logs or backups may need separate handling; I will tell you the outcome of your request.',
+  ]],
+];
+---
+<article class="mx-auto max-w-3xl px-6 py-16">
+  <h1 class="font-serif text-4xl sm:text-5xl">{es ? 'Aviso de privacidad' : 'Privacy notice'}</h1>
+  <p class="mt-4 text-sm text-[var(--color-fg-muted)]">{es ? 'Actualizado el 5 de noviembre de 2026' : 'Updated November 5, 2026'} · {SIGNUPS_PRIVACY_VERSION}</p>
+  {sections.map(([heading, paragraphs]) => <section class="mt-10">
+    <h2 class="font-serif text-2xl">{heading}</h2>
+    {paragraphs.map(text => <p class="mt-4 leading-relaxed text-[var(--color-fg-muted)]">{text}</p>)}
+  </section>)}
+  <p class="mt-10"><a href="mailto:hi@hecsanchez.com" class="underline underline-offset-4">hi@hecsanchez.com</a></p>
+</article>

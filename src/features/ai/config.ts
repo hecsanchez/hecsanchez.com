@@ -1,3 +1,6 @@
+import { siteEnvironmentReady, type SiteEnvironment } from '../signups/environment.ts';
+import { kitAsset } from '../signups/kit.ts';
+
 export interface ResourceAsset {
   id: string;
   version: string;
@@ -19,16 +22,20 @@ export interface AiConfig {
   deliveryIntegration: { id: string; verifiedSender: true; tested: true } | null;
 }
 
-// Deliberately edited in source; URLs and query parameters cannot publish offers.
-export const aiConfig: AiConfig = {
-  journey: 'draft',
-  kit: { state: 'unavailable' },
+// Only verified server environment can publish; browser URLs cannot enable it.
+export function createAiConfig(env: SiteEnvironment = process.env): AiConfig {
+  const ready = siteEnvironmentReady(env);
+  return {
+  journey: ready ? 'published' : 'draft',
+  kit: ready ? { state: 'available', asset: kitAsset } : { state: 'unavailable' },
   demonstration: 'illustrative',
   workshop: 'hidden',
   assessment: { state: 'hidden' },
-  privacyHref: null,
-  deliveryIntegration: null,
-};
+  privacyHref: '/es/privacidad/',
+  deliveryIntegration: ready ? { id: 'cloudflare-d1-resend-v1', verifiedSender: true, tested: true } : null,
+  };
+}
+export const aiConfig = createAiConfig();
 
 export function validateAiConfig(config: AiConfig, providerConfigured = false): void {
   if (config.workshop !== 'hidden') throw new Error('Workshop P1 is not implemented or selected.');

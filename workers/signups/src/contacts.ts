@@ -1,4 +1,5 @@
 import type { Database, Env } from './types.ts';
+import { createHmac } from 'node:crypto';
 
 const idPattern = /^[a-f\d]{8}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{12}$/i;
 interface Contact { id: string; email: string; unsubscribed: boolean }
@@ -36,16 +37,29 @@ async function lookup(env: Env, email: string, send: typeof fetch): Promise<Cont
 }
 
 export async function drainContacts(db: Database, env: Env, now = Date.now(), send: typeof fetch = fetch): Promise<void> {
-  if (!contactsReady(env)) return;
+  const startedAt = Date.now();
+  if (!contactsReady(env) || env.SIGNUPS_ENABLED !== 'true' || env.NEWSLETTER_CAPTURE_ENABLED !== 'true' ||
+      env.PRIVACY_REVIEWED !== 'true' || env.DATA_RIGHTS_VERIFIED !== 'true' || (env.SIGNUPS_SERVICE_TOKEN?.length ?? 0) < 32) return;
   const due = await db.prepare(`SELECT o.request_id, o.attempts, r.email FROM contact_outbox o JOIN signup_requests r ON r.id = o.request_id
     WHERE o.state IN ('queued', 'sending', 'failed') AND o.next_attempt_at <= ? AND o.lease_until <= ? AND o.attempts < 6
     AND r.consent_status = 'requested' AND NOT EXISTS (SELECT 1 FROM rights_jobs j WHERE lower(j.email) = lower(r.email)) LIMIT 10`).bind(now, now).all<{ request_id: string; attempts: number; email: string }>();
   for (const row of due.results) {
+    const attemptNow = now + Date.now() - startedAt;
+    const lease = attemptNow + 120000;
     const claimed = await db.prepare(`UPDATE contact_outbox SET state = 'sending', attempts = attempts + 1, lease_until = ?
-      WHERE request_id = ? AND attempts = ? AND lease_until <= ? AND state IN ('queued', 'sending', 'failed') RETURNING request_id`).bind(now + 120000, row.request_id, row.attempts, now).first();
+      WHERE request_id = ? AND attempts = ? AND lease_until <= ? AND state IN ('queued', 'sending', 'failed') RETURNING request_id`).bind(lease, row.request_id, row.attempts, attemptNow).first();
     if (!claimed) continue;
+    const emailHash = createHmac('sha256', env.SIGNUPS_SERVICE_TOKEN!).update(row.email.toLowerCase()).digest('hex');
+    const ownsEmail = await db.prepare(`INSERT INTO contact_locks(email_hash, lease_until) VALUES (?, ?)
+      ON CONFLICT(email_hash) DO UPDATE SET lease_until = excluded.lease_until WHERE contact_locks.lease_until <= ?
+      RETURNING email_hash`).bind(emailHash, lease, attemptNow).first();
+    if (!ownsEmail) {
+      // Contention is not a provider attempt; retry after the owner releases it.
+      await db.prepare("UPDATE contact_outbox SET state = 'queued', attempts = attempts - 1, lease_until = 0, next_attempt_at = ? WHERE request_id = ? AND lease_until = ?").bind(attemptNow + 5000, row.request_id, lease).run();
+      continue;
+    }
     try {
-      const cached = await db.prepare('SELECT contact_id, state FROM provider_contacts WHERE email = ?').bind(row.email).first<{ contact_id: string; state: string }>();
+      const cached = await db.prepare('SELECT contact_id, state FROM provider_contacts WHERE lower(email) = lower(?)').bind(row.email).first<{ contact_id: string; state: string }>();
       let id = cached?.contact_id; let state = cached?.state ?? 'preserved';
       if (!id) {
         const existing = await lookup(env, row.email, send);
@@ -60,20 +74,25 @@ export async function drainContacts(db: Database, env: Env, now = Date.now(), se
         }
       }
       await db.batch([
-        db.prepare('INSERT INTO provider_contacts(email, contact_id, state) VALUES (?, ?, ?) ON CONFLICT(email) DO NOTHING').bind(row.email, id, state),
-        db.prepare('UPDATE contact_outbox SET state = ?, lease_until = 0 WHERE request_id = ?').bind(state, row.request_id),
+        db.prepare('INSERT INTO provider_contacts(email, contact_id, state) VALUES (?, ?, ?) ON CONFLICT(email) DO NOTHING').bind(row.email.toLowerCase(), id, state),
+        db.prepare('UPDATE contact_outbox SET state = ?, lease_until = 0 WHERE request_id = ? AND lease_until = ?').bind(state, row.request_id, lease),
       ]);
     } catch {
-      await db.prepare("UPDATE contact_outbox SET state = 'failed', lease_until = 0, next_attempt_at = ? WHERE request_id = ?").bind(now + Math.min(3600000, 60000 * 2 ** row.attempts), row.request_id).run();
+      await db.prepare("UPDATE contact_outbox SET state = 'failed', lease_until = 0, next_attempt_at = ? WHERE request_id = ? AND lease_until = ?").bind(attemptNow + Math.min(3600000, 60000 * 2 ** row.attempts), row.request_id, lease).run();
+    } finally {
+      await db.prepare('DELETE FROM contact_locks WHERE email_hash = ? AND lease_until = ?').bind(emailHash, lease).run();
     }
   }
 }
 
 export async function drainRights(db: Database, env: Env, now = Date.now(), send: typeof fetch = fetch): Promise<void> {
+  const startedAt = Date.now();
   if (!env.RESEND_API_KEY) return;
   const due = await db.prepare('SELECT * FROM rights_jobs WHERE next_attempt_at <= ? AND lease_until <= ? LIMIT 10').bind(now, now).all<{ id: string; email: string; action: string; purpose: string | null; contact_id: string | null; attempts: number }>();
   for (const row of due.results) {
-    const claimed = await db.prepare('UPDATE rights_jobs SET lease_until = ?, attempts = attempts + 1 WHERE id = ? AND lease_until <= ? RETURNING id').bind(now + 120000, row.id, now).first();
+    const attemptNow = now + Date.now() - startedAt;
+    const lease = attemptNow + 120000;
+    const claimed = await db.prepare('UPDATE rights_jobs SET lease_until = ?, attempts = attempts + 1 WHERE id = ? AND lease_until <= ? RETURNING id').bind(lease, row.id, attemptNow).first();
     if (!claimed) continue;
     try {
       if (row.action === 'erase' || row.purpose === 'shipping_notes') {
@@ -92,10 +111,13 @@ export async function drainRights(db: Database, env: Env, now = Date.now(), send
       }
       await db.batch([
         db.prepare('DELETE FROM provider_contacts WHERE email = ?').bind(row.email),
-        db.prepare('DELETE FROM rights_jobs WHERE id = ?').bind(row.id),
+        // A withdrawal upgraded to erasure while this call was in flight must
+        // retain its stronger cleanup job for the next scheduled invocation.
+        db.prepare('DELETE FROM rights_jobs WHERE id = ? AND action = ? AND purpose IS ? AND lease_until = ?').bind(row.id, row.action, row.purpose, lease),
       ]);
     } catch {
-      await db.prepare('UPDATE rights_jobs SET lease_until = 0, next_attempt_at = ? WHERE id = ?').bind(now + Math.min(3600000, 60000 * 2 ** Math.min(row.attempts, 6)), row.id).run();
+      await db.prepare('UPDATE rights_jobs SET lease_until = 0, next_attempt_at = ? WHERE id = ? AND action = ? AND purpose IS ? AND lease_until = ?').bind(
+        attemptNow + Math.min(3600000, 60000 * 2 ** Math.min(row.attempts, 6)), row.id, row.action, row.purpose, lease).run();
     }
   }
 }

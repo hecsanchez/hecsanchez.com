@@ -26,6 +26,7 @@
     "howIWork": "/en/how-i-work",
     "about": "/en/about",
     "contact": "/en/contact",
+    "privacy": "/en/privacy/",
     "fractionalCto": "/en/fractional-cto",
     "rss": "/en/writing/rss.xml"
   },
@@ -244,6 +245,7 @@
     "button": "Subscribe",
     "reassurance": "Unsubscribe whenever you like.",
     "loading": "Subscribing…",
+    "recorded": "Request received. We are processing your signup. Existing email preferences are preserved.",
     "successConfirm": "Check your inbox to confirm your subscription.",
     "success": "You're subscribed. Thanks for reading.",
     "validationError": "Enter a valid email address.",
@@ -383,6 +385,7 @@
     "ctaBody": "Read how I work with founders to see where product engineering or fractional CTO support could fit."
   },
   "footer": {
+    "privacy": "Privacy notice",
     "rights": "All rights reserved.",
     "navTitle": "Site",
     "workTitle": "Work with me",
