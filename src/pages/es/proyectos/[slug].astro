@@ -22,6 +22,7 @@ const ogImage = resolveProjectImage(project.hero?.file)?.src;
   description={project.cardDescription.es}
   altLocaleHref={`/en/projects/${project.id}`}
   ogImage={ogImage}
+  ogImageAlt={project.hero?.alt.es}
 >
   <ProjectDetailPage locale="es" project={project} />
 </BaseLayout>

@@ -44,12 +44,16 @@ const draftUrls = getDraftUrls();
 export default defineConfig({
   site: SITE,
   output: 'static',
+  redirects: {
+    '/es/proyectos/zaplink': { status: 301, destination: '/es/proyectos/yepkey/' },
+    '/en/projects/zaplink': { status: 301, destination: '/en/projects/yepkey/' },
+  },
   integrations: [
     mdx(),
     sitemap({
       // Language alternates are declared per page in BaseLayout, where the real
       // EN/ES pairs are known. Keep drafts and the redirecting root out.
-      filter: (page) => page !== `${SITE}/` && !draftUrls.has(page) && aiSitemapEligible(new URL(page).pathname),
+      filter: (page) => page !== `${SITE}/` && !draftUrls.has(page) && aiSitemapEligible(new URL(page).pathname) && !/\/(?:projects|proyectos)\/zaplink\/?$/.test(new URL(page).pathname),
     }),
     icon({ include: { hugeicons: ['*'] } }),
   ],

@@ -246,70 +246,63 @@ export const projects: Project[] = [
     related: ['estateflow'],
   },
   {
-    id: 'zaplink',
-    title: { en: 'Zaplink', es: 'Zaplink' },
+    id: 'yepkey',
+    title: { en: 'Yepkey.io', es: 'Yepkey.io' },
     category: { en: 'Product', es: 'Producto' },
     cardDescription: {
-      en: 'Authentication through WhatsApp using one-time codes and magic links.',
-      es: 'Autenticación mediante WhatsApp con códigos de un solo uso y enlaces de acceso.',
+      en: 'Passwordless authentication through WhatsApp using one-time codes.',
+      es: 'Autenticación sin contraseña mediante WhatsApp con códigos de un solo uso.',
     },
     body: {
-      en: 'I built Zaplink to let products use WhatsApp for authentication. It supports one-time codes and magic links, with React and Node integration packages.',
-      es: 'Desarrollé Zaplink para que los productos puedan utilizar WhatsApp en la autenticación de usuarios. Permite usar códigos de un solo uso y enlaces de acceso, con paquetes de integración para React y Node.',
+      en: 'I built Yepkey, a product for adding WhatsApp authentication to applications. Its public site presents a sign-in flow using a one-time code.',
+      es: 'Desarrollé Yepkey, un producto para incorporar autenticación por WhatsApp a una aplicación. Su sitio público presenta un flujo de acceso con un código de un solo uso.',
     },
-    url: 'https://zaplink.so',
-    urlLabel: { en: 'Explore Zaplink', es: 'Conoce Zaplink' },
+    url: 'https://yepkey.io/',
+    urlLabel: { en: 'Visit Yepkey.io', es: 'Conoce Yepkey.io' },
     featured: true,
     draft: false,
     intro: [
       {
-        en: 'Zaplink lets a product authenticate people over WhatsApp instead of email. The user gets a one-time code or a link in the app they already have open, and signs in from there.',
-        es: 'Zaplink permite que un producto autentique a las personas por WhatsApp en lugar de correo. El usuario recibe un código de un solo uso o un enlace en la app que ya tiene abierta, y entra desde ahí.',
+        en: 'Yepkey is a product I built for authentication through WhatsApp. A person receives a one-time code in WhatsApp and uses it to sign in to an application without a password.',
+        es: 'Yepkey es un producto que desarrollé para autenticar usuarios mediante WhatsApp. La persona recibe un código de un solo uso en WhatsApp y lo utiliza para entrar a una aplicación sin contraseña.',
       },
       {
-        en: 'In much of Latin America that is the difference between a login that works and one that quietly fails: the inbox is an afterthought, but WhatsApp is where people actually are.',
-        es: 'En buena parte de Latinoamérica esa es la diferencia entre un inicio de sesión que funciona y uno que falla en silencio: el correo es secundario, pero WhatsApp es donde la gente realmente está.',
+        en: 'These screenshots show the current public Yepkey.io website, including its illustrative sign-in example for the fictional Acme application.',
+        es: 'Estas capturas muestran el sitio público actual de Yepkey.io, incluido su ejemplo ilustrativo de acceso para la aplicación ficticia Acme.',
       },
     ],
     hero: {
-      file: 'zaplink/hero.jpg',
-      alt: { en: 'Zaplink sign-in over WhatsApp', es: 'Inicio de sesión por WhatsApp con Zaplink' },
+      file: 'yepkey/hero.webp',
+      alt: { en: 'Yepkey.io desktop homepage with its WhatsApp sign-in illustration and Next.js code example', es: 'Página de inicio de Yepkey.io en escritorio, con una ilustración de acceso por WhatsApp y un ejemplo de código de Next.js' },
+      caption: { en: 'Public Yepkey.io homepage, captured on 5 November 2026 at 1440 × 1000. The Acme sign-in is an illustration on the site.', es: 'Inicio público de Yepkey.io, capturado el 5 de noviembre de 2026 a 1440 × 1000. El acceso de Acme es una ilustración del sitio.' },
     },
     sections: [
       {
-        title: { en: 'Signing in over WhatsApp', es: 'Iniciar sesión por WhatsApp' },
+        title: { en: 'The sign-in example', es: 'El ejemplo de acceso' },
         body: [
           {
-            en: 'The platform issues one-time codes and magic links, verifies them, and can act as a second factor for products that already have a password. Rate limiting and abuse protection are part of the service rather than something each integrator has to remember.',
-            es: 'La plataforma emite códigos de un solo uso y enlaces de acceso, los verifica y puede funcionar como segundo factor para productos que ya usan contraseña. El control de frecuencia y la protección contra abuso son parte del servicio, no algo que cada integrador tenga que recordar.',
-          },
-          {
-            en: 'Provider callbacks arrive on their own endpoint and the slow work — delivery, retries — runs on a queue, so an authentication request does not wait on a messaging provider to answer.',
-            es: 'Las respuestas del proveedor llegan a su propio endpoint y el trabajo lento —entrega, reintentos— corre en una cola, para que una solicitud de autenticación no se quede esperando a que conteste el proveedor de mensajería.',
-          },
-        ],
-      },
-      {
-        title: { en: 'Packages for the framework you already use', es: 'Paquetes para el framework que ya usas' },
-        body: [
-          {
-            en: 'The point of Zaplink is that adding it should be small. There are packages for Node and the browser, a React client, a React Native client, and a Next.js integration, all built on a shared core, plus example applications that show each one wired up end to end.',
-            es: 'El objetivo de Zaplink es que integrarlo sea poco trabajo. Hay paquetes para Node y el navegador, un cliente de React, uno de React Native y una integración para Next.js, todos sobre un núcleo común, además de aplicaciones de ejemplo que muestran cada uno funcionando de principio a fin.',
-          },
-        ],
-      },
-      {
-        title: { en: 'The console', es: 'La consola' },
-        body: [
-          {
-            en: 'Behind the API there is a console for the people running it: applications and their credentials, the users who have signed in, and an audit trail of what happened.',
-            es: 'Detrás de la API hay una consola para quien la opera: las aplicaciones y sus credenciales, los usuarios que han entrado y una bitácora de lo que ocurrió.',
+            en: 'The public homepage illustrates the flow with a fictional Acme application: a WhatsApp message contains the code shown in the sign-in form. The mobile view keeps the explanation, actions and example in a single column.',
+            es: 'La página pública ilustra el flujo con una aplicación ficticia llamada Acme: un mensaje de WhatsApp contiene el código que aparece en el formulario de acceso. La vista móvil organiza la explicación, las acciones y el ejemplo en una sola columna.',
           },
         ],
         image: {
-          file: 'zaplink/console.png',
-          alt: { en: 'Zaplink console', es: 'Consola de Zaplink' },
+          file: 'yepkey/mobile.webp',
+          alt: { en: 'Yepkey.io mobile homepage with the fictional Acme WhatsApp code example below the product introduction', es: 'Inicio de Yepkey.io en móvil, con el ejemplo ficticio de código de WhatsApp de Acme debajo de la presentación del producto' },
+          caption: { en: 'Public homepage captured at 390 × 844 on 5 November 2026; the image includes the full hero section. The phone number and code belong to the site’s fictional example.', es: 'Inicio público capturado a 390 × 844 el 5 de noviembre de 2026; la imagen incluye la sección principal completa. El teléfono y el código pertenecen al ejemplo ficticio del sitio.' },
         },
+      },
+      {
+        title: { en: 'Implementation and integration', es: 'Implementación e integración' },
+        body: [
+          {
+            en: 'In the implementation I built, the public authentication API, administration API, provider callbacks and background workers are separate applications. The backend uses NestJS, Prisma and PostgreSQL, with Redis and BullMQ for background work and a React console.',
+            es: 'En la implementación que desarrollé, la API pública de autenticación, la API de administración, las respuestas del proveedor y los procesos en segundo plano son aplicaciones separadas. El backend utiliza NestJS, Prisma y PostgreSQL, con Redis y BullMQ para el trabajo en segundo plano y una consola en React.',
+          },
+          {
+            en: 'The current public website includes a Next.js integration example and links to documentation and the console.',
+            es: 'El sitio público actual incluye un ejemplo de integración para Next.js y enlaces a la documentación y a la consola.',
+          },
+        ],
       },
     ],
     stack: ['NestJS', 'Prisma', 'PostgreSQL', 'Redis', 'BullMQ', 'React', 'Vite', 'Nx'],
@@ -530,7 +523,7 @@ export function getProject(id: string): Project {
   return project;
 }
 
-/** Detail-page path for a project, e.g. `/en/projects/zaplink`. */
+/** Detail-page path for a project, e.g. `/en/projects/yepkey`. */
 export function projectHref(projectsRoute: string, id: string): string {
   return `${projectsRoute}/${id}`;
 }

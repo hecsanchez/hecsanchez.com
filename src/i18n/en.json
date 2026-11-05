@@ -102,7 +102,7 @@
     "work": [
       { "project": "the-woods-crm", "body": "A custom CRM I built for The Woods, a business selling wooden floors and materials." },
       { "project": "hubspot-lead-routing", "body": "A HubSpot application I built to assign leads using agent schedules, with a calendar view of availability." },
-      { "project": "zaplink", "body": "A product I built for authentication through WhatsApp, using one-time codes and magic links." }
+      { "project": "yepkey", "body": "A product I built for passwordless authentication through WhatsApp using one-time codes." }
     ],
     "processTitle": "How we start",
     "process": [
@@ -179,7 +179,7 @@
     ],
     "workTitle": "Products I've built and work I'm doing",
     "work": [
-      { "project": "zaplink", "body": "I built Zaplink to support authentication through WhatsApp, including one-time codes and magic links." },
+      { "project": "yepkey", "body": "I built Yepkey for passwordless authentication through WhatsApp using one-time codes." },
       { "project": "estateflow", "body": "I'm building technology for real estate sales operations, bringing product development into the day-to-day problems of sales teams." },
       { "project": "the-woods-crm", "body": "I built a custom CRM for a business selling wooden floors and materials." }
     ],
@@ -213,7 +213,7 @@
   },
   "projects": {
     "metaTitle": "Software Projects & Products | Hec Sánchez",
-    "metaDescription": "Explore software built by Hec Sánchez, including Zaplink, The Woods CRM, a HubSpot lead routing app, and his work on Estateflow.",
+    "metaDescription": "Explore software built by Hec Sánchez, including Yepkey.io, The Woods CRM, a HubSpot lead routing app, and his work on Estateflow.",
     "h1": "Software I've built and work in progress.",
     "intro": "A selection of products and business systems I've worked on. My interests include customer-facing software, sales operations, and the connections between the tools a business uses.",
     "backLabel": "All projects",
@@ -264,7 +264,7 @@
     ],
     "buildingTitle": "What I'm building",
     "building": [
-      "I built Zaplink, a product for authentication through WhatsApp. I'm also building technology for Estateflow, focused on real estate sales operations.",
+      "I built Yepkey, a product for authentication through WhatsApp. I'm also building technology for Estateflow, focused on real estate sales operations.",
       "Other work includes a custom CRM for The Woods and a HubSpot application for assigning leads using agent schedules."
     ],
     "approachTitle": "How I approach the work",

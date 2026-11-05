@@ -102,7 +102,7 @@
     "work": [
       { "project": "the-woods-crm", "body": "Un CRM a medida que desarrollé para The Woods, una empresa que vende pisos de madera y materiales." },
       { "project": "hubspot-lead-routing", "body": "Una aplicación que desarrollé para asignar prospectos según los horarios de los asesores, con un calendario de disponibilidad." },
-      { "project": "zaplink", "body": "Un producto que desarrollé para autenticar usuarios mediante WhatsApp, con códigos de un solo uso y enlaces de acceso." }
+      { "project": "yepkey", "body": "Un producto que desarrollé para autenticar usuarios sin contraseña mediante WhatsApp, con códigos de un solo uso." }
     ],
     "processTitle": "Cómo empezamos",
     "process": [
@@ -179,7 +179,7 @@
     ],
     "workTitle": "Productos que he desarrollado y trabajo actual",
     "work": [
-      { "project": "zaplink", "body": "Desarrollé Zaplink para permitir la autenticación mediante WhatsApp, con códigos de un solo uso y enlaces de acceso." },
+      { "project": "yepkey", "body": "Desarrollé Yepkey para permitir la autenticación sin contraseña mediante WhatsApp, con códigos de un solo uso." },
       { "project": "estateflow", "body": "Estoy desarrollando tecnología para operaciones de ventas inmobiliarias, conectando el trabajo de producto con los problemas cotidianos de los equipos comerciales." },
       { "project": "the-woods-crm", "body": "Desarrollé un CRM a medida para una empresa que vende pisos de madera y materiales." }
     ],
@@ -213,7 +213,7 @@
   },
   "projects": {
     "metaTitle": "Proyectos de Software y Productos | Hec Sánchez",
-    "metaDescription": "Conoce el software desarrollado por Hec Sánchez: Zaplink, el CRM de The Woods, una app de asignación de prospectos en HubSpot y su trabajo en Estateflow.",
+    "metaDescription": "Conoce el software desarrollado por Hec Sánchez: Yepkey.io, el CRM de The Woods, una app de asignación de prospectos en HubSpot y su trabajo en Estateflow.",
     "h1": "Software que he desarrollado y proyectos en marcha.",
     "intro": "Una selección de productos y sistemas de negocio en los que he trabajado. Me interesan el software para usuarios finales, las operaciones de ventas y las conexiones entre las herramientas que utiliza una empresa.",
     "backLabel": "Todos los proyectos",
@@ -264,7 +264,7 @@
     ],
     "buildingTitle": "Lo que estoy construyendo",
     "building": [
-      "Desarrollé Zaplink, un producto de autenticación mediante WhatsApp. También estoy desarrollando tecnología para Estateflow, enfocada en operaciones de ventas inmobiliarias.",
+      "Desarrollé Yepkey, un producto de autenticación mediante WhatsApp. También estoy desarrollando tecnología para Estateflow, enfocada en operaciones de ventas inmobiliarias.",
       "Otros proyectos incluyen un CRM a medida para The Woods y una aplicación de HubSpot para asignar prospectos según los horarios de los asesores."
     ],
     "approachTitle": "Cómo abordo el trabajo",

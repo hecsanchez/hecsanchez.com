@@ -4,5 +4,9 @@
   "buildCommand": "astro build",
   "outputDirectory": "dist",
   "devCommand": "astro dev",
-  "installCommand": "npm install"
+  "installCommand": "npm install",
+  "redirects": [
+    { "source": "/es/proyectos/zaplink", "destination": "/es/proyectos/yepkey", "permanent": true },
+    { "source": "/en/projects/zaplink", "destination": "/en/projects/yepkey", "permanent": true }
+  ]
 }

@@ -35,3 +35,23 @@ test('sitemap excludes resource success, draft and unselected offers', () => {
   assert.ok(sitemap.includes('https://hecsanchez.com/es/'));
   assert.ok(sitemap.includes('https://hecsanchez.com/en/'));
 });
+
+test('Yepkey replaces current portfolio routes and preserves permanent Zaplink redirects', () => {
+  for (const prefix of ['es/proyectos', 'en/projects']) {
+    const page = readFileSync(`dist/${prefix}/yepkey/index.html`, 'utf8');
+    assert.ok(page.includes('Yepkey.io'));
+    assert.ok(page.includes('/projects/yepkey/hero.webp'));
+    assert.ok(page.includes('/projects/yepkey/mobile.webp'));
+    assert.ok(page.includes(`https://hecsanchez.com/${prefix}/yepkey/`));
+    const redirect = readFileSync(`dist/${prefix}/zaplink/index.html`, 'utf8');
+    assert.ok(redirect.includes('http-equiv="refresh"'));
+    assert.ok(redirect.includes(`/${prefix}/yepkey`));
+  }
+  const sitemap = readFileSync('dist/sitemap-0.xml', 'utf8');
+  assert.ok(sitemap.includes('/es/proyectos/yepkey/'));
+  assert.ok(sitemap.includes('/en/projects/yepkey/'));
+  assert.equal(sitemap.includes('/zaplink'), false);
+  const deployment = JSON.parse(readFileSync('vercel.json', 'utf8'));
+  assert.equal(deployment.redirects.length, 2);
+  assert.ok(deployment.redirects.every((redirect: { permanent: boolean }) => redirect.permanent));
+});

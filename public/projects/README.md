@@ -22,8 +22,8 @@ section's `image`). Current slots:
 | `the-woods-crm/inbox.png` | The Woods — shared WhatsApp inbox section |
 | `the-woods-crm/proposal.png` | The Woods — proposal builder section |
 | `the-woods-crm/inventory.png` | The Woods — inventory and purchasing section |
-| `zaplink/hero.jpg` | Zaplink — full width, below the intro |
-| `zaplink/console.png` | Zaplink — console section |
+| `yepkey/hero.webp` | Yepkey.io — desktop public homepage, also used on cards |
+| `yepkey/mobile.webp` | Yepkey.io — mobile public homepage and illustrative sign-in |
 
 PNG, JPEG, WebP and GIF all work. Intrinsic dimensions are read from the file
 header at build time and written into the `<img>` tag, so images reserve their
@@ -33,3 +33,6 @@ rather than stretching across the column.
 **These pages are public.** Check each screenshot for client names, contact
 details, real deal values, and anything else that shouldn't leave the customer's
 account before committing it.
+
+The Yepkey captures show the public site, not a private console or a live login.
+See [capture provenance and verification](../../yepkey-portfolio.md).
