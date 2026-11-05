@@ -70,6 +70,7 @@ const live = aiConfig.journey === 'published' && aiConfig.kit.state === 'availab
         document.getElementById('access-delivery')!.textContent = result.delivery === 'failed'
           ? 'Puedes acceder al kit aquí. No pudimos enviar el correo en este momento.'
           : result.delivery === 'confirmed' ? 'El proveedor confirmó la entrega del correo con el enlace.'
+          : result.delivery === 'sent' ? 'El proveedor aceptó el correo con el enlace para su envío.'
           : 'También recibirás el enlace por correo. Puede tardar unos minutos.';
         document.getElementById('qualification')!.hidden = !result.profileAllowed;
       } catch { /* Neutral fallback does not claim a request or create a conversion. */ }

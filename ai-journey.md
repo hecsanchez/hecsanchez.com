@@ -2,6 +2,8 @@
 
 Source of truth: Hec's Website Build Requirements v1.0 (4 November 2026). This brief supersedes conflicting AI scope/design in `prd.md`; the existing professional site remains intact. No deployment or production publishing is authorized.
 
+**5 November follow-up:** [Worker/D1 signup implementation](./workers/signups/README.md) now prepares durable persistence, transactional Resend delivery and future newsletter Contacts under Hec's later decisions. That document supersedes this brief's earlier provider-selection, no-asset-URL and adapter-not-implemented notes. The supplied resource URL is the v1.1 R2 ZIP; contents/prerequisites and privacy remain publication dependencies. All service flags remain off and AI stays draft. The current deployment scope is Worker/D1 only after secrets/readiness are resolved; no public website deployment or migration of the two historical Buttondown subscribers is included. Records are retained until deletion is requested, with no age purge.
+
 ## Inspection and decisions
 
 - Clean `main` at start; no user changes or applicable AGENTS files found.

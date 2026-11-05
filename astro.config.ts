@@ -8,8 +8,9 @@ import icon from 'astro-icon';
 import tailwindcss from '@tailwindcss/vite';
 import { aiConfig, aiSitemapEligible, validateAiConfig } from './src/features/ai/config';
 import { resourceProvider } from './src/features/ai/provider';
+import { workerEnvironmentReady } from './src/features/signups/worker-client';
 
-validateAiConfig(aiConfig, resourceProvider !== null);
+validateAiConfig(aiConfig, resourceProvider !== null && workerEnvironmentReady());
 
 const SITE = 'https://hecsanchez.com';
 

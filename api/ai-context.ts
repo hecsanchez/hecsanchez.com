@@ -1,13 +1,15 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { aiConfig } from '../src/features/ai/config.ts';
 import { resourceProvider } from '../src/features/ai/provider.ts';
-import { BoundaryError, requireLiveResource } from '../src/features/ai/server.ts';
+import { assertOrigin, BoundaryError, requireLiveResource } from '../src/features/ai/server.ts';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader('Cache-Control', 'private, no-store');
   if (req.method !== 'GET') { res.setHeader('Allow', 'GET'); return res.status(405).json({ ok: false }); }
   try {
     requireLiveResource(aiConfig, resourceProvider);
+    // Same-origin GETs often omit Origin; reject explicit foreign origins/sites.
+    if (req.headers.origin || req.headers['sec-fetch-site']) assertOrigin(req.headers.origin ?? 'https://hecsanchez.com', req.headers['sec-fetch-site']);
     const token = req.cookies.ai_resource_context;
     const receipt = token && /^[A-Za-z0-9_-]{32,256}$/.test(token) ? await resourceProvider.readContext(token) : null;
     if (!receipt) return res.status(401).json({ ok: false, code: 'expired' });

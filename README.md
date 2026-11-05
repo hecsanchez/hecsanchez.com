@@ -5,6 +5,10 @@ integration contracts and missing inputs: [ai-journey.md](./ai-journey.md).
 The AI journey is a development-only draft; `npm run dev` previews `/es/ia/`.
 Production builds omit draft routes and their entry links.
 
+Prepared Worker/D1 signup persistence, Resend delivery/Contacts, complete form inventory,
+retention/deletion workflow and activation blockers: [workers/signups/README.md](./workers/signups/README.md).
+This service is disabled and undeployed; the public website and historical Buttondown subscribers are unchanged.
+
 ```sh
 npm create astro@latest -- --template minimal
 ```

@@ -20,7 +20,7 @@ export function parseRequest(body: unknown, config: AiConfig): ResourceCommand {
   if (!body || typeof body !== 'object' || config.kit.state !== 'available') throw new BoundaryError(400, 'invalid');
   const data = body as Record<string, unknown>;
   const email = typeof data.email === 'string' ? data.email.trim() : '';
-  if (email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new BoundaryError(400, 'email');
+  if (email.length > 254 || !/^[^\s@<>\x00-\x1f\x7f]+@[^\s@<>\x00-\x1f\x7f]+\.[^\s@<>\x00-\x1f\x7f]+$/.test(email)) throw new BoundaryError(400, 'email');
   if (typeof data.marketingConsent !== 'boolean' ||
       typeof data.idempotencyKey !== 'string' || !/^[a-f\d-]{36}$/i.test(data.idempotencyKey)) {
     throw new BoundaryError(400, 'invalid');

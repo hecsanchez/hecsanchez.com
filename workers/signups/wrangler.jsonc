@@ -1,0 +1,37 @@
+{
+  "name": "hecsanchez-signups",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-11-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "preview_urls": false,
+  "observability": { "enabled": false },
+  "vars": {
+    "SIGNUPS_ENABLED": "false",
+    "RESOURCE_ENABLED": "false",
+    "NEWSLETTER_CAPTURE_ENABLED": "false",
+    "QUALIFICATION_ENABLED": "false",
+    "PRIVACY_REVIEWED": "false",
+    "PRIVACY_VERSION": "",
+    "RETENTION_MODE": "until_deletion",
+    "DATA_RIGHTS_VERIFIED": "false",
+    "RESEND_CONTACTS_VERIFIED": "false",
+    "RESEND_NEWSLETTER_SEGMENT_ID": "bd4ec207-7fc6-4596-9ab4-8d563fb7340f",
+    "RESEND_NEWSLETTER_TOPIC_ID": "da0eabb0-3d55-4834-bb46-a546f94d0edf",
+    "VERIFIED_SENDER": "true",
+    "RESEND_FROM": "Hec Sánchez <recursos@mail.hecsanchez.com>",
+    "RESEND_REPLY_TO": "hi@hecsanchez.com"
+  },
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "hecsanchez-signups",
+    "database_id": "06a39d17-614c-4c43-987d-6009414bfaee",
+    "migrations_dir": "migrations"
+  }],
+  "triggers": { "crons": ["*/5 * * * *"] },
+  // With capture disabled, the schedule only expires contexts/counters and
+  // retries explicitly authenticated rights jobs. It never enrolls or emails.
+  // Required secrets: SIGNUPS_SERVICE_TOKEN, SIGNUPS_ADMIN_TOKEN, RESEND_API_KEY.
+  // Required reviewed sender vars: RESEND_FROM, RESEND_REPLY_TO.
+  // No public website routes are configured.
+}

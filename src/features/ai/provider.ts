@@ -1,7 +1,9 @@
 import type { Attribution } from './campaign.ts';
 import type { ResourceAsset } from './config.ts';
+import { aiConfig } from './config.ts';
+import { cloudflareResourceProvider } from '../signups/worker-client.ts';
 
-export type DeliveryState = 'queued' | 'confirmed' | 'failed';
+export type DeliveryState = 'queued' | 'sent' | 'confirmed' | 'failed';
 export interface ResourceCommand {
   email: string;
   resourceId: string;
@@ -25,10 +27,11 @@ export interface Profile {
   frequency?: 'daily' | 'several_weekly' | 'weekly' | 'less' | 'unknown';
 }
 /**
- * Implement using the existing operational provider, not a second CRM.
+ * Durable request boundary; this service is not a CRM.
  * accept must atomically own the request durably BEFORE returning, bind each key
  * to its fingerprint, deduplicate side effects, rate limit deliberate repeats,
- * preserve subscriptions/opt-outs, and enroll only valid affirmative AI consent.
+ * preserve subscriptions/opt-outs. AI consent is recorded separately and never
+ * triggers enrollment. Shipping Notes is a distinct explicit signup purpose.
  * Return failed delivery after persistence without revoking independent access.
  * Tokens must be random, action-scoped, expiring and validated privately.
  * saveProfile attaches write-only answers to that request, never contact identity.
@@ -40,5 +43,7 @@ export interface ResourceProvider {
   saveProfile(token: string, profile: Profile): Promise<'saved' | 'expired'>;
 }
 
-// No production provider is claimed. Fixtures live only in tests.
-export const resourceProvider: ResourceProvider | null = null;
+// Source configuration still requires verified sender/testing and publication.
+// This registration alone never enables the journey or supplies credentials.
+export const resourceProvider: ResourceProvider | null = aiConfig.deliveryIntegration?.id === 'cloudflare-d1-resend-v1'
+  ? cloudflareResourceProvider : null;

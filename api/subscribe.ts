@@ -1,57 +1,46 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-
-/** Buttondown marks a subscriber `unactivated` when the list uses double opt-in. */
-const PENDING_CONFIRMATION = 'unactivated';
+import { assertOrigin, BoundaryError, parseBody } from '../src/features/ai/server.ts';
+import { parseNewsletter } from '../src/features/signups/contracts.ts';
+import { recordNewsletter } from '../src/features/signups/worker-client.ts';
+import { subscribeButtondown } from '../src/features/signups/buttondown.ts';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  res.setHeader('Cache-Control', 'private, no-store');
   if (req.method !== 'POST') {
     return res.status(405).json({ ok: false, error: 'Method not allowed' });
   }
 
   let email: unknown;
+  let body: unknown;
   try {
-    ({ email } = typeof req.body === 'string' ? JSON.parse(req.body) : req.body ?? {});
-  } catch {
-    return res.status(400).json({ ok: false, error: 'Invalid request body' });
+    assertOrigin(req.headers.origin, req.headers['sec-fetch-site']);
+    if (req.headers['content-type']?.split(';')[0].trim() !== 'application/json') throw new BoundaryError(415, 'content_type');
+    body = parseBody(req.body);
+    ({ email } = body as { email?: unknown });
+  } catch (error) {
+    return res.status(error instanceof BoundaryError ? error.status : 400).json({ ok: false, error: 'Invalid request' });
   }
 
-  if (typeof email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+  if (typeof email !== 'string' || email.trim().length > 254 || !/^[^\s@<>\x00-\x1f\x7f]+@[^\s@<>\x00-\x1f\x7f]+\.[^\s@<>\x00-\x1f\x7f]+$/.test(email.trim())) {
     return res.status(400).json({ ok: false, error: 'Invalid email address' });
   }
 
-  const apiKey = process.env.BUTTONDOWN_API_KEY;
-  if (!apiKey) {
+  const resend = process.env.SIGNUPS_NEWSLETTER_PROVIDER === 'resend';
+  if (!resend && !process.env.BUTTONDOWN_API_KEY) {
     return res.status(500).json({ ok: false, error: 'Server misconfigured' });
   }
 
   try {
-    const response = await fetch('https://api.buttondown.com/v1/subscribers', {
-      method: 'POST',
-      headers: {
-        Authorization: `Token ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email_address: email.trim(),
-        tags: ['website'],
-      }),
-    });
-
-    const data = await response.json().catch(() => ({} as Record<string, unknown>));
-
-    if (response.ok) {
-      // Report what actually happened so the form can show the matching message.
-      // If Buttondown omits the field, assume an opt-in email is on its way.
-      const type = (data as Record<string, unknown>).type ?? (data as Record<string, unknown>).subscriber_type;
-      const confirm = typeof type === 'string' ? type === PENDING_CONFIRMATION : true;
-      return res.status(200).json({ ok: true, confirm });
+    // Future switch only. The production website is not being deployed, so its
+    // historical Buttondown provider remains active with no subscriber migration.
+    if (resend) {
+      await recordNewsletter(parseNewsletter(body));
+      return res.status(202).json({ ok: true, recorded: true });
     }
-
-    return res.status(400).json({
-      ok: false,
-      error: (data as Record<string, string>).detail || 'Subscription failed',
-    });
+    const result = await subscribeButtondown(email.trim());
+    if (result.ok) return res.status(200).json({ ok: true, confirm: result.confirm });
+    return res.status(400).json({ ok: false, error: 'Subscription failed' });
   } catch {
-    return res.status(500).json({ ok: false, error: 'Failed to reach Buttondown' });
+    return res.status(503).json({ ok: false, error: 'Subscription unavailable' });
   }
 }

@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
 import { aiConfig } from '../src/features/ai/config.ts';
+import { readdirSync } from 'node:fs';
 
 test('production preserves existing professional pages, feeds and newsletter form', () => {
   for (const route of ['es', 'en', 'es/contacto', 'en/contact', 'es/como-trabajo', 'en/how-i-work', 'es/proyectos/the-woods-crm', 'en/projects/the-woods-crm', 'es/escritos', 'en/writing']) {
@@ -54,4 +55,16 @@ test('Yepkey replaces current portfolio routes and preserves permanent Zaplink r
   const deployment = JSON.parse(readFileSync('vercel.json', 'utf8'));
   assert.equal(deployment.redirects.length, 2);
   assert.ok(deployment.redirects.every((redirect: { permanent: boolean }) => redirect.permanent));
+});
+
+test('Worker capture remains disabled and server credentials are absent from public scripts', () => {
+  const workerConfig = readFileSync('workers/signups/wrangler.jsonc', 'utf8');
+  for (const flag of ['SIGNUPS_ENABLED', 'RESOURCE_ENABLED', 'NEWSLETTER_CAPTURE_ENABLED', 'QUALIFICATION_ENABLED', 'PRIVACY_REVIEWED', 'RESEND_CONTACTS_VERIFIED', 'DATA_RIGHTS_VERIFIED']) {
+    assert.ok(workerConfig.includes(`"${flag}": "false"`));
+  }
+  assert.ok(workerConfig.includes('"VERIFIED_SENDER": "true"'));
+  for (const filename of readdirSync('dist/_astro').filter(name => name.endsWith('.js'))) {
+    const script = readFileSync(`dist/_astro/${filename}`, 'utf8');
+    assert.equal(/SIGNUPS_SERVICE_TOKEN|SIGNUPS_ADMIN_TOKEN|RESEND_API_KEY|SIGNUPS_WORKER_URL/.test(script), false, filename);
+  }
 });

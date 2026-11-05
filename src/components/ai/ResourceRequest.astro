@@ -23,6 +23,7 @@ const enabled = aiConfig.journey === 'published' && aiConfig.kit.state === 'avai
 
 <script>
   import { currentAttribution } from '../../features/ai/analytics';
+  import { clearRetryKey, retryKey } from '../../features/signups/retry-key';
   const form = document.querySelector<HTMLFormElement>('[data-resource-request]');
   if (form?.dataset.enabled === 'true') {
     const email = form.querySelector<HTMLInputElement>('[name="email"]')!;
@@ -41,18 +42,18 @@ const enabled = aiConfig.journey === 'published' && aiConfig.kit.state === 'avai
         return;
       }
       email.removeAttribute('aria-invalid');
-      const values = JSON.stringify([email.value.trim(), consent.checked]);
-      if (submission?.values !== values) submission = { values, key: crypto.randomUUID() };
       busy = true;
       button.disabled = true;
+      const values = JSON.stringify([email.value.trim(), consent.checked]);
       status.textContent = 'Preparando tu acceso…';
       try {
+        if (submission?.values !== values) submission = { values, key: await retryKey('kit-contexto-v1.1', [email.value.trim(), consent.checked]) };
         const response = await fetch('/api/ai-resource', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: email.value.trim(), marketingConsent: consent.checked, idempotencyKey: submission.key, attribution: currentAttribution() }),
         });
         const result = await response.json();
-        if (response.ok && result.ok) { window.location.assign('/es/ia/gracias/'); return; }
+        if (response.ok && result.ok) { clearRetryKey('kit-contexto-v1.1'); window.location.assign('/es/ia/gracias/'); return; }
         status.textContent = response.status === 429 ? 'Espera un momento antes de volver a intentarlo.'
           : result.code === 'email' ? 'Escribe un correo válido.'
           : 'No pudimos completar la solicitud. Inténtalo de nuevo.';
