@@ -53,8 +53,15 @@ test('Yepkey replaces current portfolio routes and preserves permanent Zaplink r
   assert.ok(sitemap.includes('/en/projects/yepkey/'));
   assert.equal(sitemap.includes('/zaplink'), false);
   const deployment = JSON.parse(readFileSync('vercel.json', 'utf8'));
-  assert.equal(deployment.redirects.length, 2);
-  assert.ok(deployment.redirects.every((redirect: { permanent: boolean }) => redirect.permanent));
+  assert.equal(deployment.redirects.length, 4);
+  for (const prefix of ['es/proyectos', 'en/projects']) {
+    for (const slash of ['', '/']) {
+      const rule = deployment.redirects.find((redirect: { source: string }) => redirect.source === `/${prefix}/zaplink${slash}`);
+      assert.ok(rule, `HTTP redirect for /${prefix}/zaplink${slash}`);
+      assert.equal(rule.destination, `/${prefix}/yepkey/`);
+      assert.equal(rule.permanent, true);
+    }
+  }
 });
 
 test('Worker capture remains disabled and server credentials are absent from public scripts', () => {
