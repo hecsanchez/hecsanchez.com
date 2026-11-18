@@ -1,17 +1,20 @@
 ---
 import { getCollection } from 'astro:content';
 import { t, type Locale } from '../../i18n';
-import { publishedProjects } from '../../data/projects';
+import { getProject } from '../../data/projects';
 import ArrowLink from '../ArrowLink.astro';
 import ProjectCard from '../ProjectCard.astro';
 import SubscribeForm from '../SubscribeForm.astro';
 import { showAiEntry } from '../../features/ai/config';
+import ContactCta from '../ContactCta.astro';
+import ConsultingOffers from '../ConsultingOffers.astro';
+import { consulting } from '../../data/consulting';
 
 interface Props { locale: Locale }
 const { locale } = Astro.props;
 const dict = t(locale);
 
-const featured = publishedProjects.filter((p) => p.featured);
+const featured = [getProject('the-woods-crm'), getProject('hubspot-lead-routing')];
 
 // At most three previews, newest first. Renders whatever is actually published.
 const posts = (await getCollection('blog', ({ data }) => !data.draft && data.locale === locale))
@@ -45,24 +48,18 @@ const dateFmt = new Intl.DateTimeFormat(locale === 'es' ? 'es-MX' : 'en-US', {
         <p class="mt-4 max-w-[52ch] leading-relaxed text-[var(--color-fg-muted)]">{paragraph}</p>
       ))}
       <div class="mt-10 flex flex-wrap items-center gap-5">
-        <a
-          href={dict.routes.projects}
-          class="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-6 py-3 font-medium text-[var(--color-bg)] transition hover:bg-[var(--color-accent-hover)] hover:text-[var(--color-bg)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
-        >
-          {dict.cta.exploreMyWork}
-          <span aria-hidden="true">→</span>
-        </a>
-        <ArrowLink href="#work-with-me">{dict.cta.workWithMe}</ArrowLink>
+        <ContactCta locale={locale} label={locale === 'es' ? consulting.cta : 'Discuss a project'} placement="home_hero" />
+        <ArrowLink href="#selected-work">{locale === 'es' ? 'Ver cómo lo he hecho' : dict.cta.exploreMyWork}</ArrowLink>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Selected work -->
-<section class="mx-auto max-w-5xl px-6 py-20">
+<section id="selected-work" class="mx-auto max-w-5xl scroll-mt-8 px-6 py-20">
   <h2 class="font-serif text-3xl md:text-4xl">{dict.home.workTitle}</h2>
   <p class="mt-4 max-w-[64ch] text-[var(--color-fg-muted)]">{dict.home.workIntro}</p>
-  <div class="mt-10 grid gap-6 md:grid-cols-3">
+  <div class="mt-10 grid gap-6 md:grid-cols-2">
     {featured.map((project) => <ProjectCard locale={locale} project={project} />)}
   </div>
   <p class="mt-8">
@@ -74,6 +71,13 @@ const dateFmt = new Intl.DateTimeFormat(locale === 'es' ? 'es-MX' : 'en-US', {
 <section id="work-with-me" class="border-y border-[var(--color-border)] bg-[var(--color-bg-soft)]/40 scroll-mt-16">
   <div class="mx-auto max-w-5xl px-6 py-20">
     <h2 class="font-serif text-3xl md:text-4xl">{dict.home.workWithMeTitle}</h2>
+    {locale === 'es' ? (
+      <>
+        <ConsultingOffers />
+        <p class="mt-8"><ArrowLink href={consulting.href}>Conoce la oferta de automatización comercial</ArrowLink></p>
+        <p class="mt-8 max-w-[70ch] text-[var(--color-fg-muted)]">También trabajo con <a class="underline underline-offset-4" href={dict.routes.agencies}>agencias que necesitan entregar proyectos de sus clientes</a> y <a class="underline underline-offset-4" href={dict.routes.founders}>fundadores que necesitan apoyo con su producto o equipo de ingeniería</a>.</p>
+      </>
+    ) : (
     <div class="mt-10 grid gap-6 md:grid-cols-2">
       <article class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] p-8">
         <h3 class="font-serif text-2xl">{dict.home.agenciesTitle}</h3>
@@ -102,20 +106,12 @@ const dateFmt = new Intl.DateTimeFormat(locale === 'es' ? 'es-MX' : 'en-US', {
         </p>
       </article>
     </div>
+    )}
+    {locale === 'en' && <p class="mt-8 max-w-[70ch] text-[var(--color-fg-muted)]">Need ongoing technical leadership? <a class="underline underline-offset-4" href={dict.routes.fractionalCto}>Explore fractional CTO support</a>.</p>}
   </div>
 </section>
 
 <!-- Latest writing -->
-{locale === 'es' && showAiEntry(import.meta.env.DEV) && (
-  <section class="mx-auto max-w-5xl px-6 pt-16 pb-4">
-    <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] p-6 md:p-8">
-      <h2 class="font-serif text-3xl">IA para trabajar con la información de tu negocio.</h2>
-      <p class="mt-4 text-[var(--color-fg-muted)]">Explora ejemplos y recursos para mejorar una tarea repetitiva con IA.</p>
-      <p class="mt-5"><ArrowLink href="/es/ia/">Explorar IA para negocios</ArrowLink></p>
-    </div>
-  </section>
-)}
-
 <section class="mx-auto max-w-5xl px-6 py-20">
   <h2 class="font-serif text-3xl md:text-4xl">{dict.home.writingTitle}</h2>
   <p class="mt-4 max-w-[64ch] text-[var(--color-fg-muted)]">{dict.home.writingIntro}</p>
@@ -142,5 +138,15 @@ const dateFmt = new Intl.DateTimeFormat(locale === 'es' ? 'es-MX' : 'en-US', {
     <ArrowLink href={dict.routes.blog}>{dict.cta.readAllArticles}</ArrowLink>
   </p>
 </section>
+
+{locale === 'es' && showAiEntry(import.meta.env.DEV) && (
+  <section class="mx-auto max-w-5xl px-6 pb-16">
+    <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] p-6 md:p-8">
+      <h2 class="font-serif text-3xl">Kit Contexto</h2>
+      <p class="mt-4 text-[var(--color-fg-muted)]">Un recurso gratuito para preparar la información de una tarea de tu negocio y trabajarla con IA.</p>
+      <p class="mt-5"><ArrowLink href="/es/ia/">Kit gratuito</ArrowLink></p>
+    </div>
+  </section>
+)}
 
 <SubscribeForm locale={locale} placement="home" />

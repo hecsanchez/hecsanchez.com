@@ -3,6 +3,9 @@ import { t, type Locale } from '../../i18n';
 import { projectHref, publishedProjects } from '../../data/projects';
 import { resolveProjectImage } from '../../lib/projectImages';
 import AudienceCta from '../AudienceCta.astro';
+import ContactCta from '../ContactCta.astro';
+import ArrowLink from '../ArrowLink.astro';
+import { consulting } from '../../data/consulting';
 
 interface Props { locale: Locale }
 const { locale } = Astro.props;
@@ -77,5 +80,12 @@ const entries = publishedProjects.map((project) => ({
 </div>
 
 <div class="border-t border-[var(--color-border)]">
-  <AudienceCta locale={locale} placement="projects" title={page.finalCtaTitle} body={page.finalCtaBody} />
+  {locale === 'es' ? (
+    <section class="mx-auto max-w-3xl px-6 py-16">
+      <h2 class="font-serif text-3xl">¿Hay un proceso o una integración que quieras resolver?</h2>
+      <p class="mt-4 text-[var(--color-fg-muted)]">Cuéntame dónde se atora tu operación o qué necesita tu proyecto. Podemos hablar aunque todavía no tengas un alcance definido.</p>
+      <p class="mt-6"><ContactCta locale="es" label={consulting.cta} placement="projects" /></p>
+      <p class="mt-6"><ArrowLink href={consulting.href}>Conoce la oferta de automatización comercial</ArrowLink></p>
+    </section>
+  ) : <AudienceCta locale={locale} placement="projects" title={page.finalCtaTitle} body={page.finalCtaBody} />}
 </div>

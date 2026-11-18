@@ -52,7 +52,7 @@ test('development Spanish entry and existing language routes remain available', 
     await expect(page.locator('body > main h1').first()).toBeVisible();
   }
   await page.goto('/es/');
-  await expect(page.getByRole('link', { name: 'Explorar IA para negocios', exact: true })).toHaveCount(1);
+  await expect(page.locator('main').getByRole('link', { name: 'Kit gratuito', exact: true })).toHaveCount(1);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.locator('#mobile-nav-toggle').click();
   await expect(page.locator('#mobile-nav a[href="/es/ia/"]')).toBeVisible();

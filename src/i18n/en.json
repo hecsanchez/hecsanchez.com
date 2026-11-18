@@ -50,11 +50,10 @@
   },
   "home": {
     "metaTitle": "Hec Sánchez | Product Engineer & Fractional CTO",
-    "metaDescription": "I build software and help agencies and founders make better technical decisions. Explore my projects, writing, and ways to work together.",
-    "h1": "I build software and help teams make better technical decisions.",
+    "metaDescription": "Hands-on engineering for agencies and founders. I build integrations and internal tools, with a distinct fractional CTO path for ongoing technical leadership.",
+    "h1": "I build the integrations and internal tools your team doesn’t have time to ship.",
     "intro": [
-      "I'm Hec Sánchez, a product engineer and fractional CTO based in Mexico. I have 16 years of experience building software, from customer-facing products to the systems businesses use every day.",
-      "I work with agencies and founders on product development, integrations, and technical leadership. Here, I share what I build and what I learn along the way."
+      "I'm Hec Sánchez, a product engineer based in Mexico. I work directly with agencies delivering client projects and founders building software: define the scope, connect the systems, and ship the implementation."
     ],
     "workTitle": "Selected work",
     "workIntro": "Products and business systems I've built, with a particular interest in the technology behind sales, marketing, and customer communication.",

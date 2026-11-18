@@ -5,7 +5,7 @@ import { aiConfig } from '../src/features/ai/config.ts';
 import { readdirSync } from 'node:fs';
 
 test('production preserves existing professional pages, feeds and newsletter form', () => {
-  for (const route of ['es', 'en', 'es/contacto', 'en/contact', 'es/privacidad', 'en/privacy', 'es/como-trabajo', 'en/how-i-work', 'es/proyectos/the-woods-crm', 'en/projects/the-woods-crm', 'es/escritos', 'en/writing']) {
+  for (const route of ['es', 'en', 'es/automatizacion-comercial', 'es/contacto', 'en/contact', 'es/privacidad', 'en/privacy', 'es/como-trabajo', 'en/how-i-work', 'es/proyectos/the-woods-crm', 'en/projects/the-woods-crm', 'es/escritos', 'en/writing']) {
     assert.ok(existsSync(`dist/${route}/index.html`), route);
   }
   for (const locale of ['es', 'en']) {
@@ -23,7 +23,7 @@ test('only published AI routes and entries can exist in a production build', () 
   assert.equal(existsSync('dist/es/ia/taller/index.html'), false);
   assert.equal(existsSync('dist/en/ia/index.html'), false);
   const home = readFileSync('dist/es/index.html', 'utf8');
-  assert.equal(home.includes('Explorar IA para negocios'), published);
+  assert.equal(home.includes('Kit gratuito'), published);
   assert.equal(home.includes('href="/es/ia/"'), published);
 });
 
@@ -35,6 +35,8 @@ test('sitemap excludes resource success, draft and unselected offers', () => {
   assert.equal(sitemap.includes('https://hecsanchez.com/es/ia/'), aiConfig.journey === 'published');
   assert.ok(sitemap.includes('https://hecsanchez.com/es/'));
   assert.ok(sitemap.includes('https://hecsanchez.com/en/'));
+  assert.ok(sitemap.includes('https://hecsanchez.com/es/automatizacion-comercial/'));
+  assert.equal(existsSync('dist/en/automatizacion-comercial/index.html'), false);
 });
 
 test('Yepkey replaces current portfolio routes and preserves permanent Zaplink redirects', () => {

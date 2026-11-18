@@ -49,16 +49,15 @@
     "readMyWriting": "Lee mis artículos"
   },
   "home": {
-    "metaTitle": "Hec Sánchez | Ingeniero de Producto y CTO Fraccional",
-    "metaDescription": "Desarrollo software y ayudo a agencias y fundadores a tomar mejores decisiones técnicas. Conoce mis proyectos, artículos y formas de trabajar conmigo.",
-    "h1": "Desarrollo software y ayudo a equipos a tomar mejores decisiones técnicas.",
+    "metaTitle": "Hec Sánchez | Automatización comercial e integraciones",
+    "metaDescription": "Ayudo a equipos comerciales a dar seguimiento a sus prospectos. Reviso procesos y construyo integraciones, automatizaciones y software para que la operación avance.",
+    "h1": "Ayudo a equipos comerciales a dar seguimiento a sus prospectos sin vivir entre WhatsApp y hojas de cálculo.",
     "intro": [
-      "Soy Hec Sánchez, ingeniero de producto y CTO fraccional en México. Tengo 16 años de experiencia desarrollando software, desde productos para usuarios finales hasta los sistemas que las empresas utilizan todos los días.",
-      "Trabajo con agencias y fundadores en desarrollo de productos, integraciones y liderazgo técnico. Aquí comparto lo que construyo y lo que aprendo en el proceso."
+      "Soy Hec Sánchez. Reviso cómo trabaja tu equipo y construyo las integraciones y automatizaciones que le hacen falta, usando las herramientas que ya tiene cuando conviene."
     ],
-    "workTitle": "Proyectos destacados",
-    "workIntro": "Productos y sistemas de negocio que he desarrollado, con un interés particular en la tecnología detrás de las ventas, el marketing y la comunicación con clientes.",
-    "workWithMeTitle": "Trabaja conmigo",
+    "workTitle": "Cómo lo he hecho",
+    "workIntro": "De las conversaciones de WhatsApp a las compras y entregas en The Woods; de una solicitud nueva al asesor en turno en Estateflow. Estos son los flujos que he construido.",
+    "workWithMeTitle": "Dos formas de empezar",
     "agenciesTitle": "Para agencias",
     "agenciesBody": "Colaboro en proyectos de clientes que necesitan software a medida, integraciones o dirección técnica. Ayudo a definir el trabajo y desarrollar las partes que tu equipo necesita entregar.",
     "foundersTitle": "Para fundadores",
@@ -284,16 +283,16 @@
     "linksTitle": "Encuéntrame en"
   },
   "contact": {
-    "metaTitle": "Contacta a Hec Sánchez | Hablemos de tu Proyecto",
-    "metaDescription": "Agenda una conversación de 30 minutos con Hec Sánchez sobre un proyecto de cliente, producto de software, integración o apoyo como CTO fraccional.",
-    "h1": "Hablemos de lo que estás construyendo.",
-    "introDefault": "Agenda una conversación de 30 minutos sobre tu producto, proyecto de cliente o reto técnico. Hablaremos de lo que necesitas y de si tiene sentido trabajar juntos.",
+    "metaTitle": "Contacta a Hec Sánchez | Platiquemos de tu proceso",
+    "metaDescription": "Cuéntame dónde se atora tu operación, integración o proyecto de software. No necesitas un brief: agenda una conversación de 30 minutos con Hec Sánchez.",
+    "h1": "Platiquemos de tu proceso.",
+    "introDefault": "Puedes llegar con un proceso desordenado: prospectos sin responsable, cotizaciones sin seguimiento o datos que tu equipo copia de un sistema a otro. En 30 minutos hablamos de cómo funciona hoy y de si puedo ayudarte. También podemos hablar de tu producto, proyecto de cliente o equipo técnico.",
     "introAgency": "Cuéntame sobre el proyecto de tu cliente, los sistemas involucrados y dónde necesita apoyo de ingeniería tu equipo. Usaremos la llamada para explorar el alcance y ver si puedo ayudarte.",
     "introFounder": "Cuéntame sobre tu producto, tu equipo y las decisiones técnicas en las que necesitas apoyo. Hablaremos de si conviene una implementación concreta o una colaboración continua.",
-    "contextTitle": "Un poco de contexto ayuda",
+    "contextTitle": "No necesitas un brief",
     "context": [
-      "Si ya tienes un brief, puedes enviarlo antes de la llamada. Es útil saber qué estás desarrollando, las herramientas o el producto actual, tus fechas y el resultado que buscas.",
-      "También puedes traer una pregunta inicial. Podemos identificar juntos lo que hace falta aclarar."
+      "No hace falta ordenar todo antes de hablar. Cuéntame un ejemplo reciente de lo que se atoró, qué herramientas usa el equipo y qué te gustaría que pasara en su lugar.",
+      "Si ya tienes notas o un brief, puedes compartirlos. Si solo tienes una pregunta o la sensación de que algo falla, también es un buen punto de partida."
     ],
     "bookingLabel": "Elige un horario",
     "emailTitle": "¿Prefieres escribir?",
@@ -301,10 +300,10 @@
   },
   "howIWork": {
     "metaTitle": "Cómo Trabajo | Hec Sánchez",
-    "metaDescription": "Conoce cómo Hec Sánchez aborda evaluaciones técnicas, implementaciones de software y colaboraciones continuas de ingeniería o como CTO fraccional.",
-    "h1": "Entender el problema. Acordar el trabajo. Construir a partir de ahí.",
-    "intro": "Trabajo directamente con agencias y fundadores en desarrollo de software y liderazgo técnico. La colaboración adecuada depende del problema, las personas involucradas y la responsabilidad que necesitas que asuma.",
-    "waysTitle": "Tres formas de empezar",
+    "metaDescription": "Qué pasa antes, durante y después de trabajar con Hec Sánchez: alcance, responsabilidades, revisiones con tu equipo y entrega del trabajo.",
+    "h1": "Qué puedes esperar al trabajar conmigo.",
+    "intro": "Trabajo directamente contigo y con las personas que usan el proceso o el software. Antes de empezar acordamos qué vamos a resolver; durante el trabajo revisamos avances con el equipo; al cerrar dejamos claro cómo operar lo entregado y quién se hace cargo.",
+    "waysTitle": "Tres modelos según la responsabilidad que necesitas",
     "ways": [
       {
         "title": "Evaluación técnica",
@@ -319,15 +318,15 @@
         "body": "Para trabajo que requiere continuidad en ingeniería o liderazgo. Puede incluir decisiones de arquitectura, implementación, apoyo al equipo o un papel de CTO fraccional. Definimos el tiempo de dedicación y las responsabilidades en la propuesta."
       }
     ],
-    "processTitle": "Cómo es el proceso",
+    "processTitle": "Antes, durante y después",
     "process": [
-      { "step": "1", "label": "Conversación inicial.", "body": "Entender el objetivo de negocio, la situación actual y las restricciones." },
-      { "step": "2", "label": "Propuesta.", "body": "Acordar el alcance, los entregables, las responsabilidades, los tiempos y los honorarios antes de empezar." },
-      { "step": "3", "label": "Ejecución.", "body": "Trabajar las prioridades acordadas, compartir avances y plantear las decisiones o cambios de alcance que surjan." },
-      { "step": "4", "label": "Entrega o continuidad.", "body": "Documentar el trabajo realizado y acordar si existe una siguiente colaboración que tenga sentido." }
+      { "step": "1", "label": "Antes: entender el trabajo real.", "body": "Revisamos un ejemplo del problema, las herramientas actuales, quién participa y las restricciones. Puedes llegar sin brief; primero identificamos qué hace falta aclarar." },
+      { "step": "2", "label": "Antes: acordar por escrito.", "body": "La propuesta define alcance, entregables, responsabilidades, accesos necesarios, tiempos, honorarios y criterios de cierre. También acordamos quién revisa el trabajo con tu equipo." },
+      { "step": "3", "label": "Durante: construir y revisar.", "body": "Comparto avances y probamos el flujo con las personas que lo usan. Si aparece una decisión o cambia el alcance, acordamos el impacto antes de continuar con ese cambio." },
+      { "step": "4", "label": "Después: entregar y asignar responsables.", "body": "Revisamos los criterios de cierre y entrego la documentación necesaria para operar lo construido. Dejamos claros los pendientes y quién lo mantiene; si hace falta continuidad, la acordamos por separado." }
     ],
-    "routeTitle": "¿Qué opción corresponde a tu situación?",
-    "routeBody": "Las agencias pueden involucrarme en la entrega de proyectos para clientes. Los fundadores pueden contar conmigo para desarrollo de producto o dirección técnica continua."
+    "routeTitle": "¿Hay un proceso que quieras revisar?",
+    "routeBody": "Cuéntame cómo funciona hoy y dónde se atora. Podemos identificar si conviene empezar por entenderlo mejor o por una implementación definida."
   },
   "fractionalCto": {
     "metaTitle": "¿Qué Es un CTO Fraccional? | Hec Sánchez",

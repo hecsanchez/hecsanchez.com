@@ -4,6 +4,8 @@ import { getProject, projectHref, type Project } from '../../data/projects';
 import ProjectFigure from '../ProjectFigure.astro';
 import ArrowLink from '../ArrowLink.astro';
 import AudienceCta from '../AudienceCta.astro';
+import ContactCta from '../ContactCta.astro';
+import { consulting } from '../../data/consulting';
 
 interface Props {
   locale: Locale;
@@ -15,6 +17,7 @@ const dict = t(locale);
 const page = dict.projects;
 
 const related = project.related.map(getProject);
+const consultingFit = locale === 'es' && ['the-woods-crm', 'hubspot-lead-routing', 'estateflow'].includes(project.id);
 ---
 
 <article class="mx-auto max-w-3xl px-6 pt-10 pb-8">
@@ -106,5 +109,12 @@ const related = project.related.map(getProject);
 </section>
 
 <div class="border-t border-[var(--color-border)]">
-  <AudienceCta locale={locale} placement="project_detail" title={page.finalCtaTitle} body={page.finalCtaBody} />
+  {consultingFit ? (
+    <section class="mx-auto max-w-3xl px-6 py-16">
+      <h2 class="font-serif text-3xl">¿Tu equipo pierde el hilo entre solicitudes, cotizaciones y seguimiento?</h2>
+      <p class="mt-4 text-[var(--color-fg-muted)]">Puedo revisar un flujo de tu operación comercial y construir las integraciones o automatizaciones que necesita. Podemos empezar con un diagnóstico o con una implementación si el alcance ya está claro.</p>
+      <p class="mt-6"><ContactCta locale="es" label={consulting.cta} placement="project_detail" /></p>
+      <p class="mt-6"><ArrowLink href={consulting.href}>Conoce la oferta de automatización comercial</ArrowLink></p>
+    </section>
+  ) : <AudienceCta locale={locale} placement="project_detail" title={page.finalCtaTitle} body={page.finalCtaBody} />}
 </div>

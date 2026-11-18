@@ -48,11 +48,11 @@ test('current portfolio entries use Yepkey while dated posts explain the former 
     ['es', '/es/proyectos/yepkey', '/es/escritos/un-producto-que-funciona-es-una-forma-muy-convincente-de-evitar-vender/'],
     ['en', '/en/projects/yepkey', '/en/writing/a-working-product-is-a-very-convincing-way-to-avoid-selling/'],
   ]) {
-    await page.goto(`/${locale}/`);
-    const card = page.locator(`a[href="${projectPath}"]`);
-    await expect(card).toHaveCount(1);
-    await expect(card.locator('h3')).toHaveText('Yepkey.io');
-    await expect(card.locator('img')).toHaveAttribute('src', '/projects/yepkey/hero.webp');
+    await page.goto(locale === 'es' ? '/es/proyectos/' : '/en/projects/');
+    const entry = page.locator('#yepkey');
+    await expect(entry.locator('h2 a')).toHaveAttribute('href', projectPath);
+    await expect(entry.locator('h2')).toHaveText('Yepkey.io');
+    await expect(entry.locator('img')).toHaveAttribute('src', '/projects/yepkey/hero.webp');
     await page.goto(articlePath);
     await expect(page.locator(`main a[href="${projectPath}"]`).first()).toHaveText(locale === 'es' ? 'Yepkey (entonces llamado Zaplink)' : 'Yepkey (then called Zaplink)');
     await expect(page.locator('main a[href$="/zaplink"]')).toHaveCount(0);

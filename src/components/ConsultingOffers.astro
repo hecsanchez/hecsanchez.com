@@ -1,0 +1,28 @@
+---
+import { consulting } from '../data/consulting';
+import ArrowLink from './ArrowLink.astro';
+import ContactCta from './ContactCta.astro';
+
+interface Props { detailed?: boolean }
+const { detailed = false } = Astro.props;
+---
+
+<div class="mt-10 grid gap-6 md:grid-cols-2">
+  {consulting.offers.map((offer) => (
+    <article id={detailed ? offer.id : undefined} class="scroll-mt-8 rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] p-7 md:p-8">
+      <h3 class="font-serif text-2xl">{offer.title}</h3>
+      <p class="mt-3 font-medium text-[var(--color-accent)]">{offer.price}{'duration' in offer && <> · {offer.duration}</>}</p>
+      <p class="mt-5 font-serif">{offer.situation}</p>
+      <p class="mt-3 text-[var(--color-fg-muted)]">{offer.body}</p>
+      {detailed ? (
+        <>
+          <p class="mt-4 text-[var(--color-fg-muted)]">{offer.detail}</p>
+          <p class="mt-6"><ContactCta locale="es" label={consulting.cta} placement={`consulting_${offer.id}`} /></p>
+        </>
+      ) : (
+        <p class="mt-6"><ArrowLink href={`${consulting.href}#${offer.id}`}>Ver alcance y entregables</ArrowLink></p>
+      )}
+    </article>
+  ))}
+</div>
+<p class="mt-6 max-w-[70ch] text-[var(--color-fg-muted)]">Si el alcance ya está claro, podemos ir directo al sprint. No es obligatorio contratar un diagnóstico antes.</p>

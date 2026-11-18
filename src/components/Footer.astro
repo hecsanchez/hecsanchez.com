@@ -1,5 +1,7 @@
 ---
 import { t, type Locale, contactInfo } from '../i18n';
+import { consulting } from '../data/consulting';
+import { showAiEntry } from '../features/ai/config';
 
 interface Props { locale: Locale }
 const { locale } = Astro.props;
@@ -8,6 +10,7 @@ const r = dict.routes;
 const year = new Date().getFullYear();
 
 const siteLinks = [
+  ...(locale === 'es' && showAiEntry(import.meta.env.DEV) ? [{ href: '/es/ia/', label: 'Kit gratuito' }] : []),
   { href: r.blog, label: dict.nav.blog },
   { href: r.projects, label: dict.nav.projects },
   { href: r.about, label: dict.nav.about },
@@ -16,6 +19,7 @@ const siteLinks = [
 ];
 
 const workLinks = [
+  ...(locale === 'es' ? [{ href: consulting.href, label: consulting.label }] : []),
   { href: r.agencies, label: dict.nav.agencies },
   { href: r.founders, label: dict.nav.founders },
   { href: r.howIWork, label: dict.nav.howIWork },

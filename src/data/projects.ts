@@ -55,7 +55,7 @@ export const projects: Project[] = [
     category: { en: 'Client work', es: 'Proyecto para cliente' },
     cardDescription: {
       en: 'A custom CRM for The Woods, a business selling wooden floors and materials.',
-      es: 'Un CRM a medida para The Woods, una empresa que vende pisos de madera y materiales.',
+      es: 'WhatsApp conectado al registro del cliente, borradores de seguimiento con IA para revisar y cotizaciones aprobadas que continúan a compras y entregas sin recapturar datos.',
     },
     body: {
       en: 'I built a custom CRM for The Woods. The project sits at the intersection of software development and the day-to-day needs of a sales business.',
@@ -156,7 +156,7 @@ export const projects: Project[] = [
     category: { en: 'Business application', es: 'Aplicación de negocio' },
     cardDescription: {
       en: 'A HubSpot app for assigning leads using agent schedules, with a calendar view of availability.',
-      es: 'Una app de HubSpot que asigna prospectos según los horarios de los asesores, con un calendario de disponibilidad.',
+      es: 'Como parte de Estateflow, una app que asigna prospectos a asesores que están en turno, dentro del HubSpot que el equipo ya utiliza.',
     },
     body: {
       en: 'I built a lead routing application connected to HubSpot. It includes a calendar for viewing agents and their schedules, and uses those schedules in lead assignment.',

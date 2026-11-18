@@ -2,6 +2,8 @@
 import { t, type Locale } from '../../i18n';
 import AudienceCta from '../AudienceCta.astro';
 import ArrowLink from '../ArrowLink.astro';
+import ContactCta from '../ContactCta.astro';
+import { consulting } from '../../data/consulting';
 
 interface Props { locale: Locale }
 const { locale } = Astro.props;
@@ -45,5 +47,12 @@ const page = dict.howIWork;
 </section>
 
 <div class="pb-10">
-  <AudienceCta locale={locale} placement="how_i_work" title={page.routeTitle} body={page.routeBody} />
+  {locale === 'es' ? (
+    <section class="mx-auto max-w-3xl px-6 py-10">
+      <h2 class="font-serif text-3xl">{page.routeTitle}</h2>
+      <p class="mt-4 text-[var(--color-fg-muted)]">{page.routeBody}</p>
+      <p class="mt-6"><ContactCta locale="es" label={consulting.cta} placement="how_i_work" /></p>
+      <p class="mt-6"><ArrowLink href={consulting.href}>Ver alcances y precios de automatización comercial</ArrowLink></p>
+    </section>
+  ) : <AudienceCta locale={locale} placement="how_i_work" title={page.routeTitle} body={page.routeBody} />}
 </div>

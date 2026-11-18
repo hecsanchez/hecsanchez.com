@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ConsultingOffers from '../../components/ConsultingOffers.astro';
+import ContactCta from '../../components/ContactCta.astro';
+import ArrowLink from '../../components/ArrowLink.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { consulting } from '../../data/consulting';
+import { getProject } from '../../data/projects';
+
+const title = 'Automatización comercial e integraciones | Hec Sánchez';
+const description = 'Diagnóstico e implementación para solicitudes sin responsable, cotizaciones sin seguimiento y datos copiados entre sistemas. Reviso tu proceso y construyo lo que falta.';
+---
+
+<BaseLayout locale="es" title={title} description={description} altLocaleFallbackHref="/en/" service={{ name: consulting.label, description }}>
+  <section class="mx-auto max-w-5xl px-6 pt-20 pb-16 md:pt-28">
+    <p class="text-sm uppercase tracking-[0.18em] text-[var(--color-accent)]">{consulting.label}</p>
+    <h1 class="mt-6 max-w-[24ch] font-serif text-4xl leading-tight text-balance md:text-5xl">Que cada prospecto tenga responsable y el seguimiento no dependa de la memoria.</h1>
+    <p class="mt-6 max-w-[65ch] text-[var(--color-fg-muted)]">Soy Hec Sánchez. Reviso cómo trabaja tu equipo y construyo las integraciones y automatizaciones que le hacen falta, usando las herramientas que ya tiene cuando conviene.</p>
+    <p class="mt-8"><ContactCta locale="es" label={consulting.cta} placement="consulting_hero" /></p>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-6 py-16">
+    <h2 class="font-serif text-3xl md:text-4xl">¿Dónde se está atorando tu operación?</h2>
+    <div class="mt-10 grid gap-8 md:grid-cols-3">
+      <article>
+        <h3 class="font-serif text-2xl">Solicitudes sin responsable</h3>
+        <p class="mt-4 text-[var(--color-fg-muted)]">Llega un mensaje o un formulario y nadie sabe a quién le toca. Revisamos cómo asignarlo a alguien que pueda atenderlo y cómo detectar lo que sigue pendiente.</p>
+      </article>
+      <article>
+        <h3 class="font-serif text-2xl">Cotizaciones sin seguimiento</h3>
+        <p class="mt-4 text-[var(--color-fg-muted)]">La cotización salió por WhatsApp y el siguiente paso quedó en la cabeza del vendedor. Conectamos la conversación, el registro del cliente y el trabajo que sigue.</p>
+      </article>
+      <article>
+        <h3 class="font-serif text-2xl">Datos copiados entre sistemas</h3>
+        <p class="mt-4 text-[var(--color-fg-muted)]">El equipo vuelve a capturar lo mismo en el CRM, una hoja de cálculo y el sistema de pedidos. Identificamos qué información debe pasar de un lugar a otro y construimos esa conexión.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="border-y border-[var(--color-border)] bg-[var(--color-bg-soft)]/40">
+    <div class="mx-auto max-w-5xl px-6 py-20">
+      <h2 class="font-serif text-3xl md:text-4xl">Dos formas de empezar</h2>
+      <ConsultingOffers detailed />
+      <div class="mt-12 border-t border-[var(--color-border)] pt-8">
+        <h3 class="font-serif text-2xl">Acompañamiento técnico</h3>
+        <p class="mt-3 font-medium text-[var(--color-accent)]">MX$20–50 mil al mes</p>
+        <p class="mt-4 max-w-[70ch] text-[var(--color-fg-muted)]">Cuando necesitas a alguien que mantenga la responsabilidad técnica o trabaje sobre varios flujos, acordamos un acompañamiento continuo con prioridades y dedicación definidas.</p>
+        <p class="mt-5"><ArrowLink href="/es/cto-fraccionario/">Conoce el acompañamiento como CTO fraccional</ArrowLink></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-6 py-20">
+    <h2 class="font-serif text-3xl md:text-4xl">Cómo lo he hecho</h2>
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      <ProjectCard locale="es" project={getProject('the-woods-crm')} />
+      <ProjectCard locale="es" project={getProject('hubspot-lead-routing')} />
+    </div>
+    <p class="mt-8"><ArrowLink href="/es/como-trabajo/">Qué pasa antes, durante y después del trabajo</ArrowLink></p>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-6 py-12">
+    <h2 class="font-serif text-3xl md:text-4xl">Cuéntame cómo funciona hoy</h2>
+    <p class="mt-5 max-w-[65ch] text-[var(--color-fg-muted)]">Puedes llegar con un proceso desordenado, mensajes sueltos o una idea de lo que se está perdiendo. No necesitas preparar un brief para la primera conversación.</p>
+    <p class="mt-8"><ContactCta locale="es" label={consulting.cta} placement="consulting_footer" /></p>
+  </section>
+</BaseLayout>
